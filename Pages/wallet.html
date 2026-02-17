@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Wallet - Crypto pour les Nuls</title>
+  <link rel="icon" type="image/gif" href="https://i.postimg.cc/qMC792VP/papillon.gif">
+
+  <style>
+    /* Barre de navigation */
+    nav {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav li {
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Style de la page */
+    body {
+      margin: 0;
+      padding: 60px 0 0 0;
+      background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    .content {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      color: #6FA8DC;
+      text-align: center;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      border-radius: 10px;
+      border: 2px solid #6FA8DC;
+    }
+
+    .wallet-section {
+      margin-bottom: 30px;
+      padding: 15px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      border: 1px solid #6FA8DC;
+    }
+
+    .warning {
+      background-color: rgba(255, 0, 0, 0.2);
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid red;
+      margin-bottom: 20px;
+    }
+
+    .tip {
+      background-color: rgba(0, 255, 0, 0.1);
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid green;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0B5394;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .button:hover {
+      background-color: #6FA8DC;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Barre de navigation -->
+  <nav>
+    <ul>
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/pages/wallet.html">Wallet</a></li>
+      <li><a href="/pages/cex.html">Plateformes CEX</a></li>
+      <li><a href="/pages/cosmos.html">Cosmos</a></li>
+      <li><a href="/pages/defi.html">DeFi</a></li>
+      <li><a href="/pages/fiscalite.html">Fiscalité</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contenu de la page -->
+  <div class="content">
+    <h1>Les Wallets Crypto</h1>
+
+    <!-- Introduction -->
+    <p>
+      La <a href="https://www.youtube.com/watch?v=9EtI8zh56w0" target="_blank" style="color: red;">blockchain</a>, c’est une super technologie, mais c’est le bordel ! Pour stocker tes cryptos en sécurité, il te faut un <strong>wallet</strong> (portefeuille numérique).
+      Chaque blockchain a ses propres wallets. Par exemple :
+    </p>
+    <ul>
+      <li><strong>Xverse</strong> pour le Bitcoin et les tokens Stacks (STX).</li>
+      <li><strong>Rabby</strong> pour Ethereum (ETH) et les tokens ERC-20.</li>
+      <li><strong>Kepler</strong> pour Cosmos (ATOM) et ses écosystèmes.</li>
+    </ul>
+    <p>
+      On va te guider pas à pas, du téléchargement à l’envoi/réception de cryptos. Et à la fin, on parlera du <strong>Ledger</strong>, le must pour sécuriser tes actifs.
+    </p>
+
+    <!-- Message de sécurité -->
+    <div class="warning">
+      <h2>⚠️ ATTENTION : LA OÙ IL Y A DU FRIC, IL Y A DES VOYOUS (ET ILS SONT FORTS) !</h2>
+      <p>
+        <strong>Télécharge TOUJOURS tes wallets ou extensions depuis les sites officiels.</strong> Vérifie bien l’URL avant de cliquer. Voici comment faire :
+      </p>
+      <ul>
+        <li>Pour les applications mobiles, utilise les liens officiels vers le <a href="https://play.google.com/store" target="_blank" style="color: #6FA8DC;">Play Store</a> ou l'<a href="https://apps.apple.com" target="_blank" style="color: #6FA8DC;">App Store</a>.</li>
+        <li>Pour les extensions navigateur, vérifie que l’URL commence par <code>https://</code> et que le site est bien le bon (ex: <a href="https://www.rabby.io" target="_blank" style="color: #6FA8DC;">https://www.rabby.io</a> pour Rabby).</li>
+        <li>Ajoute les sites officiels dans tes favoris pour éviter les arnaques.</li>
+      </ul>
+      <p>
+        <strong>NE DONNE JAMAIS TA SEED PHRASE</strong> (les 12 ou 24 mots pour restaurer ton wallet). Personne ne doit la connaître, pas même le support technique !
+      </p>
+    </div>
+
+    <!-- Conseils pour les mots de passe -->
+    <div class="tip">
+      <h2>🔒 Des mots de passe forts et uniques</h2>
+      <p>
+        Utilise un mot de passe <strong>différent pour chaque wallet et chaque site</strong>. Oui, c’est chiant, mais c’est vital.
+      </p>
+      <p>
+        Pour gérer ça sans devenir fou, utilise un <strong>gestionnaire de mots de passe</strong> comme :
+      </p>
+      <ul>
+        <li><a href="https://proton.me/pass" target="_blank" style="color: #6FA8DC;">Proton Pass</a> (gratuit et sécurisé).</li>
+        <li><a href="https://keepass.info" target="_blank" style="color: #6FA8DC;">KeePass</a> (open-source et ultra-sécurisé).</li>
+      </ul>
+      <p>
+        <strong>Petit tuto express</strong> :
+      </p>
+      <ol>
+        <li>Installe le gestionnaire de mots de passe.</li>
+        <li>Crée un <strong>mot de passe maître</strong> (un seul à retenir, mais ultra-solide).</li>
+        <li>Laisse le gestionnaire générer et stocker tes mots de passe.</li>
+        <li>Plus besoin de tout retenir : le gestionnaire remplit les champs pour toi !</li>
+      </ol>
+      <p>
+        <em>Non, tu ne vas pas passer 2 heures à chaque swap. Une fois configuré, c’est automatique !</em>
+      </p>
+    </div>
+
+    <!-- Wallet Xverse -->
+    <div class="wallet-section">
+      <h2>🌐 Xverse (pour Bitcoin et Stacks)</h2>
+      <img src="https://i.postimg.cc/5NQYQJQx/xverse.png" alt="Xverse Wallet">
+      <p>
+        <strong>Pourquoi ?</strong> Xverse est le wallet le plus simple pour gérer ton Bitcoin (BTC) et les tokens Stacks (STX).
+      </p>
+      <h3>Téléchargement et installation :</h3>
+      <ol>
+        <li>Va sur le site officiel : <a href="https://www.xverse.app" target="_blank" class="button">Site Officiel Xverse</a>.</li>
+        <li>Installe l’extension pour <a href="https://chrome.google.com/webstore/detail/xverse-bitcoin-wallet/llioadgpmdngcnoddbpaamhefbnpmanl" target="_blank">Chrome</a> ou <a href="https://addons.mozilla.org/fr/firefox/addon/xverse/" target="_blank">Firefox</a>.</li>
+        <li>Crée un nouveau wallet et <strong>note ta seed phrase</strong> (sur papier, pas sur ton PC !).</li>
+      </ol>
+      <h3>Envoyer/Recevoir des BTC ou STX :</h3>
+      <ol>
+        <li>Ouvre Xverse et clique sur "Recevoir" pour obtenir ton adresse.</li>
+        <li>Pour envoyer, clique sur "Envoyer", entre l’adresse du destinataire et le montant.</li>
+        <li>Valide la transaction (et paie les frais de réseau).</li>
+      </ol>
+    </div>
+
+    <!-- Wallet Rabby -->
+    <div class="wallet-section">
+      <h2>🦊 Rabby (pour Ethereum et ERC-20)</h2>
+      <img src="https://i.postimg.cc/8zXJQ1VQ/rabby.png" alt="Rabby Wallet">
+      <p>
+        <strong>Pourquoi ?</strong> Rabby est plus sécurisé que MetaMask et gère tous les tokens ERC-20 (ETH, USDC, etc.).
+      </p>
+      <h3>Téléchargement et installation :</h3>
+      <ol>
+        <li>Va sur le site officiel : <a href="https://rabby.io" target="_blank" class="button">Site Officiel Rabby</a>.</li>
+        <li>Installe l’extension pour <a href="https://chrome.google.com/webstore/detail/rabby-wallet/acmacodkjbdgchdheemneiikojpocofc" target="_blank">Chrome</a>.</li>
+        <li>Crée un wallet et <strong>sauvegarde ta seed phrase</strong>.</li>
+      </ol>
+      <h3>Envoyer/Recevoir des ETH ou ERC-20 :</h3>
+      <ol>
+        <li>Clique sur "Recevoir" pour afficher ton adresse.</li>
+        <li>Pour envoyer, entre l’adresse et le montant, puis valide.</li>
+      </ol>
+    </div>
+
+    <!-- Wallet Kepler -->
+    <div class="wallet-section">
+      <h2>🪐 Kepler (pour Cosmos)</h2>
+      <img src="https://i.postimg.cc/0QNJZQ1V/kepler.png" alt="Kepler Wallet">
+      <p>
+        <strong>Pourquoi ?</strong> Kepler est le wallet le plus utilisé pour interagir avec le Cosmos Hub (ATOM) et ses chaînes (Osmo, Juno, etc.).
+      </p>
+      <h3>Téléchargement et installation :</h3>
+      <ol>
+        <li>Va sur le site officiel : <a href="https://wallet.keplr.app" target="_blank" class="button">Site Officiel Kepler</a>.</li>
+        <li>Installe l’extension pour <a href="https://chrome.google.com/webstore/detail/keplr-wallet/dmkamcknoggfgfgbkdpeobnlclkhiabn" target="_blank">Chrome</a>.</li>
+        <li>Crée un wallet et <strong>note ta seed phrase</strong>.</li>
+      </ol>
+      <h3>Envoyer/Recevoir des ATOM :</h3>
+      <ol>
+        <li>Clique sur "Recevoir" pour voir ton adresse Cosmos.</li>
+        <li>Pour envoyer, sélectionne la chaîne (ex: Cosmos Hub), entre l’adresse et le montant.</li>
+      </ol>
+    </div>
+
+    <!-- Ledger -->
+    <div class="wallet-section">
+      <h2>🔐 Ledger (pour tout sécuriser)</h2>
+      <img src="https://i.postimg.cc/8CQZYL5j/ledger.png" alt="Ledger Wallet">
+      <p>
+        <strong>Pourquoi ?</strong> Un Ledger, c’est un wallet physique (une clé USB ultra-sécurisée) qui protège tes cryptos contre les piratages.
+      </p>
+      <h3>Comment ça marche ?</h3>
+      <ol>
+        <li>Achte un Ledger sur le <a href="https://www.ledger.com" target="_blank">site officiel</a> (évite Amazon ou eBay !).</li>
+        <li>Branche-le à ton PC et suis les instructions pour le configurer.</li>
+        <li>Installe les applications (Bitcoin, Ethereum, etc.) via Ledger Live.</li>
+        <li>Transfère tes cryptos depuis tes wallets logiciels vers ton Ledger.</li>
+      </ol>
+      <p>
+        <strong>Avantages</strong> :
+      </p>
+      <ul>
+        <li>Tes clés privées restent <strong>hors ligne</strong> (impossible à pirater).</li>
+        <li>Tu peux gérer plusieurs cryptos en même temps.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

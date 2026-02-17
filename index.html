@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Crypto pour les Nuls</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/gif" href="https://i.postimg.cc/qMC792VP/papillon.gif">
+
+  <style>
+    /* Fond GIF plein écran */
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    /* Logo */
+    #logo {
+      width: 150px;
+      margin-top: 40px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Conteneur des boutons */
+    .menu {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    /* Boutons images rotatifs */
+    .btn {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.4s;
+      border: 3px solid white;
+    }
+
+    .btn:hover {
+      transform: rotateY(360deg) scale(1.1);
+    }
+
+    .btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Titre sous chaque bouton */
+    .label {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 0 0 8px black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Logo -->
+  <img id="logo" src="https://i.postimg.cc/qMC792VP/papillon.gif" alt="Logo">
+
+  <h1>Crypto pour les Nuls</h1>
+  <p>Choisis une catégorie pour commencer ton voyage dans l'univers crypto.</p>
+
+  <!-- Menu -->
+  <div class="menu">
+
+    <!-- Exemple bouton Wallet -->
+    <div onclick="location.href='pages/wallet.html'">
+      <div class="btn">
+        <img src="https://i.postimg.cc/3NRY9mFj/wallet_rond.png" alt="Wallet">
+      </div>
+      <div class="label">Wallet</div>
+    </div>
+
+    <!-- Exemple bouton CEX -->
+    <div onclick="location.href='pages/cex.html'">
+      <div class="btn">
+        <img src="https://i.postimg.cc/0jQPZD07/bank_rond.png" alt="Plateformes CEX">
+      </div>
+      <div class="label">Plateformes CEX</div>
+    </div>
+
+    <!-- Exemple bouton Cosmos -->
+    <div onclick="location.href='pages/cosmos.html'">
+      <div class="btn">
+        <img src="https://i.postimg.cc/zG55Ps7q/ATOM_GIF.gif" alt="Cosmos">
+      </div>
+      <div class="label">Cosmos</div>
+    </div>
+
+    <!-- Exemple bouton DeFi -->
+    <div onclick="location.href='pages/defi.html'">
+      <div class="btn">
+        <img src="https://i.postimg.cc/cCH0TwBY/defi_rond.png" alt="DeFi">
+      </div>
+      <div class="label">DeFi</div>
+    </div>
+    
+    <!-- Exemple bouton Fiscalité -->
+    <div onclick="location.href='pages/fiscalite.html'">
+      <div class="btn">
+        <img src="https://i.postimg.cc/2yzFt81X/fiscalite.jpg" alt="Fiscalité">
+      </div>
+      <div class="label">Fiscalité</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
