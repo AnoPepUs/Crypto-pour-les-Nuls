@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Wallet - Crypto pour les Nuls</title>
+  <title>Achat-Vente-Crypto - Crypto pour les Nuls</title>
   <link rel="icon" type="image/gif" href="https://i.postimg.cc/qMC792VP/papillon.gif">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     /* Barre de navigation */
@@ -22,6 +23,7 @@
       padding: 0;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
     }
 
     nav li {
@@ -48,14 +50,14 @@
       padding: 60px 0 0 0;
       background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed;
       background-size: cover;
-      font-family: Arial, sans-serif;
+      font-family: 'Exo 2', Arial, sans-serif;
       color: white;
       text-align: center;
     }
 
     .content {
       padding: 20px;
-      max-width: 800px;
+      max-width: 860px;
       margin: 0 auto;
       background-color: rgba(0, 0, 0, 0.6);
       border-radius: 10px;
@@ -63,56 +65,299 @@
       line-height: 1.6;
     }
 
-    h1, h2, h3 {
+    h1 {
+      font-family: 'Orbitron', sans-serif;
       color: #6FA8DC;
       text-align: center;
+      font-size: 1.8em;
+      text-shadow: 0 0 18px #6FA8DC88;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #6FA8DC;
+      text-align: center;
+      font-size: 1.2em;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #6FA8DC44;
+      padding-bottom: 8px;
+      margin-top: 40px;
+    }
+
+    h3 {
+      color: #9FC5E8;
+      font-size: 1em;
+      margin-bottom: 6px;
     }
 
     img {
       display: block;
-      margin: 0 auto;
+      margin: 15px auto;
       max-width: 100%;
       border-radius: 10px;
       border: 2px solid #6FA8DC;
     }
 
-    .wallet-section {
+    .section-block {
       margin-bottom: 30px;
-      padding: 15px;
-      background-color: rgba(0, 0, 0, 0.5);
+      padding: 18px 20px;
+      background-color: rgba(0, 0, 0, 0.45);
       border-radius: 10px;
-      border: 1px solid #6FA8DC;
+      border: 1px solid #6FA8DC55;
     }
 
-    .warning {
-      background-color: rgba(255, 0, 0, 0.2);
-      padding: 10px;
+    .platform-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 22px;
+      padding: 16px;
+      background-color: rgba(11, 83, 148, 0.15);
       border-radius: 10px;
-      border: 1px solid red;
+      border: 1px solid #6FA8DC44;
+      transition: border-color 0.3s;
+    }
+
+    .platform-card:hover {
+      border-color: #6FA8DC;
+    }
+
+    .platform-logo {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      padding: 6px;
+    }
+
+    .platform-info {
+      flex: 1;
+    }
+
+    .platform-info h3 {
+      margin-top: 0;
+      font-size: 1.1em;
+    }
+
+    .pros-cons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .pros, .cons {
+      flex: 1;
+      min-width: 140px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9em;
+    }
+
+    .pros {
+      background-color: rgba(0, 200, 100, 0.1);
+      border: 1px solid rgba(0, 200, 100, 0.3);
+    }
+
+    .cons {
+      background-color: rgba(255, 80, 80, 0.1);
+      border: 1px solid rgba(255, 80, 80, 0.3);
+    }
+
+    .pros strong, .cons strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .pros strong { color: #6FCF97; }
+    .cons strong { color: #EB5757; }
+
+    .warning {
+      background-color: rgba(255, 0, 0, 0.15);
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 80, 80, 0.5);
       margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+
+    .warning::before {
+      content: "⚠️ ";
     }
 
     .tip {
-      background-color: rgba(0, 255, 0, 0.1);
-      padding: 10px;
+      background-color: rgba(0, 255, 0, 0.07);
+      padding: 12px 16px;
       border-radius: 10px;
-      border: 1px solid green;
+      border: 1px solid rgba(0, 200, 100, 0.35);
       margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+
+    .tip::before {
+      content: "💡 ";
+    }
+
+    .info-box {
+      background-color: rgba(111, 168, 220, 0.1);
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(111, 168, 220, 0.35);
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #0B5394;
+      border: 2px solid #6FA8DC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85em;
+      font-weight: 700;
+      color: #6FA8DC;
+    }
+
+    .step-content {
+      flex: 1;
+      padding-top: 4px;
     }
 
     .button {
       display: inline-block;
-      padding: 10px 20px;
+      padding: 10px 22px;
       background-color: #0B5394;
       color: white;
       text-decoration: none;
-      border-radius: 5px;
-      margin: 10px 0;
-      text-align: center;
+      border-radius: 6px;
+      margin: 8px 6px 8px 0;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 600;
+      font-size: 0.9em;
+      letter-spacing: 0.5px;
+      transition: background-color 0.3s, transform 0.2s;
+      border: 1px solid #6FA8DC55;
     }
 
     .button:hover {
       background-color: #6FA8DC;
+      transform: translateY(-1px);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75em;
+      font-weight: 600;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .badge-nokyc {
+      background-color: rgba(0, 200, 100, 0.2);
+      border: 1px solid #6FCF97;
+      color: #6FCF97;
+    }
+
+    .badge-suisse {
+      background-color: rgba(255, 50, 50, 0.2);
+      border: 1px solid #ff6b6b;
+      color: #ff9999;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #6FA8DC33;
+      margin: 30px 0;
+    }
+
+    .checklist li {
+      list-style: none;
+      padding: 4px 0;
+    }
+
+    .checklist li::before {
+      content: "✅ ";
+    }
+
+    .iban-steps {
+      counter-reset: iban-counter;
+      list-style: none;
+      padding: 0;
+    }
+
+    .iban-steps li {
+      counter-increment: iban-counter;
+      padding: 8px 8px 8px 0;
+      border-bottom: 1px solid #6FA8DC22;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .iban-steps li::before {
+      content: counter(iban-counter);
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #0B5394;
+      border: 1px solid #6FA8DC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8em;
+      font-weight: bold;
+      color: #6FA8DC;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .conclusion-box {
+      background: linear-gradient(135deg, rgba(11, 83, 148, 0.3), rgba(0,0,0,0.5));
+      border: 1px solid #6FA8DC;
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .gold-rule {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1em;
+      color: #FFD700;
+      text-shadow: 0 0 10px #FFD70066;
+      margin: 16px 0;
+    }
+
+    a { color: #6FA8DC; }
+    a:hover { color: #9FC5E8; }
+
+    ul, ol { padding-left: 20px; }
+    li { margin-bottom: 4px; }
+
+    .page-footer {
+      text-align: center;
+      padding: 30px 10px;
+      color: #6FA8DC88;
+      font-size: 0.85em;
     }
   </style>
 </head>
@@ -124,21 +369,282 @@
       <li><a href="index.html">Accueil</a></li>
       <li><a href="Kezako-Crypto.html">Kezako-Crypto</a></li>
       <li><a href="wallet.html">Wallet</a></li>
-      <li><a href="Plateforme-CEX.html">Plateforme-CEX</a></li>
+      <li><a href="Achat-Vente-Crypto.html">Plateforme-CEX</a></li>
       <li><a href="cosmos.html">Cosmos</a></li>
       <li><a href="defi.html">DeFi</a></li>
       <li><a href="fiscalite.html">Fiscalité</a></li>
     </ul>
   </nav>
 
-<h1>Page à venir</h1>
+  <div class="content">
+
+    <h1>Acheter & Vendre des Cryptos<br>en Toute Sécurité 🔐</h1>
+
+    <!-- SECTION 1 -->
+    <h2>1. Introduction aux Plateformes Centralisées (CEX)</h2>
+
+    <div class="section-block">
+      <p>Les plateformes de trading centralisées (CEX) permettent d'acheter, vendre et échanger des cryptomonnaies. Cependant, toutes les cryptomonnaies ne sont pas disponibles sur toutes les plateformes. Voici quelques points clés avant de choisir :</p>
+
+      <div class="section-block">
+        <h3>💧 Liquidité</h3>
+        <p>Avant d'acheter une cryptomonnaie, vérifie sur quelle plateforme elle a le plus de liquidité. Utilise
+          <a href="https://www.coingecko.com" target="_blank">CoinGecko</a> ou
+          <a href="https://www.coinmarketcap.com" target="_blank">CoinMarketCap</a> pour comparer les plateformes.
+        </p>
+      </div>
+
+      <div class="warning">
+        <strong>Sécurité :</strong> Quand tes cryptomonnaies sont sur une plateforme centralisée, tu ne les possèdes pas vraiment — tu n'as pas les clés privées. En cas de faillite ou de blocage gouvernemental, tu pourrais perdre tes fonds.
+      </div>
+
+      <div class="section-block">
+        <h3>🪪 KYC (Know Your Customer)</h3>
+        <p>Les plateformes demandent une pièce d'identité pour effectuer des dépôts ou retraits. Cela peut poser des questions de confidentialité si la plateforme venait à être hackée.</p>
+      </div>
+
+      <div class="section-block">
+        <h3>💸 Frais & Méthodes de Paiement</h3>
+        <p>Vérifie les frais de transaction et les méthodes disponibles : virement bancaire, carte bancaire, etc.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <h2>2. Plateformes que j'utilise</h2>
+
+    <div class="section-block">
+
+      <!-- Binance -->
+      <div class="platform-card">
+        <img src="https://i.postimg.cc/placeholder-binance/logo.png" alt="Binance Logo" class="platform-logo" onerror="this.style.display='none'">
+        <div class="platform-info">
+          <h3><a href="#" target="_blank">Binance</a></h3>
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>✅ Avantages</strong>
+              La plus grande plateforme au monde, très sécurisée, large choix de cryptomonnaies.
+            </div>
+            <div class="cons">
+              <strong>❌ Inconvénients</strong>
+              KYC obligatoire, frais variables.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nexo -->
+      <div class="platform-card">
+        <img src="https://i.postimg.cc/placeholder-nexo/logo.png" alt="Nexo Logo" class="platform-logo" onerror="this.style.display='none'">
+        <div class="platform-info">
+          <h3><a href="#" target="_blank">Nexo</a></h3>
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>✅ Avantages</strong>
+              Offre des intérêts sur les cryptos déposées, stable et fiable. Possibilité d'<a href="fiscalite.html">emprunter des € avec tes cryptos en collatéral</a>.
+            </div>
+            <div class="cons">
+              <strong>❌ Inconvénients</strong>
+              Moins de cryptos disponibles que Binance.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SwissBorg -->
+      <div class="platform-card">
+        <img src="https://i.postimg.cc/placeholder-swissborg/logo.png" alt="SwissBorg Logo" class="platform-logo" onerror="this.style.display='none'">
+        <div class="platform-info">
+          <h3><a href="#" target="_blank">SwissBorg</a></h3>
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>✅ Avantages</strong>
+              Simple d'utilisation, propose des paniers de cryptos sur des thématiques spécifiques. Disponible sur mobile.
+            </div>
+            <div class="cons">
+              <strong>❌ Inconvénients</strong>
+              KYC obligatoire, choix de cryptos limité.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 3 : Mont Pélerin -->
+    <h2>3. Mont Pélerin — Guide Pas à Pas
+      <span class="badge badge-nokyc">Sans KYC</span>
+      <span class="badge badge-suisse">🇨🇭 Suisse</span>
+    </h2>
+
+    <div class="section-block">
+
+      <!-- Image Mont Pélerin -->
+      <img src="https://i.postimg.cc/placeholder-mp/logo.png" alt="Mont Pélerin" style="max-width:500px;" onerror="this.style.display='none'">
+
+      <div class="info-box">
+        Mont Pélerin est une plateforme suisse qui permet d'acheter et vendre des cryptomonnaies <strong>sans KYC</strong> (jusqu'à environ 999 CHF / ~1 000 € par mois — <a href="https://developers.mtpelerin.com/service-information/identity-verification" target="_blank">voir les détails ici</a>).
+      </div>
+
+      <h3>🔧 Pré-requis</h3>
+      <p>Tu as besoin d'un wallet compatible. Deux options :</p>
+      <ul>
+        <li><strong>Rabby Wallet</strong> ou tout autre wallet non-custodial</li>
+        <li><strong>Bridge Wallet</strong> (leur propre wallet) — recommandé même si tu ne l'utilises pas pour stocker tes cryptos, car il sert aussi à l'authentification.</li>
+      </ul>
+      <p>👉 <a href="wallet.html">Voir la page Wallet</a> pour créer et sécuriser ton portefeuille.</p>
+
+      <h3>🚀 Premiers pas sur Mont Pélerin</h3>
+
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          Va sur <a href="https://www.mtpelerin.com/fr" target="_blank">mtpelerin.com</a> (passe l'interface en Français), puis clique sur <strong>"Commencer"</strong>. Un pop-up s'ouvre.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <strong>Option A — Bridge Wallet (mobile) :</strong> Télécharge l'app via les icônes Android/iOS.<br>
+          <strong>Option B — Sans Bridge Wallet :</strong> Clique sur <strong>"Lancer l'app"</strong> → <a href="https://app.mtpelerin.com/?lang=fr" target="_blank">app.mtpelerin.com</a>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          Crée ton portefeuille. <strong>Note bien ta seed phrase</strong> en lieu sûr ! <a href="wallet.html">→ Guide complet seed phrase</a>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          Identifie-toi via un code reçu par SMS.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          Effectue un virement depuis ton compte bancaire. <strong>N'oublie pas la référence</strong> si tu n'as pas encore configuré ton IBAN Mont Pélerin.
+        </div>
+      </div>
+
+      <div class="tip">
+        Les virements bancaires peuvent prendre plusieurs jours. Tes fonds seront convertis en <strong>EURC</strong> (stablecoin 1:1 avec l'euro) avant d'être transférés sur ton wallet.
+      </div>
+
+    </div>
+
+    <!-- IBAN Dédié -->
+    <div class="section-block">
+      <h3>🏦 Configuration de l'IBAN Dédié <span style="font-size:0.8em; color:#EB5757;">(KYC requis)</span></h3>
+
+      <p>L'IBAN dédié te permet de ne plus renseigner une référence à chaque virement — idéal si tu pratiques le <a href="investir.html">DCA (investissement régulier)</a>.</p>
+
+      <ul class="iban-steps">
+        <li>Connecte-toi et ouvre l'onglet <strong>IBAN</strong>.</li>
+        <li>Choisis ta devise fiat (ex. : EUR).</li>
+        <li>Choisis la <strong>blockchain</strong> sur laquelle tu veux recevoir ta crypto.</li>
+        <li>Sélectionne ta <strong>crypto cible</strong> (ex. : EURC).</li>
+        <li>Indique l'adresse de ton wallet destinataire.</li>
+      </ul>
+
+      <div class="warning">
+        Un IBAN est valable <strong>uniquement</strong> pour la combinaison crypto + blockchain + adresse que tu as configurée. Si tu changes l'un de ces paramètres, il faut en créer un nouveau.
+      </div>
+
+      <div class="tip">
+        Dans l'exemple ci-dessous, j'ai reçu des EURC sur la blockchain <strong>Base</strong>, puis je les ai swappés et bridgés en <strong>ETH sur Ethereum</strong>.
+      </div>
+
+      <!-- Image Swap -->
+      <img src="https://i.postimg.cc/placeholder-swap/swap.png" alt="Exemple de swap EURC → ETH" onerror="this.style.display='none'">
+    </div>
+
+    <!-- Achat -->
+    <div class="section-block">
+      <h3>🛒 Acheter des Cryptomonnaies</h3>
+
+      <!-- Image Achat -->
+      <img src="https://i.postimg.cc/placeholder-achat/achat.png" alt="Interface d'achat Mont Pélerin" onerror="this.style.display='none'">
+
+      <p>Dans la section <strong>"Achat"</strong>, choisis la cryptomonnaie (ex. : BTC) et le réseau. Pour le Bitcoin, il te faut un wallet Bitcoin — <a href="wallet.html">voir cette page</a>. Mont Pélerin te fournira ensuite les instructions de virement.</p>
+    </div>
+
+    <!-- Vente -->
+    <div class="section-block">
+      <h3>💰 Vendre des Cryptomonnaies</h3>
+
+      <!-- Image Vente -->
+      <img src="https://i.postimg.cc/placeholder-vente/vente.png" alt="Interface de vente Mont Pélerin" onerror="this.style.display='none'">
+
+      <p>Dans la section <strong>"Vente"</strong>, choisis la crypto (ex. : BTC), le montant et la devise de sortie (EUR, CHF, ZAR... 🌍). Mont Pélerin te fournira une adresse où envoyer tes cryptos.</p>
+    </div>
+
+    <!-- SECTION 4 : Avantages -->
+    <h2>4. Avantages de Mont Pélerin</h2>
+
+    <div class="section-block">
+      <ul class="checklist">
+        <li><strong>Pas de KYC</strong> jusqu'à ~999 CHF/mois — idéal pour ne pas laisser traîner ta pièce d'identité en ligne.</li>
+        <li><strong>RIB dédié</strong> (avec KYC) — facilite les virements réguliers et rend le processus transparent.</li>
+        <li><strong>Conversion automatique</strong> — pas besoin de renseigner manuellement la crypto dans le motif du virement.</li>
+      </ul>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 5 : Conseils -->
+    <h2>5. Conseils pour les Débutants</h2>
+
+    <div class="section-block">
+      <h3>🔒 Sécurité</h3>
+      <ul>
+        <li>Utilise un <strong>wallet non-custodial</strong> (ex. : Rabby, Ledger) pour stocker tes cryptos hors plateforme.</li>
+        <li>Active la <strong>double authentification (2FA)</strong> sur toutes tes plateformes.</li>
+        <li>Ne laisse pas trop d'argent sur une seule plateforme.</li>
+      </ul>
+
+      <h3>📊 Fiscalité</h3>
+      <p>En France, les plus-values en cryptos sont imposables. <a href="fiscalite.html">→ Voir la page Fiscalité</a>.</p>
+      <p>Mont Pélerin propose aussi un <a href="https://www.mtpelerin.com/fr/blog/comment-declarer-ses-cryptos-aux-impots" target="_blank">guide de déclaration</a>. L'outil <strong>Waltio</strong> (même en version gratuite) est très bien pour automatiser ça — et c'est Français 🇫🇷.</p>
+
+      <div class="tip">
+        <strong>Conserve des preuves</strong> de toutes tes transactions pour justifier l'origine de tes fonds en cas de contrôle fiscal.
+      </div>
+
+      <h3>🌐 Diversification</h3>
+      <ul>
+        <li>Ne concentre pas tout sur une seule plateforme.</li>
+        <li>Diversifie tes investissements pour minimiser les risques.</li>
+      </ul>
+    </div>
+
+    <!-- SECTION 6 : Conclusion -->
+    <h2>6. Conclusion</h2>
+
+    <div class="conclusion-box">
+      <p>Mont Pélerin est une excellente solution pour acheter et vendre des cryptomonnaies de manière simple et sécurisée, sans KYC (dans les limites légales). Leur système d'IBAN dédié rend le processus fluide et transparent — idéal pour les débutants comme pour les utilisateurs expérimentés.</p>
+
+      <p class="gold-rule">⚡ Ne mise que ce que tu es prêt à perdre. ⚡</p>
+
+      <p>Les cryptos sont volatiles, mais elles offrent des opportunités uniques. Commence petit, apprends, et prends le contrôle de tes fonds !</p>
+
+            <!-- GIF fête si tu deviens riche -->
+      <img src="https://i.postimg.cc/placeholder-gif/win.gif" alt="🎉" style="max-width:300px; margin-top:20px; border:none;" onerror="this.style.display='none'">
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier.
+  </div>
+
+</body>
+</html>
 
 
-</p> Je te met également quelques autres une vidéo qui t'emmène sur mire</p>
-
-</p><a href="https://www.dailymotion.com/embed/video/xa02jz4?autoplay=1&mute=0" target="_blank">Dailymotion</a></p>
-
-</p> Pour une petite chasse au Crypto</p>
-</p><a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank">Mon Site Chasse au Trésor</a></p>
-
-<img src="https://i.postimg.cc/hPQtCzkY/En-construction.png" alt="En construction"width="300" height="200">>
