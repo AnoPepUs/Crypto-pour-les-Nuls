@@ -581,16 +581,48 @@
 
       <br><br>
 
-      <!-- Son Star Wars -->
-      <div style="display:inline-flex; align-items:center; gap:12px; margin-bottom:16px;">
-        <a href="https://i.postimg.cc/CL9Nwr7b/Yoda.gif" target="_blank">
-          <img src="https://i.postimg.cc/CL9Nwr7b/Yoda.gif" alt="Que la force soit avec toi" style="width:50px;height:50px;border-radius:50%;cursor:pointer;" onerror="this.style.display='none'">
-        </a>
-        <button class="sound-btn" onclick="playForce(https://drive.proton.me/urls/RG3PYXKB5R#eMhbM5rKpnB3)">🔊 Que la Force soit avec toi</button>
-      </div>
+  <!-- Yoda cliquable -->
+<img src="https://i.postimg.cc/CL9Nwr7b/Yoda.gif" 
+     alt="Que la force soit avec toi" 
+     onclick="openForce()"
+     style="width:80px; height:80px; border-radius:50%; cursor:pointer; border:2px solid #6FA8DC;">
 
-      <br>
+<!-- Modal -->
+<div id="force-modal" onclick="closeForce()" style="
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,0.85); z-index:9999;
+  justify-content:center; align-items:center;
+  flex-direction:column; gap:16px; cursor:zoom-out;">
+  
+  <p style="color:#6FA8DC; font-family:'Orbitron',sans-serif; font-size:1.1em; letter-spacing:2px;">
+    Que la Force soit avec toi...
+  </p>
 
+  <iframe id="force-iframe"
+    src=""
+    style="width:480px; max-width:90vw; height:270px; border-radius:12px; border:2px solid #6FA8DC;"
+    allow="autoplay"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+
+  <p style="color:#666; font-size:0.8em;">Clique n'importe où pour fermer</p>
+</div>
+
+<script>
+function openForce() {
+  const modal = document.getElementById('force-modal');
+  modal.style.display = 'flex';
+  document.getElementById('force-iframe').src = 
+    'https://www.dailymotion.com/embed/video/xa1gvyy?autoplay=1&mute=0&loop=1&repeat=1&queue-enable=0&queue-autoplay-next=0&sharing-enable=0';
+}
+
+function closeForce() {
+  document.getElementById('force-modal').style.display = 'none';
+  document.getElementById('force-iframe').src = ''; // coupe le son en vidant l'iframe
+}
+</script>
+      
       <!-- Mon Dailymotion -->
       <a href="https://www.dailymotion.com/playlist/xbdx20" target="_blank" class="btn-link">
         🎬 Ma playlist Dailymotion
