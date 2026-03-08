@@ -609,17 +609,31 @@
   <p style="color:#666; font-size:0.8em;">Clique n'importe où pour fermer</p>
 </div>
 
-<script>
-function openForce() {
-  const modal = document.getElementById('force-modal');
-  modal.style.display = 'flex';
-  document.getElementById('force-iframe').src = 
-    'https://www.dailymotion.com/embed/video/xa1gvyy?autoplay=1&mute=0&loop=1&repeat=1&queue-enable=0&queue-autoplay-next=0&sharing-enable=0';
-}
+<div class="video-container">
+  <iframe
+    id="dm-iframe"
+    frameborder="0"
+    width="640"
+    height="360"
+    src="https://www.dailymotion.com/embed/video/xa1gvyy?autoplay=0&mute=1&loop=1&repeat=1&queue-enable=0&queue-autoplay-next=0&sharing-enable=0&ui-start-screen-info=0&endscreen-enable=0"
+    allowfullscreen
+    allow="autoplay; fullscreen">
+  </iframe>
+</div>
 
-function closeForce() {
-  document.getElementById('force-modal').style.display = 'none';
-  document.getElementById('force-iframe').src = ''; // coupe le son en vidant l'iframe
+<div style="text-align:center; margin-top:10px;">
+  <button class="sound-btn" id="son-btn" onclick="toggleSon()">🔇 Activer le son</button>
+</div>
+
+<script>
+let sonActif = false;
+
+function toggleSon() {
+  sonActif = !sonActif;
+  const btn = document.getElementById('son-btn');
+  document.getElementById('dm-iframe').src = 
+    `https://www.dailymotion.com/embed/video/xa1gvyy?autoplay=1&mute=${sonActif ? 0 : 1}&loop=1&repeat=1&queue-enable=0&queue-autoplay-next=0&sharing-enable=0&ui-start-screen-info=0&endscreen-enable=0`;
+  btn.textContent = sonActif ? '🔊 Couper le son' : '🔇 Activer le son';
 }
 </script>
       
