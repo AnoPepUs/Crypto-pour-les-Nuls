@@ -406,7 +406,7 @@
       <div class="psych-card">
         <span class="icon">😱</span>
         <h3>Fear & Greed</h3>
-        <p>Le marché fait l'inverse de ce que pense la majorité. Quand l'aiguille est dans le rouge, commence à regarder les graphiques.</p>
+        <p>Le marché fait l'inverse de ce que pense la majorité. Achète la peur quand il y a du sang dans les rues.</p>
       </div>
       <div class="psych-card">
         <span class="icon">🐋</span>
@@ -444,7 +444,9 @@
     <h2 class="fade-in">2. 🔍 Quelle Crypto Choisir ?</h2>
 
     <div class="section-block fade-in">
-      <p>Commence par regarder la <strong>capitalisation boursière</strong> sur <a href="https://coinmarketcap.com" target="_blank">CoinMarketCap</a>.</p>
+      <p>Commence par regarder la <strong>capitalisation boursière</strong> sur <a href="https://coinmarketcap.com" target="_blank">CoinMarketCap</a>.(Valeur)</p>
+      <p>Je regarde aussi <strong>Total Value Lock (TVL)</strong> sur <a href="https://defillama.com/" target="_blank">DefiLlama</a>.(Confiance Moyen/Long terme)</p>
+
 
       <p>Tu penses qu'un token à 0,10$ peut monter à 10$ comme le BTC à 100 000$ ? <strong>Pas forcément.</strong> Voici pourquoi :</p>
 
@@ -485,7 +487,7 @@
       </div>
 
       <div class="warning">
-        Méfie-toi de tout projet qui te "garantit monts et merveilles". En crypto, tout va vite. Prend rapidement au minimum ton capital de départ. Lis ces articles avant d'investir dans un nouveau projet :<br>
+        Méfie-toi de tout projet qui te "garantit monts et merveilles". En crypto, tout va vite. Lis ces articles avant d'investir dans un nouveau projet :<br>
         <a href="https://journalducoin.com/guides/cryptomonnaie/scam-crypto-comment-reperer-et-eviter-les-arnaques/" target="_blank">→ Comment repérer les arnaques crypto</a><br>
         <a href="https://stakepool.fr/articles/comment-eviter-les-arnaques-crypto" target="_blank">→ Comment éviter les arnaques crypto</a>
       </div>
@@ -496,9 +498,49 @@
       </div>
 
       <div class="info-box">
-        📰 <strong>Buy the Rumor, Sell the News</strong> — Quand le BTC tousse, toutes les cryptos s'enrhument. Prends aussi en compte le <strong>halving Bitcoin</strong> (tous les 4 ans). Les marchés sont cycliques.
-      </div>
-    </div>
+  <p style="font-family:'Orbitron',sans-serif; font-size:1.1em; color:#FFD700; text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD70088; text-align:center; margin-bottom:12px;">
+    ✨ Autres points de vigilance ✨
+  </p>
+
+  <p>
+    <span onclick="openPopup('https://i.postimg.cc/Hxn76FcZ/buy_rumor.jpg')" 
+          style="cursor:pointer; text-decoration:underline; color:#FFD700;">
+      📰 Buy the Rumor, Sell the News
+    </span>
+  </p>
+
+  <p>
+    <span onclick="openPopup('https://i.postimg.cc/LX5ZxGYQ/btc_other.png')" 
+          style="cursor:pointer; text-decoration:underline; color:#6FA8DC;">
+      🤧 Quand le BTC tousse, toutes les cryptos s'enrhument (si le Boss prend 10%, les autres beaucoup plus)
+    </span>
+  </p>
+
+  <p>
+    <a href="https://bitbo.io/fr/halving/" target="_blank" style="color:#6FCF97;">
+      ⏳ Prends aussi en compte le halving Bitcoin (tous les 4 ans). Les marchés sont cycliques.
+    </a>
+  </p>
+</div>
+
+<!-- Popup image -->
+<div id="img-popup" onclick="closePopup()" style="
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,0.88); z-index:9999;
+  justify-content:center; align-items:center;
+  cursor:zoom-out;">
+  <img id="img-popup-src" src="" style="max-width:90vw; max-height:90vh; border-radius:10px; border:2px solid #6FA8DC;">
+</div>
+
+<script>
+function openPopup(url) {
+  document.getElementById('img-popup-src').src = url;
+  document.getElementById('img-popup').style.display = 'flex';
+}
+function closePopup() {
+  document.getElementById('img-popup').style.display = 'none';
+}
+</script>
 
     <hr class="divider">
 
