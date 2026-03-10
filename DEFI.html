@@ -451,27 +451,176 @@
     <hr class="divider">
 
     <!-- SECTION 7 : HEDGE -->
-    <h2 class="fade-in">7. 🛡️ Se Hedger — Position Delta-Neutre</h2>
+    <h2 class="fade-in">7. 🛡️ Se Hedger — Stratégie Delta-Neutre</h2>
+
+    <!-- POURQUOI -->
     <div class="section-block fade-in">
-      <p>Tu penses que l'ETH est trop haut et qu'il va retracer ? Tu veux garder tes ETH mais éviter que ton wallet fonde ? Essaie de te <strong>hedger</strong>.</p>
-      <div class="info-box"><strong>Objectif :</strong> Créer une position delta-neutre qui réduit le risque de prix de l'ETH, génère un rendement stable (USDe ~4,31% APY) et convertit ce rendement en ETH.</div>
-      <h3>🧠 La logique du hedge</h3>
-      <div class="hedge-flow">
-        <div class="hedge-step h-blue"><div class="dot"></div><div><strong>🔵 Long ETH</strong> — Tu déposes ton ETH → exposé à la hausse ET à la baisse.</div></div>
-        <div class="hedge-step h-red"><div class="dot"></div><div><strong>🔴 Short ETH</strong> — Tu empruntes de l'ETH → tu dois le rendre → tu crées un short.</div></div>
-        <div class="hedge-step h-green"><div class="dot"></div><div><strong>🟢 Swap en USDe</strong> — Tu transformes ton short ETH en stablecoin productif.</div></div>
-        <div class="hedge-step h-purple"><div class="dot"></div><div><strong>🟣 Redépôt USDe</strong> — Tu gagnes 4,31% APY tout en étant moins exposé à la volatilité.</div></div>
-        <div class="hedge-step h-gold"><div class="dot"></div><div><strong>🟡 Accumulation ETH</strong> — Tu utilises le rendement pour racheter de l'ETH régulièrement.</div></div>
+      <div style="display:flex; align-items:flex-start; gap:18px; flex-wrap:wrap;">
+        <img src="https://i.postimg.cc/RFg5WVKj/bureau_defi.png" alt="Bureau DeFi" style="width:140px; border-radius:10px; border:2px solid var(--blue); flex-shrink:0; margin:0;">
+        <div>
+          <h3 style="margin-top:0;">🤔 Pourquoi utiliser cette stratégie ?</h3>
+          <p style="margin:0 0 10px;">Le prix de l'ETH est imprévisible. Beaucoup veulent accumuler de l'ETH sans prendre trop de risque et <strong>sans ajouter de capital</strong>. La stratégie delta-neutre répond exactement à ce besoin.</p>
+          <div class="pros-cons" style="margin:0;">
+            <div class="pros" style="min-width:140px;">
+              <h3>✅ Avantages</h3>
+              <ul>
+                <li>Pas besoin de prédire le marché</li>
+                <li>Pas besoin d'ajouter de capital</li>
+                <li>Moins d'exposition au prix</li>
+                <li>Rendement stable en USDe</li>
+                <li>Accumulation automatique d'ETH</li>
+                <li>HF ≈ 2 (position safe)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <h3>🔚 Sortir du hedge</h3>
-      <ol>
-        <li>Tu achètes l'ETH que tu dois rendre avec tes USDe.</li>
-        <li>Tu rembourses ta dette.</li>
-        <li>Il te reste des intérêts que tu réinvestis en ETH.</li>
-      </ol>
-      <div class="tip">Tu as bien accumulé de l'ETH, même si son cours a baissé. C'est ça la magie du hedge. 🎩</div>
-      <div style="text-align:center; margin-top:16px;">
-        <a href="https://drive.proton.me" target="_blank" class="btn-link">📊 Voir le diaporama complet</a>
+    </div>
+
+    <!-- C'EST QUOI -->
+    <div class="section-block fade-in">
+      <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:220px;">
+          <h3 style="margin-top:0;">⚖️ C'est quoi une position delta-neutre ?</h3>
+          <div class="hedge-flow" style="margin-top:10px;">
+            <div class="hedge-step h-blue"><div class="dot"></div><div><strong>Long ETH</strong> = tu gagnes si ça monte</div></div>
+            <div class="hedge-step h-red"><div class="dot"></div><div><strong>Short ETH</strong> = tu gagnes si ça baisse</div></div>
+            <div class="hedge-step h-purple"><div class="dot"></div><div><strong>Les deux s'annulent</strong> → tu n'es plus (ou moins) exposé au prix</div></div>
+            <div class="hedge-step h-green"><div class="dot"></div><div><strong>Tu gagnes un rendement stable</strong> en USDe → tu accumules de l'ETH</div></div>
+          </div>
+        </div>
+        <div style="flex-shrink:0; text-align:center;">
+          <img src="https://i.postimg.cc/C1cTRLkt/balance_ETH.png" alt="Balance ETH Long Short"
+               onclick="openLightbox(this)" onerror="this.style.display='none'"
+               style="width:200px; cursor:pointer; border:2px solid var(--blue); border-radius:10px; margin:0;"
+               onmouseover="this.style.borderColor='#FFD700'" onmouseout="this.style.borderColor='var(--blue)'">
+          <p style="color:#aaa; font-size:0.75em; margin-top:4px;">🔍 Agrandir</p>
+        </div>
+      </div>
+      <div class="info-box" style="margin-top:14px;">
+        <strong>Exemple :</strong> Tu as 3 ETH long et tu empruntes 1 ETH (short). Tu es donc exposé à <strong>2 ETH net</strong> au lieu de 3. L'ETH emprunté est swappé en USDe qui génère ~4,31% APY.
+      </div>
+    </div>
+
+    <!-- 3 SCÉNARIOS -->
+    <div class="section-block fade-in">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px; flex-wrap:wrap;">
+        <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Cyberpunk" style="width:70px; border:none; background:transparent; margin:0; border-radius:50%;">
+        <div>
+          <h3 style="margin:0; color:var(--gold);">📊 Les 3 scénarios possibles</h3>
+          <p style="margin:4px 0 0; color:#aaa; font-size:0.88em;">Tu as acheté 3 ETH à 1000$ → tu as 3 ETH Long, tu empruntes 1 ETH (Short) → <strong>tu es exposé à 2 ETH net</strong></p>
+        </div>
+      </div>
+
+      <img src="https://i.postimg.cc/zBxZyXTz/graphique_zone.png" alt="Zones de marché"
+           onclick="openLightbox(this)" onerror="this.style.display='none'"
+           style="width:100%; max-width:580px; display:block; margin:0 auto 20px; cursor:pointer; border:2px solid var(--blue); border-radius:10px;"
+           onmouseover="this.style.borderColor='#FFD700'" onmouseout="this.style.borderColor='var(--blue)'">
+
+      <!-- Scénario baisse -->
+      <div style="background:rgba(255,80,80,0.06); border:1px solid rgba(255,80,80,0.3); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <div style="display:flex; align-items:flex-start; gap:14px; flex-wrap:wrap;">
+          <div style="flex-shrink:0;">
+            <img src="https://i.postimg.cc/nz3bXcqp/eth_tombe.png" alt="ETH baisse"
+                 onclick="openLightbox(this)" onerror="this.style.display='none'"
+                 style="width:130px; cursor:pointer; border:2px solid rgba(255,80,80,0.5); border-radius:8px; margin:0;"
+                 onmouseover="this.style.borderColor='#FFD700'" onmouseout="this.style.borderColor='rgba(255,80,80,0.5)'">
+            <p style="color:#aaa; font-size:0.72em; text-align:center; margin:4px 0 0;">🔍 Agrandir</p>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <h3 style="color:#EB5757; margin:0 0 8px;">📉 Si ETH BAISSE de 2000$ → 1000$</h3>
+            <div class="hedge-flow" style="gap:6px;">
+              <div class="hedge-step h-red" style="padding:7px 12px;"><div class="dot"></div><div>Exposé à 2 ETH → je perds <strong>2 000$</strong> au lieu de 3 000$ (le short amortit la chute)</div></div>
+              <div class="hedge-step h-green" style="padding:7px 12px;"><div class="dot"></div><div>À 1 000$, j'utilise mes USDe pour racheter 1 ETH et rembourser ma dette</div></div>
+              <div class="hedge-step h-gold" style="padding:7px 12px;"><div class="dot"></div><div>Entre-temps, j'ai gagné <strong>~0.03 ETH</strong> grâce au rendement USDe (valeur ~30$)</div></div>
+            </div>
+            <div style="margin-top:8px; padding:8px 12px; background:rgba(255,80,80,0.1); border-radius:6px; font-size:0.88em;">
+              ➡️ <strong>Je perds moins</strong>, et j'ai accumulé un peu d'ETH pendant la baisse
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scénario range -->
+      <div style="background:rgba(255,215,0,0.05); border:1px solid rgba(255,215,0,0.3); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <div style="display:flex; align-items:flex-start; gap:14px; flex-wrap:wrap;">
+          <div style="flex-shrink:0;">
+            <img src="https://i.postimg.cc/ydL4DY0B/ETH_range.png" alt="ETH range"
+                 onclick="openLightbox(this)" onerror="this.style.display='none'"
+                 style="width:130px; cursor:pointer; border:2px solid rgba(255,215,0,0.4); border-radius:8px; margin:0;"
+                 onmouseover="this.style.borderColor='#FFD700'" onmouseout="this.style.borderColor='rgba(255,215,0,0.4)'">
+            <p style="color:#aaa; font-size:0.72em; text-align:center; margin:4px 0 0;">🔍 Agrandir</p>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <h3 style="color:var(--gold); margin:0 0 8px;">➡️ Si ETH RANGE autour de 2000$</h3>
+            <div class="hedge-flow" style="gap:6px;">
+              <div class="hedge-step h-blue" style="padding:7px 12px;"><div class="dot"></div><div>Mon long 3 ETH ne bouge pas (3 × 2000$ = 6000$)</div></div>
+              <div class="hedge-step h-red" style="padding:7px 12px;"><div class="dot"></div><div>Mon short 1 ETH ne bouge pas (1 × 2000$ = -2000$)</div></div>
+              <div class="hedge-step h-gold" style="padding:7px 12px;"><div class="dot"></div><div>Je continue à générer <strong>~0.03 ETH/an</strong> grâce au USDe (valeur ~60$)</div></div>
+            </div>
+            <div style="margin-top:8px; padding:8px 12px; background:rgba(255,215,0,0.08); border-radius:6px; font-size:0.88em;">
+              ➡️ <strong>Meilleur scénario</strong> — je rachète un peu d'ETH chaque mois avec le rendement 🏆
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scénario pump -->
+      <div style="background:rgba(0,200,100,0.05); border:1px solid rgba(0,200,100,0.3); border-radius:12px; padding:16px;">
+        <div style="display:flex; align-items:flex-start; gap:14px; flex-wrap:wrap;">
+          <div style="flex-shrink:0;">
+            <img src="https://i.postimg.cc/9ML5DFyH/eth_grimp.png" alt="ETH monte"
+                 onclick="openLightbox(this)" onerror="this.style.display='none'"
+                 style="width:130px; cursor:pointer; border:2px solid rgba(0,200,100,0.4); border-radius:8px; margin:0;"
+                 onmouseover="this.style.borderColor='#FFD700'" onmouseout="this.style.borderColor='rgba(0,200,100,0.4)'">
+            <p style="color:#aaa; font-size:0.72em; text-align:center; margin:4px 0 0;">🔍 Agrandir</p>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <h3 style="color:var(--green); margin:0 0 8px;">🚀 Si ETH MONTE de 2000$ → 5000$</h3>
+            <div class="hedge-flow" style="gap:6px;">
+              <div class="hedge-step h-green" style="padding:7px 12px;"><div class="dot"></div><div>Mon long 3 ETH gagne (3 × 5000$ = 15 000$)</div></div>
+              <div class="hedge-step h-red" style="padding:7px 12px;"><div class="dot"></div><div>Mon short 1 ETH perd (1 × 5000$ = -5 000$)</div></div>
+              <div class="hedge-step h-blue" style="padding:7px 12px;"><div class="dot"></div><div>Les deux s'annulent partiellement → je reste exposé à <strong>2 ETH</strong>, je gagne quand même</div></div>
+              <div class="hedge-step h-gold" style="padding:7px 12px;"><div class="dot"></div><div>Je continue à accumuler <strong>~0.03 ETH/an</strong> grâce au USDe (valeur ~150$)</div></div>
+            </div>
+            <div style="margin-top:8px; padding:8px 12px; background:rgba(0,200,100,0.1); border-radius:6px; font-size:0.88em;">
+              ➡️ <strong>Je profite de la hausse</strong> sur 2 ETH net + accumulation continue 💰
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUAND ARRÊTER -->
+    <div class="section-block fade-in">
+      <div style="display:flex; align-items:flex-start; gap:18px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:220px;">
+          <h3 style="margin-top:0;">🚦 Quand arrêter la stratégie ?</h3>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+            <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(255,80,80,0.08); border:1px solid rgba(255,80,80,0.3); border-radius:8px;">
+              <img src="https://i.postimg.cc/nz3bXcqp/eth_tombe.png" style="width:36px; border:none; margin:0; border-radius:4px;">
+              <div><strong style="color:#EB5757;">ETH chute</strong> → Tu peux racheter de l'ETH moins cher avec tes USDe accumulés</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(255,215,0,0.06); border:1px solid rgba(255,215,0,0.3); border-radius:8px;">
+              <img src="https://i.postimg.cc/ydL4DY0B/ETH_range.png" style="width:36px; border:none; margin:0; border-radius:4px;">
+              <div><strong style="color:var(--gold);">ETH range</strong> → Meilleur scénario, tu continues à accumuler tranquillement</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; padding:10px 14px; background:rgba(0,200,100,0.07); border:1px solid rgba(0,200,100,0.3); border-radius:8px;">
+              <img src="https://i.postimg.cc/9ML5DFyH/eth_grimp.png" style="width:36px; border:none; margin:0; border-radius:4px;">
+              <div><strong style="color:var(--green);">ETH pump</strong> → Tu fermes la position et tu gardes l'ETH accumulé</div>
+            </div>
+          </div>
+        </div>
+        <div style="flex-shrink:0; text-align:center;">
+          <img src="https://i.postimg.cc/sXTdMD5v/tirelire.png" alt="Tirelire vide" style="width:80px; border:none; margin:0 auto 4px; display:block;">
+          <div style="font-size:0.72em; color:#aaa;">Au départ</div>
+          <div style="font-size:1.4em; margin:4px 0;">⬇️</div>
+          <img src="https://i.postimg.cc/wvw81TDv/tirelire_rempli.png" alt="Tirelire pleine" style="width:80px; border:none; margin:0 auto 4px; display:block;">
+          <div style="font-size:0.72em; color:var(--green);">Après accumulation</div>
+        </div>
+      </div>
+      <div class="tip" style="margin-top:16px;">
+        Dans tous les cas, tu ressors avec de l'ETH accumulé grâce aux intérêts USDe. C'est ça la magie du hedge — <strong>tu gagnes de l'ETH quel que soit le scénario.</strong> 🎩
       </div>
     </div>
 
