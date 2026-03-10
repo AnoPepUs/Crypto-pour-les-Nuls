@@ -2,86 +2,614 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Crypto pour les Nuls</title>
-
-  <!-- Favicon -->
+  <title>DeFi - Crypto pour les Nuls</title>
   <link rel="icon" type="image/gif" href="https://i.postimg.cc/qMC792VP/papillon.gif">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <style>
-    /* Fond GIF plein écran */
+    :root {
+      --blue: #6FA8DC;
+      --blue-dark: #0B5394;
+      --blue-glow: #6FA8DC55;
+      --gold: #FFD700;
+      --green: #6FCF97;
+      --red: rgba(255,80,80,0.15);
+      --red-border: rgba(255,80,80,0.5);
+      --green-bg: rgba(0,200,100,0.1);
+      --green-border: rgba(0,200,100,0.35);
+      --card-bg: rgba(0,0,0,0.5);
+      --card-border: #6FA8DC44;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      padding: 0;
+      padding: 70px 0 0 0;
       background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed;
       background-size: cover;
-      font-family: Arial, sans-serif;
+      font-family: 'Exo 2', Arial, sans-serif;
       color: white;
       text-align: center;
     }
 
-    /* Logo */
-    #logo {
-      width: 150px;
-      margin-top: 40px;
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-
-    /* Conteneur des boutons */
-    .menu {
-      margin-top: 50px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 40px;
-    }
-
-    /* Boutons images rotatifs */
-    .btn {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.4s;
-      border: 3px solid white;
-    }
-
-    .btn:hover {
-      transform: rotateY(360deg) scale(1.1);
-    }
-
-    .btn img {
+    nav {
+      background-color: rgba(0,0,0,0.75);
+      padding: 10px 0;
+      position: fixed;
+      top: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+    }
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; }
+    nav li { margin: 0 6px; }
+    nav a { color: white; text-decoration: none; font-weight: 600; font-size: 14px; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; font-family: 'Exo 2', sans-serif; }
+    nav a:hover { background-color: rgba(255,255,255,0.18); }
+
+    .content {
+      padding: 24px 20px 40px;
+      max-width: 880px;
+      margin: 0 auto;
+      background-color: rgba(0,0,0,0.65);
+      border-radius: 12px;
+      text-align: left;
+      line-height: 1.7;
     }
 
-    /* Titre sous chaque bouton */
-    .label {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      text-shadow: 0 0 8px black;
-    }
+    h1 { font-family: 'Orbitron', sans-serif; color: var(--blue); text-align: center; font-size: 1.9em; text-shadow: 0 0 22px var(--blue-glow); letter-spacing: 2px; margin-bottom: 6px; }
+    .page-subtitle { text-align: center; color: #aaa; font-style: italic; margin-bottom: 36px; font-size: 0.95em; }
+    h2 { font-family: 'Orbitron', sans-serif; color: var(--blue); font-size: 1.1em; letter-spacing: 1px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-top: 44px; }
+    h3 { color: #9FC5E8; font-size: 1em; margin: 16px 0 6px; }
+
+    a { color: var(--blue); }
+    a:hover { color: #9FC5E8; }
+
+    img { display: block; margin: 12px auto; max-width: 100%; border-radius: 10px; border: 2px solid var(--blue); }
+
+    .section-block { margin-bottom: 24px; padding: 18px 20px; background-color: var(--card-bg); border-radius: 10px; border: 1px solid var(--card-border); }
+
+    .warning { background-color: var(--red); padding: 12px 16px; border-radius: 10px; border: 1px solid var(--red-border); margin: 14px 0; font-size: 0.95em; }
+    .warning::before { content: "⚠️ "; }
+
+    .tip { background-color: var(--green-bg); padding: 12px 16px; border-radius: 10px; border: 1px solid var(--green-border); margin: 14px 0; font-size: 0.95em; }
+    .tip::before { content: "💡 "; }
+
+    .info-box { background-color: rgba(111,168,220,0.1); padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(111,168,220,0.35); margin: 14px 0; font-size: 0.95em; }
+
+    .gold-rule { font-family: 'Orbitron', sans-serif; font-size: 1em; color: var(--gold); text-shadow: 0 0 12px #FFD70066; text-align: center; margin: 18px 0; padding: 14px; border: 1px solid #FFD70044; border-radius: 8px; background: rgba(255,215,0,0.05); }
+
+    .pros-cons { display: flex; gap: 14px; flex-wrap: wrap; margin: 16px 0; }
+    .pros, .cons { flex: 1; min-width: 200px; padding: 14px 16px; border-radius: 10px; }
+    .pros { background: rgba(0,200,100,0.1); border: 1px solid rgba(0,200,100,0.35); }
+    .cons { background: rgba(255,80,80,0.1); border: 1px solid rgba(255,80,80,0.4); }
+    .pros h3 { color: var(--green); margin-top: 0; }
+    .cons h3 { color: #EB5757; margin-top: 0; }
+    .pros li::before { content: "✅ "; }
+    .cons li::before { content: "❌ "; }
+    .pros li, .cons li { list-style: none; margin-bottom: 8px; font-size: 0.9em; color: #ddd; }
+
+    .step { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; padding: 12px; background: rgba(11,83,148,0.12); border-radius: 8px; border-left: 3px solid var(--blue); }
+    .step-number { flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: var(--blue-dark); border: 2px solid var(--blue); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-size: 0.85em; font-weight: 700; color: var(--blue); }
+    .step-content { flex: 1; padding-top: 4px; font-size: 0.95em; }
+    .step-content strong { color: #9FC5E8; }
+
+    .simulator { background: rgba(0,0,0,0.6); border: 1px solid var(--blue); border-radius: 12px; padding: 20px; margin: 20px 0; }
+    .simulator h3 { color: var(--gold); font-family: 'Orbitron', sans-serif; text-align: center; margin-top: 0; }
+    .sim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+    @media(max-width:600px) { .sim-grid { grid-template-columns: 1fr; } }
+    .sim-field label { display: block; font-size: 0.82em; color: #aaa; margin-bottom: 4px; }
+    .sim-field input { width: 100%; padding: 8px 10px; background: rgba(111,168,220,0.1); border: 1px solid var(--card-border); border-radius: 6px; color: white; font-family: 'Exo 2', sans-serif; font-size: 0.95em; }
+    .sim-field input:focus { outline: none; border-color: var(--blue); }
+    .sim-btn { display: block; width: 100%; padding: 10px; background: var(--blue-dark); color: white; border: 1px solid var(--blue); border-radius: 6px; font-family: 'Orbitron', sans-serif; font-size: 0.85em; cursor: pointer; margin-top: 12px; transition: background 0.3s; }
+    .sim-btn:hover { background: var(--blue); }
+    .sim-results { margin-top: 16px; display: none; }
+    .sim-results.visible { display: block; }
+    .result-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--card-border); font-size: 0.9em; }
+    .result-row:last-child { border-bottom: none; }
+    .result-row span:first-child { color: #aaa; }
+    .result-row span:last-child { font-weight: 600; }
+    .result-positive { color: var(--green); }
+    .result-negative { color: #EB5757; }
+
+    .hedge-flow { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+    .hedge-step { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 8px; font-size: 0.9em; }
+    .hedge-step .dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+    .h-blue { background: rgba(111,168,220,0.15); border: 1px solid #6FA8DC55; }
+    .h-blue .dot { background: #6FA8DC; }
+    .h-red { background: rgba(255,80,80,0.1); border: 1px solid rgba(255,80,80,0.3); }
+    .h-red .dot { background: #EB5757; }
+    .h-green { background: rgba(0,200,100,0.1); border: 1px solid rgba(0,200,100,0.3); }
+    .h-green .dot { background: var(--green); }
+    .h-purple { background: rgba(180,100,255,0.1); border: 1px solid rgba(180,100,255,0.3); }
+    .h-purple .dot { background: #B46FFF; }
+    .h-gold { background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.3); }
+    .h-gold .dot { background: var(--gold); }
+
+    .dex-grid { display: flex; gap: 14px; flex-wrap: wrap; margin: 16px 0; }
+    .dex-card { flex: 1; min-width: 200px; background: rgba(11,83,148,0.15); border: 1px solid var(--card-border); border-radius: 10px; padding: 16px; transition: border-color 0.3s, transform 0.2s; }
+    .dex-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .dex-card h3 { margin-top: 0; color: var(--blue); }
+    .dex-card p { font-size: 0.88em; color: #ccc; margin: 0; }
+
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center; cursor: zoom-out; }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; border: 3px solid var(--blue); border-radius: 10px; }
+
+    .btn-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--blue-dark); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.88em; border: 1px solid var(--card-border); transition: background 0.3s, transform 0.2s; margin: 4px; }
+    .btn-link:hover { background: var(--blue); color: white; transform: translateY(-1px); }
+
+    hr.divider { border: none; border-top: 1px solid var(--card-border); margin: 36px 0; }
+    ul, ol { padding-left: 20px; }
+    li { margin-bottom: 5px; }
+
+    .page-footer { text-align: center; padding: 28px 10px; color: #6FA8DC66; font-size: 0.82em; }
+
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    .hf-gauge { background: rgba(0,0,0,0.4); border-radius: 8px; border: 1px solid var(--card-border); padding: 20px 16px 12px; margin: 10px 0; }
   </style>
 </head>
 
 <body>
 
-<h1>Page à venir</h1>
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="Kezako-Crypto.html">Kezako-Crypto</a></li>
+      <li><a href="wallet.html">Wallet</a></li>
+      <li><a href="Achat-Vente-Crypto.html">Achat-Vente-Crypto</a></li>
+      <li><a href="Investir.html">Investir</a></li>
+      <li><a href="CosmosHub.html">CosmosHub</a></li>
+      <li><a href="DEFI.html">DeFi</a></li>
+      <li><a href="Fiscalite.html">Fiscalité</a></li>
+    </ul>
+  </nav>
 
-<img src="https://i.postimg.cc/hPQtCzkY/En-construction.png" alt="En construction">
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="">
+  </div>
 
-</p> Je te met également quelques autres lien vidéo sur de youtube</p>
+  <div class="content">
 
-</p>En attendant rejoint moi</p>
-</p><a href="https://www.dailymotion.com/embed/video/xa02jz4?autoplay=1&mute=0" target="_blank">Dailymotion</a></p>
+    <h1>La DeFi 🌊</h1>
+    <p class="page-subtitle">Finance décentralisée — Le festival sans vigile</p>
 
-</p> une petite chasse au Crypto te brance?</p>
-</p><a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank">Mon Site Chasse au Trésor</a></p>
+    <!-- SECTION 1 -->
+    <h2 class="fade-in">1. 🎪 Qu'est-ce que la DeFi ?</h2>
+    <div class="section-block fade-in">
+      <p>La DeFi, ou <strong>finance décentralisée</strong>, c'est comme un festival où tout le monde peut entrer avec son billet, sans passer par le vigile (les banques, pour ceux qui n'auraient pas suivi). Un monde où ton argent danse librement, loin des institutions financières qui aiment garder la musique pour elles.</p>
+      <div class="info-box">
+        Au cœur de la DeFi : les <strong>pools de liquidités</strong>. Des réservoirs géants où les utilisateurs déposent leurs cryptos. Ces fonds servent à des prêts, des échanges, générant des rendements sous forme d'intérêts.
+      </div>
+      <p>Les banques ne sont pas fans. Pourquoi ? Parce que la DeFi menace leur monopole — comme un groupe de rock qui joue dans la rue, privant les salles de concert de leurs clients. 🎸</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h3>✅ Avantages</h3>
+          <ul>
+            <li><strong>Accessibilité</strong> — Tout le monde peut participer.</li>
+            <li><strong>Autonomie</strong> — Tu es le capitaine de ton navire. Plus de frais cachés.</li>
+            <li><strong>Rendements</strong> — Les pools de liquidités permettent d'engranger des intérêts impressionnants.</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h3>❌ Inconvénients</h3>
+          <ul>
+            <li><strong>Volatilité</strong> — Le marché est aussi stable qu'une cheville de danseur sur scène glissante.</li>
+            <li><strong>Sécurité</strong> — Bugs et hacks sont monnaie courante.</li>
+            <li><strong>Complexité</strong> — La courbe d'apprentissage peut être raide.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 2 -->
+    <h2 class="fade-in">2. 🔒 Le Staking</h2>
+    <div class="section-block fade-in">
+      <p>Le staking consiste à <strong>verrouiller tes cryptos</strong> dans un réseau blockchain pour soutenir ses opérations. En échange, tu reçois des récompenses sous forme de jetons supplémentaires.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h3>✅ Avantages</h3>
+          <ul>
+            <li><strong>Rendement passif</strong> — Gagner des intérêts sans vendre.</li>
+            <li><strong>Simplicité</strong> — Relativement simple à comprendre.</li>
+            <li><strong>Sécurité réseau</strong> — Tu contribues à la sécurité de la blockchain.</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h3>❌ Inconvénients</h3>
+          <ul>
+            <li><strong>Verrouillage</strong> — Ton argent est bloqué pendant une durée déterminée. Si le marché plonge, tu ne peux pas réagir immédiatement.</li>
+            <li><strong>Volatilité</strong> — Tu peux gagner des intérêts mais perdre en capital.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip">
+        Pour le staking, je t'invite à rejoindre la page dédiée → <a href="CosmosHub.html" class="btn-link">🌌 CosmosHub</a>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 3 -->
+    <h2 class="fade-in">3. 🔄 Choisir sa Plateforme Décentralisée (DEX)</h2>
+    <div class="section-block fade-in">
+      <p>Pour savoir avec quelle cavalière tu vas danser, consulte <a href="https://journalducoin.com/defi/defillama-tableau-de-bord-defi/" target="_blank">cet article</a> et <a href="https://defillama.com/" target="_blank">DefiLlama</a> pour comparer les plateformes par TVL.</p>
+      <div class="gold-rule">💎 GARDE TOUJOURS DE LA CRYPTO dans ton wallet du réseau que tu utilises pour payer les frais ! 💎</div>
+      <div class="dex-grid">
+        <div class="dex-card">
+          <h3>🦄 Uniswap</h3>
+          <p>Interface ultra-simple — swap entre deux tokens en quelques clics. Pas besoin de compte, juste un wallet. <strong>Idéal pour comprendre les bases.</strong></p>
+          <br><a href="https://app.uniswap.org" target="_blank" class="btn-link">→ Uniswap</a>
+        </div>
+        <div class="dex-card">
+          <h3>👻 Aave</h3>
+          <p>Plateforme de prêt décentralisé la plus intuitive. Dépôt → tu gagnes des intérêts. Emprunt → tu utilises ton dépôt comme garantie. <strong>Parfaite pour apprendre le lending.</strong></p>
+          <br><a href="https://app.aave.com/dashboard/" target="_blank" class="btn-link">→ Aave</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 4 -->
+    <h2 class="fade-in">4. 👻 Guide Aave — Prêts & Emprunts</h2>
+    <div class="section-block fade-in">
+      <h3>🔧 Préparer ton wallet</h3>
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          Installe <strong>MetaMask</strong> ou <strong>Rabby</strong> → <a href="wallet.html">voir page Wallet</a>.<br>
+          Ajoute tes réseaux (Ethereum par défaut). Dépose un peu d'ETH pour les frais.<br>
+          <span style="color:#aaa; font-size:0.9em;">Pour Polygon → POL. Pour Base, Arbitrum, Optimism → ETH également.</span>
+        </div>
+      </div>
+      <h3>💰 Déposer pour gagner des intérêts</h3>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          Va sur <a href="https://app.aave.com/dashboard/" target="_blank">app.aave.com</a>, connecte ton wallet. Tu verras tes cryptos dans "Balance".<br>
+          Choisis un actif (ETH, USDC, DAI…), clique <strong>"Supply"</strong>, signe dans MetaMask.<br>
+          Tu reçois des <strong>aTokens</strong> (ex: aUSDC) qui augmentent automatiquement avec les intérêts.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          Dans ton tableau de bord, active <strong>"Collateral"</strong> sur ton dépôt.<br>
+          Cela te permet d'emprunter sans vendre ta crypto.
+        </div>
+      </div>
+      <h3>📤 Emprunter</h3>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          Dans la partie droite <strong>"Borrow"</strong>, choisis une crypto (ex: emprunter USDC en utilisant ton ETH déposé).<br>
+          Tu as maintenant un dépôt qui génère des intérêts + un emprunt que tu peux utiliser.
+        </div>
+      </div>
+      <h3>🚨 La Liquidation</h3>
+      <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          Si la valeur de ton collatéral baisse, ton <strong>Health Factor (HF)</strong> descend.<br>
+          Si <strong>HF &lt; 1</strong> → une partie de ton collatéral est vendue automatiquement pour rembourser.<br>
+          <span style="color:#EB5757;">Règle d'or : ne jamais emprunter au maximum. Garde une marge confortable.</span>
+        </div>
+      </div>
+      <h3>🔁 La Boucle (Loop)</h3>
+      <div class="step">
+        <div class="step-number">6</div>
+        <div class="step-content">
+          La boucle consiste à emprunter un actif, le racheter, puis le redéposer pour augmenter ton rendement.<br><br>
+          <strong>Exemple :</strong><br>
+          → Tu déposes 1 000 USDC<br>
+          → Tu empruntes 500 USDC<br>
+          → Tu redéposes 500 USDC<br>
+          → Tu recommences…<br><br>
+          <span style="color:#EB5757;">⚠️ Cette stratégie augmente les intérêts ET le risque de liquidation. Garde toujours un œil sur ton HF !</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 5 -->
+    <h2 class="fade-in">5. 📊 Exemple Concret avec ETH</h2>
+
+    <div style="text-align:center; margin: 16px 0;">
+      <img src="https://i.postimg.cc/zfNJkhsW/defi-AAVE.png"
+           alt="Exemple Aave"
+           onclick="openLightbox(this)"
+           onerror="this.style.display='none'"
+           style="width:280px; cursor:pointer; transition: transform 0.2s, border-color 0.2s; border: 2px solid #6FA8DC; border-radius:10px;"
+           onmouseover="this.style.transform='scale(1.04)'; this.style.borderColor='#FFD700'"
+           onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#6FA8DC'">
+      <p style="color:#aaa; font-size:0.82em; margin-top:6px;">🔍 Clique pour agrandir</p>
+    </div>
+
+    <div class="section-block fade-in">
+      <div class="info-box"><strong>Situation de départ</strong> — Achat de 2,30 ETH à un prix moyen de 2 000$ = valeur ~4 600$</div>
+      <div class="step"><div class="step-number">1</div><div class="step-content">Achat de <strong>2,30 ETH</strong> sur Binance à ~2 000$ (valeur : 4 600$) → transféré vers wallet.</div></div>
+      <div class="step"><div class="step-number">2</div><div class="step-content">Dépôt des <strong>2,30 ETH sur Aave</strong> → ils deviennent mon collatéral.</div></div>
+      <div class="step"><div class="step-number">3</div><div class="step-content">Emprunt de <strong>2 000 USDC</strong> — Aave prête car j'ai assez de collatéral en ETH.</div></div>
+      <div class="step"><div class="step-number">4</div><div class="step-content">Utilisation de l'emprunt pour acheter : <strong>503,92 USDe + 0,76 ETH</strong> (≈1 533$) → tout redéposé sur Aave.</div></div>
+      <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <strong>Position finale :</strong><br>
+          ETH total : 2,30 + 0,76 = <strong>3,06 ETH</strong><br>
+          USDe : <strong>503,92</strong><br>
+          Dette : <strong>2 037 USDC</strong><br>
+          Health Factor : <strong style="color: var(--green);">2,68 ✅</strong>
+        </div>
+      </div>
+
+      <!-- JAUGE HF -->
+      <div class="hf-gauge">
+        <div style="display:flex; justify-content:space-between; font-size:0.85em; margin-bottom:22px;">
+          <span>Health Factor actuel</span>
+          <span style="color:var(--green); font-weight:700;">2,68</span>
+        </div>
+        <div style="position:relative; height:16px; border-radius:20px; overflow:visible;">
+          <div style="width:100%; height:100%; border-radius:20px;
+            background: linear-gradient(90deg, #EB5757 0%, #FF9900 20%, #FFD700 35%, #A8D86E 55%, #6FCF97 75%, #4FC3A1 100%);">
+          </div>
+          <!-- Curseur 2,68 sur échelle 0→6 = 44,7% -->
+          <div style="position:absolute; top:-6px; left:44.7%; transform:translateX(-50%);
+            width:4px; height:28px; background:white; border-radius:4px;
+            box-shadow: 0 0 8px rgba(255,255,255,0.8);">
+          </div>
+          <div style="position:absolute; top:-24px; left:44.7%; transform:translateX(-50%);
+            background:white; color:#111; font-size:0.75em; font-weight:700;
+            padding:2px 6px; border-radius:4px; white-space:nowrap;">
+            2,68
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:0.75em; color:#aaa; margin-top:8px;">
+          <span>0</span>
+          <span style="color:#EB5757; font-weight:600;">1 ⚠️ Liquidation</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6+</span>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>🔢 À quel prix ETH serais-je liquidé ?</strong><br>
+        HF actuel = 2,68 → Liquidation à HF = 1<br>
+        Baisse max du collatéral = 1 - 1/2,68 = <strong>62,7%</strong><br>
+        Prix ETH de liquidation = 2 008$ × (1 - 0,627) = <strong style="color:#EB5757;">~748$</strong>
+      </div>
+
+      <div class="info-box">
+        <strong>💰 Gains annuels si ETH reste à 2 000$</strong><br><br>
+        Gains dépôts : ETH 6 144$ × 1,78% = 109$ | USDe 503$ × 4,31% = 21$ → <strong>Total : 130$/an</strong><br>
+        Coût emprunt : USDC 2 037$ × 2,83% = <strong>57$/an</strong><br>
+        <span style="color:var(--green);">Gain net annuel : 130 - 57 = <strong>73$</strong> soit 1,22%</span>
+      </div>
+
+      <div class="info-box">
+        <strong>🚀 Si ETH fait ×2 (→ 4 000$)</strong><br><br>
+        3,06 ETH × 4 000$ = 12 240$ + 503$ USDe - 2 037$ dette = <strong style="color:var(--green);">10 706$</strong><br>
+        Valeur nette : 4 600$ → 10 706$ = <strong style="color:var(--green);">+132% de rendement</strong><br>
+        <span style="color:#aaa; font-size:0.9em;">Sans levier j'aurais fait +100%. L'emprunt m'a ajouté +32% de performance.</span>
+      </div>
+
+      <div class="warning">
+        Une boucle augmente ton exposition à l'ETH et ton rendement, <strong>mais ne protège pas ton capital</strong>. Si l'ETH baisse fortement, tu perds plus vite.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 6 : SIMULATEUR AAVE -->
+    <h2 class="fade-in">6. 🧮 Simulateur Aave</h2>
+    <div class="fade-in">
+      <div class="simulator">
+        <h3>📐 Simulateur Boucle ETH / USDC</h3>
+        <div class="sim-grid">
+          <div class="sim-field"><label>Quantité ETH déposée</label><input type="number" id="s-eth" value="2.3" step="0.1"></div>
+          <div class="sim-field"><label>Prix ETH ($)</label><input type="number" id="s-price" value="2000" step="100"></div>
+          <div class="sim-field"><label>APY dépôt ETH (%)</label><input type="number" id="s-apy-eth" value="1.78" step="0.1"></div>
+          <div class="sim-field"><label>Montant emprunté USDC ($)</label><input type="number" id="s-borrow" value="2000" step="100"></div>
+          <div class="sim-field"><label>APY emprunt USDC (%)</label><input type="number" id="s-apy-borrow" value="2.83" step="0.1"></div>
+          <div class="sim-field"><label>APY USDe (%)</label><input type="number" id="s-apy-usde" value="4.31" step="0.1"></div>
+          <div class="sim-field"><label>ETH racheté avec emprunt ($)</label><input type="number" id="s-eth2-val" value="1533" step="100"></div>
+          <div class="sim-field"><label>USDe acheté ($)</label><input type="number" id="s-usde" value="503" step="50"></div>
+        </div>
+        <button class="sim-btn" onclick="calcAave()">⚡ Calculer ma position</button>
+        <div class="sim-results" id="aave-results">
+          <div style="border-top:1px solid var(--card-border); margin-top:16px; padding-top:16px;">
+            <div class="result-row"><span>ETH total en collatéral</span><span id="r-eth-total"></span></div>
+            <div class="result-row"><span>Valeur totale déposée</span><span id="r-val-total"></span></div>
+            <div class="result-row"><span>Dette totale</span><span id="r-dette"></span></div>
+            <div class="result-row"><span>Valeur nette</span><span id="r-net" class="result-positive"></span></div>
+            <div class="result-row"><span>Health Factor estimé</span><span id="r-hf"></span></div>
+            <div class="result-row"><span>Prix liquidation ETH</span><span id="r-liq" class="result-negative"></span></div>
+            <div class="result-row"><span>Gain net annuel (ETH stable)</span><span id="r-gain" class="result-positive"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 7 : HEDGE -->
+    <h2 class="fade-in">7. 🛡️ Se Hedger — Position Delta-Neutre</h2>
+    <div class="section-block fade-in">
+      <p>Tu penses que l'ETH est trop haut et qu'il va retracer ? Tu veux garder tes ETH mais éviter que ton wallet fonde ? Essaie de te <strong>hedger</strong>.</p>
+      <div class="info-box">
+        <strong>Objectif :</strong> Créer une position delta-neutre qui réduit le risque de prix de l'ETH, génère un rendement stable (USDe ~4,31% APY) et convertit ce rendement en ETH.
+      </div>
+      <h3>🧠 La logique du hedge</h3>
+      <div class="hedge-flow">
+        <div class="hedge-step h-blue"><div class="dot"></div><div><strong>🔵 Long ETH</strong> — Tu déposes ton ETH → tu es exposé à la hausse ET à la baisse.</div></div>
+        <div class="hedge-step h-red"><div class="dot"></div><div><strong>🔴 Short ETH</strong> — Tu empruntes de l'ETH → tu dois le rendre → tu crées un short.</div></div>
+        <div class="hedge-step h-green"><div class="dot"></div><div><strong>🟢 Swap en USDe</strong> — Tu transformes ton short ETH en stablecoin productif.</div></div>
+        <div class="hedge-step h-purple"><div class="dot"></div><div><strong>🟣 Redépôt USDe</strong> — Tu gagnes 4,31% APY tout en étant moins exposé à la volatilité.</div></div>
+        <div class="hedge-step h-gold"><div class="dot"></div><div><strong>🟡 Accumulation ETH</strong> — Tu utilises le rendement pour racheter de l'ETH régulièrement.</div></div>
+      </div>
+      <h3>🔚 Sortir du hedge</h3>
+      <p>Quand l'ETH a fini de descendre et commence à sortir du range par le haut :</p>
+      <ol>
+        <li>Tu achètes l'ETH que tu dois rendre avec tes USDe.</li>
+        <li>Tu rembourses ta dette.</li>
+        <li>Il te reste des intérêts que tu réinvestis en ETH.</li>
+      </ol>
+      <div class="tip">Tu as bien accumulé de l'ETH, même si son cours a baissé pendant la période. C'est ça la magie du hedge. 🎩</div>
+      <div style="text-align:center; margin-top:16px;">
+        <a href="https://drive.proton.me" target="_blank" class="btn-link">📊 Voir le diaporama complet</a>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 8 : SIMULATEUR HEDGE -->
+    <h2 class="fade-in">8. 🧮 Simulateur Hedge ETH</h2>
+    <div class="fade-in">
+      <div class="simulator">
+        <h3>🛡️ Simulateur Position Hedgée</h3>
+        <div class="sim-grid">
+          <div class="sim-field"><label>ETH déposé (collatéral)</label><input type="number" id="h-eth" value="3" step="0.1"></div>
+          <div class="sim-field"><label>Prix ETH actuel ($)</label><input type="number" id="h-price" value="2000" step="100"></div>
+          <div class="sim-field"><label>ETH emprunté (short)</label><input type="number" id="h-eth-borrow" value="1" step="0.1"></div>
+          <div class="sim-field"><label>APY USDe (%)</label><input type="number" id="h-apy-usde" value="4.31" step="0.1"></div>
+          <div class="sim-field"><label>APY emprunt ETH (%)</label><input type="number" id="h-apy-borrow" value="2.5" step="0.1"></div>
+          <div class="sim-field"><label>Prix ETH à la sortie ($)</label><input type="number" id="h-price-exit" value="1500" step="100"></div>
+        </div>
+        <button class="sim-btn" onclick="calcHedge()">⚡ Simuler mon hedge</button>
+        <div class="sim-results" id="hedge-results">
+          <div style="border-top:1px solid var(--card-border); margin-top:16px; padding-top:16px;">
+            <div class="result-row"><span>Valeur ETH déposé (entrée)</span><span id="h-r-val-in"></span></div>
+            <div class="result-row"><span>USDe obtenu (ETH short swappé)</span><span id="h-r-usde"></span></div>
+            <div class="result-row"><span>Coût rachat ETH (sortie)</span><span id="h-r-buyback"></span></div>
+            <div class="result-row"><span>Intérêts USDe gagnés (1 an)</span><span id="h-r-yield" class="result-positive"></span></div>
+            <div class="result-row"><span>Coût emprunt ETH (1 an)</span><span id="h-r-cost" class="result-negative"></span></div>
+            <div class="result-row"><span>ETH accumulé en 1 an</span><span id="h-r-eth-acc" class="result-positive"></span></div>
+            <div class="result-row"><span>P&L vs sans hedge</span><span id="h-r-pnl"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 9 : CONCLUSION -->
+    <h2 class="fade-in">9. 🏁 Conclusion</h2>
+    <div class="section-block fade-in" style="text-align:center;">
+      <p>La DeFi est puissante mais demande de la rigueur. Commence petit, comprends chaque étape avant de mettre plus en jeu.</p>
+      <div class="gold-rule">⚡ Garde toujours un œil sur ton Health Factor. Un HF &lt; 1,5 = danger. ⚡</div>
+      <div style="margin-top:20px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+        <a href="https://app.aave.com" target="_blank" class="btn-link">👻 Aave</a>
+        <a href="https://app.uniswap.org" target="_blank" class="btn-link">🦄 Uniswap</a>
+        <a href="https://defillama.com/" target="_blank" class="btn-link">📊 DefiLlama</a>
+        <a href="CosmosHub.html" class="btn-link">🌌 CosmosHub</a>
+        <a href="wallet.html" class="btn-link">🗂 Wallet</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier.
+  </div>
+
+  <script>
+    // Lightbox
+    function openLightbox(img) {
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    // Fade-in scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Simulateur AAVE
+    function calcAave() {
+      const ethQty    = parseFloat(document.getElementById('s-eth').value) || 0;
+      const price     = parseFloat(document.getElementById('s-price').value) || 0;
+      const apyEth    = parseFloat(document.getElementById('s-apy-eth').value) / 100 || 0;
+      const borrow    = parseFloat(document.getElementById('s-borrow').value) || 0;
+      const apyBorrow = parseFloat(document.getElementById('s-apy-borrow').value) / 100 || 0;
+      const apyUsde   = parseFloat(document.getElementById('s-apy-usde').value) / 100 || 0;
+      const eth2val   = parseFloat(document.getElementById('s-eth2-val').value) || 0;
+      const usde      = parseFloat(document.getElementById('s-usde').value) || 0;
+
+      const eth2qty  = eth2val / price;
+      const ethTotal = ethQty + eth2qty;
+      const valEth   = ethTotal * price;
+      const valTotal = valEth + usde;
+      const dette    = borrow;
+      const netVal   = valTotal - dette;
+
+      const hf       = dette > 0 ? ((valEth * 0.825 + usde * 0.80) / dette).toFixed(2) : '∞';
+      const liqPrice = dette > 0 ? (dette / (ethTotal * 0.825)).toFixed(0) : 'N/A';
+
+      const gainEth    = valEth * apyEth;
+      const gainUsde   = usde * apyUsde;
+      const coutBorrow = dette * apyBorrow;
+      const gainNet    = gainEth + gainUsde - coutBorrow;
+
+      document.getElementById('r-eth-total').textContent = ethTotal.toFixed(3) + ' ETH';
+      document.getElementById('r-val-total').textContent = '$' + valTotal.toFixed(0);
+      document.getElementById('r-dette').textContent     = '$' + dette.toFixed(0);
+      document.getElementById('r-net').textContent       = '$' + netVal.toFixed(0);
+      document.getElementById('r-hf').textContent        = hf;
+      document.getElementById('r-liq').textContent       = '$' + liqPrice;
+      document.getElementById('r-gain').textContent      = '$' + gainNet.toFixed(0) + '/an';
+
+      document.getElementById('aave-results').classList.add('visible');
+    }
+
+    // Simulateur HEDGE
+    function calcHedge() {
+      const ethDep    = parseFloat(document.getElementById('h-eth').value) || 0;
+      const priceIn   = parseFloat(document.getElementById('h-price').value) || 0;
+      const ethBorrow = parseFloat(document.getElementById('h-eth-borrow').value) || 0;
+      const apyUsde   = parseFloat(document.getElementById('h-apy-usde').value) / 100 || 0;
+      const apyBorrow = parseFloat(document.getElementById('h-apy-borrow').value) / 100 || 0;
+      const priceExit = parseFloat(document.getElementById('h-price-exit').value) || 0;
+
+      const valIn      = ethDep * priceIn;
+      const usdeObt    = ethBorrow * priceIn;
+      const buyback    = ethBorrow * priceExit;
+      const yieldUsde  = usdeObt * apyUsde;
+      const costBorrow = usdeObt * apyBorrow;
+      const netYield   = yieldUsde - costBorrow;
+      const ethAcc     = priceExit > 0 ? netYield / priceExit : 0;
+
+      const pnlNoHedge = (ethDep * priceExit) - (ethDep * priceIn);
+      const pnlHedge   = (ethDep * priceExit) - buyback + netYield - (ethDep * priceIn);
+      const pnlDiff    = pnlHedge - pnlNoHedge;
+
+      document.getElementById('h-r-val-in').textContent  = '$' + valIn.toFixed(0);
+      document.getElementById('h-r-usde').textContent    = '$' + usdeObt.toFixed(0);
+      document.getElementById('h-r-buyback').textContent = '$' + buyback.toFixed(0);
+      document.getElementById('h-r-yield').textContent   = '+$' + yieldUsde.toFixed(0);
+      document.getElementById('h-r-cost').textContent    = '-$' + costBorrow.toFixed(0);
+      document.getElementById('h-r-eth-acc').textContent = '+' + ethAcc.toFixed(4) + ' ETH';
+
+      const pnlEl = document.getElementById('h-r-pnl');
+      pnlEl.textContent = (pnlDiff >= 0 ? '+' : '') + '$' + pnlDiff.toFixed(0);
+      pnlEl.className = pnlDiff >= 0 ? 'result-positive' : 'result-negative';
+
+      document.getElementById('hedge-results').classList.add('visible');
+    }
+  </script>
+
+</body>
+</html>
