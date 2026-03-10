@@ -209,6 +209,52 @@
     .dur-tab { padding: 5px 14px; border-radius: 20px; border: 1px solid var(--card-border); background: transparent; color: #aaa; cursor: pointer; font-size: 0.82em; font-family: 'Exo 2', sans-serif; transition: all 0.2s; }
     .dur-tab.active { background: var(--blue-dark); border-color: var(--blue); color: white; }
     .dur-tab:hover { border-color: var(--blue); color: white; }
+
+    /* ====== TOOLTIPS DORÉS ====== */
+    .tip-wrap { position: relative; display: inline-flex; align-items: center; gap: 5px; cursor: default; }
+    .tip-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: rgba(255,215,0,0.15); border: 1px solid rgba(255,215,0,0.5);
+      color: var(--gold); font-size: 10px; font-weight: 700; cursor: help;
+      flex-shrink: 0; transition: background 0.2s;
+    }
+    .tip-icon:hover { background: rgba(255,215,0,0.3); }
+    .tip-bubble {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10,10,20,0.97);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 10px 13px;
+      font-size: 0.78em;
+      color: #eee;
+      line-height: 1.5;
+      width: 220px;
+      z-index: 500;
+      box-shadow: 0 4px 20px rgba(255,215,0,0.15);
+      pointer-events: none;
+    }
+    .tip-bubble::after {
+      content: '';
+      position: absolute;
+      top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--gold);
+    }
+    .tip-bubble strong { color: var(--gold); }
+    .tip-wrap:hover .tip-bubble,
+    .tip-icon:focus + .tip-bubble { display: block; }
+
+    /* Pour les lignes résultat avec tooltip */
+    .result-row .tip-wrap,
+    .hedge-metric .tip-wrap { width: 100%; justify-content: space-between; }
+    .result-row .tip-wrap .label-txt { color: #aaa; }
+    .hedge-metric .tip-wrap .label-txt { color: #aaa; font-size: 0.75em; }
   </style>
 </head>
 
@@ -377,24 +423,24 @@
           <div class="results-compare" style="display:flex; gap:14px; margin-top:16px;">
             <!-- Sans boucle -->
             <div class="result-col" id="col-sans">
-              <h4>📦 SANS BOUCLE</h4>
-              <div class="result-row"><span>ETH déposé</span><span id="r0-eth"></span></div>
-              <div class="result-row"><span>Valeur déposée</span><span id="r0-val"></span></div>
-              <div class="result-row"><span>Gain intérêts/an</span><span id="r0-gain" class="result-positive"></span></div>
-              <div class="result-row"><span>Valeur à la sortie</span><span id="r0-exit"></span></div>
-              <div class="result-row"><span>Rendement net</span><span id="r0-rdt"></span></div>
+              <h4>&#128230; SANS BOUCLE</h4>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">ETH déposé</span><span class="tip-icon">?<span class="tip-bubble">Ton ETH initial déposé sur Aave, sans emprunt ni réinvestissement. Position simple, rendement limité à l'APY du dépôt.</span></span></span><span id="r0-eth"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Valeur déposée</span><span class="tip-icon">?<span class="tip-bubble">ETH × prix actuel. C'est ta mise de départ brute avant tout effet de levier.</span></span></span><span id="r0-val"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Gain intérêts/an</span><span class="tip-icon">?<span class="tip-bubble">Intérêts générés par ton dépôt ETH au taux APY choisi. Sans emprunt, aucun coût à déduire.</span></span></span><span id="r0-gain" class="result-positive"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Valeur à la sortie</span><span class="tip-icon">?<span class="tip-bubble">ETH × prix de sortie + intérêts annuels. Ce que tu récupères si tu vends tout au prix simulé.</span></span></span><span id="r0-exit"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Rendement net</span><span class="tip-icon">?<span class="tip-bubble">Gain total (prix + intérêts) divisé par ta mise initiale. Compare-le avec le rendement "avec boucle" pour voir l'impact du levier.</span></span></span><span id="r0-rdt"></span></div>
             </div>
             <!-- Avec boucle -->
             <div class="result-col highlight" id="col-avec">
-              <h4>⚡ AVEC BOUCLE</h4>
-              <div class="result-row"><span>ETH total</span><span id="r1-eth"></span></div>
-              <div class="result-row"><span>Valeur nette</span><span id="r1-net"></span></div>
-              <div class="result-row"><span>Gain net/an</span><span id="r1-gain" class="result-positive"></span></div>
-              <div class="result-row"><span>HF estimé</span><span id="r1-hf"></span></div>
-              <div class="result-row"><span>Prix liquidation</span><span id="r1-liq" class="result-negative"></span></div>
-              <div class="result-row"><span>Valeur à la sortie</span><span id="r1-exit"></span></div>
-              <div class="result-row"><span>Rendement net</span><span id="r1-rdt"></span></div>
-              <div class="result-row"><span>Effet levier</span><span id="r1-leverage" class="result-positive"></span></div>
+              <h4>&#9889; AVEC BOUCLE</h4>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">ETH total</span><span class="tip-icon">?<span class="tip-bubble">Ton ETH de départ <strong>+</strong> l'ETH racheté grâce à l'emprunt USDC. Plus tu boucles, plus tu accumules d'ETH exposé au marché.</span></span></span><span id="r1-eth"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Valeur nette</span><span class="tip-icon">?<span class="tip-bubble">Valeur totale déposée (ETH + USDe) <strong>moins</strong> ta dette USDC. C'est ton capital réel engagé — la base de calcul de ton vrai rendement.</span></span></span><span id="r1-net"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Gain net/an</span><span class="tip-icon">?<span class="tip-bubble">= Intérêts ETH + Intérêts USDe - Coût emprunt USDC. Ce que la boucle te rapporte <strong>annuellement</strong> si les prix restent stables.</span></span></span><span id="r1-gain" class="result-positive"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">HF estimé</span><span class="tip-icon">?<span class="tip-bubble"><strong>Health Factor</strong> : ratio entre la valeur pondérée de ton collatéral et ta dette. ✅ &gt;2 confortable · ⚠️ 1,2–1,8 surveiller · 🚨 &lt;1 liquidation !</span></span></span><span id="r1-hf"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Prix liquidation</span><span class="tip-icon">?<span class="tip-bubble">Prix ETH en dessous duquel Aave liquide automatiquement une partie de ton collatéral pour rembourser ta dette. <strong>Zone rouge à éviter absolument.</strong></span></span></span><span id="r1-liq" class="result-negative"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Valeur à la sortie</span><span class="tip-icon">?<span class="tip-bubble">Valeur totale si tu fermes tout au prix choisi sur le slider : ETH × prix sortie + USDe - dette + gains annuels.</span></span></span><span id="r1-exit"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Rendement net</span><span class="tip-icon">?<span class="tip-bubble">Calculé sur ta <strong>valeur nette réelle</strong> (capital propre). Plus élevé que le rendement sur valeur brute grâce à l'effet de levier.</span></span></span><span id="r1-rdt"></span></div>
+              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Effet levier</span><span class="tip-icon">?<span class="tip-bubble">Gain de rendement <strong>supplémentaire</strong> apporté par la boucle vs détenir simplement ton ETH. Peut être négatif si les frais d'emprunt dépassent les gains.</span></span></span><span id="r1-leverage" class="result-positive"></span></div>
             </div>
           </div>
           <div class="hf-alert" id="aave-hf-alert"></div>
@@ -425,7 +471,7 @@
       </ol>
       <div class="tip">Tu as bien accumulé de l'ETH, même si son cours a baissé. C'est ça la magie du hedge. 🎩</div>
       <div style="text-align:center; margin-top:16px;">
-        <a href="https://docspace-i7ed8p.onlyoffice.com/s/Th2w-B3VW-5dyXP" target="_blank" class="btn-link">📊 Voir le diaporama complet</a>
+        <a href="https://drive.proton.me" target="_blank" class="btn-link">📊 Voir le diaporama complet</a>
       </div>
     </div>
 
@@ -462,21 +508,51 @@
           <div class="hedge-compare">
             <!-- Sans hedge -->
             <div class="hedge-col no-hedge">
-              <h4>📉 SANS HEDGE</h4>
-              <div class="hedge-metric"><div class="label">Valeur ETH à la sortie</div><div class="value" id="h0-val-exit">—</div></div>
-              <div class="hedge-metric"><div class="label">P&L total</div><div class="value" id="h0-pnl">—</div></div>
-              <div class="hedge-metric"><div class="label">Rendement</div><div class="value" id="h0-rdt">—</div></div>
-              <div class="hedge-metric"><div class="label">ETH accumulé</div><div class="value neutral" id="h0-eth-acc">0 ETH</div></div>
+              <h4>&#128201; SANS HEDGE</h4>
+              <div class="hedge-metric">
+                <div class="label tip-wrap"><span class="label-txt">Valeur ETH à la sortie</span><span class="tip-icon">?<span class="tip-bubble">Tu détiens ton ETH sans protection. Si l'ETH baisse, ta valeur baisse proportionnellement. <strong>Exposition totale au prix.</strong></span></span></div>
+                <div class="value" id="h0-val-exit">—</div>
+              </div>
+              <div class="hedge-metric">
+                <div class="label tip-wrap"><span class="label-txt">P&amp;L total</span><span class="tip-icon">?<span class="tip-bubble"><strong>Profit &amp; Loss</strong> : différence entre la valeur finale et ta mise initiale. Négatif si le marché a baissé, positif si il a monté.</span></span></div>
+                <div class="value" id="h0-pnl">—</div>
+              </div>
+              <div class="hedge-metric">
+                <div class="label tip-wrap"><span class="label-txt">Rendement</span><span class="tip-icon">?<span class="tip-bubble">P&amp;L divisé par la valeur d'entrée. Reflète directement la performance du prix de l'ETH — aucune atténuation possible.</span></span></div>
+                <div class="value" id="h0-rdt">—</div>
+              </div>
+              <div class="hedge-metric">
+                <div class="label tip-wrap"><span class="label-txt">ETH accumulé</span><span class="tip-icon">?<span class="tip-bubble">Sans hedge, tu ne génères aucun revenu supplémentaire en ETH. Tu gardes exactement ce que tu avais au départ.</span></span></div>
+                <div class="value neutral" id="h0-eth-acc">0 ETH</div>
+              </div>
             </div>
             <!-- Avec hedge -->
             <div class="hedge-col with-hedge">
-              <h4>🛡️ AVEC HEDGE</h4>
-              <div class="hedge-metric"><div class="label">Valeur ETH à la sortie</div><div class="value" id="h1-val-exit">—</div></div>
-              <div class="hedge-metric"><div class="label">USDe obtenu</div><div class="value neutral" id="h1-usde">—</div></div>
-              <div class="hedge-metric"><div class="label">Intérêts nets</div><div class="value pos" id="h1-yield">—</div></div>
-              <div class="hedge-metric"><div class="label">Coût rachat ETH</div><div class="value neg" id="h1-buyback">—</div></div>
-              <div class="hedge-metric"><div class="label">P&L total</div><div class="value" id="h1-pnl">—</div></div>
-              <div class="hedge-metric"><div class="label">ETH accumulé</div><div class="value pos" id="h1-eth-acc">—</div></div>
+              <h4>&#128737;&#65039; AVEC HEDGE</h4>
+              <div class="hedge-metric">
+                <div class="label tip-wrap"><span class="label-txt">Valeur ETH à la sortie</span><span class="tip-icon">?<span class="tip-bubble">Valeur de ton ETH déposé au prix de sortie. Identique au sans-hedge — mais le hedge compense la perte via les intérêts USDe.</span></span></div>
+                <div class="value" id="h1-val-exit">—</div>
+              </div>
+              <div class="hedge-metric">
+                <div class="label tip-wrap"><span class="label-txt">USDe obtenu</span><span class="tip-icon">?<span class="tip-bubble">Tu empruntes X ETH sur Aave, tu les swappes en USDe. Ces USDe génèrent des intérêts stables pendant toute la durée du hedge.</span></span></div>
+                <div class="value neutral" id="h1-usde">—</div>
+              </div>
+              <div class="hedge-metric">
+                <div class="label tip-wrap"><span class="label-txt">Intérêts nets</span><span class="tip-icon">?<span class="tip-bubble">= Intérêts USDe générés − Coût de l'emprunt ETH. C'est le <strong>vrai gain</strong> du hedge, indépendant du prix de l'ETH.</span></span></div>
+                <div class="value pos" id="h1-yield">—</div>
+              </div>
+              <div class="hedge-metric">
+                <div class="label tip-wrap"><span class="label-txt">Coût rachat ETH</span><span class="tip-icon">?<span class="tip-bubble">Pour sortir du hedge, tu dois racheter l'ETH emprunté au prix de sortie pour le rembourser à Aave. Si l'ETH a baissé, ce coût est <strong>inférieur</strong> à ce que tu avais reçu au swap — c'est là que le hedge gagne !</span></span></div>
+                <div class="value neg" id="h1-buyback">—</div>
+              </div>
+              <div class="hedge-metric">
+                <div class="label tip-wrap"><span class="label-txt">P&amp;L total</span><span class="tip-icon">?<span class="tip-bubble">Valeur ETH sortie − coût rachat ETH + intérêts nets − mise initiale. Le hedge réduit les pertes en baisse et accumule de l'ETH grâce aux intérêts.</span></span></div>
+                <div class="value" id="h1-pnl">—</div>
+              </div>
+              <div class="hedge-metric">
+                <div class="label tip-wrap"><span class="label-txt">ETH accumulé</span><span class="tip-icon">?<span class="tip-bubble">ETH acheté grâce aux intérêts nets. Même si l'ETH a baissé, tu <strong>accumules des fractions d'ETH</strong> à bas prix — c'est la magie du hedge.</span></span></div>
+                <div class="value pos" id="h1-eth-acc">—</div>
+              </div>
             </div>
           </div>
           <!-- Badge différence -->
