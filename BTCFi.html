@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>BTCFi - Crypto pour les Nuls</title>
+  <link rel="icon" type="image/gif" href="https://i.postimg.cc/qMC792VP/papillon.gif">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #6FA8DC;
+      --blue-dark: #0B5394;
+      --blue-glow: #6FA8DC55;
+      --gold: #FFD700;
+      --orange: #F4A742;
+      --orange-dark: #8B4A00;
+      --orange-glow: #F4A74255;
+      --green: #6FCF97;
+      --red: rgba(255,80,80,0.15);
+      --red-border: rgba(255,80,80,0.5);
+      --green-bg: rgba(0,200,100,0.1);
+      --green-border: rgba(0,200,100,0.35);
+      --card-bg: rgba(0,0,0,0.5);
+      --card-border: #F4A74244;
+      --btc: #F7931A;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 70px 0 0 0;
+      background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Exo 2', Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    nav { background-color: rgba(0,0,0,0.75); padding: 10px 0; position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(6px); }
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; }
+    nav li { margin: 0 6px; }
+    nav a { color: white; text-decoration: none; font-weight: 600; font-size: 14px; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; font-family: 'Exo 2', sans-serif; }
+    nav a:hover { background-color: rgba(255,255,255,0.18); }
+
+    .content { padding: 24px 20px 40px; max-width: 880px; margin: 0 auto; background-color: rgba(0,0,0,0.65); border-radius: 12px; text-align: left; line-height: 1.7; }
+
+    h1 { font-family: 'Orbitron', sans-serif; color: var(--btc); text-align: center; font-size: 1.9em; text-shadow: 0 0 22px var(--orange-glow); letter-spacing: 2px; margin-bottom: 6px; }
+    .page-subtitle { text-align: center; color: #aaa; font-style: italic; margin-bottom: 36px; font-size: 0.95em; }
+    h2 { font-family: 'Orbitron', sans-serif; color: var(--btc); font-size: 1.1em; letter-spacing: 1px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-top: 44px; }
+    h3 { color: #F4A742; font-size: 1em; margin: 16px 0 6px; }
+
+    a { color: var(--btc); }
+    a:hover { color: var(--orange); }
+    img { display: block; margin: 12px auto; max-width: 100%; border-radius: 10px; border: 2px solid var(--btc); }
+
+    .section-block { margin-bottom: 24px; padding: 18px 20px; background-color: var(--card-bg); border-radius: 10px; border: 1px solid var(--card-border); }
+
+    .warning { background-color: var(--red); padding: 12px 16px; border-radius: 10px; border: 1px solid var(--red-border); margin: 14px 0; font-size: 0.95em; }
+    .warning::before { content: "⚠️ "; }
+    .tip { background-color: var(--green-bg); padding: 12px 16px; border-radius: 10px; border: 1px solid var(--green-border); margin: 14px 0; font-size: 0.95em; }
+    .tip::before { content: "💡 "; }
+    .info-box { background-color: rgba(247,147,26,0.08); padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(247,147,26,0.3); margin: 14px 0; font-size: 0.95em; }
+    .gold-rule { font-family: 'Orbitron', sans-serif; font-size: 1em; color: var(--gold); text-shadow: 0 0 12px #FFD70066; text-align: center; margin: 18px 0; padding: 14px; border: 1px solid #FFD70044; border-radius: 8px; background: rgba(255,215,0,0.05); }
+
+    .btc-rule { font-family: 'Orbitron', sans-serif; font-size: 1em; color: var(--btc); text-shadow: 0 0 12px var(--orange-glow); text-align: center; margin: 18px 0; padding: 14px; border: 1px solid rgba(247,147,26,0.4); border-radius: 8px; background: rgba(247,147,26,0.05); }
+
+    /* CARDS PROTOCOLES */
+    .protocol-grid { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+    .protocol-card {
+      flex: 1; min-width: 220px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(247,147,26,0.3);
+      border-radius: 12px; padding: 18px;
+      transition: border-color 0.3s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .protocol-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--btc), transparent);
+    }
+    .protocol-card:hover { border-color: var(--btc); transform: translateY(-3px); }
+    .protocol-card h3 { margin-top: 0; color: var(--btc); display: flex; align-items: center; gap: 8px; }
+    .protocol-card p { font-size: 0.88em; color: #ccc; margin: 0 0 12px; }
+    .protocol-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75em; font-weight: 700; margin-bottom: 8px; }
+    .badge-apy { background: rgba(111,207,151,0.2); border: 1px solid var(--green); color: var(--green); }
+    .badge-risk { background: rgba(255,215,0,0.15); border: 1px solid var(--gold); color: var(--gold); }
+
+    /* ÉTAPES */
+    .step { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; padding: 12px; background: rgba(247,147,26,0.06); border-radius: 8px; border-left: 3px solid var(--btc); }
+    .step-number { flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: var(--orange-dark); border: 2px solid var(--btc); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-size: 0.85em; font-weight: 700; color: var(--btc); }
+    .step-content { flex: 1; padding-top: 4px; font-size: 0.95em; }
+    .step-content strong { color: #F4A742; }
+
+    /* COMPARAISON */
+    .compare-grid { display: flex; gap: 14px; flex-wrap: wrap; margin: 16px 0; }
+    .compare-card { flex: 1; min-width: 180px; background: rgba(0,0,0,0.4); border-radius: 10px; padding: 14px; border: 1px solid rgba(247,147,26,0.2); }
+    .compare-card h4 { font-family: 'Orbitron', sans-serif; font-size: 0.8em; color: var(--btc); margin: 0 0 10px; text-align: center; padding-bottom: 8px; border-bottom: 1px solid rgba(247,147,26,0.2); }
+    .compare-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 0.85em; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .compare-row:last-child { border: none; }
+    .compare-row span:first-child { color: #aaa; }
+    .compare-row span:last-child { font-weight: 600; color: var(--green); }
+
+    /* SIMULATEUR */
+    .simulator { background: rgba(0,0,0,0.6); border: 1px solid var(--btc); border-radius: 12px; padding: 20px; margin: 20px 0; }
+    .simulator h3 { color: var(--gold); font-family: 'Orbitron', sans-serif; text-align: center; margin-top: 0; font-size: 0.95em; }
+    .sim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+    @media(max-width:600px) { .sim-grid { grid-template-columns: 1fr; } .protocol-grid, .compare-grid { flex-direction: column; } }
+    .sim-field label { display: block; font-size: 0.82em; color: #aaa; margin-bottom: 4px; }
+    .sim-field input { width: 100%; padding: 8px 10px; background: rgba(247,147,26,0.08); border: 1px solid rgba(247,147,26,0.3); border-radius: 6px; color: white; font-family: 'Exo 2', sans-serif; font-size: 0.95em; }
+    .sim-field input:focus { outline: none; border-color: var(--btc); }
+    .sim-btn { display: block; width: 100%; padding: 10px; background: var(--orange-dark); color: white; border: 1px solid var(--btc); border-radius: 6px; font-family: 'Orbitron', sans-serif; font-size: 0.85em; cursor: pointer; margin-top: 12px; transition: background 0.3s; }
+    .sim-btn:hover { background: var(--btc); color: #000; }
+    .sim-results { margin-top: 16px; display: none; }
+    .sim-results.visible { display: block; }
+
+    .result-section { background: rgba(247,147,26,0.05); border: 1px solid rgba(247,147,26,0.2); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .result-section h4 { font-family: 'Orbitron', sans-serif; font-size: 0.82em; color: var(--btc); margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+    .result-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(247,147,26,0.1); font-size: 0.88em; }
+    .result-row:last-child { border: none; }
+    .result-row span:first-child { color: #aaa; }
+    .result-row span:last-child { font-weight: 600; }
+    .result-positive { color: var(--green); }
+    .result-btc { color: var(--btc); }
+    .result-total { background: rgba(247,147,26,0.12); border: 1px solid var(--btc); border-radius: 8px; padding: 14px; margin-top: 12px; text-align: center; }
+    .result-total .amount { font-family: 'Orbitron', sans-serif; font-size: 1.6em; color: var(--btc); text-shadow: 0 0 14px var(--orange-glow); }
+    .result-total .label { font-size: 0.82em; color: #aaa; margin-top: 4px; }
+
+    /* PRIX EN DIRECT */
+    .price-ticker { display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0; }
+    .price-card { flex: 1; min-width: 120px; background: rgba(0,0,0,0.5); border: 1px solid rgba(247,147,26,0.3); border-radius: 8px; padding: 10px 14px; text-align: center; }
+    .price-card .coin { font-family: 'Orbitron', sans-serif; font-size: 0.78em; color: var(--btc); margin-bottom: 4px; }
+    .price-card .price { font-size: 0.95em; font-weight: 700; color: white; }
+    .price-card .dot-live { display: inline-block; width: 7px; height: 7px; background: var(--green); border-radius: 50%; margin-right: 4px; animation: blink 1.5s infinite; }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.2; } }
+
+    .btn-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--orange-dark); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.88em; border: 1px solid rgba(247,147,26,0.4); transition: background 0.3s, transform 0.2s; margin: 4px; }
+    .btn-link:hover { background: var(--btc); color: #000; transform: translateY(-1px); }
+
+    hr.divider { border: none; border-top: 1px solid var(--card-border); margin: 36px 0; }
+    ul, ol { padding-left: 20px; }
+    li { margin-bottom: 5px; }
+    .page-footer { text-align: center; padding: 28px 10px; color: #F4A74266; font-size: 0.82em; }
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* TOOLTIPS */
+    .tip-wrap { position: relative; display: inline-flex; align-items: center; gap: 5px; cursor: default; }
+    .tip-icon { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: rgba(247,147,26,0.15); border: 1px solid rgba(247,147,26,0.5); color: var(--btc); font-size: 10px; font-weight: 700; cursor: help; flex-shrink: 0; transition: background 0.2s; }
+    .tip-icon:hover { background: rgba(247,147,26,0.3); }
+    .tip-bubble { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: rgba(10,10,20,0.97); border: 1px solid var(--btc); border-radius: 8px; padding: 10px 13px; font-size: 0.78em; color: #eee; line-height: 1.5; width: 220px; z-index: 500; box-shadow: 0 4px 20px rgba(247,147,26,0.2); pointer-events: none; }
+    .tip-bubble::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--btc); }
+    .tip-bubble strong { color: var(--btc); }
+    .tip-wrap:hover .tip-bubble { display: block; }
+
+    /* TIMELINE STACKS */
+    .timeline { position: relative; padding-left: 24px; margin: 16px 0; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--btc), transparent); }
+    .tl-item { position: relative; margin-bottom: 16px; }
+    .tl-item::before { content: ''; position: absolute; left: -20px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--btc); box-shadow: 0 0 8px var(--orange-glow); }
+    .tl-item strong { color: var(--btc); }
+    .tl-item p { margin: 2px 0 0; font-size: 0.88em; color: #ccc; }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="Kezako-Crypto.html">Kezako-Crypto</a></li>
+      <li><a href="wallet.html">Wallet</a></li>
+      <li><a href="Achat-Vente-Crypto.html">Achat-Vente-Crypto</a></li>
+      <li><a href="Investir.html">Investir</a></li>
+      <li><a href="CosmosHub.html">CosmosHub</a></li>
+      <li><a href="DEFI.html">DeFi</a></li>
+      <li><a href="BTCFi.html">BTCFi</a></li>
+      <li><a href="Fiscalite.html">Fiscalité</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+
+    <h1>₿ BTCFi</h1>
+    <p class="page-subtitle">Faire travailler ton Bitcoin — sans le vendre, sans le quitter</p>
+
+    <!-- SECTION 1 : INTRO -->
+    <h2 class="fade-in">1. ₿ C'est quoi le BTCFi ?</h2>
+    <div class="section-block fade-in">
+      <p>Le Bitcoin est l'or numérique. Pendant des années, la seule stratégie était de le garder et d'attendre (<em>HODL</em>). Le BTCFi change la donne : tu peux désormais <strong>faire travailler ton BTC</strong> et générer un rendement, tout en restant exposé à sa hausse.</p>
+
+      <div class="info-box">
+        <strong>La grande différence avec la DeFi Ethereum :</strong> le Bitcoin n'a pas de smart contracts natifs. Les protocoles BTCFi utilisent des couches secondaires ou des mécanismes de staking cryptographique pour contourner cette limite.
+      </div>
+
+      <div class="btc-rule">₿ Tu ne vends pas ton BTC. Tu le mets au travail. ₿</div>
+
+      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:16px;">
+        <div style="flex:1; min-width:200px; padding:14px; background:rgba(111,207,151,0.08); border:1px solid rgba(111,207,151,0.3); border-radius:10px;">
+          <h3 style="color:var(--green); margin-top:0;">✅ Ce que tu peux faire</h3>
+          <ul style="margin:0; padding-left:18px; color:#ddd; font-size:0.9em;">
+            <li>Staker ton BTC → recevoir du BABY (Babylon)</li>
+            <li>Staker ton BTC → recevoir du BTC (Babylon)</li>
+            <li>Staker via Stacks → recevoir du BTC</li>
+            <li>Staker du BABY → recevoir du BABY</li>
+            <li>Garder ton BTC en self-custody tout du long</li>
+          </ul>
+        </div>
+        <div style="flex:1; min-width:200px; padding:14px; background:rgba(255,80,80,0.08); border:1px solid rgba(255,80,80,0.3); border-radius:10px;">
+          <h3 style="color:#EB5757; margin-top:0;">❌ Ce que tu ne fais PAS</h3>
+          <ul style="margin:0; padding-left:18px; color:#ddd; font-size:0.9em;">
+            <li>Envoyer ton BTC sur une CEX (risque de contrepartie)</li>
+            <li>Vendre pour acheter autre chose</li>
+            <li>Utiliser un pont (bridge) non audité</li>
+            <li>Faire confiance à des promesses de rendement &gt;20%/an</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 2 : BABYLON -->
+    <h2 class="fade-in">2. 🏛️ Babylon Chain — Le staking BTC natif</h2>
+    <div class="section-block fade-in">
+      <div style="display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap;">
+        <div style="flex:1; min-width:220px;">
+          <p>Babylon est le protocole qui permet de <strong>staker du BTC directement depuis ta wallet Bitcoin</strong> — sans bridge, sans wrapped token, sans intermédiaire. Ton BTC ne quitte jamais la blockchain Bitcoin.</p>
+          <div class="info-box">
+            <strong>Comment ça marche ?</strong> Babylon utilise un mécanisme de <em>timestamping</em> et de <em>slashing cryptographique</em>. En cas de comportement malveillant d'un validateur, une partie du BTC staké peut être brûlée — ce qui crée une incitation économique réelle à bien se comporter.
+          </div>
+        </div>
+        <div style="flex-shrink:0; text-align:center; min-width:140px;">
+          <div style="background:rgba(247,147,26,0.1); border:2px solid var(--btc); border-radius:12px; padding:16px; display:inline-block;">
+            <div style="font-family:'Orbitron',sans-serif; font-size:2em; color:var(--btc);">₿</div>
+            <div style="font-size:0.78em; color:#aaa; margin-top:4px;">Self-custody</div>
+            <div style="font-size:0.78em; color:var(--green);">✅ No bridge</div>
+            <div style="font-size:0.78em; color:var(--green);">✅ Non-custodial</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>📈 Rendements Babylon</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4>₿ BTC → BABY</h4>
+          <div class="compare-row"><span>Type</span><span style="color:var(--btc);">Staking natif</span></div>
+          <div class="compare-row"><span>APY estimé</span><span>~1% en BABY</span></div>
+          <div class="compare-row"><span>Risque</span><span style="color:var(--gold);">Faible</span></div>
+          <div class="compare-row"><span>Custody</span><span style="color:var(--green);">Self-custody</span></div>
+        </div>
+        <div class="compare-card">
+          <h4>₿ BTC → BTC</h4>
+          <div class="compare-row"><span>Type</span><span style="color:var(--btc);">Restaking</span></div>
+          <div class="compare-row"><span>APY estimé</span><span>~1,12% en BTC</span></div>
+          <div class="compare-row"><span>Risque</span><span style="color:var(--gold);">Faible-Moyen</span></div>
+          <div class="compare-row"><span>Custody</span><span style="color:var(--green);">Self-custody</span></div>
+        </div>
+        <div class="compare-card">
+          <h4>🪙 BABY → BABY</h4>
+          <div class="compare-row"><span>Type</span><span style="color:var(--btc);">Staking BABY</span></div>
+          <div class="compare-row"><span>APY estimé</span><span>~10,19% en BABY</span></div>
+          <div class="compare-row"><span>Risque</span><span style="color:#EB5757;">Moyen</span></div>
+          <div class="compare-row"><span>Custody</span><span style="color:var(--green);">Self-custody</span></div>
+        </div>
+      </div>
+
+      <div class="warning">
+        Le token BABY est le token de gouvernance de Babylon. Son cours peut être très volatile. Le rendement en BABY dépend donc fortement du prix du BABY au moment où tu le convertis.
+      </div>
+
+      <h3>🔧 Comment staker sur Babylon</h3>
+      <div class="step"><div class="step-number">1</div><div class="step-content">Installe un wallet Bitcoin compatible : <strong>OKX Wallet</strong>, <strong>Unisat</strong> ou <strong>Xverse</strong>. Assure-toi d'avoir du BTC dessus.</div></div>
+      <div class="step"><div class="step-number">2</div><div class="step-content">Va sur <a href="https://babylonchain.io" target="_blank">babylonchain.io</a> → connecte ton wallet Bitcoin → sélectionne "Stake BTC".</div></div>
+      <div class="step"><div class="step-number">3</div><div class="step-content">Choisis un <strong>finality provider</strong> (validateur) → entre le montant → confirme la transaction. Ton BTC reste sur la blockchain Bitcoin !</div></div>
+      <div class="step"><div class="step-number">4</div><div class="step-content">Tu reçois des récompenses en <strong>BABY</strong> selon l'APY du moment. Tu peux aussi activer le restaking pour recevoir du BTC.</div></div>
+      <div class="step"><div class="step-number">5</div><div class="step-content">Pour débloquer, il y a une <strong>période de unbonding</strong> (~7 jours). Planifie ta sortie à l'avance si tu en as besoin rapidement.</div></div>
+
+      <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+        <a href="https://babylonchain.io" target="_blank" class="btn-link">🏛️ Babylon App</a>
+        <a href="https://docs.babylonchain.io" target="_blank" class="btn-link">📖 Documentation</a>
+        <a href="https://babylonchain.io/blog" target="_blank" class="btn-link">📰 Blog officiel</a>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 3 : STACKS -->
+    <h2 class="fade-in">3. 📚 Stacks — Le Bitcoin qui devient productif</h2>
+    <div class="section-block fade-in">
+      <p>Stacks est une blockchain Layer 2 qui <strong>s'ancre sur Bitcoin</strong>. Elle permet d'exécuter des smart contracts tout en héritant de la sécurité de Bitcoin. Son mécanisme unique <strong>Proof of Transfer (PoX)</strong> récompense les stackers en BTC réel.</p>
+
+      <div class="info-box">
+        <strong>Le mécanisme PoX en clair :</strong> Les mineurs Stacks dépensent du BTC pour miner des blocs STX. Ce BTC est redistribué aux holders de STX qui ont "stacké" leurs tokens. Tu reçois donc du <strong>vrai BTC</strong> en échange de tes STX.
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item"><strong>2017</strong><p>Création de Blockstack (futur Stacks) par Muneeb Ali et Ryan Shea</p></div>
+        <div class="tl-item"><strong>2021</strong><p>Lancement du mécanisme Stacking (PoX) — les holders de STX commencent à recevoir du BTC</p></div>
+        <div class="tl-item"><strong>2023</strong><p>Nakamoto Upgrade — Stacks s'arrime encore plus étroitement à Bitcoin, confirmations accélérées</p></div>
+        <div class="tl-item"><strong>2024</strong><p>sBTC introduit — BTC natif utilisable dans les smart contracts Stacks sans bridge centralisé</p></div>
+      </div>
+
+      <h3>📈 Staking STX → Recevoir du BTC</h3>
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4>🔒 Stacking STX</h4>
+          <div class="compare-row"><span>Récompense</span><span style="color:var(--btc);">BTC réel</span></div>
+          <div class="compare-row"><span>APY estimé</span><span>~5–9% en BTC</span></div>
+          <div class="compare-row"><span>Cycle</span><span style="color:#aaa;">~2 semaines</span></div>
+          <div class="compare-row"><span>Minimum</span><span style="color:#aaa;">Variable</span></div>
+        </div>
+        <div class="compare-card">
+          <h4>🌊 Via liquid staking</h4>
+          <div class="compare-row"><span>Protocole</span><span style="color:var(--btc);">StackingDAO, LISA</span></div>
+          <div class="compare-row"><span>Récompense</span><span style="color:var(--btc);">BTC / stSTX</span></div>
+          <div class="compare-row"><span>Avantage</span><span style="color:var(--green);">Pas de lock</span></div>
+          <div class="compare-row"><span>Risque</span><span style="color:var(--gold);">Smart contract</span></div>
+        </div>
+      </div>
+
+      <div class="tip">
+        Si tu ne veux pas gérer les cycles de stacking, des protocoles comme <strong>StackingDAO</strong> ou <strong>LISA</strong> font le travail à ta place et te donnent un token liquide (stSTX) en échange.
+      </div>
+
+      <h3>🔧 Comment stacker des STX</h3>
+      <div class="step"><div class="step-number">1</div><div class="step-content">Achète des STX sur Binance, Kraken ou autre CEX → envoie sur ton wallet <strong>Leather</strong> ou <strong>Xverse</strong>.</div></div>
+      <div class="step"><div class="step-number">2</div><div class="step-content">Va sur <a href="https://stacks.co" target="_blank">stacks.co</a> ou <a href="https://stackingdao.com" target="_blank">stackingdao.com</a> → connecte ton wallet.</div></div>
+      <div class="step"><div class="step-number">3</div><div class="step-content">Choisis ton mode : <strong>stacking direct</strong> (lock 2 semaines, plus de BTC) ou <strong>liquid stacking</strong> (pas de lock, légèrement moins de BTC).</div></div>
+      <div class="step"><div class="step-number">4</div><div class="step-content">Confirme → tu reçois du BTC à la fin de chaque cycle (environ tous les 14 jours).</div></div>
+
+      <div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+        <a href="https://stacks.co" target="_blank" class="btn-link">📚 Stacks</a>
+        <a href="https://stackingdao.com" target="_blank" class="btn-link">🌊 StackingDAO</a>
+        <a href="https://www.lisalab.io" target="_blank" class="btn-link">🔵 LISA</a>
+        <a href="https://docs.stacks.co" target="_blank" class="btn-link">📖 Documentation</a>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 4 : SIMULATEUR -->
+    <h2 class="fade-in">4. 🧮 Simulateur BTCFi</h2>
+    <div class="fade-in">
+      <div class="simulator">
+        <h3>₿ Calculateur de rendement BTCFi</h3>
+
+        <!-- Prix en direct -->
+        <div style="margin-bottom:16px;">
+          <div style="font-size:0.82em; color:#aaa; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+            <span class="dot-live" style="display:inline-block; width:7px; height:7px; background:var(--green); border-radius:50%; animation:blink 1.5s infinite;"></span>
+            Prix en direct (mise à jour toutes les 30s)
+          </div>
+          <div class="price-ticker">
+            <div class="price-card"><div class="coin">₿ BTC</div><div class="price" id="price-btc">...</div></div>
+            <div class="price-card"><div class="coin">STX</div><div class="price" id="price-stx">...</div></div>
+            <div class="price-card"><div class="coin">BABY</div><div class="price" id="price-baby">...</div></div>
+          </div>
+        </div>
+
+        <div class="sim-grid">
+          <div class="sim-field">
+            <label>
+              <span class="tip-wrap">BTC stakés (Babylon)
+                <span class="tip-icon">?<span class="tip-bubble">Ton BTC déposé sur Babylon. Génère du BABY (~1% APY) et/ou du BTC (~1,12% APY via restaking).</span></span>
+              </span>
+            </label>
+            <input id="in-btc" type="number" step="0.001" value="0.1" placeholder="ex: 0.1">
+          </div>
+          <div class="sim-field">
+            <label>
+              <span class="tip-wrap">BABY stakés (Babylon)
+                <span class="tip-icon">?<span class="tip-bubble">Ton token BABY staké sur Babylon. Génère ~10,19% APY en BABY supplémentaires. Attention à la volatilité du prix BABY !</span></span>
+              </span>
+            </label>
+            <input id="in-baby" type="number" step="1" value="0" placeholder="ex: 1000">
+          </div>
+          <div class="sim-field">
+            <label>
+              <span class="tip-wrap">STX stakés (Stacks)
+                <span class="tip-icon">?<span class="tip-bubble">Ton STX stacké via Proof of Transfer. Tu reçois du BTC réel en récompense — environ 7% APY calculé en valeur USD.</span></span>
+              </span>
+            </label>
+            <input id="in-stx" type="number" step="1" value="0" placeholder="ex: 5000">
+          </div>
+        </div>
+
+        <button class="sim-btn" onclick="calculateBTCFi()">⚡ Calculer mon rendement</button>
+
+        <div class="sim-results" id="btcfi-results">
+
+          <!-- Babylon BTC -->
+          <div class="result-section">
+            <h4>🏛️ Babylon — Rewards BTC</h4>
+            <div class="result-row">
+              <span class="tip-wrap"><span>BABY reçus/an (via BTC)</span><span class="tip-icon">?<span class="tip-bubble">Ton BTC génère du BABY. Calculé sur la base d'un APY de 1,01% converti en BABY au prix actuel.</span></span></span>
+              <span id="out-baby-btc" class="result-positive">—</span>
+            </div>
+            <div class="result-row">
+              <span class="tip-wrap"><span>BABY reçus/an (via BABY)</span><span class="tip-icon">?<span class="tip-bubble">Ton BABY staké génère 10,19% APY en BABY supplémentaires.</span></span></span>
+              <span id="out-baby-baby" class="result-positive">—</span>
+            </div>
+            <div class="result-row">
+              <span class="tip-wrap"><span>BTC reçus/an (restaking)</span><span class="tip-icon">?<span class="tip-bubble">Via le restaking Babylon, ton BTC génère ~1,12% APY en BTC supplémentaires.</span></span></span>
+              <span id="out-btc-btc" class="result-btc">—</span>
+            </div>
+          </div>
+
+          <!-- Stacks -->
+          <div class="result-section">
+            <h4>📚 Stacks — BTC Rewards</h4>
+            <div class="result-row">
+              <span class="tip-wrap"><span>BTC reçus/an (via STX)</span><span class="tip-icon">?<span class="tip-bubble">Ton STX stacké génère ~7% APY en valeur USD, redistribué en BTC réel. Le montant BTC dépend du prix du BTC.</span></span></span>
+              <span id="out-btc-stx" class="result-btc">—</span>
+            </div>
+          </div>
+
+          <!-- Valeurs dollar -->
+          <div class="result-section">
+            <h4>💵 Valeur annuelle en USD</h4>
+            <div class="result-row">
+              <span>Valeur BABY total ($)</span>
+              <span id="val-baby" class="result-positive">—</span>
+            </div>
+            <div class="result-row">
+              <span>Valeur BTC total ($)</span>
+              <span id="val-btc" class="result-btc">—</span>
+            </div>
+          </div>
+
+          <!-- Total -->
+          <div class="result-total">
+            <div class="label">Rendement annuel total estimé</div>
+            <div class="amount" id="total-annual">—</div>
+            <div class="label" style="margin-top:4px;">au prix actuel du marché</div>
+          </div>
+
+          <div class="warning" style="margin-top:14px;">
+            Ces rendements sont des estimations basées sur les APY actuels. Les APY varient constamment selon l'activité du réseau. Le prix du BABY en particulier peut fortement impacter la valeur réelle.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 5 : COMPARAISON -->
+    <h2 class="fade-in">5. ⚖️ Comparer les options</h2>
+    <div class="section-block fade-in">
+      <p>Pas sûr de savoir quelle option choisir ? Voici un résumé pour t'aider à décider selon ton profil :</p>
+
+      <div style="overflow-x:auto; margin-top:16px;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.88em;">
+          <thead>
+            <tr style="background:rgba(247,147,26,0.1); border-bottom:2px solid var(--btc);">
+              <th style="padding:10px 12px; text-align:left; color:var(--btc); font-family:'Orbitron',sans-serif; font-size:0.8em;">Stratégie</th>
+              <th style="padding:10px 12px; text-align:center; color:var(--btc); font-family:'Orbitron',sans-serif; font-size:0.8em;">APY</th>
+              <th style="padding:10px 12px; text-align:center; color:var(--btc); font-family:'Orbitron',sans-serif; font-size:0.8em;">Récompense</th>
+              <th style="padding:10px 12px; text-align:center; color:var(--btc); font-family:'Orbitron',sans-serif; font-size:0.8em;">Risque</th>
+              <th style="padding:10px 12px; text-align:center; color:var(--btc); font-family:'Orbitron',sans-serif; font-size:0.8em;">Custody</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(247,147,26,0.1);">
+              <td style="padding:10px 12px;">₿ BTC → BABY (Babylon)</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--gold);">~1%</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--btc);">BABY</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--green);">⭐ Faible</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--green);">Self</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(247,147,26,0.1); background:rgba(247,147,26,0.03);">
+              <td style="padding:10px 12px;">₿ BTC → BTC (Babylon)</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--gold);">~1,12%</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--btc);">BTC</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--gold);">⭐⭐ Faible-Moy.</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--green);">Self</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(247,147,26,0.1);">
+              <td style="padding:10px 12px;">🪙 BABY → BABY (Babylon)</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--green);">~10,19%</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--btc);">BABY</td>
+              <td style="padding:10px 12px; text-align:center; color:#EB5757;">⭐⭐⭐ Moyen</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--green);">Self</td>
+            </tr>
+            <tr style="background:rgba(247,147,26,0.03);">
+              <td style="padding:10px 12px;">📚 STX → BTC (Stacks)</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--green);">~5–9%</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--btc);">BTC</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--gold);">⭐⭐ Faible-Moy.</td>
+              <td style="padding:10px 12px; text-align:center; color:var(--green);">Self</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip" style="margin-top:16px;">
+        <strong>Mon conseil :</strong> si tu veux du BTC pur sans exposition à d'autres tokens, la stratégie <strong>STX → BTC via Stacks</strong> ou <strong>BTC → BTC via Babylon restaking</strong> sont les plus propres. Si tu acceptes le risque BABY pour un meilleur APY, <strong>BABY → BABY</strong> est le plus généreux.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 6 : CONCLUSION -->
+    <h2 class="fade-in">6. 🏁 Conclusion</h2>
+    <div class="section-block fade-in" style="text-align:center;">
+      <p>Le BTCFi en est encore à ses débuts, mais les protocoles comme Babylon et Stacks offrent déjà des solutions matures et sécurisées pour faire travailler ton Bitcoin sans le vendre.</p>
+      <div class="btc-rule">₿ Stack des sats, accumule du BTC, reste en self-custody. ₿</div>
+      <div style="margin-top:20px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+        <a href="https://babylonchain.io" target="_blank" class="btn-link">🏛️ Babylon</a>
+        <a href="https://stacks.co" target="_blank" class="btn-link">📚 Stacks</a>
+        <a href="https://stackingdao.com" target="_blank" class="btn-link">🌊 StackingDAO</a>
+        <a href="https://www.lisalab.io" target="_blank" class="btn-link">🔵 LISA</a>
+        <a href="DEFI.html" class="btn-link">🌊 DeFi ETH</a>
+        <a href="CosmosHub.html" class="btn-link">🌌 CosmosHub</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier.
+  </div>
+
+  <script>
+    // Fade-in scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ===== PRIX EN DIRECT =====
+    let lastPrices = null;
+
+    async function fetchPrices() {
+      try {
+        const url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,blockstack,babylon&vs_currencies=usd";
+        const r = await fetch(url);
+        const data = await r.json();
+        lastPrices = {
+          BTC:  data.bitcoin?.usd   || 0,
+          STX:  data.blockstack?.usd || 0,
+          BABY: data.babylon?.usd   || 0
+        };
+        document.getElementById("price-btc").textContent  = lastPrices.BTC.toLocaleString('fr-FR') + " $";
+        document.getElementById("price-stx").textContent  = lastPrices.STX.toFixed(4) + " $";
+        document.getElementById("price-baby").textContent = lastPrices.BABY.toFixed(4) + " $";
+      } catch(e) {
+        document.getElementById("price-btc").textContent  = "Indisponible";
+        document.getElementById("price-stx").textContent  = "Indisponible";
+        document.getElementById("price-baby").textContent = "Indisponible";
+      }
+    }
+
+    async function calculateBTCFi() {
+      if (!lastPrices) await fetchPrices();
+      if (!lastPrices || !lastPrices.BTC) { alert("Prix non disponibles, réessaie dans quelques secondes."); return; }
+
+      const pBTC  = lastPrices.BTC;
+      const pSTX  = lastPrices.STX;
+      const pBABY = lastPrices.BABY;
+
+      const BTC  = parseFloat(document.getElementById("in-btc").value)  || 0;
+      const BABY = parseFloat(document.getElementById("in-baby").value) || 0;
+      const STX  = parseFloat(document.getElementById("in-stx").value)  || 0;
+
+      const babyFromBTC  = pBABY > 0 ? BTC * 0.0101 * (pBTC / pBABY) : 0;
+      const babyFromBABY = BABY * 0.1019;
+      const btcFromBTC   = BTC * 0.0112;
+      const btcFromSTX   = pBTC > 0 ? STX * pSTX * 0.07 / pBTC : 0;
+
+      const totalBABY = babyFromBTC + babyFromBABY;
+      const totalBTC  = btcFromBTC + btcFromSTX;
+      const valBABY   = totalBABY * pBABY;
+      const valBTC    = totalBTC * pBTC;
+      const total     = valBABY + valBTC;
+
+      document.getElementById("out-baby-btc").textContent  = babyFromBTC.toFixed(2) + " BABY";
+      document.getElementById("out-baby-baby").textContent = babyFromBABY.toFixed(2) + " BABY";
+      document.getElementById("out-btc-btc").textContent   = btcFromBTC.toFixed(8) + " BTC";
+      document.getElementById("out-btc-stx").textContent   = btcFromSTX.toFixed(8) + " BTC";
+      document.getElementById("val-baby").textContent      = valBABY.toFixed(2) + " $";
+      document.getElementById("val-btc").textContent       = valBTC.toFixed(2) + " $";
+      document.getElementById("total-annual").textContent  = total.toFixed(2) + " $";
+
+      document.getElementById("btcfi-results").classList.add("visible");
+    }
+
+    fetchPrices();
+    setInterval(fetchPrices, 30000);
+  </script>
+
+</body>
+</html>
