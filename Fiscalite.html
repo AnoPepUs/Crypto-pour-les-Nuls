@@ -2,86 +2,597 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Crypto pour les Nuls</title>
-
-  <!-- Favicon -->
+  <title>Fiscalité Crypto - Crypto pour les Nuls</title>
   <link rel="icon" type="image/gif" href="https://i.postimg.cc/qMC792VP/papillon.gif">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Fond GIF plein écran */
+    nav {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0; padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav li { margin: 0 15px; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    nav a:hover { background-color: rgba(255, 255, 255, 0.2); }
+
     body {
       margin: 0;
-      padding: 0;
+      padding: 60px 0 0 0;
       background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed;
       background-size: cover;
-      font-family: Arial, sans-serif;
+      font-family: 'Exo 2', Arial, sans-serif;
       color: white;
       text-align: center;
     }
 
-    /* Logo */
-    #logo {
-      width: 150px;
+    .content {
+      padding: 20px;
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: #6FA8DC;
+      text-align: center;
+      font-size: 1.8em;
+      text-shadow: 0 0 18px #6FA8DC88;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #6FA8DC;
+      text-align: center;
+      font-size: 1.2em;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #6FA8DC44;
+      padding-bottom: 8px;
       margin-top: 40px;
-      animation: float 4s ease-in-out infinite;
+    }
+    h3 { color: #9FC5E8; font-size: 1em; margin-bottom: 6px; }
+
+    img {
+      display: block;
+      margin: 15px auto;
+      max-width: 100%;
+      border-radius: 10px;
+      border: 2px solid #6FA8DC;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
+    .section-block {
+      margin-bottom: 30px;
+      padding: 18px 20px;
+      background-color: rgba(0, 0, 0, 0.45);
+      border-radius: 10px;
+      border: 1px solid #6FA8DC55;
     }
 
-    /* Conteneur des boutons */
-    .menu {
-      margin-top: 50px;
+    .warning {
+      background-color: rgba(255, 0, 0, 0.15);
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 80, 80, 0.5);
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+    .warning::before { content: "⚠️ "; }
+
+    .tip {
+      background-color: rgba(0, 255, 0, 0.07);
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 200, 100, 0.35);
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+    .tip::before { content: "💡 "; }
+
+    .info-box {
+      background-color: rgba(111, 168, 220, 0.1);
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(111, 168, 220, 0.35);
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+
+    .gold-box {
+      background-color: rgba(255, 215, 0, 0.08);
+      padding: 15px 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      margin-bottom: 20px;
+      font-size: 0.95em;
+    }
+
+    .step {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 40px;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
     }
-
-    /* Boutons images rotatifs */
-    .btn {
-      width: 150px;
-      height: 150px;
+    .step-number {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
       border-radius: 50%;
-      overflow: hidden;
+      background: #0B5394;
+      border: 2px solid #6FA8DC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85em;
+      font-weight: 700;
+      color: #6FA8DC;
+    }
+    .step-content { flex: 1; padding-top: 4px; }
+
+    .button {
+      display: inline-block;
+      padding: 10px 22px;
+      background-color: #0B5394;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin: 8px 6px 8px 0;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 600;
+      font-size: 0.9em;
+      transition: background-color 0.3s, transform 0.2s;
+      border: 1px solid #6FA8DC55;
+    }
+    .button:hover { background-color: #6FA8DC; transform: translateY(-1px); }
+
+    .divider { border: none; border-top: 1px solid #6FA8DC33; margin: 30px 0; }
+
+    .checklist li { list-style: none; padding: 4px 0; }
+    .checklist li::before { content: "✅ "; }
+
+    a { color: #6FA8DC; }
+    a:hover { color: #9FC5E8; }
+    ul, ol { padding-left: 20px; }
+    li { margin-bottom: 4px; }
+
+    /* === CYBERPUNK POP-UP === */
+    .cyberpunk-section {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .cyberpunk-img {
+      width: 200px;
       cursor: pointer;
-      transition: transform 0.4s;
-      border: 3px solid white;
+      border: 2px solid #6FA8DC;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: inline-block;
+    }
+    .cyberpunk-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(111, 168, 220, 0.6);
+    }
+    .cyberpunk-label {
+      display: block;
+      color: #9FC5E8;
+      font-size: 0.85em;
+      margin-top: 6px;
+      font-style: italic;
     }
 
-    .btn:hover {
-      transform: rotateY(360deg) scale(1.1);
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: linear-gradient(135deg, #0a1628, #0B2545);
+      border: 2px solid #6FA8DC;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 0 40px rgba(111, 168, 220, 0.4);
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 16px;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #6FA8DC;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .modal-close:hover { color: white; }
+    .modal-box h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #6FA8DC;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .modal-step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+    .modal-step-num {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #0B5394;
+      border: 1px solid #6FA8DC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8em;
+      font-weight: 700;
+      color: #6FA8DC;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .modal-step p { margin: 0; font-size: 0.9em; color: #ccc; padding-top: 3px; }
+    .modal-tip {
+      background: rgba(0, 200, 100, 0.08);
+      border: 1px solid rgba(0, 200, 100, 0.3);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.85em;
+      color: #aaa;
+      margin-top: 15px;
     }
 
-    .btn img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .conclusion-box {
+      background: linear-gradient(135deg, rgba(11, 83, 148, 0.3), rgba(0,0,0,0.5));
+      border: 1px solid #6FA8DC;
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .gold-rule {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1em;
+      color: #FFD700;
+      text-shadow: 0 0 10px #FFD70066;
+      margin: 16px 0;
     }
 
-    /* Titre sous chaque bouton */
-    .label {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      text-shadow: 0 0 8px black;
+    .page-footer {
+      text-align: center;
+      padding: 30px 10px;
+      color: #6FA8DC88;
+      font-size: 0.85em;
     }
   </style>
 </head>
 
 <body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="Kezako-Crypto.html">Kezako-Crypto</a></li>
+      <li><a href="wallet.html">Wallet</a></li>
+      <li><a href="Achat-Vente-Crypto.html">Achat-Vente-Crypto</a></li>
+      <li><a href="Investir.html">Investir</a></li>
+      <li><a href="CosmosHub.html">CosmosHub</a></li>
+      <li><a href="DEFI.html">DeFi</a></li>
+      <li><a href="BTCFi.html">BTC-Fi</a></li>
+      <li><a href="gagner-crypto.html">Gagner-Crypto</a></li>
+      <li><a href="Fiscalite.html">Fiscalité</a></li>
+    </ul>
+  </nav>
 
-<h1>Page à venir</h1>
+  <div class="content">
 
-<img src="https://i.postimg.cc/hPQtCzkY/En-construction.png" alt="En construction">
+    <h1>🧾 Fiscalité Crypto en France</h1>
+    <p style="text-align:center; color:#bbb; margin-bottom:30px;">Ce que le fisc sait, ce qu'il ne sait pas encore... et comment rester dans les clous. 😄</p>
 
-</p> Je te met également quelques autres lien vidéo sur de youtube</p>
+    <!-- SECTION 0 : BIENFAITS DE L'IMPÔT -->
+    <h2>0. Pourquoi l'impôt, c'est pas si nul 🏥🎓</h2>
 
-</p>En attendant rejoint moi</p>
-</p><a href="https://www.dailymotion.com/embed/video/xa02jz4?autoplay=1&mute=0" target="_blank">Dailymotion</a></p>
+    <div class="section-block">
+      <p>Avant de pester contre le fisc, rappelons-nous quelques évidences qu'on oublie vite...</p>
 
-</p> une petite chasse au Crypto te brance?</p>
-</p><a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank">Mon Site Chasse au Trésor</a></p>
+      <div class="gold-box">
+        <h3>🏥 La carte Vitale</h3>
+        <p>Quand tu vas à la pharmacie avec ta grippe, tu sors ta <strong>carte Vitale</strong> — et tu repars avec tes médicaments remboursés. Sans cotisations sociales, tu sortirais la carte bleue, et là... calcule le prix d'une ordonnance sans sécu. Pas sûr qu'on soit gagnant !</p>
+      </div>
+
+      <div class="gold-box">
+        <h3>🎓 L'éducation nationale</h3>
+        <p>Il a bien fallu financer les profs qui t'ont appris les maths, les pourcentages, les intérêts composés... Tout ça pour que tu puisses aujourd'hui <strong>calculer ton rendement de staking</strong> et investir dans la crypto. Merci l'école publique ! 😄</p>
+      </div>
+
+      <div class="gold-box">
+        <h3>🛣️ Les routes, les hôpitaux, la justice...</h3>
+        <p>Le réseau internet que tu utilises pour trader ? Les câbles sous-marins ? Les serveurs de ton exchange préféré sont connectés à une infrastructure financée en partie par... l'impôt. Bref, la société ça coûte cher, et on en profite tous.</p>
+      </div>
+
+      <div class="tip">
+        Maintenant qu'on a rendu hommage au fisc, voyons comment <strong>payer exactement ce qu'on doit</strong> — ni plus, ni moins. 😉
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 1 : FLAT TAX -->
+    <h2>1. La Flat Tax — 31,4% depuis 2026 📊</h2>
+
+    <div class="section-block">
+
+      <div class="warning">
+        Depuis le 1er janvier 2026, la flat tax est passée de 30% à <strong>31,4%</strong> suite à l'augmentation de la CSG sur les revenus du capital. Mets à jour tes calculs !
+      </div>
+
+      <h3>🔢 Comment elle se décompose ?</h3>
+      <div class="info-box">
+        <strong>31,4% = 12,8% d'impôt sur le revenu + 18,6% de prélèvements sociaux</strong><br>
+        C'est le Prélèvement Forfaitaire Unique (PFU), appliqué sur tes plus-values crypto lors d'une cession en euros.
+      </div>
+
+      <h3>💡 Exemple concret</h3>
+      <div class="section-block" style="border-color: #FFD70044; background: rgba(255,215,0,0.05);">
+        <p>Tu achètes 1 BTC à <strong>20 000€</strong>. Tu le vends à <strong>50 000€</strong>.</p>
+        <p>➡️ Plus-value = <strong>30 000€</strong></p>
+        <p>➡️ Flat tax à 31,4% = <strong>9 420€ d'impôt</strong></p>
+        <p>➡️ Tu gardes <strong>20 580€</strong> de gain net</p>
+        <p style="font-size:0.85em; color:#aaa;">Le paiement se fait l'année suivante, lors de ta déclaration de revenus.</p>
+      </div>
+
+      <h3>📋 Option barème progressif</h3>
+      <p>Tu peux choisir le barème progressif de l'impôt sur le revenu en cochant la case <strong>2OP</strong> de ta déclaration. C'est avantageux si ta tranche marginale d'imposition est inférieure à 12,8%. Fais le calcul avant de choisir !</p>
+
+      <h3>📄 Formulaire obligatoire</h3>
+      <p>Tu dois déclarer tes plus-values via le <strong>formulaire n°2086</strong>, en annexe de ta déclaration de revenus.</p>
+
+      <br>
+      <a href="https://www.economie.gouv.fr/cedef/fiches-pratiques/le-regime-fiscal-des-cryptomonnaies" target="_blank" class="button">🏛️ economie.gouv.fr</a>
+      <a href="https://www.impots.gouv.fr/particulier/actifs-numeriques" target="_blank" class="button">📋 impots.gouv.fr</a>
+      <a href="https://www.waltio.com/fr/tout-savoir-sur-la-fiscalite-crypto/" target="_blank" class="button">📊 Guide Waltio</a>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 2 : COMPTES ÉTRANGERS -->
+    <h2>2. Déclarer ses Comptes à l'Étranger 🌍</h2>
+
+    <div class="section-block">
+
+      <div class="warning">
+        Tout compte ouvert sur une plateforme crypto située hors de France doit être déclaré, même si tu n'as rien gagné et même si le compte est vide !
+      </div>
+
+      <p>En pratique, ça concerne Binance, Coinbase, Kraken, et quasiment toutes les grandes plateformes. Tu dois remplir le <strong>formulaire n°3916-bis</strong> lors de ta déclaration annuelle.</p>
+
+      <div class="tip">
+        Waltio gère tout ça automatiquement — il importe tes transactions depuis toutes tes plateformes et génère les formulaires pré-remplis. C'est le meilleur outil pour les Français, et la version gratuite couvre les cas simples.
+      </div>
+
+      <a href="https://waltio.com" target="_blank" class="button">🔗 Découvrir Waltio</a>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 3 : CRYPTO → CRYPTO NON IMPOSÉ -->
+    <h2>3. Crypto → Crypto : Pas d'impôt ! 🔄</h2>
+
+    <div class="section-block">
+
+      <div class="gold-box">
+        <h3>🎉 La bonne nouvelle</h3>
+        <p>Tant que tu restes dans l'univers crypto — BTC → ETH, ETH → ATOM, swap sur une DEX, yield farming — <strong>tu n'es pas imposé</strong>. L'impôt ne se déclenche que lors d'une conversion en monnaie fiat (€, $, etc.).</p>
+      </div>
+
+      <h3>Ce qui déclenche l'imposition :</h3>
+      <ul class="checklist">
+        <li>Vente de crypto contre des euros (ou toute autre monnaie fiat)</li>
+        <li>Paiement d'un bien ou service en crypto (considéré comme une cession)</li>
+        <li>Conversion en USDT ou EURC puis retrait en euros</li>
+      </ul>
+
+      <h3>Ce qui ne déclenche PAS l'imposition :</h3>
+      <ul>
+        <li style="list-style:none; padding: 4px 0;">🟢 Échange BTC → ETH</li>
+        <li style="list-style:none; padding: 4px 0;">🟢 Swap sur Uniswap, Osmosis, etc.</li>
+        <li style="list-style:none; padding: 4px 0;">🟢 Staking, délégation (jusqu'à la vente)</li>
+        <li style="list-style:none; padding: 4px 0;">🟢 Conserver ses cryptos sans rien faire</li>
+        <li style="list-style:none; padding: 4px 0;">🟢 Transférer entre ses propres wallets</li>
+      </ul>
+
+      <div class="warning">
+        <strong>Attention USDT/EURC :</strong> Convertir tes BTC en USDT puis attendre ne fait que décaler le moment de l'imposition. Quand tu convertis l'USDT en euros, la plus-value calculée depuis ton achat initial de BTC devient imposable.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 4 : SEUIL 305€ -->
+    <h2>4. En dessous de 305€ : Zéro Impôt 🎁</h2>
+
+    <div class="section-block">
+
+      <div class="gold-box">
+        <p>Si le total de tes cessions de crypto dans l'année est <strong>inférieur ou égal à 305€</strong>, tu es totalement exonéré d'impôt. Aucune déclaration n'est nécessaire.</p>
+        <p style="font-size:0.85em; color:#aaa;">⚠️ Attention : c'est le montant total des ventes, pas la plus-value. Si tu vends pour 306€, toute la plus-value devient imposable !</p>
+      </div>
+
+      <a href="https://www.economie.gouv.fr/cedef/fiches-pratiques/le-regime-fiscal-des-cryptomonnaies" target="_blank" class="button">🏛️ Source officielle economie.gouv.fr</a>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 5 : COLLATÉRAL / EMPRUNT -->
+    <h2>5. Besoin de Cash ? Emprunte Plutôt ! 💡</h2>
+
+    <div class="section-block">
+
+      <div class="info-box">
+        <strong>Le principe :</strong> Au lieu de vendre tes cryptos (et déclencher l'impôt), tu les mets en collatéral sur une plateforme comme Nexo, et tu empruntes des euros. C'est une <strong>dette</strong>, pas un revenu — donc <strong>non imposable</strong> !
+      </div>
+
+      <p>Tu gardes tes cryptos qui continuent de monter (enfin, on espère 🤞), tu as du cash pour tes dépenses, et tu ne paies pas d'impôt sur les plus-values.</p>
+
+      <div class="warning">
+        Garde <strong>toujours un justificatif</strong> de l'emprunt (contrat, historique Nexo) pour prouver à l'administration que c'est bien un emprunt et non un revenu.
+      </div>
+
+      <!-- CYBERPUNK IMAGE + POPUP -->
+      <div class="cyberpunk-section">
+        <img
+          src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png"
+          alt="Demander à la maîtresse comment faire"
+          class="cyberpunk-img"
+          onclick="document.getElementById('nexoModal').classList.add('active')"
+        />
+        <span class="cyberpunk-label">🖱️ Clique pour voir le guide pas à pas Nexo</span>
+      </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 6 : PAYER DIRECTEMENT EN CRYPTO -->
+    <h2>6. Payer Directement en Crypto 💳</h2>
+
+    <div class="section-block">
+
+      <p>Avec <a href="https://mtpelerin.com" target="_blank">Mont Pélerin</a>, tu peux payer une facture directement en crypto. C'est pratique, mais <strong>attention : c'est une cession !</strong> L'administration fiscale considère ça comme une vente, donc tu es imposé sur la plus-value.</p>
+
+      <div class="gold-box">
+        <h3>🤔 La brouette vs le Yacht</h3>
+        <p>Si tu achètes un <strong>yacht</strong> avec tes BTC, le vendeur est obligé de déclarer la transaction au fisc français — qui va vite s'intéresser à toi. Par contre si tu achètes une <strong>brouette pour trimballer toutes tes cryptos</strong>... ça peut passer à l'as. À toi de voir le rapport risque/bénéfice ! 😄</p>
+        <p style="font-size:0.85em; color:#aaa;">Blague à part, on te conseille quand même de tout déclarer — les contrôles fiscaux crypto se renforcent chaque année.</p>
+      </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION 7 : DONATIONS -->
+    <h2>7. Donations & Transmission Familiale 👨‍👩‍👧‍👦</h2>
+
+    <div class="section-block">
+
+      <div class="info-box">
+        La donation permet de transmettre des cryptos à tes enfants <strong>sans imposition immédiate</strong> pour toi. Le bénéficiaire sera imposé uniquement lors d'une revente ultérieure, sur la base du prix au moment de la donation.
+      </div>
+
+      <h3>📋 Les abattements en vigueur (2026)</h3>
+      <div class="section-block" style="border-color: #FFD70044; background: rgba(255,215,0,0.05);">
+        <ul>
+          <li><strong>100 000€ par parent, par enfant</strong> — renouvelable tous les <strong>15 ans</strong> (pas 10 ans, c'est une idée reçue !)</li>
+          <li>Un couple peut donc donner <strong>200 000€ à chaque enfant</strong> tous les 15 ans, sans droits</li>
+          <li>+ 31 865€ par grand-parent, par petit-enfant</li>
+        </ul>
+      </div>
+
+      <div class="gold-box">
+        <h3>🏠 Nouveauté 2025-2026 : Don exceptionnel logement</h3>
+        <p>Du 15 février 2025 au 31 décembre 2026, une exonération exceptionnelle supplémentaire jusqu'à <strong>100 000€ par donateur</strong> (300 000€ max par bénéficiaire) est disponible si les fonds sont utilisés pour acheter ou rénover une résidence principale dans les 6 mois.</p>
+      </div>
+
+      <div class="warning">
+        <strong>Depuis le 1er janvier 2026</strong>, les dons manuels doivent être déclarés <strong>en ligne obligatoirement</strong> dans le mois suivant le don, via votre espace sur impots.gouv.fr. Ne pas déclarer peut invalider l'abattement !
+      </div>
+
+      <div class="tip">
+        <strong>Conseil :</strong> Pour optimiser la transmission de tes cryptos à tes enfants, parle-en avec ton <strong>notaire</strong>. Il peut structurer les donations de façon à maximiser les avantages fiscaux sur plusieurs générations. C'est pas réservé aux ultra-riches !
+      </div>
+
+      <a href="https://www.impots.gouv.fr/particulier/questions/que-puis-je-donner-mes-enfants-petits-enfants-sans-avoir-payer-de-droits" target="_blank" class="button">🏛️ impots.gouv.fr — Donations enfants</a>
+      <a href="https://www.service-public.fr/particuliers/vosdroits/F14203" target="_blank" class="button">📋 service-public.fr</a>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="conclusion-box">
+      <p class="gold-rule">⚡ Paye ce que tu dois, pas plus. ⚡</p>
+      <p>La fiscalité crypto en France est claire : tu es imposé uniquement sur les plus-values réalisées lors de conversions en fiat. Optimise légalement via le collatéral, les donations et le timing de tes cessions.</p>
+      <div class="warning" style="text-align:left; margin-top:20px;">
+        Ces informations sont données à titre éducatif. La fiscalité évolue chaque année. Pour ta situation personnelle, consulte un expert-comptable ou un conseiller fiscal. On n'est pas responsables si tu te fais redresser 😅
+      </div>
+      <img src="https://i.postimg.cc/VsVJgs1w/danse2.gif" alt="🎉" style="max-width:200px; margin-top:20px; border:none;" onerror="this.style.display='none'">
+    </div>
+
+  </div>
+
+  <!-- MODAL NEXO -->
+  <div class="modal-overlay" id="nexoModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="document.getElementById('nexoModal').classList.remove('active')">✕</button>
+      <h3>💳 Guide Collatéral / Emprunt sur Nexo</h3>
+
+      <div class="modal-step">
+        <div class="modal-step-num">1</div>
+        <p><strong>Dépose tes cryptos</strong> sur Nexo — BTC, ETH, ATOM, etc. Tu gardes la propriété de tes actifs.</p>
+      </div>
+      <div class="modal-step">
+        <div class="modal-step-num">2</div>
+        <p><strong>Va dans "Emprunter"</strong> → Choisis la devise (EUR) → Nexo calcule automatiquement combien tu peux emprunter selon la valeur de ton collatéral (généralement 20 à 50%).</p>
+      </div>
+      <div class="modal-step">
+        <div class="modal-step-num">3</div>
+        <p><strong>Valide l'emprunt</strong> → Les euros arrivent sur ton compte Nexo en quelques secondes.</p>
+      </div>
+      <div class="modal-step">
+        <div class="modal-step-num">4</div>
+        <p><strong>Vire vers ton compte bancaire</strong> → Nexo → Retirer → Choisir EUR → IBAN de ton compte. Quelques heures à 1 jour ouvrable.</p>
+      </div>
+      <div class="modal-step">
+        <div class="modal-step-num">5</div>
+        <p><strong>Récupère ton justificatif</strong> → Dans l'historique Nexo, télécharge le contrat de prêt et le relevé de transaction. <strong>Garde-les précieusement !</strong></p>
+      </div>
+      <div class="modal-step">
+        <div class="modal-step-num">6</div>
+        <p><strong>Rembourse quand tu veux</strong> — pas d'échéance fixe sur Nexo. Les intérêts s'accumulent tant que tu n'as pas remboursé. Rembourse dès que tu peux pour limiter les frais.</p>
+      </div>
+
+      <div class="modal-tip">
+        ⚠️ <strong>Attention au Liquidation Risk !</strong> Si tes cryptos baissent trop, Nexo peut liquider une partie de ton collatéral. Ne jamais emprunter à plus de 30-40% de la valeur de ton collatéral pour garder une marge de sécurité.
+      </div>
+
+      <div style="text-align:center; margin-top:20px;">
+        <a href="https://nexo.com" target="_blank" class="button">🔗 Accéder à Nexo</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier ou fiscal.
+  </div>
+
+</body>
+</html>
