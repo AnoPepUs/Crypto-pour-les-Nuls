@@ -6,414 +6,197 @@
   <link rel="icon" type="image/gif" href="https://i.postimg.cc/qMC792VP/papillon.gif">
 
   <style>
-    /* Barre de navigation */
     nav {
       background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px 0;
+      padding: 5px 0;
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
+      height: 50px;
+      display: flex;
+      align-items: center;
     }
-
     nav ul {
       list-style-type: none;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       display: flex;
       justify-content: center;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
     }
+    nav li { margin: 0 12px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; font-size: 16px; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s; }
+    nav a:hover { background-color: rgba(255, 255, 255, 0.2); }
+    .nav-gif-item { position: relative; }
+    .nav-gif-item .nav-tooltip {
+      display: none; position: absolute; top: 45px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.9); border: 1px solid #FFD700; border-radius: 8px;
+      padding: 8px 12px; color: #FFD700; font-size: 0.8rem; white-space: nowrap;
+      z-index: 999; text-align: center; line-height: 1.5; pointer-events: none;
+    }
+    .nav-gif-item:hover .nav-tooltip { display: block; }
 
-    nav li {
-      margin: 0 15px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-      padding: 5px 10px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Style de la page */
-    body {
-      margin: 0;
-      padding: 60px 0 0 0;
-      background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed;
-      background-size: cover;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-    }
-
-    .content {
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      text-align: left;
-      line-height: 1.6;
-    }
-
-    h1, h2, h3 {
-      color: #6FA8DC;
-      text-align: center;
-    }
-
-    img {
-      display: block;
-      margin: 0 auto;
-      max-width: 100%;
-      border-radius: 10px;
-      border: 2px solid #6FA8DC;
-    }
-
-    .wallet-section {
-      margin-bottom: 30px;
-      padding: 15px;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-      border: 1px solid #6FA8DC;
-    }
-
-    .warning {
-      background-color: rgba(255, 0, 0, 0.2);
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid red;
-      margin-bottom: 20px;
-    }
-
-    .tip {
-      background-color: rgba(0, 255, 0, 0.1);
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid green;
-      margin-bottom: 20px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #0B5394;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin: 10px 0;
-      text-align: center;
-    }
-
-    .button:hover {
-      background-color: #6FA8DC;
-    }
+    body { margin: 0; padding: 60px 0 0 0; background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed; background-size: cover; font-family: Arial, sans-serif; color: white; text-align: center; }
+    .content { padding: 20px; max-width: 800px; margin: 0 auto; background-color: rgba(0, 0, 0, 0.6); border-radius: 10px; text-align: left; line-height: 1.6; }
+    h1, h2, h3 { color: #6FA8DC; text-align: center; }
+    img { display: block; margin: 0 auto; max-width: 100%; border-radius: 10px; border: 2px solid #6FA8DC; }
+    .wallet-section { margin-bottom: 30px; padding: 15px; background-color: rgba(0, 0, 0, 0.5); border-radius: 10px; border: 1px solid #6FA8DC; }
+    .warning { background-color: rgba(255, 0, 0, 0.2); padding: 10px; border-radius: 10px; border: 1px solid red; margin-bottom: 20px; }
+    .tip { background-color: rgba(0, 255, 0, 0.1); padding: 10px; border-radius: 10px; border: 1px solid green; margin-bottom: 20px; }
+    .button { display: inline-block; padding: 10px 20px; background-color: #0B5394; color: white; text-decoration: none; border-radius: 5px; margin: 10px 0; text-align: center; }
+    .button:hover { background-color: #6FA8DC; }
+    .blockchain-cosmos-article { max-width: 900px; margin: 2rem auto; padding: 2rem; background: rgba(5,5,20,0); border-radius: 18px; border: 1px solid rgba(180,120,255,0.35); box-shadow: 0 0 25px rgba(120,60,200,0.45); color: #f5f5ff; font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; backdrop-filter: blur(0px); }
+    .blockchain-cosmos-article h1, .blockchain-cosmos-article h2, .blockchain-cosmos-article h3 { margin-top: 0; text-shadow: 0 0 12px rgba(255,255,255,0.25); }
+    .title-main { text-align: center; font-size: 2.2rem; color: #f7e9ff; }
+    .title-main span.highlight { color: #ffcc33; }
+    .subtitle { text-align: center; font-size: 1rem; color: #c9b3ff; margin-bottom: 2rem; }
+    .gold { color: #ffcc33; font-weight: 700; }
+    .purple { color: #d28bff; font-weight: 600; }
+    .aqua { color: #5ee7ff; font-weight: 600; }
+    .shake { display: inline-block; animation: shake 0.4s infinite alternate; transform-origin: center; }
+    @keyframes shake { 0% { transform: translateX(0); } 100% { transform: translateX(1.5px) rotate(-0.5deg); } }
+    .tag { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.8rem; margin-right: 0.3rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+    .tag-purple { border-color: rgba(210,139,255,0.6); color: #f0d7ff; }
+    .tag-gold { border-color: rgba(255,204,51,0.7); color: #ffeeb3; }
+    .tag-aqua { border-color: rgba(94,231,255,0.7); color: #d5f9ff; }
+    .section-block { margin-bottom: 1.8rem; line-height: 1.6; font-size: 0.98rem; }
+    .section-block p { margin: 0.4rem 0; }
+    .bullet { margin-left: 1rem; list-style: none; padding-left: 0; }
+    .bullet li::before { content: "✦ "; color: #d28bff; }
+    .divider { height: 1px; margin: 1.5rem 0; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(210,139,255,0.8) 40%, rgba(255,204,51,0.9) 60%, rgba(255,255,255,0) 100%); }
   </style>
 </head>
 
-<!-- Barre de navigation -->
+<body>
   <nav>
     <ul>
+      <li class="nav-gif-item">
+        <a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank">
+          <img src="https://i.postimg.cc/1XLDzBGs/terre_tourne.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+        </a>
+        <div class="nav-tooltip">🗺️ Jouer Gratuitement !<br>Chasse au Trésor Crypto</div>
+      </li>
+      <li class="nav-gif-item">
+        <a href="https://anopepus.github.io/" target="_blank">
+          <img src="https://i.postimg.cc/qMC792VP/papillon.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+        </a>
+        <div class="nav-tooltip">🦁 Soutenir AnoPepUs<br>Page Récompense BAT</div>
+      </li>
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="Kezako-Crypto.html">Kezako-Crypto</a></li>
+      <li><a href="Kezako-Crypto.html">Kezako</a></li>
       <li><a href="wallet.html">Wallet</a></li>
-      <li><a href="Achat-Vente-Crypto.html">Achat-Vente-Crypto</a></li>
+      <li><a href="Achat-Vente-Crypto.html">Achat-Vente</a></li>
       <li><a href="Investir.html">Investir</a></li>
       <li><a href="CosmosHub.html">CosmosHub</a></li>
       <li><a href="DEFI.html">DeFi</a></li>
       <li><a href="BTCFi.html">BTC-Fi</a></li>
-      <li><a href="gagner-crypto.html">Gagner-Crypto</a></li>
+      <li><a href="gagner-crypto.html">Gagner</a></li>
       <li><a href="Fiscalite.html">Fiscalité</a></li>
-     
     </ul>
   </nav>
 
-  <!-- Contenu de la page -->
   <div class="content">
     <h1>Bitcoin, crypto, monnaie</h1>
     <h1>C'est quoi tout ça?</h1>
-    </p>
-      <ol>
-        <li>Regarde cette vidéo</li>
-        <li>Pour comprendre le <strong>Bitcoin</strong> et qu'il peut résoudre le problème.</li>
-        <li>De la <strong>monnaie</strong> avec sa technologie <strong>blockchain</strong>.</li>
-      </ol>
-      <p>
-         <div class="video-container">
-            <iframe 
-                frameborder="0" 
-                width="640" 
-                height="360" 
-                src="https://www.dailymotion.com/embed/video/xa09gom?autoplay=1&mute=0" 
-                allowfullscreen 
-                allow="autoplay; fullscreen">
-            </iframe>
-        </div>
+    <ol>
+      <li>Regarde cette vidéo</li>
+      <li>Pour comprendre le <strong>Bitcoin</strong> et qu'il peut résoudre le problème.</li>
+      <li>De la <strong>monnaie</strong> avec sa technologie <strong>blockchain</strong>.</li>
+    </ol>
+    <div class="video-container">
+      <iframe frameborder="0" width="640" height="360" src="https://www.dailymotion.com/embed/video/xa09gom?autoplay=1&mute=0" allowfullscreen allow="autoplay; fullscreen"></iframe>
+    </div>
+    <p>Je te met également quelques autres lien vidéo sur youtube</p>
+    <p>(mais vu que je n'aime pas trop les GAFAM) je les met discretemnt sur ce site, mais les youtubeurs sont trés bien.</p>
+    <p><a href="https://www.youtube.com/watch?v=KizblvpFk9E&t=8s" target="_blank">Kezako bitcoin?</a></p>
+    <p><a href="https://www.youtube.com/watch?v=6uYRN6b5EMU&t=1s" target="_blank">Kezako la Blockchain?</a></p>
+    <p><a href="https://www.youtube.com/watch?v=QY4gWjirYR4&t=22s" target="_blank">Kezako une Monnaie?</a></p>
 
-      </p>
-
-      </p> Je te met également quelques autres lien vidéo sur de youtube</p>
-      </p> (mais vu que je n'aime pas trop les GAFAM) je les met discretemnt sur ce site, mais les youtubeurs sont trés bien.</p>
-      
-      </p><a href="https://www.youtube.com/watch?v=KizblvpFk9E&t=8s" target="_blank">Kezako bitcoin?</a></p>
-      </p><a href="https://www.youtube.com/watch?v=6uYRN6b5EMU&t=1s" target="_blank">Kezako la Blockchain?</a></p>
-      </p><a href="https://www.youtube.com/watch?v=QY4gWjirYR4&t=22s" target="_blank">Kezako une Monnaie?</a></p>
-
-<section class="blockchain-cosmos-article">
-  <style>
-    .blockchain-cosmos-article {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: rgba(5, 5, 20, 0); /* 🔥 FULL TRANSPARENT BACKGROUND */
-      border-radius: 18px;
-      border: 1px solid rgba(180, 120, 255, 0.35);
-      box-shadow: 0 0 25px rgba(120, 60, 200, 0.45);
-      color: #f5f5ff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      backdrop-filter: blur(0px);
-    }
-
-    .blockchain-cosmos-article h1,
-    .blockchain-cosmos-article h2,
-    .blockchain-cosmos-article h3 {
-      margin-top: 0;
-      text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
-    }
-
-    .title-main {
-      text-align: center;
-      font-size: 2.2rem;
-      color: #f7e9ff;
-    }
-
-    .title-main span.highlight {
-      color: #ffcc33;
-    }
-
-    .subtitle {
-      text-align: center;
-      font-size: 1rem;
-      color: #c9b3ff;
-      margin-bottom: 2rem;
-    }
-
-    .gold { color: #ffcc33; font-weight: 700; }
-    .purple { color: #d28bff; font-weight: 600; }
-    .aqua { color: #5ee7ff; font-weight: 600; }
-
-    .shake {
-      display: inline-block;
-      animation: shake 0.4s infinite alternate;
-      transform-origin: center;
-    }
-
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(1.5px) rotate(-0.5deg); }
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 0.1rem 0.5rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      margin-right: 0.3rem;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .tag-purple { border-color: rgba(210, 139, 255, 0.6); color: #f0d7ff; }
-    .tag-gold { border-color: rgba(255, 204, 51, 0.7); color: #ffeeb3; }
-    .tag-aqua { border-color: rgba(94, 231, 255, 0.7); color: #d5f9ff; }
-
-    .section-block {
-      margin-bottom: 1.8rem;
-      line-height: 1.6;
-      font-size: 0.98rem;
-    }
-
-    .section-block p { margin: 0.4rem 0; }
-
-    .emoji { margin-right: 0.3rem; }
-
-    .bullet {
-      margin-left: 1rem;
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .bullet li::before {
-      content: "✦ ";
-      color: #d28bff;
-    }
-
-    .divider {
-      height: 1px;
-      margin: 1.5rem 0;
-      background: linear-gradient(90deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(210, 139, 255, 0.8) 40%,
-        rgba(255, 204, 51, 0.9) 60%,
-        rgba(255, 255, 255, 0) 100%);
-    }
-  </style>
-
-  <h1 class="title-main">
-    🌌 Blockchain&nbsp;: <span class="highlight">moins de galères, plus de confiance</span>
-  </h1>
-
-  <div class="subtitle">
-    <span class="tag tag-purple">🔒 Anonymat</span>
-    <span class="tag tag-aqua">🧬 Traçabilité</span>
-    <span class="tag tag-gold">💰 Bitcoin & valeur</span>
-    <span class="tag tag-purple">🌍 Décentralisation</span>
+    <section class="blockchain-cosmos-article">
+      <h1 class="title-main">🌌 Blockchain&nbsp;: <span class="highlight">moins de galères, plus de confiance</span></h1>
+      <div class="subtitle">
+        <span class="tag tag-purple">🔒 Anonymat</span>
+        <span class="tag tag-aqua">🧬 Traçabilité</span>
+        <span class="tag tag-gold">💰 Bitcoin & valeur</span>
+        <span class="tag tag-purple">🌍 Décentralisation</span>
+      </div>
+      <div class="section-block">
+        <p>La <strong class="purple">blockchain</strong> apporte une idée simple mais puissante&nbsp;: des données <strong>infalsifiables</strong>, <span class="aqua">transparentes</span>, mais sans jamais exposer directement l'identité des personnes.</p>
+        <p>Résultat&nbsp;: on peut enfin résoudre une partie des petits problèmes qui nous <span class="shake purple">pourrissent la vie</span> au quotidien, sans sacrifier notre vie privée.</p>
+      </div>
+      <div class="divider"></div>
+      <div class="section-block">
+        <h2>🌍 Décentralisation&nbsp;: le pouvoir rendu au peuple</h2>
+        <p>La <strong class="purple">décentralisation</strong>, c'est l'idée que personne ne contrôle tout&nbsp;: ni une banque, ni un gouvernement, ni une entreprise. Le réseau fonctionne grâce à <strong class="aqua">des milliers d'ordinateurs indépendants</strong> qui se surveillent mutuellement.</p>
+        <ul class="bullet">
+          <li>Impossible de corrompre un seul serveur&nbsp;: il faudrait corrompre tout le réseau.</li>
+          <li>Un hacker ne peut pas «&nbsp;pirater la blockchain&nbsp;»&nbsp;: les autres nœuds rejettent toute anomalie.</li>
+          <li>Les règles sont publiques, transparentes, et identiques pour tout le monde.</li>
+        </ul>
+        <p>C'est un système <strong class="gold">par le peuple et pour le peuple</strong>, où la confiance repose sur <span class="aqua">la force collective du réseau</span>. ✨</p>
+      </div>
+      <div class="divider"></div>
+      <div class="section-block">
+        <h2>🔒 Anonyme pour l'utilisateur, transparent pour la société</h2>
+        <p>Avec une <strong class="purple">cryptomonnaie</strong>, chaque transaction est visible publiquement, mais personne ne sait qui se cache derrière une adresse comme <code>0xABC...</code>.</p>
+        <ul class="bullet">
+          <li><strong>Tu restes anonyme</strong>, ton nom n'apparaît nulle part.</li>
+          <li>Les flux restent <span class="aqua">traçables</span> en cas de fraude ou de blanchiment.</li>
+          <li>Les fuites de données deviennent inutiles&nbsp;: <strong>aucune donnée sensible</strong> n'est stockée.</li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="section-block">
+        <h2>🪪 NFT&nbsp;: prouver sans tout dévoiler</h2>
+        <p>Un <strong class="purple">NFT</strong> peut servir de preuve d'identité minimale. Imagine&nbsp;: l'État t'envoie un NFT officiel qui dit simplement&nbsp;: <strong class="aqua">«&nbsp;J'ai plus de 18 ans&nbsp;»</strong>.</p>
+        <ul class="bullet">
+          <li><strong>Infalsifiable</strong>, car signé par l'adresse du gouvernement.</li>
+          <li><strong>Vérifiable</strong> instantanément par n'importe quel site.</li>
+          <li>Sans ton nom, ton adresse ou ta date de naissance.</li>
+        </ul>
+        <p>Tu peux accéder à un site pour adultes sans envoyer ta carte d'identité complète. Juste une <span class="aqua">preuve cryptographique</span>. 🔐</p>
+      </div>
+      <div class="divider"></div>
+      <div class="section-block">
+        <h2>🖼️ RWA&nbsp;: certifier l'authenticité sans exposer le propriétaire</h2>
+        <p>Les <strong class="purple">RWA (Real World Assets)</strong> permettent de représenter un objet réel (une toile de Picasso, une montre, un lingot) sous forme de jeton unique.</p>
+        <ul class="bullet">
+          <li>L'objet est <strong>authentique</strong>.</li>
+          <li>Il n'a pas été <strong>dupliqué</strong>.</li>
+          <li>Il appartient à une adresse… sans révéler l'identité du propriétaire.</li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="section-block">
+        <h2>🥕 Traçabilité alimentaire&nbsp;: remonter la chaîne en un clin d'œil</h2>
+        <p>Chaque acteur — <strong>paysan</strong>, <strong>transporteur</strong>, <strong>grossiste</strong>, <strong>supermarché</strong> — inscrit ses informations sur la blockchain.</p>
+        <ul class="bullet">
+          <li>En cas de scandale sanitaire, on sait immédiatement d'où vient le produit.</li>
+          <li>On voit qui l'a manipulé, à quel prix, à quel moment.</li>
+          <li>On identifie qui prend la plus grosse marge. 💸</li>
+        </ul>
+      </div>
+      <div class="divider"></div>
+      <div class="section-block">
+        <h2>💰 Bitcoin&nbsp;: une boussole de valeur dans le cosmos monétaire</h2>
+        <p><strong class="gold">Bitcoin</strong> est à la fois une <strong>réserve de valeur</strong> et une <strong>mesure de valeur</strong>.</p>
+        <ul class="bullet">
+          <li>Son offre est <strong>limitée</strong> à 21 millions.</li>
+          <li>Il sert de <span class="gold">référence commune</span> pour comparer la valeur des biens.</li>
+          <li>Il agit comme une <strong class="gold">ancre</strong> dans un monde où les monnaies se dévaluent.</li>
+        </ul>
+        <p>Sur ton fond cosmique, Bitcoin ressemble à une <span class="gold">étoile dorée</span>&nbsp;: un point fixe dans le chaos économique. ⭐</p>
+      </div>
+      <div class="divider"></div>
+      <div class="section-block">
+        <h3>🚀 En résumé</h3>
+        <p>La <strong class="purple">blockchain</strong> protège les individus tout en rendant nos systèmes plus <span class="aqua">justes</span>, plus <span class="aqua">sûrs</span> et plus <span class="aqua">efficaces</span>.</p>
+        <p>Moins de paperasse, moins de fuites de données, moins de fraudes. Plus de <strong class="purple">confiance</strong>, plus de <strong>simplicité</strong>, plus de <span class="gold">contrôle</span> pour chacun.</p>
+      </div>
+    </section>
   </div>
 
-  <!-- INTRO -->
-  <div class="section-block">
-    <p>
-      La <strong class="purple">blockchain</strong> apporte une idée simple mais puissante&nbsp;: 
-      des données <strong>infalsifiables</strong>, <span class="aqua">transparentes</span>, 
-      mais sans jamais exposer directement l’identité des personnes.
-    </p>
-    <p>
-      Résultat&nbsp;: on peut enfin résoudre une partie des petits problèmes qui nous
-      <span class="shake purple">pourrissent la vie</span> au quotidien, sans sacrifier notre vie privée.
-    </p>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- DÉCENTRALISATION -->
-  <div class="section-block">
-    <h2>🌍 Décentralisation&nbsp;: le pouvoir rendu au peuple</h2>
-    <p>
-      La <strong class="purple">décentralisation</strong>, c’est l’idée que personne ne contrôle tout&nbsp;: 
-      ni une banque, ni un gouvernement, ni une entreprise. 
-      Le réseau fonctionne grâce à <strong class="aqua">des milliers d’ordinateurs indépendants</strong> 
-      qui se surveillent mutuellement.
-    </p>
-    <ul class="bullet">
-      <li>Impossible de corrompre un seul serveur&nbsp;: il faudrait corrompre tout le réseau.</li>
-      <li>Un hacker ne peut pas «&nbsp;pirater la blockchain&nbsp;»&nbsp;: les autres nœuds rejettent toute anomalie.</li>
-      <li>Les règles sont publiques, transparentes, et identiques pour tout le monde.</li>
-    </ul>
-    <p>
-      C’est un système <strong class="gold">par le peuple et pour le peuple</strong>, 
-      où la confiance repose sur <span class="aqua">la force collective du réseau</span>. ✨
-    </p>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ANONYMAT -->
-  <div class="section-block">
-    <h2>🔒 Anonyme pour l’utilisateur, transparent pour la société</h2>
-    <p>
-      Avec une <strong class="purple">cryptomonnaie</strong>, chaque transaction est visible publiquement,
-      mais personne ne sait qui se cache derrière une adresse comme <code>0xABC...</code>.
-    </p>
-    <ul class="bullet">
-      <li><strong>Tu restes anonyme</strong>, ton nom n’apparaît nulle part.</li>
-      <li>Les flux restent <span class="aqua">traçables</span> en cas de fraude ou de blanchiment.</li>
-      <li>Les fuites de données deviennent inutiles&nbsp;: <strong>aucune donnée sensible</strong> n’est stockée.</li>
-    </ul>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- NFT -->
-  <div class="section-block">
-    <h2>🪪 NFT&nbsp;: prouver sans tout dévoiler</h2>
-    <p>
-      Un <strong class="purple">NFT</strong> peut servir de preuve d’identité minimale.
-      Imagine&nbsp;: l’État t’envoie un NFT officiel qui dit simplement&nbsp;:
-      <strong class="aqua">«&nbsp;J’ai plus de 18 ans&nbsp;»</strong>.
-    </p>
-    <ul class="bullet">
-      <li><strong>Infalsifiable</strong>, car signé par l’adresse du gouvernement.</li>
-      <li><strong>Vérifiable</strong> instantanément par n’importe quel site.</li>
-      <li>Sans ton nom, ton adresse ou ta date de naissance.</li>
-    </ul>
-    <p>
-      Tu peux accéder à un site pour adultes sans envoyer ta carte d’identité complète.
-      Juste une <span class="aqua">preuve cryptographique</span>. 🔐
-    </p>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- RWA -->
-  <div class="section-block">
-    <h2>🖼️ RWA&nbsp;: certifier l’authenticité sans exposer le propriétaire</h2>
-    <p>
-      Les <strong class="purple">RWA (Real World Assets)</strong> permettent de représenter un objet réel
-      (une toile de Picasso, une montre, un lingot) sous forme de jeton unique.
-    </p>
-    <ul class="bullet">
-      <li>L’objet est <strong>authentique</strong>.</li>
-      <li>Il n’a pas été <strong>dupliqué</strong>.</li>
-      <li>Il appartient à une adresse… sans révéler l’identité du propriétaire.</li>
-    </ul>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- TRAÇABILITÉ -->
-  <div class="section-block">
-    <h2>🥕 Traçabilité alimentaire&nbsp;: remonter la chaîne en un clin d’œil</h2>
-    <p>
-      Chaque acteur — <strong>paysan</strong>, <strong>transporteur</strong>, <strong>grossiste</strong>, 
-      <strong>supermarché</strong> — inscrit ses informations sur la blockchain.
-    </p>
-    <ul class="bullet">
-      <li>En cas de scandale sanitaire, on sait immédiatement d’où vient le produit.</li>
-      <li>On voit qui l’a manipulé, à quel prix, à quel moment.</li>
-      <li>On identifie qui prend la plus grosse marge. 💸</li>
-    </ul>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- BITCOIN -->
-  <div class="section-block">
-    <h2>💰 Bitcoin&nbsp;: une boussole de valeur dans le cosmos monétaire</h2>
-    <p>
-      <strong class="gold">Bitcoin</strong> est à la fois une <strong>réserve de valeur</strong> 
-      et une <strong>mesure de valeur</strong>.
-    </p>
-    <ul class="bullet">
-      <li>Son offre est <strong>limitée</strong> à 21 millions.</li>
-      <li>Il sert de <span class="gold">référence commune</span> pour comparer la valeur des biens.</li>
-      <li>Il agit comme une <strong class="gold">ancre</strong> dans un monde où les monnaies se dévaluent.</li>
-    </ul>
-    <p>
-      Sur ton fond cosmique, Bitcoin ressemble à une <span class="gold">étoile dorée</span>&nbsp;:
-      un point fixe dans le chaos économique. ⭐
-    </p>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- RÉSUMÉ -->
-  <div class="section-block">
-    <h3>🚀 En résumé</h3>
-    <p>
-      La <strong class="purple">blockchain</strong> protège les individus tout en rendant nos systèmes plus
-      <span class="aqua">justes</span>, plus <span class="aqua">sûrs</span> et plus <span class="aqua">efficaces</span>.
-    </p>
-    <p>
-      Moins de paperasse, moins de fuites de données, moins de fraudes.
-      Plus de <strong class="purple">confiance</strong>, plus de <strong>simplicité</strong>,
-      plus de <span class="gold">contrôle</span> pour chacun.
-    </p>
-  </div>
-
-</section>
+</body>
+</html>

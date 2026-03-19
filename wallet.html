@@ -6,294 +6,195 @@
   <link rel="icon" type="image/gif" href="https://i.postimg.cc/qMC792VP/papillon.gif">
 
   <style>
-    /* Barre de navigation */
     nav {
       background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px 0;
+      padding: 5px 0;
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
+      height: 50px;
+      display: flex;
+      align-items: center;
     }
-
     nav ul {
       list-style-type: none;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       display: flex;
       justify-content: center;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
     }
+    nav li { margin: 0 12px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; font-size: 16px; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s; }
+    nav a:hover { background-color: rgba(255, 255, 255, 0.2); }
+    .nav-gif-item { position: relative; }
+    .nav-gif-item .nav-tooltip {
+      display: none; position: absolute; top: 45px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.9); border: 1px solid #FFD700; border-radius: 8px;
+      padding: 8px 12px; color: #FFD700; font-size: 0.8rem; white-space: nowrap;
+      z-index: 999; text-align: center; line-height: 1.5; pointer-events: none;
+    }
+    .nav-gif-item:hover .nav-tooltip { display: block; }
 
-    nav li {
-      margin: 0 15px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-      padding: 5px 10px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Style de la page */
-    body {
-      margin: 0;
-      padding: 60px 0 0 0;
-      background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed;
-      background-size: cover;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-    }
-
-    .content {
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      text-align: left;
-      line-height: 1.6;
-    }
-
-    h1, h2, h3 {
-      color: #6FA8DC;
-      text-align: center;
-    }
-
-    img {
-      display: block;
-      margin: 0 auto;
-      max-width: 100%;
-      border-radius: 10px;
-      border: 2px solid #6FA8DC;
-    }
-
-    .wallet-section {
-      margin-bottom: 30px;
-      padding: 15px;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-      border: 1px solid #6FA8DC;
-    }
-
-    .warning {
-      background-color: rgba(255, 0, 0, 0.2);
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid red;
-      margin-bottom: 20px;
-    }
-
-    .tip {
-      background-color: rgba(0, 255, 0, 0.1);
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid green;
-      margin-bottom: 20px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #0B5394;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin: 10px 0;
-      text-align: center;
-    }
-
-    .button:hover {
-      background-color: #6FA8DC;
-    }
+    body { margin: 0; padding: 60px 0 0 0; background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed; background-size: cover; font-family: Arial, sans-serif; color: white; text-align: center; }
+    .content { padding: 20px; max-width: 800px; margin: 0 auto; background-color: rgba(0, 0, 0, 0.6); border-radius: 10px; text-align: left; line-height: 1.6; }
+    h1, h2, h3 { color: #6FA8DC; text-align: center; }
+    img { display: block; margin: 0 auto; max-width: 100%; border-radius: 10px; border: 2px solid #6FA8DC; }
+    .wallet-section { margin-bottom: 30px; padding: 15px; background-color: rgba(0, 0, 0, 0.5); border-radius: 10px; border: 1px solid #6FA8DC; }
+    .warning { background-color: rgba(255, 0, 0, 0.2); padding: 10px; border-radius: 10px; border: 1px solid red; margin-bottom: 20px; }
+    .tip { background-color: rgba(0, 255, 0, 0.1); padding: 10px; border-radius: 10px; border: 1px solid green; margin-bottom: 20px; }
+    .button { display: inline-block; padding: 10px 20px; background-color: #0B5394; color: white; text-decoration: none; border-radius: 5px; margin: 10px 0; text-align: center; }
+    .button:hover { background-color: #6FA8DC; }
   </style>
 </head>
 
 <body>
-  <!-- Barre de navigation -->
   <nav>
     <ul>
+      <li class="nav-gif-item">
+        <a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank">
+          <img src="https://i.postimg.cc/1XLDzBGs/terre_tourne.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+        </a>
+        <div class="nav-tooltip">🗺️ Jouer Gratuitement !<br>Chasse au Trésor Crypto</div>
+      </li>
+      <li class="nav-gif-item">
+        <a href="https://anopepus.github.io/" target="_blank">
+          <img src="https://i.postimg.cc/qMC792VP/papillon.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+        </a>
+        <div class="nav-tooltip">🦁 Soutenir AnoPepUs<br>Page Récompense BAT</div>
+      </li>
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="Kezako-Crypto.html">Kezako-Crypto</a></li>
+      <li><a href="Kezako-Crypto.html">Kezako</a></li>
       <li><a href="wallet.html">Wallet</a></li>
-      <li><a href="Achat-Vente-Crypto.html">Achat-Vente-Crypto</a></li>
+      <li><a href="Achat-Vente-Crypto.html">Achat-Vente</a></li>
       <li><a href="Investir.html">Investir</a></li>
       <li><a href="CosmosHub.html">CosmosHub</a></li>
       <li><a href="DEFI.html">DeFi</a></li>
       <li><a href="BTCFi.html">BTC-Fi</a></li>
-      <li><a href="gagner-crypto.html">Gagner-Crypto</a></li>
+      <li><a href="gagner-crypto.html">Gagner</a></li>
       <li><a href="Fiscalite.html">Fiscalité</a></li>
     </ul>
   </nav>
 
-  <!-- Contenu de la page -->
   <div class="content">
     <h1>Les Wallets Crypto</h1>
 
-    <!-- Introduction -->
-    <p>
-      La blockchain, c’est une super technologie, mais c’est le bordel ! Pour stocker tes cryptos en sécurité, il te faut un <strong>wallet</strong> (portefeuille numérique).
-      Chaque blockchain a ses propres wallets. Par exemple (il y en à beaucoup d'autre, mais c'est ceux-ci que je vais te présenter et que j'utilise):
-    </p>
+    <p>La blockchain, c'est une super technologie, mais c'est le bordel ! Pour stocker tes cryptos en sécurité, il te faut un <strong>wallet</strong> (portefeuille numérique). Chaque blockchain a ses propres wallets. Par exemple (il y en à beaucoup d'autre, mais c'est ceux-ci que je vais te présenter et que j'utilise):</p>
     <ul>
-      <li><strong>Xverse</strong> pour le Bitcoin (BTC) et les tokens BRC20 .</li>
+      <li><strong>Xverse</strong> pour le Bitcoin (BTC) et les tokens BRC20.</li>
       <li><strong>Rabby</strong> pour Ethereum (ETH) et les tokens ERC-20.</li>
       <li><strong>Kepler</strong> pour Cosmos (ATOM) et ses écosystèmes.</li>
     </ul>
-    <p>
-      Je vais te guider pas à pas, du téléchargement à l’envoi/réception de cryptos. Et à la fin, on parlera du <strong>Ledger</strong>, le must pour sécuriser tes actifs.
-    </p>
+    <p>Je vais te guider pas à pas, du téléchargement à l'envoi/réception de cryptos. Et à la fin, on parlera du <strong>Ledger</strong>, le must pour sécuriser tes actifs.</p>
 
-    <!-- Message de sécurité -->
     <div class="warning">
       <h2>⚠️ ATTENTION : LA OÙ IL Y A DU FRIC, IL Y A DES VOYOUS (ET ILS SONT FORTS) !</h2>
-      <p>
-        <strong>Télécharge TOUJOURS tes wallets ou extensions depuis les sites officiels.</strong> Vérifie bien l’URL avant de cliquer. Voici comment faire :
-      </p>
+      <p><strong>Télécharge TOUJOURS tes wallets ou extensions depuis les sites officiels.</strong> Vérifie bien l'URL avant de cliquer.</p>
       <ul>
-        <li>Je te déconseil de les mettre sur ton téléphone.</li>
-        <li>Pour les extensions navigateur, vérifie que l’URL commence par <code>https://</code> et que le site est bien le bon (ex: <a href="https://www.rabby.io" target="_blank" style="color: #6FA8DC;">https://www.rabby.io</a> pour Rabby).</li>
-        <li>Ajoute les sites officiels dans tes favoris de ton navigateur préfèré pour éviter les arnaques.</li>
+        <li>Je te déconseille de les mettre sur ton téléphone.</li>
+        <li>Pour les extensions navigateur, vérifie que l'URL commence par <code>https://</code> et que le site est bien le bon (ex: <a href="https://www.rabby.io" target="_blank" style="color: #6FA8DC;">https://www.rabby.io</a> pour Rabby).</li>
+        <li>Ajoute les sites officiels dans tes favoris pour éviter les arnaques.</li>
       </ul>
-      <p>
-        <strong>NE DONNE JAMAIS TA SEED PHRASE</strong> (les 12 ou 24 mots pour restaurer ton wallet). Personne ne doit la connaître, pas même le support technique !, JAMAIS PERSONNE ne te la demanderas.
-      </p>
+      <p><strong>NE DONNE JAMAIS TA SEED PHRASE</strong> (les 12 ou 24 mots pour restaurer ton wallet). Personne ne doit la connaître, pas même le support technique !, JAMAIS PERSONNE ne te la demandera.</p>
     </div>
 
-    <!-- Conseils pour les mots de passe -->
     <div class="tip">
       <h2>🔒 Des mots de passe forts et uniques</h2>
-      <p>
-        Utilise un mot de passe <strong>différent pour chaque wallet et chaque site</strong>. Oui, c’est chiant, mais c’est vital.
-      </p>
-      <p>
-        Pour gérer ça sans devenir fou, utilise un <strong>gestionnaire de mots de passe</strong> comme :
-      </p>
+      <p>Utilise un mot de passe <strong>différent pour chaque wallet et chaque site</strong>. Oui, c'est chiant, mais c'est vital.</p>
+      <p>Pour gérer ça sans devenir fou, utilise un <strong>gestionnaire de mots de passe</strong> comme :</p>
       <ul>
         <li><a href="https://proton.me/pass" target="_blank" style="color: #6FA8DC;">Proton Pass</a> (gratuit et sécurisé).</li>
         <li><a href="https://keepass.info" target="_blank" style="color: #6FA8DC;">KeePass</a> (open-source et ultra-sécurisé).</li>
       </ul>
-      <p>
-        <strong>Petit tuto express</strong> :
-      </p>
+      <p><strong>Petit tuto express</strong> :</p>
       <ol>
         <li>Installe le gestionnaire de mots de passe.</li>
         <li>Crée un <strong>mot de passe maître</strong> (un seul à retenir, mais ultra-solide).</li>
         <li>Laisse le gestionnaire générer et stocker tes mots de passe.</li>
         <li>Plus besoin de tout retenir : le gestionnaire remplit les champs pour toi !</li>
       </ol>
-      <p>
-        <em>Non, tu ne vas pas passer 2 heures à chaque swap. Une fois configuré, c’est automatique !</em>
-      </p>
+      <p><em>Non, tu ne vas pas passer 2 heures à chaque swap. Une fois configuré, c'est automatique !</em></p>
     </div>
 
-    <!-- Pour tout les wallet -->
-
-     <div class="wallet-section">
-      <h2>🌐 Quelques soit le wallet, le principe est le même</h2>
-
-      <p>
-        <strong>Précaution</strong> Toujours envoyer un BTC à une adresse bitcoin donc un wallet qui accepte ce réseau.
-        </p>Exemple si tu envois 1 ETH sur le réseau bitcoin, tu perdra ton ETH.</p> 
-        </p>Pour t'y retrouver facilement l'adresse commence par "bc" pour bitcoin.</p>
-        </p>Voici la mienne : bc1qfe....jwknnc (je ne te la donne pas entière, aprés tu connaitras ma fortune, je ne suis pas millionnaire)</p>
-        </p>Voici celle de Rabby: 0x7c33...28C7 tu vois, elle commence par "0x" donc tu peux m'envoyer des ETH, ou autres (c'est ce que l'on appel des ERC20 ou EVM).</p>
-      </p>
+    <div class="wallet-section">
+      <h2>🌐 Quelque soit le wallet, le principe est le même</h2>
+      <p><strong>Précaution</strong> Toujours envoyer un BTC à une adresse bitcoin donc un wallet qui accepte ce réseau.</p>
+      <p>Exemple si tu envois 1 ETH sur le réseau bitcoin, tu perdras ton ETH.</p>
+      <p>Pour t'y retrouver facilement l'adresse commence par "bc" pour bitcoin.</p>
+      <p>Voici la mienne : bc1qfe....jwknnc (je ne te la donne pas entière, après tu connaîtras ma fortune, je ne suis pas millionnaire)</p>
+      <p>Voici celle de Rabby: 0x7c33...28C7 tu vois, elle commence par "0x" donc tu peux m'envoyer des ETH, ou autres (c'est ce que l'on appelle des ERC20 ou EVM).</p>
       <h3>Téléchargement et installation :</h3>
       <ol>
-        <li>Va sur le site officiel du wallet je te les mettrais.</li>
-        <li>Installe l’extension.</li>
-        <li>Crée un nouveau wallet et <strong>note ta seed phrase</strong> (sur papier et garde le c'est ton précieux, pas sur ton PC !).</li>
+        <li>Va sur le site officiel du wallet je te les mettrai.</li>
+        <li>Installe l'extension.</li>
+        <li>Crée un nouveau wallet et <strong>note ta seed phrase</strong> (sur papier et garde-le, c'est ton précieux, pas sur ton PC !).</li>
       </ol>
-      <h3>Envoyer/Recevoir:</h3>
+      <h3>Envoyer/Recevoir :</h3>
       <ol>
         <li>Ouvre le wallet et clique sur "Recevoir" pour obtenir ton adresse.</li>
-        <li>Pour envoyer, clique sur "Envoyer", entre l’adresse du destinataire et le montant.</li>
-        <li>Valide la transaction (et paie les frais de réseau)</li>
-        </li>C'est pour cela qu'il faut toujours garder un peu de ETH ou de BTC dans ton wallet.</li>
-        <li>Un petit diaporama si tu veux: <li><a href="https://docspace-i7ed8p.onlyoffice.com/s/77G7KS5w_BT6tXQ" target="_blank" style="color: #6FA8DC;">OnlyOffice</a> 
+        <li>Pour envoyer, clique sur "Envoyer", entre l'adresse du destinataire et le montant.</li>
+        <li>Valide la transaction (et paie les frais de réseau).</li>
+        <li>C'est pour cela qu'il faut toujours garder un peu de ETH ou de BTC dans ton wallet.</li>
+        <li>Un petit diaporama si tu veux: <a href="https://docspace-i7ed8p.onlyoffice.com/s/77G7KS5w_BT6tXQ" target="_blank" style="color: #6FA8DC;">OnlyOffice</a></li>
       </ol>
     </div>
- 
-    <!-- Wallet Xverse-->
 
     <div class="wallet-section">
       <h2>Xverse (pour Bitcoin et Stacks)</h2>
-      <img src="https://i.postimg.cc/MKvg1Rq3/xverse.png" alt="Xverse Wallet"width="300" height="200">
-      <p>
-        <strong>Pourquoi ?</strong> Xverse est le wallet le plus simple pour gérer ton Bitcoin (BTC) et c'est celui que j'utilise pour gagner des BTC, va à la page DEFI pour voir comment je fais.
-      </p>
+      <img src="https://i.postimg.cc/MKvg1Rq3/xverse.png" alt="Xverse Wallet" width="300" height="200">
+      <p><strong>Pourquoi ?</strong> Xverse est le wallet le plus simple pour gérer ton Bitcoin (BTC) et c'est celui que j'utilise pour gagner des BTC, va à la page DEFI pour voir comment je fais.</p>
       <ol>
         <li>Pour le télécharger va sur leur site: <a href="https://www.xverse.app" target="_blank" class="button">Site Officiel Xverse</a>.</li>
       </ol>
-      </p>Avec celui-ci tu ne peut recevoir que du BTC et du STX.
+      <p>Avec celui-ci tu ne peux recevoir que du BTC et du STX.</p>
     </div>
 
-    <!-- Wallet Rabby -->
     <div class="wallet-section">
       <h2>🦊 Rabby (pour Ethereum et ERC-20 et EVM)</h2>
-      <img src="https://i.postimg.cc/wT7nDJgW/Rabby.png" alt="Rabby Wallet"width="300" height="200">
-      <p>
-        <strong>Pourquoi ?</strong> Rabby est plus sécurisé que MetaMask et gère tous les tokens ERC-20 (réseau:ethereum, polygon, base, binance...).
-      </p>
+      <img src="https://i.postimg.cc/wT7nDJgW/Rabby.png" alt="Rabby Wallet" width="300" height="200">
+      <p><strong>Pourquoi ?</strong> Rabby est plus sécurisé que MetaMask et gère tous les tokens ERC-20 (réseau : ethereum, polygon, base, binance...).</p>
       <ol>
         <li>Pour le télécharger va sur leur site : <a href="https://rabby.io" target="_blank" class="button">Site Officiel Rabby</a>.</li>
       </ol>
-
     </div>
 
-    <!-- Wallet Kepler -->
     <div class="wallet-section">
       <h2>🪐 Kepler (pour Cosmos)</h2>
-      <img src="https://i.postimg.cc/L6nGjf2x/kpler_wallet.jpg" alt="Kepler Wallet"width="300" height="200">
-      <p>
-        <strong>Pourquoi ?</strong> Kepler est le wallet le plus utilisé pour interagir avec le Cosmos Hub (ATOM) et ses chaînes (Osmo, DYDX, etc.).
-      </p>
+      <img src="https://i.postimg.cc/L6nGjf2x/kpler_wallet.jpg" alt="Kepler Wallet" width="300" height="200">
+      <p><strong>Pourquoi ?</strong> Kepler est le wallet le plus utilisé pour interagir avec le Cosmos Hub (ATOM) et ses chaînes (Osmo, DYDX, etc.).</p>
       <h3>Téléchargement et installation :</h3>
       <ol>
         <li>Va sur le site officiel : <a href="https://wallet.keplr.app" target="_blank" class="button">Site Officiel Kepler</a>.</li>
-        <li>Installe l’extension.</li>
+        <li>Installe l'extension.</li>
         <li>Crée un wallet et <strong>note ta seed phrase</strong>.</li>
       </ol>
-      
     </div>
 
-    <!-- Ledger -->
     <div class="wallet-section">
       <h2>🔐 Ledger (pour tout sécuriser)</h2>
       <img src="https://i.postimg.cc/FHJRC7gT/Logo_Ledger.png" alt="Ledger Wallet">
-      <p>
-        <strong>Pourquoi ?</strong> Un Ledger, c’est un wallet physique (une clé USB ultra-sécurisée) qui protège tes cryptos contre les piratages.
-       </p>Lorsque tu stocke tes cryptos sur une plateforme d’échange (CEX Binance,Nexo,Xborg..), tu n’en avez pas vraiment le contrôle, et n’en êtes pas vraiment propriétaire.</p>
-       </p>Si la plateforme fait faillite ou suspend les retraits, tu perde l’accès à vos cryptos.</p>
-       </p>Les hot wallets(xverse, rabby, kpler) stockent vos clés privées sur des appareils connectés à Internet.</p>
-       </p> Elles sont donc vulnérables aux attaques en ligne.</p>
-       </p>Les hardware wallets stockent tes clés privées hors ligne, sur un appareil physique.
-      </p>
+      <p><strong>Pourquoi ?</strong> Un Ledger, c'est un wallet physique (une clé USB ultra-sécurisée) qui protège tes cryptos contre les piratages.</p>
+      <p>Lorsque tu stockes tes cryptos sur une plateforme d'échange (CEX Binance, Nexo, Xborg..), tu n'en as pas vraiment le contrôle, et n'en es pas vraiment propriétaire.</p>
+      <p>Si la plateforme fait faillite ou suspend les retraits, tu perds l'accès à tes cryptos.</p>
+      <p>Les hot wallets (xverse, rabby, kpler) stockent tes clés privées sur des appareils connectés à Internet, donc vulnérables aux attaques en ligne.</p>
+      <p>Les hardware wallets stockent tes clés privées hors ligne, sur un appareil physique.</p>
       <h3>Comment ça marche ?</h3>
       <ol>
-        <li>Acéhte un Ledger sur le <a href="https://www.ledger.com" target="_blank">site officiel</a> (évite Amazon ou eBay ! et encore moins d'occasion).</li>
+        <li>Achète un Ledger sur le <a href="https://www.ledger.com" target="_blank">site officiel</a> (évite Amazon ou eBay ! et encore moins d'occasion).</li>
         <li>Branche-le à ton PC et suis les instructions pour le configurer.</li>
         <li>Installe les applications (Bitcoin, Ethereum, etc.) via Ledger Live.</li>
         <li>Transfère tes cryptos depuis tes wallets logiciels vers ton Ledger.</li>
       </ol>
-      <p>
-        <strong>Avantages</strong> :
-      </p>
+      <p><strong>Avantages</strong> :</p>
       <ul>
         <li>Tes clés privées restent <strong>hors ligne</strong> (impossible à pirater).</li>
         <li>Tu peux gérer plusieurs cryptos en même temps.</li>
       </ul>
-       <li><a href="https://www.youtube.com/watch?v=HWRzCvvuxYw&t=2271s" target="_blank" style="color: #6FA8DC;">Tuto vidéo</a></li>
+      <li><a href="https://www.youtube.com/watch?v=HWRzCvvuxYw&t=2271s" target="_blank" style="color: #6FA8DC;">Tuto vidéo</a></li>
     </div>
   </div>
+
 </body>
 </html>

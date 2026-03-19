@@ -14,23 +14,64 @@
       --card-bg:rgba(0,0,0,0.5); --card-border:#F4A74244; --btc:#F7931A;
     }
     * { box-sizing:border-box; }
-    body { margin:0; padding:70px 0 0; background:url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed; background-size:cover; font-family:'Exo 2',Arial,sans-serif; color:white; text-align:center; }
+    body { margin:0; padding:60px 0 0; background:url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed; background-size:cover; font-family:'Exo 2',Arial,sans-serif; color:white; text-align:center; }
 
-    nav { background-color:rgba(0,0,0,0.75); padding:10px 0; position:fixed; top:0; width:100%; z-index:1000; backdrop-filter:blur(6px); }
-    nav ul { list-style:none; margin:0; padding:0; display:flex; justify-content:center; flex-wrap:wrap; gap:4px; }
+    /* ===== NAV ===== */
+    nav {
+      background-color:rgba(0,0,0,0.75);
+      padding:5px 0;
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(6px);
+      height:50px;
+      display:flex;
+      align-items:center;
+    }
+    nav ul {
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      justify-content:center;
+      flex-wrap:nowrap;
+      align-items:center;
+      width:100%;
+      gap:4px;
+    }
     nav li { margin:0 6px; }
     nav a { color:white; text-decoration:none; font-weight:600; font-size:14px; padding:5px 10px; border-radius:5px; transition:background 0.3s; font-family:'Exo 2',sans-serif; }
     nav a:hover { background-color:rgba(255,255,255,0.18); }
+    .nav-gif-item { position:relative; }
+    .nav-gif-item .nav-tooltip {
+      display:none;
+      position:absolute;
+      top:45px;
+      left:50%;
+      transform:translateX(-50%);
+      background:rgba(0,0,0,0.9);
+      border:1px solid #FFD700;
+      border-radius:8px;
+      padding:8px 12px;
+      color:#FFD700;
+      font-size:0.8rem;
+      white-space:nowrap;
+      z-index:999;
+      text-align:center;
+      line-height:1.5;
+      pointer-events:none;
+    }
+    .nav-gif-item:hover .nav-tooltip { display:block; }
+    /* ===== FIN NAV ===== */
 
     .content { padding:24px 20px 40px; max-width:900px; margin:0 auto; background-color:rgba(0,0,0,0.65); border-radius:12px; text-align:left; line-height:1.7; }
-
     h1 { font-family:'Orbitron',sans-serif; color:var(--btc); text-align:center; font-size:1.9em; text-shadow:0 0 22px var(--orange-glow); letter-spacing:2px; margin-bottom:6px; }
     .page-subtitle { text-align:center; color:#aaa; font-style:italic; margin-bottom:36px; font-size:0.95em; }
     h2 { font-family:'Orbitron',sans-serif; color:var(--btc); font-size:1.05em; letter-spacing:1px; border-bottom:1px solid var(--card-border); padding-bottom:8px; margin-top:44px; }
     h3 { color:#F4A742; font-size:0.97em; margin:16px 0 8px; }
     a { color:var(--btc); } a:hover { color:var(--orange); }
     img { display:block; margin:12px auto; max-width:100%; border-radius:10px; border:2px solid var(--btc); }
-
     .section-block { margin-bottom:20px; padding:18px 20px; background-color:var(--card-bg); border-radius:10px; border:1px solid var(--card-border); }
     .warning { background-color:var(--red); padding:11px 15px; border-radius:10px; border:1px solid var(--red-border); margin:12px 0; font-size:0.9em; }
     .warning::before { content:"⚠️ "; }
@@ -38,19 +79,13 @@
     .tip::before { content:"💡 "; }
     .info-box { background-color:rgba(247,147,26,0.08); padding:11px 15px; border-radius:10px; border:1px solid rgba(247,147,26,0.3); margin:12px 0; font-size:0.9em; }
     .btc-rule { font-family:'Orbitron',sans-serif; font-size:0.95em; color:var(--btc); text-shadow:0 0 12px var(--orange-glow); text-align:center; margin:16px 0; padding:13px; border:1px solid rgba(247,147,26,0.4); border-radius:8px; background:rgba(247,147,26,0.05); }
-
-    /* PAVÉS */
     .pavé { border-radius:14px; padding:22px; margin:20px 0; border:2px solid rgba(247,147,26,0.35); background:rgba(0,0,0,0.55); position:relative; overflow:hidden; }
     .pavé::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,transparent,var(--btc),transparent); }
     .pavé-title { font-family:'Orbitron',sans-serif; font-size:1em; color:var(--btc); margin:0 0 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid rgba(247,147,26,0.2); padding-bottom:10px; }
-
-    /* ÉTAPES */
     .step { display:flex; align-items:flex-start; gap:12px; margin-bottom:10px; padding:9px 12px; background:rgba(247,147,26,0.06); border-radius:8px; border-left:3px solid var(--btc); }
     .step-number { flex-shrink:0; width:30px; height:30px; border-radius:50%; background:var(--orange-dark); border:2px solid var(--btc); display:flex; align-items:center; justify-content:center; font-family:'Orbitron',sans-serif; font-size:0.78em; font-weight:700; color:var(--btc); }
     .step-content { flex:1; padding-top:3px; font-size:0.9em; }
     .step-content strong { color:#F4A742; }
-
-    /* COMPARE */
     .compare-grid { display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; }
     .compare-card { flex:1; min-width:150px; background:rgba(0,0,0,0.4); border-radius:10px; padding:11px; border:1px solid rgba(247,147,26,0.2); }
     .compare-card h4 { font-family:'Orbitron',sans-serif; font-size:0.74em; color:var(--btc); margin:0 0 7px; text-align:center; padding-bottom:6px; border-bottom:1px solid rgba(247,147,26,0.2); }
@@ -58,14 +93,12 @@
     .compare-row:last-child { border:none; }
     .compare-row span:first-child { color:#aaa; }
     .compare-row span:last-child { font-weight:600; color:var(--green); }
-
-    /* SIMULATEUR */
     .simulator { background:rgba(0,0,0,0.6); border:1px solid var(--btc); border-radius:12px; padding:18px; margin:16px 0; }
     .simulator > h3 { color:var(--gold); font-family:'Orbitron',sans-serif; text-align:center; margin-top:0; font-size:0.88em; }
     .sim-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0; }
     @media(max-width:600px){ .sim-grid{grid-template-columns:1fr;} .compare-grid,.strategy-flow{flex-direction:column;} }
     .sim-field label { display:block; font-size:0.78em; color:#aaa; margin-bottom:3px; }
-    .sim-field input { width:100%; padding:7px 9px; background:rgba(247,147,26,0.08); border:1px solid rgba(247,147,26,0.3); border-radius:6px; color:white; font-family:'Exo 2',sans-serif; font-size:0.9em; appearance:none; -webkit-appearance:none; }
+    .sim-field input { width:100%; padding:7px 9px; background:rgba(247,147,26,0.08); border:1px solid rgba(247,147,26,0.3); border-radius:6px; color:white; font-family:'Exo 2',sans-serif; font-size:0.9em; }
     .sim-field input:focus { outline:none; border-color:var(--btc); }
     .sim-btn { display:block; width:100%; padding:9px; background:var(--orange-dark); color:white; border:1px solid var(--btc); border-radius:6px; font-family:'Orbitron',sans-serif; font-size:0.8em; cursor:pointer; margin-top:10px; transition:background 0.3s; }
     .sim-btn:hover { background:var(--btc); color:#000; }
@@ -81,139 +114,62 @@
     .result-total { background:rgba(247,147,26,0.12); border:1px solid var(--btc); border-radius:8px; padding:12px; margin-top:10px; text-align:center; }
     .result-total .amount { font-family:'Orbitron',sans-serif; font-size:1.4em; color:var(--btc); text-shadow:0 0 14px var(--orange-glow); }
     .result-total .rlabel { font-size:0.76em; color:#aaa; margin-top:4px; }
-
-    /* PRIX */
     .price-ticker { display:flex; gap:9px; flex-wrap:wrap; margin:10px 0; }
     .price-card { flex:1; min-width:90px; background:rgba(0,0,0,0.5); border:1px solid rgba(247,147,26,0.3); border-radius:8px; padding:7px 11px; text-align:center; }
     .price-card .coin { font-family:'Orbitron',sans-serif; font-size:0.7em; color:var(--btc); margin-bottom:2px; }
     .price-card .price { font-size:0.85em; font-weight:700; }
     @keyframes blink { 0%,100%{opacity:1;}50%{opacity:0.2;} }
     .dot-live { display:inline-block; width:6px; height:6px; background:var(--green); border-radius:50%; animation:blink 1.5s infinite; margin-right:5px; }
-
-    /* CYBERPUNK */
     .cyber-wrap { display:flex; align-items:flex-start; gap:20px; flex-wrap:wrap; }
     .cyber-teacher { position:relative; display:inline-block; cursor:pointer; flex-shrink:0; }
-    .cyber-teacher img { border:none; border-radius:8px; background:transparent; width:115px; transition:transform 0.2s filter 0.2s; margin:0; }
+    .cyber-teacher img { border:none; border-radius:8px; background:transparent; width:115px; transition:transform 0.2s; margin:0; }
     .cyber-teacher:hover img { transform:scale(1.05); filter:drop-shadow(0 0 10px var(--btc)); }
     .cyber-label { font-size:0.72em; color:#aaa; text-align:center; margin-top:5px; max-width:115px; }
-    .cyber-bubble {
-      display:none; position:absolute; bottom:115%; left:50%; transform:translateX(-50%);
-      background:rgba(5,5,15,0.97); border:2px solid var(--btc);
-      border-radius:12px; padding:14px 15px; width:290px; z-index:300;
-      box-shadow:0 0 24px rgba(247,147,26,0.35); text-align:left;
-      font-size:0.8em; line-height:1.6; color:#eee;
-    }
+    .cyber-bubble { display:none; position:absolute; bottom:115%; left:50%; transform:translateX(-50%); background:rgba(5,5,15,0.97); border:2px solid var(--btc); border-radius:12px; padding:14px 15px; width:290px; z-index:300; box-shadow:0 0 24px rgba(247,147,26,0.35); text-align:left; font-size:0.8em; line-height:1.6; color:#eee; }
     .cyber-bubble::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:8px solid transparent; border-top-color:var(--btc); }
     .cyber-bubble .bubble-title { font-family:'Orbitron',sans-serif; font-size:0.85em; color:var(--btc); margin-bottom:10px; border-bottom:1px solid rgba(247,147,26,0.3); padding-bottom:7px; }
     .bubble-step { display:flex; align-items:flex-start; gap:9px; margin-bottom:9px; }
     .bubble-dot { flex-shrink:0; width:22px; height:22px; border-radius:50%; background:var(--orange-dark); border:2px solid var(--btc); display:flex; align-items:center; justify-content:center; font-family:'Orbitron',sans-serif; font-size:0.68em; font-weight:700; color:var(--btc); margin-top:1px; }
     .bubble-step span strong { color:var(--btc); }
     .cyber-teacher.open .cyber-bubble { display:block; }
-
-    /* STRATÉGIES */
     .strategy-flow { display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin:10px 0; padding:13px; background:rgba(247,147,26,0.04); border:1px solid rgba(247,147,26,0.22); border-radius:10px; }
     .strat-node { background:rgba(0,0,0,0.5); border:1px solid rgba(247,147,26,0.5); border-radius:8px; padding:7px 11px; font-size:0.8em; text-align:center; color:white; flex-shrink:0; }
     .strat-node small { display:block; color:#aaa; font-size:0.85em; }
     .strat-node.earn { border-color:var(--green); color:var(--green); background:rgba(111,207,151,0.08); }
     .strat-node.final { border-color:var(--btc); color:var(--btc); font-weight:700; }
     .strat-arrow { color:var(--btc); font-size:1.1em; flex-shrink:0; }
-
     .btn-link { display:inline-flex; align-items:center; gap:7px; padding:8px 15px; background:var(--orange-dark); color:white; text-decoration:none; border-radius:6px; font-weight:600; font-size:0.83em; border:1px solid rgba(247,147,26,0.4); transition:background 0.3s,transform 0.2s; margin:3px; }
     .btn-link:hover { background:var(--btc); color:#000; transform:translateY(-1px); }
-
     hr.divider { border:none; border-top:1px solid var(--card-border); margin:34px 0; }
     ul,ol { padding-left:18px; } li { margin-bottom:4px; }
     .page-footer { text-align:center; padding:26px 10px; color:#F4A74266; font-size:0.8em; }
     .fade-in { opacity:0; transform:translateY(16px); transition:opacity 0.5s ease,transform 0.5s ease; }
     .fade-in.visible { opacity:1; transform:translateY(0); }
-
-    /* TOOLTIPS */
     .tip-wrap { position:relative; display:inline-flex; align-items:center; gap:4px; cursor:default; }
     .tip-icon { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; border-radius:50%; background:rgba(247,147,26,0.15); border:1px solid rgba(247,147,26,0.5); color:var(--btc); font-size:9px; font-weight:700; cursor:help; }
     .tip-bub { display:none; position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%); background:rgba(10,10,20,0.97); border:1px solid var(--btc); border-radius:8px; padding:8px 11px; font-size:0.75em; color:#eee; line-height:1.5; width:195px; z-index:500; pointer-events:none; }
     .tip-bub::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--btc); }
     .tip-bub strong { color:var(--btc); }
     .tip-wrap:hover .tip-bub { display:block; }
-
-    /* DAME CLIQUABLE */
-    .teacher-trigger {
-      display:inline-flex; flex-direction:column; align-items:center;
-      cursor:pointer; margin:10px 0;
-      transition:transform 0.2s;
-    }
+    .teacher-trigger { display:inline-flex; flex-direction:column; align-items:center; cursor:pointer; margin:10px 0; transition:transform 0.2s; }
     .teacher-trigger:hover { transform:scale(1.04); }
-    .teacher-trigger img {
-      width:120px; border:none; border-radius:10px; margin:0;
-      filter:drop-shadow(0 0 10px var(--btc));
-      transition:filter 0.2s;
-    }
+    .teacher-trigger img { width:120px; border:none; border-radius:10px; margin:0; filter:drop-shadow(0 0 10px var(--btc)); transition:filter 0.2s; }
     .teacher-trigger:hover img { filter:drop-shadow(0 0 18px var(--btc)); }
     .teacher-label { font-size:0.75em; color:#aaa; margin-top:6px; text-align:center; }
-
-    /* MODAL OVERLAY */
-    .modal-overlay {
-      display:none; position:fixed; inset:0; z-index:2000;
-      background:rgba(0,0,0,0.7); backdrop-filter:blur(4px);
-      align-items:center; justify-content:center;
-    }
+    .modal-overlay { display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.7); backdrop-filter:blur(4px); align-items:center; justify-content:center; }
     .modal-overlay.open { display:flex; }
-
-    /* POP-UP BULLE avec dame */
-    .modal-box {
-      position:relative; max-width:480px; width:90%;
-      animation:popIn 0.25s ease;
-    }
+    .modal-box { position:relative; max-width:480px; width:90%; animation:popIn 0.25s ease; }
     @keyframes popIn { from{transform:scale(0.85);opacity:0;} to{transform:scale(1);opacity:1;} }
-
-    .modal-dame {
-      position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
-      margin-bottom:-10px; z-index:10;
-    }
-    .modal-dame img {
-      width:130px; border:none; margin:0;
-      filter:drop-shadow(0 0 14px var(--btc));
-    }
-
-    .modal-bubble {
-      background:rgba(5,5,15,0.97); border:2px solid var(--btc);
-      border-radius:16px; padding:20px 20px 18px;
-      box-shadow:0 0 30px rgba(247,147,26,0.4);
-      position:relative;
-    }
-    /* Petite flèche vers le haut pointant vers la dame */
-    .modal-bubble::before {
-      content:''; position:absolute; top:-14px; left:50%;
-      transform:translateX(-50%);
-      border:7px solid transparent; border-bottom-color:var(--btc);
-    }
-    .modal-bubble::after {
-      content:''; position:absolute; top:-11px; left:50%;
-      transform:translateX(-50%);
-      border:7px solid transparent; border-bottom-color:rgba(5,5,15,0.97);
-    }
-
-    .modal-title {
-      font-family:'Orbitron',sans-serif; font-size:0.9em; color:var(--btc);
-      margin-bottom:14px; padding-bottom:8px;
-      border-bottom:1px solid rgba(247,147,26,0.3);
-      display:flex; justify-content:space-between; align-items:center;
-    }
-    .modal-close {
-      cursor:pointer; color:#aaa; font-size:1.2em; line-height:1;
-      transition:color 0.2s;
-    }
+    .modal-dame { position:absolute; bottom:100%; left:50%; transform:translateX(-50%); margin-bottom:-10px; z-index:10; }
+    .modal-dame img { width:130px; border:none; margin:0; filter:drop-shadow(0 0 14px var(--btc)); }
+    .modal-bubble { background:rgba(5,5,15,0.97); border:2px solid var(--btc); border-radius:16px; padding:20px 20px 18px; box-shadow:0 0 30px rgba(247,147,26,0.4); position:relative; max-height:75vh; overflow-y:auto; }
+    .modal-bubble::before { content:''; position:absolute; top:-14px; left:50%; transform:translateX(-50%); border:7px solid transparent; border-bottom-color:var(--btc); }
+    .modal-bubble::after { content:''; position:absolute; top:-11px; left:50%; transform:translateX(-50%); border:7px solid transparent; border-bottom-color:rgba(5,5,15,0.97); }
+    .modal-title { font-family:'Orbitron',sans-serif; font-size:0.9em; color:var(--btc); margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(247,147,26,0.3); display:flex; justify-content:space-between; align-items:center; }
+    .modal-close { cursor:pointer; color:#aaa; font-size:1.2em; line-height:1; transition:color 0.2s; }
     .modal-close:hover { color:var(--btc); }
-    .modal-step {
-      display:flex; align-items:flex-start; gap:10px; margin-bottom:11px;
-      font-size:0.86em; line-height:1.55; color:#eee;
-    }
-    .modal-dot {
-      flex-shrink:0; width:26px; height:26px; border-radius:50%;
-      background:var(--orange-dark); border:2px solid var(--btc);
-      display:flex; align-items:center; justify-content:center;
-      font-family:'Orbitron',sans-serif; font-size:0.72em; font-weight:700; color:var(--btc);
-      margin-top:1px;
-    }
+    .modal-step { display:flex; align-items:flex-start; gap:10px; margin-bottom:11px; font-size:0.86em; line-height:1.55; color:#eee; }
+    .modal-dot { flex-shrink:0; width:26px; height:26px; border-radius:50%; background:var(--orange-dark); border:2px solid var(--btc); display:flex; align-items:center; justify-content:center; font-family:'Orbitron',sans-serif; font-size:0.72em; font-weight:700; color:var(--btc); margin-top:1px; }
     .modal-step strong { color:#F4A742; }
     .modal-step a { color:var(--btc); }
   </style>
@@ -222,15 +178,27 @@
 
 <nav>
   <ul>
+    <li class="nav-gif-item">
+      <a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank">
+        <img src="https://i.postimg.cc/1XLDzBGs/terre_tourne.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+      </a>
+      <div class="nav-tooltip">🗺️ Jouer Gratuitement !<br>Chasse au Trésor Crypto</div>
+    </li>
+    <li class="nav-gif-item">
+      <a href="https://anopepus.github.io/" target="_blank">
+        <img src="https://i.postimg.cc/qMC792VP/papillon.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+      </a>
+      <div class="nav-tooltip">🦁 Soutenir AnoPepUs<br>Page Récompense BAT</div>
+    </li>
     <li><a href="index.html">Accueil</a></li>
-    <li><a href="Kezako-Crypto.html">Kezako-Crypto</a></li>
+    <li><a href="Kezako-Crypto.html">Kezako</a></li>
     <li><a href="wallet.html">Wallet</a></li>
-    <li><a href="Achat-Vente-Crypto.html">Achat-Vente-Crypto</a></li>
+    <li><a href="Achat-Vente-Crypto.html">Achat-Vente</a></li>
     <li><a href="Investir.html">Investir</a></li>
     <li><a href="CosmosHub.html">CosmosHub</a></li>
     <li><a href="DEFI.html">DeFi</a></li>
     <li><a href="BTCFi.html">BTCFi</a></li>
-    <li><a href="gagner-crypto.html">Gagner-Crypto</a></li>
+    <li><a href="gagner-crypto.html">Gagner</a></li>
     <li><a href="Fiscalite.html">Fiscalité</a></li>
   </ul>
 </nav>
@@ -240,17 +208,14 @@
   <h1>₿ BTCFi</h1>
   <p class="page-subtitle">Faire travailler ton Bitcoin — sans le vendre, sans le quitter</p>
 
-  <!-- ============ INTRO ============ -->
   <h2 class="fade-in">C'est quoi le BTCFi ?</h2>
   <div class="section-block fade-in">
     <div class="cyber-wrap">
-      <div style="flex:1; min-width:220px;">
+      <div style="flex:1;min-width:220px;">
         <p>Le Bitcoin est l'or numérique. Pendant des années, la seule stratégie était de le garder et d'attendre (<em>HODL</em>). Le BTCFi change la donne : tu peux désormais <strong>faire travailler ton BTC</strong> et générer un rendement, tout en restant exposé à sa hausse.</p>
-        <div class="info-box">
-          <strong>La grande différence avec la DeFi Ethereum :</strong> le Bitcoin n'a pas de smart contracts natifs. Les protocoles BTCFi utilisent des couches secondaires ou des mécanismes de staking cryptographique pour contourner cette limite.
-        </div>
+        <div class="info-box"><strong>La grande différence avec la DeFi Ethereum :</strong> le Bitcoin n'a pas de smart contracts natifs. Les protocoles BTCFi utilisent des couches secondaires ou des mécanismes de staking cryptographique pour contourner cette limite.</div>
         <div class="btc-rule">₿ Tu ne vends pas ton BTC. Tu le mets au travail. ₿</div>
-        <div style="display:flex; gap:11px; flex-wrap:wrap; margin-top:14px;">
+        <div style="display:flex;gap:11px;flex-wrap:wrap;margin-top:14px;">
           <div style="flex:1;min-width:170px;padding:11px;background:rgba(111,207,151,0.08);border:1px solid rgba(111,207,151,0.3);border-radius:10px;">
             <h3 style="color:var(--green);margin-top:0;font-size:0.88em;">✅ Ce que tu peux faire</h3>
             <ul style="margin:0;padding-left:15px;color:#ddd;font-size:0.84em;">
@@ -272,30 +237,15 @@
           </div>
         </div>
       </div>
-
-      <!-- CYBERPUNK CLIQUABLE -->
       <div style="text-align:center;">
         <div class="cyber-teacher" id="cyberTeacher" onclick="toggleCyber(event)">
           <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Cyberpunk teacher">
           <div class="cyber-bubble" id="cyberBubble">
             <div class="bubble-title">🎓 Vérifie le protocole</div>
-            <div class="bubble-step">
-              <div class="bubble-dot">1</div>
-              <a href="https://defillama.com/" target="_blank">Vas sur DéfiLlama</a>
-            </div>
-            <div class="bubble-step">
-              <div class="bubble-dot">2</div>
-              <span><strong>Choisi les protocoles</strong> → Regarde principalement la TVL (marque de confiance si elle croit ou reste stable).</span>
-            </div>
-            <div class="bubble-step">
-              <div class="bubble-dot">3</div>
-              <span><strong>Volumes</strong> → plus ils croient plus il y a d'activité.</span>
-            </div>
-            <div class="bubble-step">
-              <div class="bubble-dot">4</div>
-              <a href="https://www.youtube.com/watch?v=gIZw9_F1yJM" target="_blank">Tuto DéfiLlama</a>
-            </div>
-           
+            <div class="bubble-step"><div class="bubble-dot">1</div><a href="https://defillama.com/" target="_blank">Vas sur DéfiLlama</a></div>
+            <div class="bubble-step"><div class="bubble-dot">2</div><span><strong>Choisi les protocoles</strong> → Regarde principalement la TVL.</span></div>
+            <div class="bubble-step"><div class="bubble-dot">3</div><span><strong>Volumes</strong> → plus ils croient plus il y a d'activité.</span></div>
+            <div class="bubble-step"><div class="bubble-dot">4</div><a href="https://www.youtube.com/watch?v=gIZw9_F1yJM" target="_blank">Tuto DéfiLlama</a></div>
           </div>
         </div>
         <div class="cyber-label">👆 Clique sur la dame pour quelques conseils !</div>
@@ -305,282 +255,179 @@
 
   <hr class="divider">
 
-  <!-- ============ PARTIE 1 : BABYLON ============ -->
   <h2 class="fade-in">1. 🏛️ Babylon — Staker son BTC</h2>
-
   <div class="pavé fade-in">
     <div class="pavé-title">🏛️ Babylon Chain — Le staking BTC natif</div>
     <p>Babylon permet de <strong>staker du BTC directement depuis ta wallet Bitcoin</strong> — sans bridge, sans wrapped token. Ton BTC ne quitte jamais la blockchain Bitcoin.</p>
     <div class="info-box"><strong>Comment ça marche ?</strong> Babylon utilise du <em>timestamping</em> et du <em>slashing cryptographique</em>. Ton BTC sécurise des réseaux Proof-of-Stake externes, et en échange tu reçois des récompenses.</div>
     <h3>📈 Les stratégies Babylon</h3>
     <div class="compare-grid">
-      <div class="compare-card">
-        <h4>₿ BTC → BABY</h4>
-        <div class="compare-row"><span>APY</span><span>~1% en BABY</span></div>
-        <div class="compare-row"><span>Risque</span><span style="color:var(--gold);">Faible</span></div>
-        <div class="compare-row"><span>Custody</span><span>Self ✅</span></div>
-        <div class="compare-row"><span>Unbonding</span><span style="color:#aaa;">~7 jours</span></div>
-      </div>
-      <div class="compare-card">
-        <h4>₿ BTC → BTC</h4>
-        <div class="compare-row"><span>APY</span><span>~1,12% en BTC</span></div>
-        <div class="compare-row"><span>Risque</span><span style="color:var(--gold);">Faible-Moyen</span></div>
-        <div class="compare-row"><span>Custody</span><span>Self ✅</span></div>
-        <div class="compare-row"><span>Unbonding</span><span style="color:#aaa;">~7 jours</span></div>
-      </div>
-      <div class="compare-card">
-        <h4>🪙 BABY → BABY</h4>
-        <div class="compare-row"><span>APY</span><span>~10,19% BABY</span></div>
-        <div class="compare-row"><span>Risque</span><span style="color:#EB5757;">Moyen</span></div>
-        <div class="compare-row"><span>Custody</span><span>Self ✅</span></div>
-        <div class="compare-row"><span>⚠️</span><span style="color:#EB5757;">BABY volatile</span></div>
-      </div>
+      <div class="compare-card"><h4>₿ BTC → BABY</h4><div class="compare-row"><span>APY</span><span>~1% en BABY</span></div><div class="compare-row"><span>Risque</span><span style="color:var(--gold);">Faible</span></div><div class="compare-row"><span>Custody</span><span>Self ✅</span></div><div class="compare-row"><span>Unbonding</span><span style="color:#aaa;">~7 jours</span></div></div>
+      <div class="compare-card"><h4>₿ BTC → BTC</h4><div class="compare-row"><span>APY</span><span>~1,12% en BTC</span></div><div class="compare-row"><span>Risque</span><span style="color:var(--gold);">Faible-Moyen</span></div><div class="compare-row"><span>Custody</span><span>Self ✅</span></div><div class="compare-row"><span>Unbonding</span><span style="color:#aaa;">~7 jours</span></div></div>
+      <div class="compare-card"><h4>🪙 BABY → BABY</h4><div class="compare-row"><span>APY</span><span>~10,19% BABY</span></div><div class="compare-row"><span>Risque</span><span style="color:#EB5757;">Moyen</span></div><div class="compare-row"><span>Custody</span><span>Self ✅</span></div><div class="compare-row"><span>⚠️</span><span style="color:#EB5757;">BABY volatile</span></div></div>
     </div>
     <div class="warning">Le token BABY est volatile. L'APY % est attractif mais la valeur en $ dépend fortement du cours du BABY.</div>
     <h3>🔧 Comment staker sur Babylon</h3>
     <div class="teacher-trigger" onclick="openPopup('popup-babylon')">
       <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse">
-      <div class="teacher-label">👆 Clique sur la maitresse pour le guide pas à pas !</div>
+      <div class="teacher-label">👆 Clique pour le guide pas à pas !</div>
     </div>
     <div style="margin-top:13px;display:flex;gap:7px;flex-wrap:wrap;">
       <a href="https://babylonchain.io" target="_blank" class="btn-link">🏛️ Babylon App</a>
-      
     </div>
   </div>
 
-  <!-- Simulateur Babylon -->
   <div class="simulator fade-in">
     <h3>🧮 Simulateur Babylon</h3>
-    <div style="font-size:0.76em;color:#aaa;margin-bottom:9px;display:flex;align-items:center;">
-      <span class="dot-live"></span>Prix en direct · mise à jour 30s
-    </div>
+    <div style="font-size:0.76em;color:#aaa;margin-bottom:9px;display:flex;align-items:center;"><span class="dot-live"></span>Prix en direct · mise à jour 30s</div>
     <div class="price-ticker">
       <div class="price-card"><div class="coin">₿ BTC</div><div class="price" id="b-price-btc">...</div></div>
       <div class="price-card"><div class="coin">BABY</div><div class="price" id="b-price-baby">...</div></div>
     </div>
     <div class="sim-grid">
-      <div class="sim-field">
-        <label><span class="tip-wrap">BTC stakés<span class="tip-icon">?<span class="tip-bub">Ton BTC sur Babylon. Génère du BABY (~1% APY) et/ou du BTC (~1,12% APY via restaking).</span></span></span></label>
-        <input id="b-btc" type="number" step="0.001" value="0.1">
-      </div>
-      <div class="sim-field">
-        <label><span class="tip-wrap">BABY stakés<span class="tip-icon">?<span class="tip-bub">Ton BABY staké génère ~10,19% APY en BABY. Attention : BABY est volatile !</span></span></span></label>
-        <input id="b-baby" type="number" step="1" value="0">
-      </div>
+      <div class="sim-field"><label>BTC stakés</label><input id="b-btc" type="number" step="0.001" value="0.1"></div>
+      <div class="sim-field"><label>BABY stakés</label><input id="b-baby" type="number" step="1" value="0"></div>
     </div>
     <button class="sim-btn" onclick="calcBabylon()">⚡ Calculer mes rewards Babylon</button>
     <div class="sim-results" id="babylon-results">
       <div class="result-section">
         <h4>🏛️ Babylon — Rewards annuels</h4>
-        <div class="result-row"><span class="tip-wrap">BABY reçus (via BTC)<span class="tip-icon">?<span class="tip-bub">BTC × 1,01% converti en BABY au prix actuel.</span></span></span><span id="b-out-baby-btc" class="r-pos">—</span></div>
-        <div class="result-row"><span class="tip-wrap">BABY reçus (via BABY)<span class="tip-icon">?<span class="tip-bub">BABY staké × 10,19% APY.</span></span></span><span id="b-out-baby-baby" class="r-pos">—</span></div>
-        <div class="result-row"><span class="tip-wrap">BTC reçus (restaking)<span class="tip-icon">?<span class="tip-bub">BTC × 1,12% APY en BTC supplémentaires.</span></span></span><span id="b-out-btc" class="r-btc">—</span></div>
+        <div class="result-row"><span>BABY reçus (via BTC)</span><span id="b-out-baby-btc" class="r-pos">—</span></div>
+        <div class="result-row"><span>BABY reçus (via BABY)</span><span id="b-out-baby-baby" class="r-pos">—</span></div>
+        <div class="result-row"><span>BTC reçus (restaking)</span><span id="b-out-btc" class="r-btc">—</span></div>
         <div class="result-row"><span>Valeur BABY ($)</span><span id="b-val-baby" class="r-pos">—</span></div>
         <div class="result-row"><span>Valeur BTC ($)</span><span id="b-val-btc" class="r-btc">—</span></div>
       </div>
-      <div class="result-total">
-        <div class="rlabel">Rendement annuel Babylon</div>
-        <div class="amount" id="b-total">—</div>
-        <div class="rlabel">au prix actuel</div>
-      </div>
+      <div class="result-total"><div class="rlabel">Rendement annuel Babylon</div><div class="amount" id="b-total">—</div><div class="rlabel">au prix actuel</div></div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ============ PARTIE 2 : STACKS ============ -->
   <h2 class="fade-in">2. 📚 Stacks — STX pour générer du BTC</h2>
-
   <div class="pavé fade-in">
     <div class="pavé-title">📚 Stacks & Proof of Transfer (PoX)</div>
-    <p>Stacks est une blockchain Layer 2 ancrée sur Bitcoin. Son mécanisme <strong>Proof of Transfer (PoX)</strong> redistribue le BTC des mineurs vers les holders de STX qui ont stacké. Tu reçois du <strong>vrai BTC</strong> en échange de tes STX.</p>
-    <div class="info-box"><strong>Le PoX en clair :</strong> Les mineurs Stacks dépensent du BTC pour miner des blocs STX. Ce BTC est redistribué aux stackers. Tu n'as donc pas besoin de BTC pour commencer — tu achètes du STX et tu reçois du BTC.</div>
+    <p>Stacks est une blockchain Layer 2 ancrée sur Bitcoin. Son mécanisme <strong>Proof of Transfer (PoX)</strong> redistribue le BTC des mineurs vers les holders de STX qui ont stacké.</p>
+    <div class="info-box"><strong>Le PoX en clair :</strong> Les mineurs Stacks dépensent du BTC pour miner des blocs STX. Ce BTC est redistribué aux stackers.</div>
     <h3>📈 Rendements Stacks</h3>
     <div class="compare-grid">
-      <div class="compare-card">
-        <h4>🔒 Stacking direct</h4>
-        <div class="compare-row"><span>APY</span><span>~5–9% en BTC</span></div>
-        <div class="compare-row"><span>Lock</span><span style="color:#aaa;">~2 semaines</span></div>
-        <div class="compare-row"><span>Risque</span><span style="color:var(--gold);">Faible-Moyen</span></div>
-      </div>
-      <div class="compare-card">
-        <h4>🌊 Via StackingDAO</h4>
-        <div class="compare-row"><span>APY</span><span>~5–7% en BTC</span></div>
-        <div class="compare-row"><span>Lock</span><span style="color:var(--green);">Pas de lock</span></div>
-        <div class="compare-row"><span>Token</span><span style="color:var(--btc);">stSTX liquide</span></div>
-      </div>
+      <div class="compare-card"><h4>🔒 Stacking direct</h4><div class="compare-row"><span>APY</span><span>~5–9% en BTC</span></div><div class="compare-row"><span>Lock</span><span style="color:#aaa;">~2 semaines</span></div><div class="compare-row"><span>Risque</span><span style="color:var(--gold);">Faible-Moyen</span></div></div>
+      <div class="compare-card"><h4>🌊 Via StackingDAO</h4><div class="compare-row"><span>APY</span><span>~5–7% en BTC</span></div><div class="compare-row"><span>Lock</span><span style="color:var(--green);">Pas de lock</span></div><div class="compare-row"><span>Token</span><span style="color:var(--btc);">stSTX liquide</span></div></div>
     </div>
     <h3>🔧 Comment stacker des STX</h3>
     <div class="teacher-trigger" onclick="openPopup('popup-stacks')">
       <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse">
-      <div class="teacher-label">👆 Clique sur la maitresse pour le guide pas à pas !</div>
+      <div class="teacher-label">👆 Clique pour le guide pas à pas !</div>
     </div>
     <div style="margin-top:13px;display:flex;gap:7px;flex-wrap:wrap;">
       <a href="https://stacks.co" target="_blank" class="btn-link">📚 Stacks</a>
       <a href="https://stackingdao.com" target="_blank" class="btn-link">🌊 StackingDAO</a>
-      
     </div>
   </div>
 
-  <!-- Simulateur STX -->
   <div class="simulator fade-in">
     <h3>🧮 Simulateur Stacks / STX</h3>
-    <div style="font-size:0.76em;color:#aaa;margin-bottom:9px;display:flex;align-items:center;">
-      <span class="dot-live"></span>Prix en direct · mise à jour 30s
-    </div>
+    <div style="font-size:0.76em;color:#aaa;margin-bottom:9px;display:flex;align-items:center;"><span class="dot-live"></span>Prix en direct · mise à jour 30s</div>
     <div class="price-ticker">
       <div class="price-card"><div class="coin">₿ BTC</div><div class="price" id="s-price-btc">...</div></div>
       <div class="price-card"><div class="coin">STX</div><div class="price" id="s-price-stx">...</div></div>
     </div>
     <div class="sim-grid">
-      <div class="sim-field">
-        <label><span class="tip-wrap">STX stackés<span class="tip-icon">?<span class="tip-bub">Ton STX déposé sur Stacks ou StackingDAO. Génère ~7% APY en BTC redistribué chaque cycle.</span></span></span></label>
-        <input id="s-stx" type="number" step="10" value="1000">
-      </div>
-      <div class="sim-field">
-        <label><span class="tip-wrap">APY estimé (%)<span class="tip-icon">?<span class="tip-bub">Varie selon l'activité du réseau. Direct ~5-9%, StackingDAO ~5-7%. Mets 7% comme valeur moyenne.</span></span></span></label>
-        <input id="s-apy" type="number" step="0.5" value="7">
-      </div>
+      <div class="sim-field"><label>STX stackés</label><input id="s-stx" type="number" step="10" value="1000"></div>
+      <div class="sim-field"><label>APY estimé (%)</label><input id="s-apy" type="number" step="0.5" value="7"></div>
     </div>
     <button class="sim-btn" onclick="calcStacks()">⚡ Calculer mes rewards STX</button>
     <div class="sim-results" id="stacks-results">
       <div class="result-section">
         <h4>📚 Stacks — Résultats annuels</h4>
         <div class="result-row"><span>Valeur STX ($)</span><span id="s-val-stx" class="r-pos">—</span></div>
-        <div class="result-row"><span class="tip-wrap">BTC reçus/an<span class="tip-icon">?<span class="tip-bub">STX × prix STX × APY / prix BTC.</span></span></span><span id="s-out-btc" class="r-btc">—</span></div>
+        <div class="result-row"><span>BTC reçus/an</span><span id="s-out-btc" class="r-btc">—</span></div>
         <div class="result-row"><span>Valeur BTC reward ($)</span><span id="s-val-btc" class="r-btc">—</span></div>
         <div class="result-row"><span>BTC par mois</span><span id="s-btc-month" class="r-btc">—</span></div>
       </div>
-      <div class="result-total">
-        <div class="rlabel">Rendement annuel Stacks</div>
-        <div class="amount" id="s-total">—</div>
-        <div class="rlabel">en BTC réel au prix actuel</div>
-      </div>
+      <div class="result-total"><div class="rlabel">Rendement annuel Stacks</div><div class="amount" id="s-total">—</div><div class="rlabel">en BTC réel au prix actuel</div></div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ============ PARTIE 3 : STACKINGDAO ============ -->
   <h2 class="fade-in">3. 🌊 StackingDAO — Liquid Staking STX</h2>
-
   <div class="pavé fade-in">
     <div class="pavé-title">🌊 StackingDAO — Staker sans se bloquer</div>
-    <p>StackingDAO est la version <strong>liquide</strong> du stacking STX. Tu déposes tes STX, tu reçois du <strong>stSTX</strong> — un token qui s'apprécie automatiquement grâce aux rewards BTC. Pas de période de lock, pas de cycle à gérer.</p>
-    <div class="info-box"><strong>stSTX vs STX :</strong> Le ratio stSTX/STX augmente continuellement. Si tu déposes 100 STX aujourd'hui et que le ratio est 1.05, dans 1 an il sera peut-être 1.12 — tu récupèreras ~107 STX en échangeant tes 100 stSTX.</div>
-    <div class="warning">TVL actuelle ~20M$ — protocole plus petit, risque smart contract plus élevé. Vérifie les audits sur leur site avant de déposer des sommes importantes.</div>
+    <p>StackingDAO est la version <strong>liquide</strong> du stacking STX. Tu déposes tes STX, tu reçois du <strong>stSTX</strong> — un token qui s'apprécie automatiquement. Pas de période de lock.</p>
+    <div class="info-box"><strong>stSTX vs STX :</strong> Le ratio stSTX/STX augmente continuellement grâce aux rewards BTC réinvestis.</div>
+    <div class="warning">TVL actuelle ~20M$ — protocole plus petit, risque smart contract plus élevé. Vérifie les audits avant de déposer des sommes importantes.</div>
     <h3>🔧 Comment utiliser StackingDAO</h3>
     <div class="teacher-trigger" onclick="openPopup('popup-sdao')">
       <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse">
-      <div class="teacher-label">👆 Clique sur la maitresse pour le guide pas à pas !</div>
+      <div class="teacher-label">👆 Clique pour le guide pas à pas !</div>
     </div>
     <div style="margin-top:13px;display:flex;gap:7px;flex-wrap:wrap;">
       <a href="https://app.stackingdao.com/stack?referral=SP16NH0WEC7PE9M8NC7ED8NWR8H7EBSBEBS1P9QF9" target="_blank" class="btn-link">🌊 StackingDAO App</a>
-      
     </div>
   </div>
 
-  <!-- Simulateur StackingDAO -->
   <div class="simulator fade-in">
     <h3>🧮 Simulateur StackingDAO</h3>
-    <div style="font-size:0.76em;color:#aaa;margin-bottom:9px;display:flex;align-items:center;">
-      <span class="dot-live"></span>Prix en direct · mise à jour 30s
-    </div>
+    <div style="font-size:0.76em;color:#aaa;margin-bottom:9px;display:flex;align-items:center;"><span class="dot-live"></span>Prix en direct · mise à jour 30s</div>
     <div class="price-ticker">
       <div class="price-card"><div class="coin">STX</div><div class="price" id="d-price-stx">...</div></div>
       <div class="price-card"><div class="coin">₿ BTC</div><div class="price" id="d-price-btc">...</div></div>
     </div>
     <div class="sim-grid">
-      <div class="sim-field">
-        <label><span class="tip-wrap">STX déposés<span class="tip-icon">?<span class="tip-bub">Convertis en stSTX. Le rendement est automatiquement réinvesti via l'appréciation du ratio stSTX/STX.</span></span></span></label>
-        <input id="d-stx" type="number" step="10" value="1000">
-      </div>
-      <div class="sim-field">
-        <label><span class="tip-wrap">APY StackingDAO (%)<span class="tip-icon">?<span class="tip-bub">APY actuel, généralement ~5-7%, légèrement inférieur au stacking direct.</span></span></span></label>
-        <input id="d-apy" type="number" step="0.5" value="6">
-      </div>
-      <div class="sim-field">
-        <label><span class="tip-wrap">Durée (mois)<span class="tip-icon">?<span class="tip-bub">Combien de temps tu laisses tes STX. Pas de lock — tu peux retirer quand tu veux.</span></span></span></label>
-        <input id="d-months" type="number" step="1" value="12">
-      </div>
-      <div class="sim-field">
-        <label><span class="tip-wrap">Prix STX sortie ($)<span class="tip-icon">?<span class="tip-bub">Simule un scénario haussier ou baissier sur le prix du STX à la sortie.</span></span></span></label>
-        <input id="d-exit" type="number" step="0.01" value="1">
-      </div>
+      <div class="sim-field"><label>STX déposés</label><input id="d-stx" type="number" step="10" value="1000"></div>
+      <div class="sim-field"><label>APY StackingDAO (%)</label><input id="d-apy" type="number" step="0.5" value="6"></div>
+      <div class="sim-field"><label>Durée (mois)</label><input id="d-months" type="number" step="1" value="12"></div>
+      <div class="sim-field"><label>Prix STX sortie ($)</label><input id="d-exit" type="number" step="0.01" value="1"></div>
     </div>
     <button class="sim-btn" onclick="calcStackingDAO()">⚡ Calculer mon rendement stSTX</button>
     <div class="sim-results" id="sdao-results">
       <div class="result-section">
         <h4>🌊 StackingDAO — Résultats</h4>
         <div class="result-row"><span>Valeur STX déposés ($)</span><span id="d-val-in" class="r-pos">—</span></div>
-        <div class="result-row"><span class="tip-wrap">STX récupérés<span class="tip-icon">?<span class="tip-bub">STX initiaux × (1 + APY × durée/12). Le surplus = gain via l'appréciation du ratio stSTX.</span></span></span><span id="d-stx-out" class="r-btc">—</span></div>
+        <div class="result-row"><span>STX récupérés</span><span id="d-stx-out" class="r-btc">—</span></div>
         <div class="result-row"><span>STX gagnés</span><span id="d-stx-gain" class="r-pos">—</span></div>
         <div class="result-row"><span>Valeur à la sortie ($)</span><span id="d-val-out">—</span></div>
         <div class="result-row"><span>Équivalent BTC gagné</span><span id="d-btc-equiv" class="r-btc">—</span></div>
       </div>
-      <div class="result-total">
-        <div class="rlabel">Gain net StackingDAO</div>
-        <div class="amount" id="d-total">—</div>
-        <div class="rlabel">sur la période choisie</div>
-      </div>
+      <div class="result-total"><div class="rlabel">Gain net StackingDAO</div><div class="amount" id="d-total">—</div><div class="rlabel">sur la période choisie</div></div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ============ STRATÉGIES COMBINÉES ============ -->
   <h2 class="fade-in">4. ♻️ Stratégies Combinées</h2>
   <div class="section-block fade-in">
-    <p>Chaque protocole génère des rewards que tu réinjectes dans le suivant. Voici trois boucles vertueuses pour <strong>accumuler du BTC en continu</strong> sans jamais en vendre :</p>
-
-    <h3 style="color:var(--btc);">🔁 Stratégie 1 — BABY → STX → BTC (la boucle complète)</h3>
+    <p>Chaque protocole génère des rewards que tu réinjectes dans le suivant. Voici trois boucles vertueuses :</p>
+    <h3 style="color:var(--btc);">🔁 Stratégie 1 — BABY → STX → BTC</h3>
     <div class="strategy-flow">
-      <div class="strat-node">₿ BTC<br><small>sur Babylon</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node earn">BABY reward<br><small>~1% APY</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node">Swap BABY<br><small>en STX</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node earn">Stack STX<br><small>StackingDAO</small></div>
-      <div class="strat-arrow">→</div>
+      <div class="strat-node">₿ BTC<br><small>sur Babylon</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node earn">BABY reward<br><small>~1% APY</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node">Swap BABY<br><small>en STX</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node earn">Stack STX<br><small>StackingDAO</small></div><div class="strat-arrow">→</div>
       <div class="strat-node final">₿ BTC reward<br><small>accumulé !</small></div>
     </div>
-    <div class="info-box">✅ Idéal pour convertir tes rewards BABY en BTC de façon indirecte. Tu restes dans l'écosystème et tu accumules du BTC sans jamais en acheter directement.</div>
-
     <h3 style="color:var(--btc);">🔁 Stratégie 2 — BTC reward → Restaking Babylon</h3>
     <div class="strategy-flow">
-      <div class="strat-node">₿ BTC<br><small>sur Babylon</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node earn">BTC reward<br><small>~1,12% APY</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node">Restake<br><small>sur Babylon</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node earn">+ de BTC<br><small>intérêts composés</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node final">₿ Position<br><small>↑ ↑ ↑</small></div>
+      <div class="strat-node">₿ BTC<br><small>sur Babylon</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node earn">BTC reward<br><small>~1,12% APY</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node">Restake<br><small>sur Babylon</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node earn">+ de BTC<br><small>composés</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node final">₿ Position ↑↑↑</div>
     </div>
-    <div class="info-box">✅ La plus simple. Tu reçois du BTC, tu le remets sur Babylon. Les intérêts composés font le reste. Aucun swap, aucun risque supplémentaire.</div>
-
     <h3 style="color:var(--btc);">🔁 Stratégie 3 — STX reward → Acheter du BTC</h3>
     <div class="strategy-flow">
-      <div class="strat-node">STX<br><small>sur StackingDAO</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node earn">BTC reward<br><small>~5-9% APY</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node">Acheter<br><small>du BTC</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node earn">Stake BTC<br><small>sur Babylon</small></div>
-      <div class="strat-arrow">→</div>
-      <div class="strat-node final">₿ Stack<br><small>↑ ↑</small></div>
+      <div class="strat-node">STX<br><small>StackingDAO</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node earn">BTC reward<br><small>~5-9% APY</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node">Acheter<br><small>du BTC</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node earn">Stake BTC<br><small>sur Babylon</small></div><div class="strat-arrow">→</div>
+      <div class="strat-node final">₿ Stack ↑↑</div>
     </div>
-    <div class="info-box">✅ Tu utilises le meilleur APY (STX→BTC ~7%) pour accumuler du BTC, puis ce BTC repart sur Babylon. Double effet kiss cool. 💋</div>
-
-    <div class="warning">Ces stratégies impliquent des swaps et des frais à chaque étape. Calcule toujours si les gains couvrent les frais — surtout pour de petites positions.</div>
+    <div class="warning">Ces stratégies impliquent des swaps et des frais. Calcule toujours si les gains couvrent les frais.</div>
   </div>
 
   <hr class="divider">
 
-  <!-- CONCLUSION -->
   <h2 class="fade-in">5. 🏁 Conclusion</h2>
   <div class="section-block fade-in" style="text-align:center;">
     <p>Le BTCFi en est encore à ses débuts, mais Babylon et Stacks offrent des solutions matures pour faire travailler ton Bitcoin sans le vendre.</p>
@@ -593,58 +440,46 @@
       <a href="CosmosHub.html" class="btn-link">🌌 CosmosHub</a>
     </div>
   </div>
-
 </div>
 
-<!-- ===== MODAL BABYLON ===== -->
+<!-- MODAUX -->
 <div class="modal-overlay" id="popup-babylon" onclick="closePopupOutside(event,'popup-babylon')">
   <div class="modal-box">
     <div class="modal-dame"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse"></div>
     <div class="modal-bubble">
-      <div class="modal-title">
-        🏛️ Comment staker sur Babylon
-        <span class="modal-close" onclick="closePopup('popup-babylon')">✕</span>
-      </div>
-      <div class="modal-step"><div class="modal-dot">1</div><span>Installe un wallet Bitcoin compatible : <strong>OKX Wallet</strong>, <strong>Unisat</strong> ou <strong>Xverse</strong>. Assure-toi d'avoir du BTC dessus.</span></div>
+      <div class="modal-title">🏛️ Comment staker sur Babylon<span class="modal-close" onclick="closePopup('popup-babylon')">✕</span></div>
+      <div class="modal-step"><div class="modal-dot">1</div><span>Installe un wallet Bitcoin compatible : <strong>OKX Wallet</strong>, <strong>Unisat</strong> ou <strong>Xverse</strong>.</span></div>
       <div class="modal-step"><div class="modal-dot">2</div><span>Va sur <a href="https://babylonchain.io" target="_blank">babylonchain.io</a> → connecte ton wallet → clique sur <strong>"Stake BTC"</strong>.</span></div>
-      <div class="modal-step"><div class="modal-dot">3</div><span>Choisis un <strong>finality provider</strong> (validateur) → entre le montant → confirme. Ton BTC reste sur Bitcoin !</span></div>
-      <div class="modal-step"><div class="modal-dot">4</div><span>Tu reçois du <strong>BABY</strong> selon l'APY. Active le restaking pour recevoir du BTC à la place.</span></div>
-      <div class="modal-step"><div class="modal-dot">5</div><span>Pour sortir : <strong>unbonding ~7 jours</strong>. Planifie ta sortie à l'avance si tu en as besoin rapidement.</span></div>
+      <div class="modal-step"><div class="modal-dot">3</div><span>Choisis un <strong>finality provider</strong> → entre le montant → confirme. Ton BTC reste sur Bitcoin !</span></div>
+      <div class="modal-step"><div class="modal-dot">4</div><span>Tu reçois du <strong>BABY</strong> selon l'APY. Active le restaking pour recevoir du BTC.</span></div>
+      <div class="modal-step"><div class="modal-dot">5</div><span>Pour sortir : <strong>unbonding ~7 jours</strong>. Planifie à l'avance !</span></div>
     </div>
   </div>
 </div>
 
-<!-- ===== MODAL STACKS ===== -->
 <div class="modal-overlay" id="popup-stacks" onclick="closePopupOutside(event,'popup-stacks')">
   <div class="modal-box">
     <div class="modal-dame"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse"></div>
     <div class="modal-bubble">
-      <div class="modal-title">
-        📚 Comment stacker des STX
-        <span class="modal-close" onclick="closePopup('popup-stacks')">✕</span>
-      </div>
-      <div class="modal-step"><div class="modal-dot">1</div><span>Achète des STX sur <strong>Binance</strong> ou <strong>Kraken</strong> → envoie sur ton wallet <strong>Leather</strong> ou <strong>Xverse</strong>.</span></div>
-      <div class="modal-step"><div class="modal-dot">2</div><span>Va sur <a href="https://stacks.co" target="_blank">stacks.co</a> (stacking direct) ou <a href="https://stackingdao.com" target="_blank">stackingdao.com</a> (liquid staking sans lock).</span></div>
-      <div class="modal-step"><div class="modal-dot">3</div><span><strong>Stacking direct :</strong> lock ~2 semaines, tu reçois du BTC réel à la fin du cycle.<br><strong>StackingDAO :</strong> pas de lock, ton stSTX s'apprécie automatiquement.</span></div>
-      <div class="modal-step"><div class="modal-dot">4</div><span>Les rewards BTC arrivent tous les ~14 jours. Tu peux les réinvestir en BTC, en STX, ou les envoyer sur Babylon.</span></div>
+      <div class="modal-title">📚 Comment stacker des STX<span class="modal-close" onclick="closePopup('popup-stacks')">✕</span></div>
+      <div class="modal-step"><div class="modal-dot">1</div><span>Achète des STX sur <strong>Binance</strong> ou <strong>Kraken</strong> → envoie sur <strong>Leather</strong> ou <strong>Xverse</strong>.</span></div>
+      <div class="modal-step"><div class="modal-dot">2</div><span>Va sur <a href="https://stacks.co" target="_blank">stacks.co</a> (direct) ou <a href="https://stackingdao.com" target="_blank">stackingdao.com</a> (liquid).</span></div>
+      <div class="modal-step"><div class="modal-dot">3</div><span><strong>Direct :</strong> lock ~2 semaines, tu reçois du BTC réel.<br><strong>StackingDAO :</strong> pas de lock, ton stSTX s'apprécie automatiquement.</span></div>
+      <div class="modal-step"><div class="modal-dot">4</div><span>Les rewards BTC arrivent tous les ~14 jours.</span></div>
     </div>
   </div>
 </div>
 
-<!-- ===== MODAL STACKINGDAO ===== -->
 <div class="modal-overlay" id="popup-sdao" onclick="closePopupOutside(event,'popup-sdao')">
   <div class="modal-box">
     <div class="modal-dame"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse"></div>
     <div class="modal-bubble">
-      <div class="modal-title">
-        🌊 Comment utiliser StackingDAO
-        <span class="modal-close" onclick="closePopup('popup-sdao')">✕</span>
-      </div>
+      <div class="modal-title">🌊 Comment utiliser StackingDAO<span class="modal-close" onclick="closePopup('popup-sdao')">✕</span></div>
       <div class="modal-step"><div class="modal-dot">1</div><span>Installe <strong>Leather Wallet</strong> ou <strong>Xverse</strong> et envoie tes STX dessus.</span></div>
-      <div class="modal-step"><div class="modal-dot">2</div><span>Va sur <a href="https://app.stackingdao.com/stack?referral=SP16NH0WEC7PE9M8NC7ED8NWR8H7EBSBEBS1P9QF9" target="_blank">stackingdao.com</a> → connecte ton wallet → clique sur <strong>"Stack"</strong>.</span></div>
-      <div class="modal-step"><div class="modal-dot">3</div><span>Entre le montant de STX → confirme → tu reçois immédiatement des <strong>stSTX</strong> dans ton wallet.</span></div>
-      <div class="modal-step"><div class="modal-dot">4</div><span>Ton stSTX s'apprécie automatiquement. Pour retirer, clique <strong>"Unstake"</strong> — tu récupères plus de STX que tu n'en avais déposé.</span></div>
-      <div class="modal-step"><div class="modal-dot">5</div><span>Bonus : tu peux utiliser ton stSTX dans d'autres protocoles DeFi Stacks pour générer encore plus.</span></div>
+      <div class="modal-step"><div class="modal-dot">2</div><span>Va sur <a href="https://app.stackingdao.com/stack?referral=SP16NH0WEC7PE9M8NC7ED8NWR8H7EBSBEBS1P9QF9" target="_blank">stackingdao.com</a> → connecte → clique <strong>"Stack"</strong>.</span></div>
+      <div class="modal-step"><div class="modal-dot">3</div><span>Entre le montant → tu reçois immédiatement des <strong>stSTX</strong>.</span></div>
+      <div class="modal-step"><div class="modal-dot">4</div><span>Pour retirer, clique <strong>"Unstake"</strong> — tu récupères plus de STX qu'au départ.</span></div>
+      <div class="modal-step"><div class="modal-dot">5</div><span>Bonus : tu peux utiliser ton stSTX dans d'autres protocoles DeFi Stacks.</span></div>
     </div>
   </div>
 </div>
@@ -652,122 +487,98 @@
 <div class="page-footer">Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier.</div>
 
 <script>
-  // Fade-in
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.06 });
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  // Cyberpunk toggle (intro)
   function toggleCyber(e) {
     e.stopPropagation();
     document.getElementById('cyberTeacher').classList.toggle('open');
   }
-  document.addEventListener('click', () => {
-    document.getElementById('cyberTeacher').classList.remove('open');
-  });
+  document.addEventListener('click', () => { document.getElementById('cyberTeacher').classList.remove('open'); });
 
-  // Modaux maitresse
-  function openPopup(id) {
-    document.getElementById(id).classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closePopup(id) {
-    document.getElementById(id).classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function closePopupOutside(e, id) {
-    if (e.target === document.getElementById(id)) closePopup(id);
-  }
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      ['popup-babylon','popup-stacks','popup-sdao'].forEach(closePopup);
-    }
-  });
+  function openPopup(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+  function closePopup(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+  function closePopupOutside(e,id) { if(e.target===document.getElementById(id)) closePopup(id); }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') ['popup-babylon','popup-stacks','popup-sdao'].forEach(closePopup); });
 
-  // ===== PRIX =====
-  let P = { BTC:0, STX:0, BABY:0 };
-
+  let P = {BTC:0,STX:0,BABY:0};
   async function fetchPrices() {
     try {
       const r = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,blockstack,babylon&vs_currencies=usd");
       const d = await r.json();
-      P.BTC  = d.bitcoin?.usd    || 0;
-      P.STX  = d.blockstack?.usd || 0;
-      P.BABY = d.babylon?.usd    || 0;
-      const fmt = (v, dec) => v > 0 ? v.toLocaleString('fr-FR', {maximumFractionDigits: dec}) + ' $' : '...';
-      document.getElementById('b-price-btc').textContent  = fmt(P.BTC, 0);
-      document.getElementById('b-price-baby').textContent = fmt(P.BABY, 4);
-      document.getElementById('s-price-btc').textContent  = fmt(P.BTC, 0);
-      document.getElementById('s-price-stx').textContent  = fmt(P.STX, 4);
-      document.getElementById('d-price-stx').textContent  = fmt(P.STX, 4);
-      document.getElementById('d-price-btc').textContent  = fmt(P.BTC, 0);
-    } catch(e) { console.log('Prix indisponibles'); }
+      P.BTC=d.bitcoin?.usd||0; P.STX=d.blockstack?.usd||0; P.BABY=d.babylon?.usd||0;
+      const fmt=(v,dec)=>v>0?v.toLocaleString('fr-FR',{maximumFractionDigits:dec})+' $':'...';
+      document.getElementById('b-price-btc').textContent=fmt(P.BTC,0);
+      document.getElementById('b-price-baby').textContent=fmt(P.BABY,4);
+      document.getElementById('s-price-btc').textContent=fmt(P.BTC,0);
+      document.getElementById('s-price-stx').textContent=fmt(P.STX,4);
+      document.getElementById('d-price-stx').textContent=fmt(P.STX,4);
+      document.getElementById('d-price-btc').textContent=fmt(P.BTC,0);
+    } catch(e){console.log('Prix indisponibles');}
   }
 
-  // ===== BABYLON =====
   function calcBabylon() {
-    if (!P.BTC || !P.BABY) { alert("Prix non disponibles, patiente quelques secondes."); return; }
-    const btc  = parseFloat(document.getElementById('b-btc').value)  || 0;
-    const baby = parseFloat(document.getElementById('b-baby').value) || 0;
-    const babyFromBTC  = btc * 0.0101 * (P.BTC / P.BABY);
-    const babyFromBABY = baby * 0.1019;
-    const btcFromBTC   = btc * 0.0112;
-    const valBaby = (babyFromBTC + babyFromBABY) * P.BABY;
-    const valBtc  = btcFromBTC * P.BTC;
-    document.getElementById('b-out-baby-btc').textContent  = babyFromBTC.toFixed(2)  + ' BABY';
-    document.getElementById('b-out-baby-baby').textContent = babyFromBABY.toFixed(2) + ' BABY';
-    document.getElementById('b-out-btc').textContent       = btcFromBTC.toFixed(8)   + ' BTC';
-    document.getElementById('b-val-baby').textContent      = valBaby.toFixed(2)      + ' $';
-    document.getElementById('b-val-btc').textContent       = valBtc.toFixed(2)       + ' $';
-    document.getElementById('b-total').textContent         = (valBaby + valBtc).toFixed(2) + ' $';
+    if(!P.BTC||!P.BABY){alert("Prix non disponibles.");return;}
+    const btc=parseFloat(document.getElementById('b-btc').value)||0;
+    const baby=parseFloat(document.getElementById('b-baby').value)||0;
+    const babyFromBTC=btc*0.0101*(P.BTC/P.BABY);
+    const babyFromBABY=baby*0.1019;
+    const btcFromBTC=btc*0.0112;
+    const valBaby=(babyFromBTC+babyFromBABY)*P.BABY;
+    const valBtc=btcFromBTC*P.BTC;
+    document.getElementById('b-out-baby-btc').textContent=babyFromBTC.toFixed(2)+' BABY';
+    document.getElementById('b-out-baby-baby').textContent=babyFromBABY.toFixed(2)+' BABY';
+    document.getElementById('b-out-btc').textContent=btcFromBTC.toFixed(8)+' BTC';
+    document.getElementById('b-val-baby').textContent=valBaby.toFixed(2)+' $';
+    document.getElementById('b-val-btc').textContent=valBtc.toFixed(2)+' $';
+    document.getElementById('b-total').textContent=(valBaby+valBtc).toFixed(2)+' $';
     document.getElementById('babylon-results').classList.add('visible');
   }
 
-  // ===== STACKS =====
   function calcStacks() {
-    if (!P.BTC || !P.STX) { alert("Prix non disponibles."); return; }
-    const stx = parseFloat(document.getElementById('s-stx').value) || 0;
-    const apy = (parseFloat(document.getElementById('s-apy').value) || 7) / 100;
-    const valStx   = stx * P.STX;
-    const btcPerAn = valStx * apy / P.BTC;
-    const valBtc   = btcPerAn * P.BTC;
-    document.getElementById('s-val-stx').textContent   = valStx.toFixed(2)        + ' $';
-    document.getElementById('s-out-btc').textContent   = btcPerAn.toFixed(8)      + ' BTC';
-    document.getElementById('s-val-btc').textContent   = valBtc.toFixed(2)        + ' $';
-    document.getElementById('s-btc-month').textContent = (btcPerAn/12).toFixed(8) + ' BTC';
-    document.getElementById('s-total').textContent     = valBtc.toFixed(2)        + ' $';
+    if(!P.BTC||!P.STX){alert("Prix non disponibles.");return;}
+    const stx=parseFloat(document.getElementById('s-stx').value)||0;
+    const apy=(parseFloat(document.getElementById('s-apy').value)||7)/100;
+    const valStx=stx*P.STX;
+    const btcPerAn=valStx*apy/P.BTC;
+    const valBtc=btcPerAn*P.BTC;
+    document.getElementById('s-val-stx').textContent=valStx.toFixed(2)+' $';
+    document.getElementById('s-out-btc').textContent=btcPerAn.toFixed(8)+' BTC';
+    document.getElementById('s-val-btc').textContent=valBtc.toFixed(2)+' $';
+    document.getElementById('s-btc-month').textContent=(btcPerAn/12).toFixed(8)+' BTC';
+    document.getElementById('s-total').textContent=valBtc.toFixed(2)+' $';
     document.getElementById('stacks-results').classList.add('visible');
   }
 
-  // ===== STACKINGDAO =====
   function calcStackingDAO() {
-    if (!P.BTC || !P.STX) { alert("Prix non disponibles."); return; }
-    const stx    = parseFloat(document.getElementById('d-stx').value)    || 0;
-    const apy    = (parseFloat(document.getElementById('d-apy').value)   || 6) / 100;
-    const months = parseFloat(document.getElementById('d-months').value) || 12;
-    const exit   = parseFloat(document.getElementById('d-exit').value)   || P.STX;
-    const valIn   = stx * P.STX;
-    const stxOut  = stx * (1 + apy * months / 12);
-    const stxGain = stxOut - stx;
-    const valOut  = stxOut * exit;
-    const gainUSD = valOut - valIn;
-    const btcEq   = stxGain * exit / P.BTC;
-    document.getElementById('d-val-in').textContent   = valIn.toFixed(2)  + ' $';
-    document.getElementById('d-stx-out').textContent  = stxOut.toFixed(2) + ' STX';
-    document.getElementById('d-stx-gain').textContent = '+' + stxGain.toFixed(2) + ' STX';
-    const vo = document.getElementById('d-val-out');
-    vo.textContent = valOut.toFixed(2) + ' $';
-    vo.style.color = gainUSD >= 0 ? 'var(--green)' : '#EB5757';
-    document.getElementById('d-btc-equiv').textContent = btcEq.toFixed(8) + ' BTC';
-    const tot = document.getElementById('d-total');
-    tot.textContent = (gainUSD >= 0 ? '+' : '') + gainUSD.toFixed(2) + ' $';
-    tot.style.color = gainUSD >= 0 ? 'var(--btc)' : '#EB5757';
+    if(!P.BTC||!P.STX){alert("Prix non disponibles.");return;}
+    const stx=parseFloat(document.getElementById('d-stx').value)||0;
+    const apy=(parseFloat(document.getElementById('d-apy').value)||6)/100;
+    const months=parseFloat(document.getElementById('d-months').value)||12;
+    const exit=parseFloat(document.getElementById('d-exit').value)||P.STX;
+    const valIn=stx*P.STX;
+    const stxOut=stx*(1+apy*months/12);
+    const stxGain=stxOut-stx;
+    const valOut=stxOut*exit;
+    const gainUSD=valOut-valIn;
+    const btcEq=stxGain*exit/P.BTC;
+    document.getElementById('d-val-in').textContent=valIn.toFixed(2)+' $';
+    document.getElementById('d-stx-out').textContent=stxOut.toFixed(2)+' STX';
+    document.getElementById('d-stx-gain').textContent='+'+stxGain.toFixed(2)+' STX';
+    const vo=document.getElementById('d-val-out');
+    vo.textContent=valOut.toFixed(2)+' $';
+    vo.style.color=gainUSD>=0?'var(--green)':'#EB5757';
+    document.getElementById('d-btc-equiv').textContent=btcEq.toFixed(8)+' BTC';
+    const tot=document.getElementById('d-total');
+    tot.textContent=(gainUSD>=0?'+':'')+gainUSD.toFixed(2)+' $';
+    tot.style.color=gainUSD>=0?'var(--btc)':'#EB5757';
     document.getElementById('sdao-results').classList.add('visible');
   }
 
   fetchPrices();
-  setInterval(fetchPrices, 30000);
+  setInterval(fetchPrices,30000);
 </script>
 
 </body>

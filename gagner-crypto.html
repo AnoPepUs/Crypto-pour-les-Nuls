@@ -7,280 +7,120 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Barre de navigation */
     nav {
       background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px 0;
+      padding: 5px 0;
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
+      height: 50px;
+      display: flex;
+      align-items: center;
     }
     nav ul {
       list-style-type: none;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
     }
-    nav li { margin: 0 15px; }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-      padding: 5px 10px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
+    nav li { margin: 0 12px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; font-size: 16px; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s; }
     nav a:hover { background-color: rgba(255, 255, 255, 0.2); }
-
-    body {
-      margin: 0;
-      padding: 60px 0 0 0;
-      background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Exo 2', Arial, sans-serif;
-      color: white;
-      text-align: center;
-    }
-
-    .content {
-      padding: 20px;
-      max-width: 860px;
-      margin: 0 auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 10px;
-      text-align: left;
-      line-height: 1.6;
-    }
-
-    h1 {
-      font-family: 'Orbitron', sans-serif;
-      color: #6FA8DC;
-      text-align: center;
-      font-size: 1.8em;
-      text-shadow: 0 0 18px #6FA8DC88;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
-    }
-    h2 {
-      font-family: 'Orbitron', sans-serif;
-      color: #6FA8DC;
-      text-align: center;
-      font-size: 1.2em;
-      letter-spacing: 1px;
-      border-bottom: 1px solid #6FA8DC44;
-      padding-bottom: 8px;
-      margin-top: 40px;
-    }
-    h3 { color: #9FC5E8; font-size: 1em; margin-bottom: 6px; }
-
-    img {
-      display: block;
-      margin: 15px auto;
-      max-width: 100%;
-      border-radius: 10px;
-      border: 2px solid #6FA8DC;
-    }
-
-    .section-block {
-      margin-bottom: 30px;
-      padding: 18px 20px;
-      background-color: rgba(0, 0, 0, 0.45);
-      border-radius: 10px;
-      border: 1px solid #6FA8DC55;
-    }
-
-    .platform-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 22px;
-      padding: 16px;
-      background-color: rgba(11, 83, 148, 0.15);
-      border-radius: 10px;
-      border: 1px solid #6FA8DC44;
-      transition: border-color 0.3s;
-    }
-    .platform-card:hover { border-color: #6FA8DC; }
-    .platform-logo {
-      flex-shrink: 0;
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-      border: none;
+    .nav-gif-item { position: relative; }
+    .nav-gif-item .nav-tooltip {
+      display: none;
+      position: absolute;
+      top: 45px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.9);
+      border: 1px solid #FFD700;
       border-radius: 8px;
-      background: rgba(255,255,255,0.05);
-      padding: 6px;
+      padding: 8px 12px;
+      color: #FFD700;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      z-index: 999;
+      text-align: center;
+      line-height: 1.5;
+      pointer-events: none;
     }
+    .nav-gif-item:hover .nav-tooltip { display: block; }
+
+    body { margin: 0; padding: 60px 0 0 0; background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed; background-size: cover; font-family: 'Exo 2', Arial, sans-serif; color: white; text-align: center; }
+    .content { padding: 20px; max-width: 860px; margin: 0 auto; background-color: rgba(0, 0, 0, 0.6); border-radius: 10px; text-align: left; line-height: 1.6; }
+    h1 { font-family: 'Orbitron', sans-serif; color: #6FA8DC; text-align: center; font-size: 1.8em; text-shadow: 0 0 18px #6FA8DC88; letter-spacing: 2px; margin-bottom: 30px; }
+    h2 { font-family: 'Orbitron', sans-serif; color: #6FA8DC; text-align: center; font-size: 1.2em; letter-spacing: 1px; border-bottom: 1px solid #6FA8DC44; padding-bottom: 8px; margin-top: 40px; }
+    h3 { color: #9FC5E8; font-size: 1em; margin-bottom: 6px; }
+    img { display: block; margin: 15px auto; max-width: 100%; border-radius: 10px; border: 2px solid #6FA8DC; }
+    .section-block { margin-bottom: 30px; padding: 18px 20px; background-color: rgba(0, 0, 0, 0.45); border-radius: 10px; border: 1px solid #6FA8DC55; }
+    .platform-card { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 22px; padding: 16px; background-color: rgba(11, 83, 148, 0.15); border-radius: 10px; border: 1px solid #6FA8DC44; transition: border-color 0.3s; }
+    .platform-card:hover { border-color: #6FA8DC; }
+    .platform-logo { flex-shrink: 0; width: 80px; height: 80px; object-fit: contain; border: none; border-radius: 8px; background: rgba(255,255,255,0.05); padding: 6px; }
     .platform-info { flex: 1; }
     .platform-info h3 { margin-top: 0; font-size: 1.1em; }
-
-    .pros-cons {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-    .pros, .cons {
-      flex: 1;
-      min-width: 140px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 0.9em;
-    }
+    .pros-cons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .pros, .cons { flex: 1; min-width: 140px; padding: 8px 12px; border-radius: 8px; font-size: 0.9em; }
     .pros { background-color: rgba(0, 200, 100, 0.1); border: 1px solid rgba(0, 200, 100, 0.3); }
     .cons { background-color: rgba(255, 80, 80, 0.1); border: 1px solid rgba(255, 80, 80, 0.3); }
     .pros strong { display: block; margin-bottom: 4px; color: #6FCF97; }
     .cons strong { display: block; margin-bottom: 4px; color: #EB5757; }
-
-    .warning {
-      background-color: rgba(255, 0, 0, 0.15);
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 80, 80, 0.5);
-      margin-bottom: 20px;
-      font-size: 0.95em;
-    }
+    .warning { background-color: rgba(255, 0, 0, 0.15); padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255, 80, 80, 0.5); margin-bottom: 20px; font-size: 0.95em; }
     .warning::before { content: "⚠️ "; }
-
-    .tip {
-      background-color: rgba(0, 255, 0, 0.07);
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: 1px solid rgba(0, 200, 100, 0.35);
-      margin-bottom: 20px;
-      font-size: 0.95em;
-    }
+    .tip { background-color: rgba(0, 255, 0, 0.07); padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(0, 200, 100, 0.35); margin-bottom: 20px; font-size: 0.95em; }
     .tip::before { content: "💡 "; }
-
-    .info-box {
-      background-color: rgba(111, 168, 220, 0.1);
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: 1px solid rgba(111, 168, 220, 0.35);
-      margin-bottom: 20px;
-      font-size: 0.95em;
-    }
-
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-    .step-number {
-      flex-shrink: 0;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: #0B5394;
-      border: 2px solid #6FA8DC;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.85em;
-      font-weight: 700;
-      color: #6FA8DC;
-    }
+    .info-box { background-color: rgba(111, 168, 220, 0.1); padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(111, 168, 220, 0.35); margin-bottom: 20px; font-size: 0.95em; }
+    .step { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+    .step-number { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: #0B5394; border: 2px solid #6FA8DC; display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-size: 0.85em; font-weight: 700; color: #6FA8DC; }
     .step-content { flex: 1; padding-top: 4px; }
-
-    .button {
-      display: inline-block;
-      padding: 10px 22px;
-      background-color: #0B5394;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      margin: 8px 6px 8px 0;
-      font-family: 'Exo 2', sans-serif;
-      font-weight: 600;
-      font-size: 0.9em;
-      letter-spacing: 0.5px;
-      transition: background-color 0.3s, transform 0.2s;
-      border: 1px solid #6FA8DC55;
-    }
+    .button { display: inline-block; padding: 10px 22px; background-color: #0B5394; color: white; text-decoration: none; border-radius: 6px; margin: 8px 6px 8px 0; font-family: 'Exo 2', sans-serif; font-weight: 600; font-size: 0.9em; letter-spacing: 0.5px; transition: background-color 0.3s, transform 0.2s; border: 1px solid #6FA8DC55; }
     .button:hover { background-color: #6FA8DC; transform: translateY(-1px); }
-
-    .button-orange {
-      display: inline-block;
-      padding: 10px 22px;
-      background: linear-gradient(135deg, #FF4500, #FF6B35);
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      margin: 8px 6px 8px 0;
-      font-family: 'Exo 2', sans-serif;
-      font-weight: 600;
-      font-size: 0.9em;
-      transition: all 0.3s;
-      box-shadow: 0 0 10px rgba(255,69,0,0.4);
-    }
+    .button-orange { display: inline-block; padding: 10px 22px; background: linear-gradient(135deg, #FF4500, #FF6B35); color: white; text-decoration: none; border-radius: 6px; margin: 8px 6px 8px 0; font-family: 'Exo 2', sans-serif; font-weight: 600; font-size: 0.9em; transition: all 0.3s; box-shadow: 0 0 10px rgba(255,69,0,0.4); }
     .button-orange:hover { transform: translateY(-1px); box-shadow: 0 0 20px rgba(255,69,0,0.7); }
-
-    .badge {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.75em;
-      font-weight: 600;
-      margin-left: 8px;
-      vertical-align: middle;
-    }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75em; font-weight: 600; margin-left: 8px; vertical-align: middle; }
     .badge-easy { background-color: rgba(0, 200, 100, 0.2); border: 1px solid #6FCF97; color: #6FCF97; }
     .badge-medium { background-color: rgba(255, 165, 0, 0.2); border: 1px solid #FFA500; color: #FFA500; }
-
     .divider { border: none; border-top: 1px solid #6FA8DC33; margin: 30px 0; }
-
     .checklist li { list-style: none; padding: 4px 0; }
     .checklist li::before { content: "✅ "; }
-
-    .conclusion-box {
-      background: linear-gradient(135deg, rgba(11, 83, 148, 0.3), rgba(0,0,0,0.5));
-      border: 1px solid #6FA8DC;
-      border-radius: 12px;
-      padding: 22px 24px;
-      margin-top: 30px;
-      text-align: center;
-    }
-    .gold-rule {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1em;
-      color: #FFD700;
-      text-shadow: 0 0 10px #FFD70066;
-      margin: 16px 0;
-    }
-
+    .conclusion-box { background: linear-gradient(135deg, rgba(11, 83, 148, 0.3), rgba(0,0,0,0.5)); border: 1px solid #6FA8DC; border-radius: 12px; padding: 22px 24px; margin-top: 30px; text-align: center; }
+    .gold-rule { font-family: 'Orbitron', sans-serif; font-size: 1em; color: #FFD700; text-shadow: 0 0 10px #FFD70066; margin: 16px 0; }
     a { color: #6FA8DC; }
     a:hover { color: #9FC5E8; }
     ul, ol { padding-left: 20px; }
     li { margin-bottom: 4px; }
-
-    .page-footer {
-      text-align: center;
-      padding: 30px 10px;
-      color: #6FA8DC88;
-      font-size: 0.85em;
-    }
+    .page-footer { text-align: center; padding: 30px 10px; color: #6FA8DC88; font-size: 0.85em; }
   </style>
 </head>
 
 <body>
-  <!-- Barre de navigation -->
   <nav>
     <ul>
+      <li class="nav-gif-item">
+        <a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank">
+          <img src="https://i.postimg.cc/1XLDzBGs/terre_tourne.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+        </a>
+        <div class="nav-tooltip">🗺️ Jouer Gratuitement !<br>Chasse au Trésor Crypto</div>
+      </li>
+      <li class="nav-gif-item">
+        <a href="https://anopepus.github.io/" target="_blank">
+          <img src="https://i.postimg.cc/qMC792VP/papillon.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+        </a>
+        <div class="nav-tooltip">🦁 Soutenir AnoPepUs<br>Page Récompense BAT</div>
+      </li>
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="Kezako-Crypto.html">Kezako-Crypto</a></li>
+      <li><a href="Kezako-Crypto.html">Kezako</a></li>
       <li><a href="wallet.html">Wallet</a></li>
-      <li><a href="Achat-Vente-Crypto.html">Achat-Vente-Crypto</a></li>
+      <li><a href="Achat-Vente-Crypto.html">Achat-Vente</a></li>
       <li><a href="Investir.html">Investir</a></li>
       <li><a href="CosmosHub.html">CosmosHub</a></li>
       <li><a href="DEFI.html">DeFi</a></li>
       <li><a href="BTCFi.html">BTC-Fi</a></li>
-      <li><a href="gagner-crypto.html">Gagner-Crypto</a></li>
+      <li><a href="gagner-crypto.html">Gagner</a></li>
       <li><a href="Fiscalite.html">Fiscalité</a></li>
     </ul>
   </nav>
@@ -290,31 +130,19 @@
     <h1>💰 Gagner des Cryptos Gratuitement</h1>
     <p style="text-align:center; color:#bbb; margin-bottom:30px;">Des méthodes légitimes et testées pour gagner des cryptos sans investir — juste avec ton PC, ta connexion ou ton temps.</p>
 
-    <!-- SECTION 1 : NŒUDS -->
     <h2>1. Faire Tourner un Nœud 🖥️</h2>
-
     <div class="section-block">
       <p>Un nœud est un programme qui tourne en arrière-plan sur ton PC et participe à un réseau décentralisé. En échange, tu reçois des tokens. Idéal pour un vieux PC mis au placard !</p>
+      <div class="info-box">Les nœuds ci-dessous sont <strong>légers</strong>, ne nécessitent pas de matériel spécialisé et fonctionnent sur des PC classiques. Pas besoin d'être développeur !</div>
 
-      <div class="info-box">
-        Les nœuds ci-dessous sont <strong>légers</strong>, ne nécessitent pas de matériel spécialisé et fonctionnent sur des PC classiques. Pas besoin d'être développeur !
-      </div>
-
-      <!-- Presearch -->
       <div class="platform-card">
         <img src="https://i.postimg.cc/VN25Mzs3/presearch.png" alt="Presearch" class="platform-logo" onerror="this.style.display='none'">
         <div class="platform-info">
           <h3>🔍 Presearch <span class="badge badge-easy">⭐ Facile</span></h3>
           <p>Fais tourner un nœud de recherche décentralisé. Très léger, tourne en arrière-plan via Docker. Idéal pour un vieux PC.</p>
           <div class="pros-cons">
-            <div class="pros">
-              <strong>✅ Avantages</strong>
-              Ultra léger · Tourne 24h/24 · Récompense en PRE · 4 Go RAM suffisent
-            </div>
-            <div class="cons">
-              <strong>❌ Inconvénients</strong>
-              Nécessite Docker · Gains modestes au début
-            </div>
+            <div class="pros"><strong>✅ Avantages</strong>Ultra léger · Tourne 24h/24 · Récompense en PRE · 4 Go RAM suffisent</div>
+            <div class="cons"><strong>❌ Inconvénients</strong>Nécessite Docker · Gains modestes au début</div>
           </div>
           <br>
           <a href="https://presearch.com" target="_blank" class="button">Découvrir Presearch</a>
@@ -322,21 +150,14 @@
         </div>
       </div>
 
-      <!-- Storj -->
       <div class="platform-card">
         <img src="https://i.postimg.cc/1tNnYfYy/storj.png" alt="Storj" class="platform-logo" onerror="this.style.display='none'">
         <div class="platform-info">
           <h3>💾 Storj <span class="badge badge-easy">⭐ Facile</span></h3>
-          <p>Partage ton espace disque inutilisé pour stocker des données chiffrées sur le cloud décentralisé. Plus tu as de place, plus tu gagnes.</p>
+          <p>Partage ton espace disque inutilisé pour stocker des données chiffrées sur le cloud décentralisé.</p>
           <div class="pros-cons">
-            <div class="pros">
-              <strong>✅ Avantages</strong>
-              Récompense en STORJ · Utilise l'espace disque dormant · Données chiffrées et sécurisées
-            </div>
-            <div class="cons">
-              <strong>❌ Inconvénients</strong>
-              500 Go minimum requis · Connexion stable nécessaire
-            </div>
+            <div class="pros"><strong>✅ Avantages</strong>Récompense en STORJ · Utilise l'espace disque dormant · Données chiffrées</div>
+            <div class="cons"><strong>❌ Inconvénients</strong>500 Go minimum requis · Connexion stable nécessaire</div>
           </div>
           <br>
           <a href="https://www.storj.io" target="_blank" class="button">Découvrir Storj</a>
@@ -344,42 +165,28 @@
         </div>
       </div>
 
-      <!-- Theta -->
       <div class="platform-card">
         <img src="https://i.postimg.cc/FRJdn7nN/theta.png" alt="Theta" class="platform-logo" onerror="this.style.display='none'">
         <div class="platform-info">
           <h3>🎬 Theta / Edgelauncher <span class="badge badge-easy">⭐ Facile</span></h3>
           <p>Partage ta bande passante pour diffuser des vidéos en décentralisé. Tourne en fond de tâche, très discret.</p>
           <div class="pros-cons">
-            <div class="pros">
-              <strong>✅ Avantages</strong>
-              Récompense en TFUEL · Très léger · Interface simple
-            </div>
-            <div class="cons">
-              <strong>❌ Inconvénients</strong>
-              Gains variables selon la demande réseau
-            </div>
+            <div class="pros"><strong>✅ Avantages</strong>Récompense en TFUEL · Très léger · Interface simple</div>
+            <div class="cons"><strong>❌ Inconvénients</strong>Gains variables selon la demande réseau</div>
           </div>
           <br>
           <a href="https://www.thetatoken.org" target="_blank" class="button">Découvrir Theta</a>
         </div>
       </div>
 
-      <!-- MystNodes -->
       <div class="platform-card">
         <img src="https://i.postimg.cc/bJ2DFsF8/myst_Node.png" alt="MystNodes" class="platform-logo" onerror="this.style.display='none'">
         <div class="platform-info">
           <h3>🌐 MystNodes <span class="badge badge-easy">⭐ Facile</span></h3>
-          <p>Partage ta connexion internet comme VPN décentralisé. Ultra léger, parfait pour un vieux PC ou même un Raspberry Pi.</p>
+          <p>Partage ta connexion internet comme VPN décentralisé. Ultra léger, parfait pour un vieux PC ou Raspberry Pi.</p>
           <div class="pros-cons">
-            <div class="pros">
-              <strong>✅ Avantages</strong>
-              Récompense en MYST · Très léger · Fonctionne sur Raspberry Pi
-            </div>
-            <div class="cons">
-              <strong>❌ Inconvénients</strong>
-              Connexion stable requise · Gains dépendent du trafic
-            </div>
+            <div class="pros"><strong>✅ Avantages</strong>Récompense en MYST · Très léger · Fonctionne sur Raspberry Pi</div>
+            <div class="cons"><strong>❌ Inconvénients</strong>Connexion stable requise · Gains dépendent du trafic</div>
           </div>
           <br>
           <a href="https://mystnodes.com" target="_blank" class="button">Découvrir MystNodes</a>
@@ -387,135 +194,71 @@
         </div>
       </div>
 
-      <div class="tip">
-        <strong>Conseil :</strong> Ces 4 nœuds peuvent tourner simultanément sur le même vieux PC ! Lance-les tous et cumule les récompenses.
-      </div>
-
+      <div class="tip"><strong>Conseil :</strong> Ces 4 nœuds peuvent tourner simultanément sur le même vieux PC ! Lance-les tous et cumule les récompenses.</div>
     </div>
 
     <hr class="divider">
 
-    <!-- SECTION 2 : BRAVE -->
     <h2>2. Brave Rewards 🦁</h2>
-
     <div class="section-block">
-
       <div class="platform-card">
         <img src="https://i.postimg.cc/RF9z4StX/Brave.png" alt="Brave" class="platform-logo" onerror="this.style.display='none'">
         <div class="platform-info">
           <h3>🦁 Brave Browser <span class="badge badge-easy">⭐ Facile</span></h3>
-          <p>Brave est un navigateur qui te récompense en <strong>BAT (Basic Attention Token)</strong> pour avoir regardé des publicités respectueuses de ta vie privée. Zéro effort — juste naviguer comme d'habitude !</p>
+          <p>Brave est un navigateur qui te récompense en <strong>BAT (Basic Attention Token)</strong> pour avoir regardé des publicités respectueuses. Zéro effort !</p>
           <div class="pros-cons">
-            <div class="pros">
-              <strong>✅ Avantages</strong>
-              Gratuit · Bloque les pubs intrusives · Gagne du BAT en naviguant · Supporte les créateurs
-            </div>
-            <div class="cons">
-              <strong>❌ Inconvénients</strong>
-              Gains modestes · Nécessite un wallet pour retirer
-            </div>
+            <div class="pros"><strong>✅ Avantages</strong>Gratuit · Bloque les pubs intrusives · Gagne du BAT en naviguant</div>
+            <div class="cons"><strong>❌ Inconvénients</strong>Gains modestes · Nécessite un wallet pour retirer</div>
           </div>
         </div>
       </div>
-
       <h3>🚀 Comment démarrer ?</h3>
-      <div class="step">
-        <div class="step-number">1</div>
-        <div class="step-content">Télécharge et installe <a href="https://brave.com/fr/download/" target="_blank">Brave Browser</a>.</div>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <div class="step-content">Va dans <strong>Paramètres → Brave Rewards</strong> et active les récompenses.</div>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <div class="step-content">Navigue normalement — des notifications de pubs apparaîtront de temps en temps.</div>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <div class="step-content">Chaque mois, tes BAT s'accumulent. Transfère-les vers ton wallet ou soutiens des créateurs (comme moi 😉).</div>
-      </div>
-
+      <div class="step"><div class="step-number">1</div><div class="step-content">Télécharge et installe <a href="https://brave.com/fr/download/" target="_blank">Brave Browser</a>.</div></div>
+      <div class="step"><div class="step-number">2</div><div class="step-content">Va dans <strong>Paramètres → Brave Rewards</strong> et active les récompenses.</div></div>
+      <div class="step"><div class="step-number">3</div><div class="step-content">Navigue normalement — des notifications de pubs apparaîtront de temps en temps.</div></div>
+      <div class="step"><div class="step-number">4</div><div class="step-content">Chaque mois, tes BAT s'accumulent. Transfère-les vers ton wallet ou soutiens des créateurs (comme moi 😉).</div></div>
       <br>
       <a href="https://brave.com/fr/download/" target="_blank" class="button">🦁 Télécharger Brave</a>
       <a href="https://publishers.basicattentiontoken.org/c/ud1qYZmcWy" target="_blank" class="button-orange">❤️ Soutenir AnoPepUs</a>
-
     </div>
 
     <hr class="divider">
 
-    <!-- SECTION 3 : STAKING -->
     <h2>3. Staking Cosmos (ATOM) 🪙</h2>
-
     <div class="section-block">
-
-      <div class="info-box">
-        Le staking consiste à déléguer tes ATOM à un validateur qui sécurise le réseau Cosmos. En échange, tu reçois des récompenses automatiquement — environ <strong>15-20% par an</strong> selon les périodes.
-      </div>
-
+      <div class="info-box">Le staking consiste à déléguer tes ATOM à un validateur qui sécurise le réseau Cosmos. En échange, tu reçois des récompenses automatiquement — environ <strong>15-20% par an</strong>.</div>
       <h3>🔧 Comment ça marche ?</h3>
-      <p>Tu n'as besoin d'aucun matériel spécial. Il te suffit d'avoir des ATOM dans un wallet compatible, de choisir un validateur de confiance et de déléguer. Les récompenses s'accumulent à chaque bloc (~6 secondes) !</p>
-
-      <div class="step">
-        <div class="step-number">1</div>
-        <div class="step-content">Installe <a href="https://www.keplr.app" target="_blank">Keplr Wallet</a> (extension navigateur ou mobile) — le wallet de référence pour Cosmos.</div>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <div class="step-content">Achète des ATOM sur une plateforme d'échange et envoie-les vers ton Keplr. → <a href="Achat-Vente-Crypto.html">Voir la page Achat-Vente</a></div>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <div class="step-content">Va sur <a href="https://wallet.keplr.app/chains/cosmos-hub" target="_blank">Keplr Dashboard</a> → Stake → Choisis un validateur et délègue tes ATOM.</div>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <div class="step-content">Réclame tes récompenses régulièrement et restake-les pour profiter des intérêts composés 📈</div>
-      </div>
-
-      <div class="warning">
-        <strong>Unbonding period :</strong> Quand tu veux récupérer tes ATOM stakés, il faut attendre <strong>21 jours</strong>. Prévois-le avant de déléguer — ne stake pas des fonds dont tu pourrais avoir besoin rapidement !
-      </div>
-
-      <div class="tip">
-        Utilise <a href="https://www.mintscan.io/cosmos/validators" target="_blank">Mintscan</a> pour comparer les validateurs — regarde leur commission, leur uptime et leur réputation dans la communauté avant de choisir.
-      </div>
-
+      <p>Tu n'as besoin d'aucun matériel spécial. Il te suffit d'avoir des ATOM dans un wallet compatible, de choisir un validateur et de déléguer.</p>
+      <div class="step"><div class="step-number">1</div><div class="step-content">Installe <a href="https://www.keplr.app" target="_blank">Keplr Wallet</a> — le wallet de référence pour Cosmos.</div></div>
+      <div class="step"><div class="step-number">2</div><div class="step-content">Achète des ATOM et envoie-les vers ton Keplr. → <a href="Achat-Vente-Crypto.html">Voir la page Achat-Vente</a></div></div>
+      <div class="step"><div class="step-number">3</div><div class="step-content">Va sur <a href="https://wallet.keplr.app/chains/cosmos-hub" target="_blank">Keplr Dashboard</a> → Stake → Choisis un validateur et délègue tes ATOM.</div></div>
+      <div class="step"><div class="step-number">4</div><div class="step-content">Réclame tes récompenses régulièrement et restake-les pour les intérêts composés 📈</div></div>
+      <div class="warning"><strong>Unbonding period :</strong> Quand tu veux récupérer tes ATOM, il faut attendre <strong>21 jours</strong>. Ne stake pas des fonds dont tu pourrais avoir besoin rapidement !</div>
+      <div class="tip">Utilise <a href="https://www.mintscan.io/cosmos/validators" target="_blank">Mintscan</a> pour comparer les validateurs avant de choisir.</div>
       <br>
       <a href="https://www.keplr.app" target="_blank" class="button">🔑 Installer Keplr</a>
       <a href="https://www.mintscan.io/cosmos/validators" target="_blank" class="button">📊 Voir les validateurs</a>
       <a href="CosmosHub.html" class="button">🌌 En savoir plus sur Cosmos</a>
-
     </div>
 
     <hr class="divider">
 
-    <!-- CONCLUSION -->
     <h2>4. Récapitulatif</h2>
-
     <div class="conclusion-box">
       <ul class="checklist" style="text-align:left; display:inline-block;">
         <li><strong>Nœuds</strong> — Presearch, Storj, Theta, MystNodes : parfaits pour un vieux PC</li>
         <li><strong>Brave Rewards</strong> — Gagne du BAT juste en naviguant</li>
         <li><strong>Staking Cosmos</strong> — Fais travailler tes ATOM automatiquement</li>
       </ul>
-
       <p class="gold-rule">⚡ Ces méthodes sont complémentaires — cumule-les ! ⚡</p>
-
-      <p>Les gains restent modestes mais passifs. Avec le temps et si le marché monte, ça peut devenir intéressant. Commence petit, observe, et ajuste !</p>
-
-      <div class="warning" style="text-align:left; margin-top:20px;">
-        Ces méthodes sont légitimes mais les gains restent variables. Les cryptos sont volatiles — les récompenses en token peuvent valoir plus ou moins selon le marché. Fais tes propres recherches ! 🧐
-      </div>
-
+      <p>Les gains restent modestes mais passifs. Avec le temps et si le marché monte, ça peut devenir intéressant.</p>
+      <div class="warning" style="text-align:left; margin-top:20px;">Ces méthodes sont légitimes mais les gains restent variables. Les cryptos sont volatiles. Fais tes propres recherches ! 🧐</div>
       <img src="https://i.postimg.cc/VsVJgs1w/danse2.gif" alt="🎉" style="max-width:200px; margin-top:20px; border:none;" onerror="this.style.display='none'">
     </div>
 
   </div>
 
-  <div class="page-footer">
-    Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier.
-  </div>
+  <div class="page-footer">Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier.</div>
 
 </body>
 </html>

@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Crypto pour les Nuls</title>
-
-  <!-- Favicon -->
   <link rel="icon" type="image/gif" href="https://i.postimg.cc/qMC792VP/papillon.gif">
 
   <style>
-    /* Fond GIF plein écran */
     body {
       margin: 0;
       padding: 0;
@@ -19,20 +16,51 @@
       text-align: center;
     }
 
-    /* Logo */
+    /* ===== NAV ===== */
+    nav {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      height: 50px;
+      display: flex;
+      align-items: center;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0; padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+    }
+    nav li { margin: 0 12px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; font-size: 16px; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s; }
+    nav a:hover { background-color: rgba(255, 255, 255, 0.2); }
+    .nav-gif-item { position: relative; }
+    .nav-gif-item .nav-tooltip {
+      display: none; position: absolute; top: 45px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,0.9); border: 1px solid #FFD700; border-radius: 8px;
+      padding: 8px 12px; color: #FFD700; font-size: 0.8rem; white-space: nowrap;
+      z-index: 999; text-align: center; line-height: 1.5; pointer-events: none;
+    }
+    .nav-gif-item:hover .nav-tooltip { display: block; }
+    /* ===== FIN NAV ===== */
+
     #logo {
       width: 150px;
-      margin-top: 40px;
+      margin-top: 80px;
       animation: float 4s ease-in-out infinite;
     }
-
     @keyframes float {
       0% { transform: translateY(0px); }
       50% { transform: translateY(-10px); }
       100% { transform: translateY(0px); }
     }
 
-    /* Conteneur des boutons */
     .menu {
       margin-top: 50px;
       display: flex;
@@ -41,7 +69,6 @@
       gap: 40px;
     }
 
-    /* Boutons images rotatifs */
     .btn {
       width: 150px;
       height: 150px;
@@ -51,153 +78,210 @@
       transition: transform 0.4s;
       border: 3px solid white;
     }
+    .btn:hover { transform: rotateY(360deg) scale(1.1); }
+    .btn img { width: 100%; height: 100%; object-fit: cover; }
 
-    .btn:hover {
-      transform: rotateY(360deg) scale(1.1);
-    }
-
-    .btn img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Titre sous chaque bouton */
     .label {
       margin-top: 10px;
       font-size: 18px;
       font-weight: bold;
       text-shadow: 0 0 8px black;
     }
-  </style>
-  
-  <base target="_blank">
 
+    /* Texte de présentation */
+    .presentation {
+      max-width: 700px;
+      margin: 50px auto 20px;
+      text-align: left;
+      background: rgba(0,0,0,0.5);
+      border-radius: 12px;
+      padding: 25px 30px;
+      line-height: 1.8;
+    }
+    .presentation p { margin: 8px 0; }
+
+    /* Section 3 boutons destinations */
+    .destinations {
+      margin: 40px auto 60px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+    .dest-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+      text-decoration: none;
+      color: white;
+    }
+    .dest-item:hover { transform: scale(1.08); }
+    .dest-btn {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #FFD700;
+      box-shadow: 0 0 20px rgba(255,215,0,0.4);
+      transition: box-shadow 0.3s;
+    }
+    .dest-item:hover .dest-btn { box-shadow: 0 0 35px rgba(255,215,0,0.8); }
+    .dest-btn img { width: 100%; height: 100%; object-fit: cover; }
+    .dest-label {
+      margin-top: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #FFD700;
+      text-shadow: 0 0 10px rgba(255,215,0,0.5);
+      text-align: center;
+      max-width: 180px;
+    }
+
+    .section-title {
+      font-size: 1.3em;
+      color: #FFD700;
+      text-shadow: 0 0 12px rgba(255,215,0,0.5);
+      margin: 50px 0 10px;
+      letter-spacing: 2px;
+    }
+    .gold-divider {
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #FFD700, transparent);
+      margin: 0 auto 30px;
+    }
+  </style>
 </head>
 
 <body>
+
+  <nav>
+    <ul>
+      <li class="nav-gif-item">
+        <a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank">
+          <img src="https://i.postimg.cc/1XLDzBGs/terre_tourne.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+        </a>
+        <div class="nav-tooltip">🗺️ Jouer Gratuitement !<br>Chasse au Trésor Crypto</div>
+      </li>
+      <li class="nav-gif-item">
+        <a href="https://anopepus.github.io/" target="_blank">
+          <img src="https://i.postimg.cc/qMC792VP/papillon.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+        </a>
+        <div class="nav-tooltip">🦁 Soutenir AnoPepUs<br>Page Récompense BAT</div>
+      </li>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="Kezako-Crypto.html">Kezako</a></li>
+      <li><a href="wallet.html">Wallet</a></li>
+      <li><a href="Achat-Vente-Crypto.html">Achat-Vente</a></li>
+      <li><a href="Investir.html">Investir</a></li>
+      <li><a href="CosmosHub.html">CosmosHub</a></li>
+      <li><a href="DEFI.html">DeFi</a></li>
+      <li><a href="BTCFi.html">BTC-Fi</a></li>
+      <li><a href="gagner-crypto.html">Gagner</a></li>
+      <li><a href="Fiscalite.html">Fiscalité</a></li>
+    </ul>
+  </nav>
 
   <!-- Logo -->
   <img id="logo" src="https://i.postimg.cc/qMC792VP/papillon.gif" alt="Logo">
 
   <h1>Crypto pour les Nuls, fait par un Nul</h1>
-  <img src="https://i.postimg.cc/Kcsz1Lw8/pour-les-nuls.png" alt="Les Nuls"width="500" height="200">
+  <img src="https://i.postimg.cc/Kcsz1Lw8/pour-les-nuls.png" alt="Les Nuls" width="500" height="200">
   <p>Choisis une catégorie pour commencer ton voyage dans l'univers crypto.</p>
 
-  <!-- Menu -->
+  <!-- Menu principal -->
   <div class="menu">
-
-    <!-- Exemple bouton Kezako Crypto? -->
     <div onclick="location.href='Kezako-Crypto.html'">
-      <div class="btn">
-        <img src="https://i.postimg.cc/3NRY9mFX/quoi_btc_rond.png" alt="Kezako-Crypto">
-      </div>
+      <div class="btn"><img src="https://i.postimg.cc/3NRY9mFX/quoi_btc_rond.png" alt="Kezako-Crypto"></div>
       <div class="label">Kezako-Crypto</div>
     </div>
-
-    <!-- Exemple bouton Wallet -->
     <div onclick="location.href='wallet.html'">
-      <div class="btn">
-        <img src="https://i.postimg.cc/3NRY9mFj/wallet_rond.png" alt="Wallet">
-      </div>
+      <div class="btn"><img src="https://i.postimg.cc/3NRY9mFj/wallet_rond.png" alt="Wallet"></div>
       <div class="label">Wallet</div>
     </div>
-
-    <!-- Exemple bouton Achat-Vente-Crypto -->
     <div onclick="location.href='Achat-Vente-Crypto.html'">
-      <div class="btn">
-        <img src="https://i.postimg.cc/0jQPZD07/bank_rond.png" alt="Achat-Vente-Crypto">
-      </div>
+      <div class="btn"><img src="https://i.postimg.cc/0jQPZD07/bank_rond.png" alt="Achat-Vente-Crypto"></div>
       <div class="label">Achat-Vente-Crypto</div>
     </div>
-
-    <!-- Exemple bouton Investir -->
     <div onclick="location.href='Investir.html'">
-      <div class="btn">
-        <img src="https://i.postimg.cc/0jQPZD0p/graph_rond.png" alt="Investir">
-      </div>
+      <div class="btn"><img src="https://i.postimg.cc/0jQPZD0p/graph_rond.png" alt="Investir"></div>
       <div class="label">Investir</div>
     </div>
-
-    <!-- Exemple bouton Cosmos -->
     <div onclick="location.href='CosmosHub.html'">
-      <div class="btn">
-        <img src="https://i.postimg.cc/zG55Ps7q/ATOM_GIF.gif" alt="Cosmos">
-      </div>
+      <div class="btn"><img src="https://i.postimg.cc/zG55Ps7q/ATOM_GIF.gif" alt="Cosmos"></div>
       <div class="label">CosmosHub</div>
     </div>
-
-    <!-- Exemple bouton DeFi -->
     <div onclick="location.href='DEFI.html'">
-      <div class="btn">
-        <img src="https://i.postimg.cc/cCH0TwBY/defi_rond.png" alt="DeFi">
-      </div>
+      <div class="btn"><img src="https://i.postimg.cc/cCH0TwBY/defi_rond.png" alt="DeFi"></div>
       <div class="label">DeFi</div>
     </div>
-    
-    <!-- Exemple bouton Fiscalité -->
     <div onclick="location.href='Fiscalite.html'">
-      <div class="btn">
-        <img src="https://i.postimg.cc/2yzFt81X/fiscalite.jpg" alt="Fiscalité">
-      </div>
+      <div class="btn"><img src="https://i.postimg.cc/2yzFt81X/fiscalite.jpg" alt="Fiscalité"></div>
       <div class="label">Fiscalité</div>
     </div>
-
-    <!-- Exemple BTC Fi -->
     <div onclick="location.href='BTCFi.html'">
-      <div class="btn">
-        <img src="https://i.postimg.cc/QCthS1J7/btcfi_rond.png" alt="BTCFi">
-      </div>
+      <div class="btn"><img src="https://i.postimg.cc/QCthS1J7/btcfi_rond.png" alt="BTCFi"></div>
       <div class="label">BTC Fi</div>
     </div>
-<!-- Exemple Gagner-crypto -->
     <div onclick="location.href='gagner-crypto.html'">
-      <div class="btn">
-        <img src="https://i.postimg.cc/BQg7byYF/gagner-crypto.jpg" alt="gagner-crypto">
-      </div>
+      <div class="btn"><img src="https://i.postimg.cc/BQg7byYF/gagner-crypto.jpg" alt="gagner-crypto"></div>
       <div class="label">Gagner-Crypto</div>
     </div>
   </div>
 
+  <!-- Texte de présentation -->
+  <div class="presentation">
+    <p>Si tu es ici, c'est que tu as déjà entendu parlé du Bitcoin alias BTC.</p>
+    <p>J'ai de moins en moins confiance aux banques traditionnelles et aux échangeurs centralisés type Binance. En plus d'une faillite, si un gouvernement leur demande de bloquer tes fonds... ils le feront.</p>
+    <p>Je me rappelle trop au début des années 2000 en Grèce où les gens ne pouvaient plus retirer leur argent au distributeur. Chose similaire au Liban dans les années 2020 où une femme a été obligée de braquer sa propre banque pour soigner sa sœur.</p>
+    <p>Et c'est lors de la crise financière de 2008, que bitcoin est né.</p>
+    <p>Si tu veux être millionnaire, sache que cela peut t'arriver (et je l'espère pour toi). Mais moi c'est le côté épargne qui m'intéresse, où l'argent que j'ai gagné par le fruit de mon travail : je veux le protéger.</p>
+    <p>Sache quand même que rien ne te rapportera mieux que le travail dans l'économie réel.</p>
+    <p>Et puis ils nous emmerdent avec leur impression monétaire. Le Bitcoin lui, il y en aura 21 Millions, pas un de plus. Pas comme le papier toilette que l'on a dans nos poches.</p>
+    <p>Entre 2008 et 2014, les USA ont imprimé 4 000 Milliards de $ et autant € en Europe. Pour la crise du Covid en 2020 : 3 000 Md$ et 2 000 Md€.</p>
+    <p>Imagine... L'image ci-dessous te résume l'inflation monétaire.</p>
+    <img src="https://i.postimg.cc/WpQQh1Nc/inflation.png" alt="Inflation" style="max-width:100%; border:none; border-radius:8px; margin:15px auto;">
+    <p>Tout ceci, pour sauver les banques, qui font joujou avec notre argent gagné à la sueur de notre front ?</p>
+    <p>Je reste persuadé que nous sommes au tout début d'une grande aventure qui va révolutionner le monde. Je crois en la technologie BlockChain.</p>
+    <p>Ce site est fait par un Nul, fais ton propre chemin dans cette jungle numérique. Partons ensemble pour cette grande aventure !</p>
+    <p style="text-align:center; margin-top:15px;">
+      <a href="https://www.youtube.com/watch?v=B_5QeHGsd9I&t=977s" target="_blank" style="color:#FFD700;">🎬 Histoire de la crypto (vidéo)</a>
+    </p>
+  </div>
+
+  <!-- Section 3 destinations -->
+  <p class="section-title">✨ ENVIE D'AVENTURE ? ✨</p>
+  <div class="gold-divider"></div>
+
+  <div class="destinations">
+
+    <!-- Chasse au Trésor Planète -->
+    <a href="https://anopepus.github.io/Chasse-au-tresor/enigmes.html" target="_blank" class="dest-item">
+      <div class="dest-btn">
+        <img src="https://i.postimg.cc/9QqCzGrF/terre_tourne.gif" alt="Chasse au Trésor">
+      </div>
+      <div class="dest-label">🌍 Énigmes Planète<br><small style="font-size:0.8em;color:#ccc;">Chasse au Trésor Crypto</small></div>
+    </a>
+
+    <!-- Explorer le Cosmos -->
+    <a href="https://anopepus.github.io/Chasse-au-tresor/enigmes-cosmos.html" target="_blank" class="dest-item">
+      <div class="dest-btn">
+        <img src="https://i.postimg.cc/fTJHF8MF/arianne.gif" alt="Explorer Cosmos">
+      </div>
+      <div class="dest-label">🚀 Explorer le Cosmos<br><small style="font-size:0.8em;color:#ccc;">Carte Stellarium</small></div>
+    </a>
+
+    <!-- Page Récompense -->
+    <a href="https://anopepus.github.io/" target="_blank" class="dest-item">
+      <div class="dest-btn">
+        <img src="https://i.postimg.cc/Fs9jGRJg/brave.gif" alt="Récompense Brave">
+      </div>
+      <div class="dest-label">🦁 Soutenir AnoPepUs<br><small style="font-size:0.8em;color:#ccc;">Page Récompense BAT</small></div>
+    </a>
+
+  </div>
+
 </body>
-</p>Si tu es ici, c'est que tu as déjà entendu parlé du Bitcoin alias BTC.</p> 
-</p> J'ai de moins en moins confiance aux banques traditionnelles et aux échangeurs centralisés type Binance en plus d'une faillite,</p> 
-</p>si un gouvernement leur demande de bloquer tes fonds...ils le feront.</p> 
-</p>Je me rappel trop au début des année 2000 en Grèce où les gens ne pouvaient plus retirer leur argent au distributeur.</p> 
-</p>Chose similaire au Liban dans les années 2020 où une femme a été obligée de braquer sa propre banque pour soigner sa sœur.</p>
-</p>Et c'est lors de la crise financière de 2008, que bitcoin est né</p>
-</p>Si tu veux être millionnaire, sache que cela peut t'arriver (et je l'espère pour toi)</p>
-</p>Mais moi c'est le coté épargne qui m'intéresse, où l'argent que j'ai gagné par le fruit de mon travail: je veux le protéger.</p>
-
-</p>Sache quand même que rien ne te rapportera mieux que le travail dans l'économie réel.</p>
-
-</p>Et puis ils nous emmerde avec leurs impression monétaire.</p>
-
-</p>Le Bitcoin lui, il y en aura 21 Millions, pas un de plus.</p>
-
-</p>Pas comme le papier toilette que l'on a dans nos poches.</p>
-
-</p>Entre 2008 et 2014, les USA ont imprimé 4 000 Milliards de $ et autan € en Europe</p>
-</p>Pour la crise du Covid en 2020: 3 000 Md$ et 2 000 Md€.</p>
-
-</p>Imagine...L'image ci-dessous te résume l'inflation monnaitaire.</p>
-<img src="https://i.postimg.cc/WpQQh1Nc/inflation.png" alt="Les Nuls">
-</p>Tout ceci, pour sauver les banques, qui font joujou avec sous, gagné à la sueur de notre front?</p>
-
-</p>Je te met une vidéo qui résume ce site</p>
-</p><a href="https://www.youtube.com/watch?v=B_5QeHGsd9I&t=977s" target="_blank">Histoire de la crypto</a></p>
-
-</p> Je reste persuadé que nous somme au tout début d'une grande aventure qui va révolutionner le monde.</p>
-</p>Je crois en la technologie BlockChain.</p>
-</p>Tu veux investir, épargner</p>
-</p>Tu veux participer à sécuriser les réseaux.</p>
-</p>Dans la cryptomonnaie vous avez plein de nouveau projet mais attention aux arnaques</p>
-</p>Tu cherche un guide du débutant pour apprendre</p>
-</p>Ce site est fait par un Nul, fais ton propre chemin dans cette jungle numérique.</p>
-</p>Partons ensemble pour cette grande aventure</p>
-</p>Si tu préfère t'amuser en faisant une chasse aux cryptos, et découvrir notre belle planéte c'est ici</p>
-
-<a href="https://anopepus.github.io/Chasse-au-tresor/">
-  <img src="https://i.postimg.cc/9QqCzGrF/terre_tourne.gif" alt="terre" width="300" height="300">
-</a>
 </html>

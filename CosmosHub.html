@@ -16,23 +16,64 @@
       --atom:#6F86D6;
     }
     * { box-sizing:border-box; }
-    body { margin:0; padding:70px 0 0; background:url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed; background-size:cover; font-family:'Exo 2',Arial,sans-serif; color:white; text-align:center; }
+    body { margin:0; padding:60px 0 0; background:url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed; background-size:cover; font-family:'Exo 2',Arial,sans-serif; color:white; text-align:center; }
 
-    nav { background-color:rgba(0,0,0,0.75); padding:10px 0; position:fixed; top:0; width:100%; z-index:1000; backdrop-filter:blur(6px); }
-    nav ul { list-style:none; margin:0; padding:0; display:flex; justify-content:center; flex-wrap:wrap; gap:4px; }
+    /* ===== NAV CORRIGÉE ===== */
+    nav {
+      background-color:rgba(0,0,0,0.75);
+      padding: 5px 0;
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(6px);
+      height: 50px;
+      display: flex;
+      align-items: center;
+    }
+    nav ul {
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      justify-content:center;
+      flex-wrap:nowrap;
+      align-items:center;
+      width:100%;
+      gap:4px;
+    }
     nav li { margin:0 6px; }
     nav a { color:white; text-decoration:none; font-weight:600; font-size:14px; padding:5px 10px; border-radius:5px; transition:background 0.3s; font-family:'Exo 2',sans-serif; }
     nav a:hover { background-color:rgba(255,255,255,0.18); }
+    .nav-gif-item { position: relative; }
+    .nav-gif-item .nav-tooltip {
+      display: none;
+      position: absolute;
+      top: 45px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.9);
+      border: 1px solid #FFD700;
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #FFD700;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      z-index: 999;
+      text-align: center;
+      line-height: 1.5;
+      pointer-events: none;
+    }
+    .nav-gif-item:hover .nav-tooltip { display: block; }
+    /* ===== FIN NAV ===== */
 
     .content { padding:24px 20px 40px; max-width:900px; margin:0 auto; background-color:rgba(0,0,0,0.65); border-radius:12px; text-align:left; line-height:1.7; }
-
     h1 { font-family:'Orbitron',sans-serif; color:var(--atom); text-align:center; font-size:1.9em; text-shadow:0 0 22px var(--blue-glow); letter-spacing:2px; margin-bottom:6px; }
     .page-subtitle { text-align:center; color:#aaa; font-style:italic; margin-bottom:36px; font-size:0.95em; }
     h2 { font-family:'Orbitron',sans-serif; color:var(--atom); font-size:1.05em; letter-spacing:1px; border-bottom:1px solid var(--card-border); padding-bottom:8px; margin-top:44px; }
     h3 { color:var(--blue); font-size:0.97em; margin:16px 0 8px; }
     a { color:var(--blue); } a:hover { color:var(--atom); }
     img { display:block; margin:12px auto; max-width:100%; border-radius:10px; border:2px solid var(--atom); }
-
     .section-block { margin-bottom:20px; padding:18px 20px; background-color:var(--card-bg); border-radius:10px; border:1px solid var(--card-border); }
     .warning { background-color:var(--red); padding:11px 15px; border-radius:10px; border:1px solid var(--red-border); margin:12px 0; font-size:0.9em; }
     .warning::before { content:"⚠️ "; }
@@ -40,20 +81,11 @@
     .tip::before { content:"💡 "; }
     .info-box { background-color:rgba(111,134,214,0.08); padding:11px 15px; border-radius:10px; border:1px solid rgba(111,134,214,0.3); margin:12px 0; font-size:0.9em; }
     .atom-rule { font-family:'Orbitron',sans-serif; font-size:0.95em; color:var(--atom); text-shadow:0 0 12px var(--blue-glow); text-align:center; margin:16px 0; padding:13px; border:1px solid rgba(111,134,214,0.4); border-radius:8px; background:rgba(111,134,214,0.05); }
-
-    /* PAVÉS */
     .pavé { border-radius:14px; padding:22px; margin:20px 0; border:2px solid rgba(111,134,214,0.35); background:rgba(0,0,0,0.55); position:relative; overflow:hidden; }
     .pavé::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,transparent,var(--atom),transparent); }
     .pavé-title { font-family:'Orbitron',sans-serif; font-size:1em; color:var(--atom); margin:0 0 14px; display:flex; align-items:center; gap:10px; border-bottom:1px solid rgba(111,134,214,0.2); padding-bottom:10px; }
-
-    /* PROJETS CARDS */
     .project-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; margin:20px 0; }
-    .project-card {
-      background:rgba(0,0,0,0.55); border:1px solid rgba(111,134,214,0.3);
-      border-radius:14px; padding:18px; position:relative; overflow:hidden;
-      transition:border-color 0.3s, transform 0.2s;
-      display:flex; flex-direction:column; gap:10px;
-    }
+    .project-card { background:rgba(0,0,0,0.55); border:1px solid rgba(111,134,214,0.3); border-radius:14px; padding:18px; position:relative; overflow:hidden; transition:border-color 0.3s, transform 0.2s; display:flex; flex-direction:column; gap:10px; }
     .project-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,var(--atom),transparent); }
     .project-card:hover { border-color:var(--atom); transform:translateY(-3px); }
     .project-logo { width:56px; height:56px; border-radius:12px; object-fit:contain; background:rgba(255,255,255,0.05); padding:6px; border:1px solid rgba(111,134,214,0.3); margin:0; }
@@ -71,14 +103,10 @@
     .proj-btn { padding:6px 12px; border-radius:6px; font-size:0.78em; font-weight:600; text-decoration:none; border:1px solid rgba(111,134,214,0.4); background:rgba(111,134,214,0.1); color:var(--blue); transition:background 0.2s; }
     .proj-btn:hover { background:var(--atom); color:white; }
     .proj-btn.primary { background:rgba(111,134,214,0.25); border-color:var(--atom); color:white; }
-
-    /* ÉTAPES */
     .step { display:flex; align-items:flex-start; gap:12px; margin-bottom:10px; padding:9px 12px; background:rgba(111,134,214,0.06); border-radius:8px; border-left:3px solid var(--atom); }
     .step-number { flex-shrink:0; width:30px; height:30px; border-radius:50%; background:rgba(11,83,148,0.6); border:2px solid var(--atom); display:flex; align-items:center; justify-content:center; font-family:'Orbitron',sans-serif; font-size:0.78em; font-weight:700; color:var(--atom); }
     .step-content { flex:1; padding-top:3px; font-size:0.9em; }
     .step-content strong { color:var(--blue); }
-
-    /* COMPARE */
     .compare-grid { display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; }
     .compare-card { flex:1; min-width:140px; background:rgba(0,0,0,0.4); border-radius:10px; padding:11px; border:1px solid rgba(111,134,214,0.2); }
     .compare-card h4 { font-family:'Orbitron',sans-serif; font-size:0.74em; color:var(--atom); margin:0 0 7px; text-align:center; padding-bottom:6px; border-bottom:1px solid rgba(111,134,214,0.2); }
@@ -86,8 +114,6 @@
     .compare-row:last-child { border:none; }
     .compare-row span:first-child { color:#aaa; }
     .compare-row span:last-child { font-weight:600; color:var(--green); }
-
-    /* SIMULATEUR */
     .simulator { background:rgba(0,0,0,0.6); border:1px solid var(--atom); border-radius:12px; padding:18px; margin:16px 0; }
     .simulator > h3 { color:var(--gold); font-family:'Orbitron',sans-serif; text-align:center; margin-top:0; font-size:0.88em; }
     .sim-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0; }
@@ -110,37 +136,26 @@
     .result-total { background:rgba(111,134,214,0.12); border:1px solid var(--atom); border-radius:8px; padding:12px; margin-top:10px; text-align:center; }
     .result-total .amount { font-family:'Orbitron',sans-serif; font-size:1.4em; color:var(--atom); text-shadow:0 0 14px var(--blue-glow); }
     .result-total .rlabel { font-size:0.76em; color:#aaa; margin-top:4px; }
-
-    /* PRIX */
     .price-ticker { display:flex; gap:9px; flex-wrap:wrap; margin:10px 0; }
     .price-card { flex:1; min-width:90px; background:rgba(0,0,0,0.5); border:1px solid rgba(111,134,214,0.3); border-radius:8px; padding:7px 11px; text-align:center; }
     .price-card .coin { font-family:'Orbitron',sans-serif; font-size:0.7em; color:var(--atom); margin-bottom:2px; }
     .price-card .price { font-size:0.85em; font-weight:700; }
     @keyframes blink { 0%,100%{opacity:1;}50%{opacity:0.2;} }
     .dot-live { display:inline-block; width:6px; height:6px; background:var(--green); border-radius:50%; animation:blink 1.5s infinite; margin-right:5px; }
-
-    /* MAPOFZONES */
     .moz-container { position:relative; display:block; cursor:pointer; border-radius:12px; overflow:hidden; border:2px solid rgba(111,134,214,0.4); margin:16px 0; transition:border-color 0.3s, transform 0.2s; }
     .moz-container:hover { border-color:var(--atom); transform:scale(1.01); }
     .moz-container img { margin:0; border:none; border-radius:0; width:100%; }
     .moz-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center; gap:12px; transition:background 0.3s; }
     .moz-container:hover .moz-overlay { background:rgba(0,0,0,0.25); }
-    .moz-btn { font-family:'Orbitron',sans-serif; font-size:0.85em; padding:10px 20px; background:rgba(111,134,214,0.85); color:white; border-radius:8px; border:1px solid var(--atom); display:flex; align-items:center; gap:8px; }
-
-    /* KEPLR DASHBOARD */
     .keplr-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0; }
     .keplr-card { background:rgba(0,0,0,0.4); border:1px solid rgba(111,134,214,0.25); border-radius:10px; padding:13px; }
     .keplr-card h4 { font-family:'Orbitron',sans-serif; font-size:0.76em; color:var(--atom); margin:0 0 8px; display:flex; align-items:center; gap:6px; }
     .keplr-card p { font-size:0.84em; color:#ccc; margin:0; line-height:1.5; }
-
-    /* DAME CLIQUABLE */
     .teacher-trigger { display:inline-flex; flex-direction:column; align-items:center; cursor:pointer; margin:10px 0; transition:transform 0.2s; }
     .teacher-trigger:hover { transform:scale(1.04); }
     .teacher-trigger img { width:110px; border:none; border-radius:10px; margin:0; filter:drop-shadow(0 0 10px var(--atom)); transition:filter 0.2s; }
     .teacher-trigger:hover img { filter:drop-shadow(0 0 18px var(--atom)); }
     .teacher-label { font-size:0.74em; color:#aaa; margin-top:5px; text-align:center; }
-
-    /* MODAUX */
     .modal-overlay { display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.75); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:20px; }
     .modal-overlay.open { display:flex; }
     .modal-box { position:relative; max-width:500px; width:100%; animation:popIn 0.25s ease; }
@@ -162,29 +177,21 @@
     .modal-step a { color:var(--atom); }
     .modal-info { background:rgba(111,134,214,0.08); border:1px solid rgba(111,134,214,0.25); border-radius:8px; padding:9px 12px; font-size:0.82em; color:#ddd; margin:10px 0; line-height:1.5; }
     .modal-info strong { color:var(--atom); }
-
     .btn-link { display:inline-flex; align-items:center; gap:7px; padding:8px 15px; background:rgba(11,83,148,0.4); color:white; text-decoration:none; border-radius:6px; font-weight:600; font-size:0.83em; border:1px solid rgba(111,134,214,0.4); transition:background 0.3s,transform 0.2s; margin:3px; }
     .btn-link:hover { background:var(--atom); color:white; transform:translateY(-1px); }
-
-    /* SLIDER */
     input[type=range] { width:100%; appearance:none; -webkit-appearance:none; height:5px; background:rgba(111,134,214,0.3); border-radius:3px; outline:none; border:none; padding:0; }
     input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:16px; height:16px; border-radius:50%; background:var(--atom); cursor:pointer; border:2px solid white; }
-
     hr.divider { border:none; border-top:1px solid var(--card-border); margin:34px 0; }
     ul,ol { padding-left:18px; } li { margin-bottom:4px; }
     .page-footer { text-align:center; padding:26px 10px; color:#6FA8DC44; font-size:0.8em; }
     .fade-in { opacity:0; transform:translateY(16px); transition:opacity 0.5s ease,transform 0.5s ease; }
     .fade-in.visible { opacity:1; transform:translateY(0); }
-
-    /* TOOLTIPS */
     .tip-wrap { position:relative; display:inline-flex; align-items:center; gap:4px; cursor:default; }
     .tip-icon { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; border-radius:50%; background:rgba(111,134,214,0.15); border:1px solid rgba(111,134,214,0.5); color:var(--atom); font-size:9px; font-weight:700; cursor:help; }
     .tip-bub { display:none; position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%); background:rgba(10,10,20,0.97); border:1px solid var(--atom); border-radius:8px; padding:8px 11px; font-size:0.75em; color:#eee; line-height:1.5; width:200px; z-index:500; pointer-events:none; }
     .tip-bub::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--atom); }
     .tip-bub strong { color:var(--atom); }
     .tip-wrap:hover .tip-bub { display:block; }
-
-    /* IBC ANIMATION */
     .ibc-flow { display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; margin:16px 0; padding:14px; background:rgba(111,134,214,0.05); border:1px solid rgba(111,134,214,0.2); border-radius:10px; }
     .ibc-chain { background:rgba(0,0,0,0.5); border:1px solid var(--atom); border-radius:8px; padding:8px 12px; font-size:0.8em; text-align:center; font-weight:600; }
     .ibc-chain small { display:block; color:#aaa; font-size:0.8em; font-weight:400; }
@@ -196,15 +203,29 @@
 
 <nav>
   <ul>
+    <li class="nav-gif-item">
+      <a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank">
+        <img src="https://i.postimg.cc/1XLDzBGs/terre_tourne.gif"
+             style="width:35px; height:35px; border-radius:50%; border:2px solid #FFD700; vertical-align:middle;" />
+      </a>
+      <div class="nav-tooltip">🗺️ Jouer Gratuitement !<br>Chasse au Trésor Crypto</div>
+    </li>
+    <li class="nav-gif-item">
+      <a href="https://anopepus.github.io/" target="_blank">
+        <img src="https://i.postimg.cc/qMC792VP/papillon.gif"
+             style="width:35px; height:35px; border-radius:50%; border:2px solid #FFD700; vertical-align:middle;" />
+      </a>
+      <div class="nav-tooltip">🦁 Soutenir AnoPepUs<br>Page Récompense BAT</div>
+    </li>
     <li><a href="index.html">Accueil</a></li>
-    <li><a href="Kezako-Crypto.html">Kezako-Crypto</a></li>
+    <li><a href="Kezako-Crypto.html">Kezako</a></li>
     <li><a href="wallet.html">Wallet</a></li>
-    <li><a href="Achat-Vente-Crypto.html">Achat-Vente-Crypto</a></li>
+    <li><a href="Achat-Vente-Crypto.html">Achat-Vente</a></li>
     <li><a href="Investir.html">Investir</a></li>
     <li><a href="CosmosHub.html">CosmosHub</a></li>
     <li><a href="DEFI.html">DeFi</a></li>
     <li><a href="BTCFi.html">BTCFi</a></li>
-    <li><a href="gagner-crypto.html">Gagner-Crypto</a></li>
+    <li><a href="gagner-crypto.html">Gagner</a></li>
     <li><a href="Fiscalite.html">Fiscalité</a></li>
   </ul>
 </nav>
@@ -214,16 +235,13 @@
   <h1>🌌 Cosmos Hub</h1>
   <p class="page-subtitle">L'internet des blockchains — connecter, staker, explorer</p>
 
-  <!-- ============ SECTION 1 : C'EST QUOI ============ -->
   <h2 class="fade-in">1. 🌌 Qu'est-ce que Cosmos Hub ?</h2>
   <div class="section-block fade-in">
     <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;">
       <div style="flex:1;min-width:220px;">
         <p>Cosmos Hub est la <strong>blockchain centrale de l'écosystème Cosmos</strong> — souvent appelé "l'internet des blockchains". Son but : permettre à des blockchains indépendantes de communiquer entre elles, d'échanger des tokens et des données, tout en gardant leur souveraineté.</p>
         <p>Pense à Cosmos comme à un <strong>réseau de métros</strong> : chaque blockchain est une ville avec ses propres règles, mais toutes sont reliées par des lignes IBC (Inter-Blockchain Communication).</p>
-        <div class="info-box">
-          <strong>Token natif :</strong> <span style="color:var(--atom);">ATOM</span> — utilisé pour staker, voter sur la gouvernance, et payer les frais de transaction sur Cosmos Hub.
-        </div>
+        <div class="info-box"><strong>Token natif :</strong> <span style="color:var(--atom);">ATOM</span> — utilisé pour staker, voter sur la gouvernance, et payer les frais de transaction sur Cosmos Hub.</div>
         <div class="atom-rule">🌌 Une blockchain pour les gouverner toutes — et dans les ténèbres les connecter 🌌</div>
       </div>
       <div style="flex-shrink:0;text-align:center;">
@@ -231,335 +249,153 @@
         <div style="font-size:0.75em;color:#aaa;margin-top:8px;">cosmos.network</div>
       </div>
     </div>
-
     <h3>🎭 Le rôle de l'ATOM</h3>
     <div class="compare-grid">
-      <div class="compare-card">
-        <h4>🔒 Sécurité</h4>
-        <div class="compare-row"><span>Mécanisme</span><span style="color:var(--atom);">Proof of Stake</span></div>
-        <div class="compare-row"><span>Validateurs</span><span style="color:#aaa;">175 actifs</span></div>
-        <div class="compare-row"><span>Stake minimum</span><span style="color:#aaa;">Délégation libre</span></div>
-      </div>
-      <div class="compare-card">
-        <h4>🗳️ Gouvernance</h4>
-        <div class="compare-row"><span>Voting</span><span style="color:var(--atom);">1 ATOM = 1 vote</span></div>
-        <div class="compare-row"><span>Propositions</span><span style="color:#aaa;">Dépôt min. requis</span></div>
-        <div class="compare-row"><span>Quorum</span><span style="color:#aaa;">40% de participation</span></div>
-      </div>
-      <div class="compare-card">
-        <h4>💰 Staking</h4>
-        <div class="compare-row"><span>APY estimé</span><span style="color:var(--green);">~14–17%</span></div>
-        <div class="compare-row"><span>Unbonding</span><span style="color:#aaa;">21 jours</span></div>
-        <div class="compare-row"><span>Récompenses</span><span style="color:var(--atom);">ATOM</span></div>
-      </div>
-      <div class="compare-card">
-        <h4>🌉 IBC</h4>
-        <div class="compare-row"><span>Chaînes connectées</span><span style="color:var(--green);">100+</span></div>
-        <div class="compare-row"><span>Protocole</span><span style="color:var(--atom);">IBC v7</span></div>
-        <div class="compare-row"><span>Volume IBC/24h</span><span style="color:#aaa;">Voir MapOfZones</span></div>
-      </div>
+      <div class="compare-card"><h4>🔒 Sécurité</h4><div class="compare-row"><span>Mécanisme</span><span style="color:var(--atom);">Proof of Stake</span></div><div class="compare-row"><span>Validateurs</span><span style="color:#aaa;">175 actifs</span></div><div class="compare-row"><span>Stake minimum</span><span style="color:#aaa;">Délégation libre</span></div></div>
+      <div class="compare-card"><h4>🗳️ Gouvernance</h4><div class="compare-row"><span>Voting</span><span style="color:var(--atom);">1 ATOM = 1 vote</span></div><div class="compare-row"><span>Propositions</span><span style="color:#aaa;">Dépôt min. requis</span></div><div class="compare-row"><span>Quorum</span><span style="color:#aaa;">40% de participation</span></div></div>
+      <div class="compare-card"><h4>💰 Staking</h4><div class="compare-row"><span>APY estimé</span><span style="color:var(--green);">~14–17%</span></div><div class="compare-row"><span>Unbonding</span><span style="color:#aaa;">21 jours</span></div><div class="compare-row"><span>Récompenses</span><span style="color:var(--atom);">ATOM</span></div></div>
+      <div class="compare-card"><h4>🌉 IBC</h4><div class="compare-row"><span>Chaînes connectées</span><span style="color:var(--green);">100+</span></div><div class="compare-row"><span>Protocole</span><span style="color:var(--atom);">IBC v7</span></div><div class="compare-row"><span>Volume IBC/24h</span><span style="color:#aaa;">Voir MapOfZones</span></div></div>
     </div>
   </div>
 
-  <!-- ============ SECTION 2 : IBC ============ -->
   <h2 class="fade-in">2. 🌉 Qu'est-ce que l'IBC ?</h2>
   <div class="section-block fade-in">
     <p>IBC (<strong>Inter-Blockchain Communication</strong>) est le protocole qui permet à des blockchains différentes de <strong>s'envoyer des tokens et des données</strong> de façon sécurisée, sans intermédiaire centralisé.</p>
-
     <div class="ibc-flow">
-      <div class="ibc-chain">Cosmos Hub<br><small>ATOM</small></div>
-      <div class="ibc-arrow">⇄</div>
-      <div class="ibc-chain">Osmosis<br><small>OSMO</small></div>
-      <div class="ibc-arrow">⇄</div>
-      <div class="ibc-chain">Celestia<br><small>TIA</small></div>
-      <div class="ibc-arrow">⇄</div>
-      <div class="ibc-chain">dYdX<br><small>DYDX</small></div>
-      <div class="ibc-arrow">⇄</div>
+      <div class="ibc-chain">Cosmos Hub<br><small>ATOM</small></div><div class="ibc-arrow">⇄</div>
+      <div class="ibc-chain">Osmosis<br><small>OSMO</small></div><div class="ibc-arrow">⇄</div>
+      <div class="ibc-chain">Celestia<br><small>TIA</small></div><div class="ibc-arrow">⇄</div>
+      <div class="ibc-chain">dYdX<br><small>DYDX</small></div><div class="ibc-arrow">⇄</div>
       <div class="ibc-chain">Akash<br><small>AKT</small></div>
     </div>
-
-    <div class="info-box">
-      <strong>Analogie :</strong> IBC c'est comme SWIFT pour les banques, mais décentralisé et sans frais cachés. Tu envoies des tokens d'une blockchain à une autre en quelques secondes, directement depuis ton wallet.
-    </div>
-    <div class="tip">Chaque transfert IBC passe par un <strong>canal</strong> (channel) entre deux chaînes. Il n'y a pas de bridge centralisé — les tokens sont verrouillés sur la chaîne source et recréés sur la chaîne destination.</div>
-
+    <div class="info-box"><strong>Analogie :</strong> IBC c'est comme SWIFT pour les banques, mais décentralisé et sans frais cachés.</div>
+    <div class="tip">Chaque transfert IBC passe par un <strong>canal</strong> entre deux chaînes. Il n'y a pas de bridge centralisé.</div>
     <h3>🗺️ MapOfZones — Carte des connexions IBC en direct</h3>
     <a href="https://mapofzones.com/home?columnKey=ibcVolume&period=24h" target="_blank" class="moz-container">
-      <img src="https://i.postimg.cc/c47vJBhn/Map-Cosmos.png" alt="MapOfZones - Carte IBC Cosmos" style="margin:0;border:none;border-radius:0;">
-      <div class="moz-overlay">
-      </div>
+      <img src="https://i.postimg.cc/c47vJBhn/Map-Cosmos.png" alt="MapOfZones" style="margin:0;border:none;border-radius:0;">
+      <div class="moz-overlay"></div>
     </a>
   </div>
 
-  <!-- ============ SECTION 3 : KEPLR ============ -->
   <h2 class="fade-in">3. 💼 Dashboard Keplr — Ton hub Cosmos</h2>
   <div class="section-block fade-in">
     <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;">
       <div style="flex:1;min-width:220px;">
-        <p>Keplr est <strong>le wallet de référence</strong> pour l'écosystème Cosmos. Son dashboard te permet de gérer tous tes assets Cosmos depuis une seule interface : staker de l'ATOM, voter sur les propositions, voir tes récompenses, transférer en IBC...</p>
-        <div class="info-box">
-          <strong>Keplr Dashboard</strong> disponible sur <a href="https://wallet.keplr.app" target="_blank">wallet.keplr.app</a> — extension Chrome + app mobile. Compatible avec 80+ chaînes Cosmos.
-        </div>
+        <p>Keplr est <strong>le wallet de référence</strong> pour l'écosystème Cosmos. Son dashboard te permet de gérer tous tes assets Cosmos depuis une seule interface.</p>
+        <div class="info-box"><strong>Keplr Dashboard</strong> disponible sur <a href="https://wallet.keplr.app" target="_blank">wallet.keplr.app</a> — extension Chrome + app mobile. Compatible avec 80+ chaînes Cosmos.</div>
       </div>
       <div style="flex-shrink:0;">
-        <a href="https://wallet.keplr.app" target="_blank">
-          <img src="https://i.postimg.cc/L6nGjf2x/kpler_wallet.jpg" alt="Keplr" style="width:90px;padding:12px;background:rgba(255,255,255,0.05);border-radius:16px;border:2px solid rgba(111,134,214,0.4);">
-        </a>
+        <a href="https://wallet.keplr.app" target="_blank"><img src="https://i.postimg.cc/L6nGjf2x/kpler_wallet.jpg" alt="Keplr" style="width:90px;padding:12px;background:rgba(255,255,255,0.05);border-radius:16px;border:2px solid rgba(111,134,214,0.4);"></a>
         <div style="font-size:0.75em;color:#aaa;text-align:center;margin-top:6px;">wallet.keplr.app</div>
       </div>
     </div>
-
     <div class="keplr-grid">
-      <div class="keplr-card">
-        <h4>📊 Portfolio</h4>
-        <p>Vue d'ensemble de tous tes assets sur toutes les chaînes Cosmos. Valeur totale, répartition par token et par chaîne.</p>
-      </div>
-      <div class="keplr-card">
-        <h4>🔒 Staking</h4>
-        <p>Délègue ton ATOM en quelques clics. Choisis ton validateur, suis tes récompenses, claim ou restake en un clic.</p>
-      </div>
-      <div class="keplr-card">
-        <h4>🌉 IBC Transfer</h4>
-        <p>Envoie des tokens d'une chaîne à une autre directement. Exemple : ATOM de Cosmos Hub vers Osmosis pour swap.</p>
-      </div>
-      <div class="keplr-card">
-        <h4>🗳️ Gouvernance</h4>
-        <p>Vote sur les propositions actives de toutes les chaînes. Ton vote compte si tu as des tokens stakés.</p>
-      </div>
+      <div class="keplr-card"><h4>📊 Portfolio</h4><p>Vue d'ensemble de tous tes assets sur toutes les chaînes Cosmos.</p></div>
+      <div class="keplr-card"><h4>🔒 Staking</h4><p>Délègue ton ATOM en quelques clics. Choisis ton validateur, suis tes récompenses.</p></div>
+      <div class="keplr-card"><h4>🌉 IBC Transfer</h4><p>Envoie des tokens d'une chaîne à une autre directement.</p></div>
+      <div class="keplr-card"><h4>🗳️ Gouvernance</h4><p>Vote sur les propositions actives de toutes les chaînes.</p></div>
     </div>
-
     <div style="margin-top:14px;display:flex;gap:7px;flex-wrap:wrap;">
       <a href="https://wallet.keplr.app" target="_blank" class="btn-link">💼 Ouvrir Keplr Dashboard</a>
       <a href="https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap" target="_blank" class="btn-link">🔧 Extension Chrome</a>
     </div>
   </div>
 
-  <!-- ============ SECTION 4 : STAKER ATOM ============ -->
   <h2 class="fade-in">4. 🔒 Staker de l'ATOM</h2>
   <div class="pavé fade-in">
     <div class="pavé-title">🔒 Staking ATOM — Génère des récompenses en ATOM</div>
-    <p>Staker de l'ATOM te permet de <strong>gagner des récompenses</strong> (~14-17% APY) tout en <strong>sécurisant le réseau</strong>. Tu délègues tes ATOM à un validateur, qui les utilise pour valider les blocs.</p>
-    <div class="warning">Le <strong>unbonding period est de 21 jours</strong>. Une fois que tu demandes à unstaker, tu devras attendre 21 jours avant de récupérer tes ATOM. Planifie bien !</div>
-    <div class="info-box"><strong>Slashing :</strong> si ton validateur se comporte mal (downtime excessif, double-sign), une partie de tes ATOM stakés peut être <em>slashée</em> (brûlée). Choisis bien ton validateur !</div>
-
+    <p>Staker de l'ATOM te permet de <strong>gagner des récompenses</strong> (~14-17% APY) tout en <strong>sécurisant le réseau</strong>.</p>
+    <div class="warning">Le <strong>unbonding period est de 21 jours</strong>. Une fois que tu demandes à unstaker, tu devras attendre 21 jours avant de récupérer tes ATOM.</div>
+    <div class="info-box"><strong>Slashing :</strong> si ton validateur se comporte mal, une partie de tes ATOM stakés peut être slashée. Choisis bien ton validateur !</div>
     <h3>🔧 Comment staker de l'ATOM</h3>
     <div class="teacher-trigger" onclick="openPopup('popup-staking')">
       <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse">
-      <div class="teacher-label">👆 Clique sur la maitresse pour le guide pas à pas !</div>
+      <div class="teacher-label">👆 Clique pour le guide pas à pas !</div>
     </div>
-
     <div style="margin-top:14px;display:flex;gap:7px;flex-wrap:wrap;">
       <a href="https://wallet.keplr.app/#/cosmoshub/stake" target="_blank" class="btn-link">🔒 Staker sur Keplr</a>
       <a href="https://restake.app" target="_blank" class="btn-link">🔄 Auto-compound sur ReStake</a>
     </div>
   </div>
 
-  <!-- ============ SECTION 5 : SIMULATEUR ============ -->
   <h2 class="fade-in">5. 🧮 Simulateur Staking ATOM</h2>
   <div class="simulator fade-in">
     <h3>🧮 Calculateur de rendement ATOM</h3>
-    <div style="font-size:0.76em;color:#aaa;margin-bottom:9px;display:flex;align-items:center;">
-      <span class="dot-live"></span>Prix en direct · mise à jour 30s
-    </div>
-    <div class="price-ticker">
-      <div class="price-card"><div class="coin">ATOM</div><div class="price" id="atom-price">...</div></div>
-    </div>
+    <div style="font-size:0.76em;color:#aaa;margin-bottom:9px;display:flex;align-items:center;"><span class="dot-live"></span>Prix en direct · mise à jour 30s</div>
+    <div class="price-ticker"><div class="price-card"><div class="coin">ATOM</div><div class="price" id="atom-price">...</div></div></div>
     <div class="sim-grid">
-      <div class="sim-field">
-        <label><span class="tip-wrap">ATOM stakés<span class="tip-icon">?<span class="tip-bub">Nombre d'ATOM que tu veux staker. Minimum recommandé : 5 ATOM pour que les frais de gas ne mangent pas trop les rewards.</span></span></span></label>
-        <input id="a-amount" type="number" step="1" value="100">
-      </div>
-      <div class="sim-field">
-        <label><span class="tip-wrap">APY (%)<span class="tip-icon">?<span class="tip-bub">APY actuel du staking ATOM. Varie entre 14% et 17% selon le taux de participation au staking.</span></span></span></label>
-        <input id="a-apy" type="number" step="0.5" value="15">
-      </div>
-      <div class="sim-field">
-        <label><span class="tip-wrap">Durée (mois)<span class="tip-icon">?<span class="tip-bub">Combien de temps tu stakes. N'oublie pas : 21 jours de unbonding à prévoir si tu veux sortir.</span></span></span></label>
-        <input id="a-months" type="number" step="1" value="12">
-      </div>
-      <div class="sim-field">
-        <label><span class="tip-wrap">Compound ?<span class="tip-icon">?<span class="tip-bub">Avec auto-compound (ReStake), tes rewards sont réinvestis automatiquement. Sans compound, tu touches les rewards mais ils ne génèrent pas de nouveaux rewards.</span></span></span></label>
-        <select id="a-compound">
-          <option value="yes">Oui (auto-compound ReStake)</option>
-          <option value="no">Non (rewards en cash)</option>
-        </select>
-      </div>
+      <div class="sim-field"><label>ATOM stakés</label><input id="a-amount" type="number" step="1" value="100"></div>
+      <div class="sim-field"><label>APY (%)</label><input id="a-apy" type="number" step="0.5" value="15"></div>
+      <div class="sim-field"><label>Durée (mois)</label><input id="a-months" type="number" step="1" value="12"></div>
+      <div class="sim-field"><label>Compound ?</label><select id="a-compound"><option value="yes">Oui (auto-compound ReStake)</option><option value="no">Non</option></select></div>
     </div>
     <button class="sim-btn" onclick="calcATOM()">⚡ Calculer mes rewards ATOM</button>
     <div class="sim-results" id="atom-results">
       <div class="result-section">
         <h4>🔒 Staking ATOM — Résultats</h4>
         <div class="result-row"><span>Valeur initiale ($)</span><span id="a-val-in" class="r-atom">—</span></div>
-        <div class="result-row"><span class="tip-wrap">ATOM gagnés<span class="tip-icon">?<span class="tip-bub">Avec compound : intérêts composés. Sans compound : rendement linéaire simple.</span></span></span><span id="a-atom-gain" class="r-pos">—</span></div>
+        <div class="result-row"><span>ATOM gagnés</span><span id="a-atom-gain" class="r-pos">—</span></div>
         <div class="result-row"><span>Valeur rewards ($)</span><span id="a-val-rewards" class="r-pos">—</span></div>
         <div class="result-row"><span>ATOM total final</span><span id="a-atom-total" class="r-atom">—</span></div>
         <div class="result-row"><span>Récompenses/mois</span><span id="a-monthly" class="r-gold">—</span></div>
       </div>
-      <div class="result-total">
-        <div class="rlabel">Valeur totale estimée</div>
-        <div class="amount" id="a-total">—</div>
-        <div class="rlabel">au prix actuel de l'ATOM</div>
-      </div>
+      <div class="result-total"><div class="rlabel">Valeur totale estimée</div><div class="amount" id="a-total">—</div><div class="rlabel">au prix actuel de l'ATOM</div></div>
       <div id="a-compound-note" style="font-size:0.8em;color:#aaa;text-align:center;margin-top:8px;display:none;"></div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- ============ SECTION 6 : PROJETS FAVORIS ============ -->
   <h2 class="fade-in">6. ⭐ Mes projets préférés de l'écosystème</h2>
-  <p class="fade-in" style="color:#aaa;font-size:0.9em;">Une sélection de protocoles Cosmos qui valent le détour — chacun avec son utilité propre :</p>
-
   <div class="project-grid">
-
-    <!-- OSMOSIS -->
     <div class="project-card fade-in">
-      <div class="project-header">
-        <img src="https://i.postimg.cc/B6Qwyp6n/Osmosis.png" alt="Osmosis" class="project-logo">
-        <div>
-          <div class="project-name">OSMOSIS</div>
-          <span class="project-tag tag-dex">DEX</span>
-        </div>
-      </div>
-      <p class="project-desc">Le principal DEX de l'écosystème Cosmos. Swap inter-chain, pools de liquidité, staking OSMO. Interface intuitive, liquidité profonde.</p>
-      <div class="teacher-trigger" onclick="openPopup('popup-osmosis')" style="margin:4px 0;">
-        <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse" style="width:70px;">
-        <div class="teacher-label" style="font-size:0.7em;">Comprendre les pools 👆</div>
-      </div>
-      <div class="project-links">
-        <a href="https://osmosis.zone" target="_blank" class="proj-btn primary">🌊 App</a>
-        <a href="https://docs.osmosis.zone" target="_blank" class="proj-btn">📖 Docs</a>
-      </div>
+      <div class="project-header"><img src="https://i.postimg.cc/B6Qwyp6n/Osmosis.png" alt="Osmosis" class="project-logo"><div><div class="project-name">OSMOSIS</div><span class="project-tag tag-dex">DEX</span></div></div>
+      <p class="project-desc">Le principal DEX de l'écosystème Cosmos. Swap inter-chain, pools de liquidité, staking OSMO.</p>
+      <div class="teacher-trigger" onclick="openPopup('popup-osmosis')" style="margin:4px 0;"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse" style="width:70px;"><div class="teacher-label" style="font-size:0.7em;">Comprendre les pools 👆</div></div>
+      <div class="project-links"><a href="https://osmosis.zone" target="_blank" class="proj-btn primary">🌊 App</a><a href="https://docs.osmosis.zone" target="_blank" class="proj-btn">📖 Docs</a></div>
     </div>
-
-    <!-- MARS PROTOCOL -->
     <div class="project-card fade-in">
-      <div class="project-header">
-        <img src="https://i.postimg.cc/cH45jhHx/Mars.png" alt="Mars Protocol" class="project-logo">
-        <div>
-          <div class="project-name">MARS PROTOCOL</div>
-          <span class="project-tag tag-stake">Lending</span>
-        </div>
-      </div>
-      <p class="project-desc">Protocole de prêt/emprunt sur Cosmos. Staking avec <strong>retrait instantané</strong> — pas de unbonding. Idéal si tu veux de la liquidité immédiate.</p>
-      <div class="project-links">
-        <a href="https://marsprotocol.io" target="_blank" class="proj-btn primary">🔴 App</a>
-        <a href="https://docs.marsprotocol.io" target="_blank" class="proj-btn">📖 Docs</a>
-      </div>
+      <div class="project-header"><img src="https://i.postimg.cc/cH45jhHx/Mars.png" alt="Mars Protocol" class="project-logo"><div><div class="project-name">MARS PROTOCOL</div><span class="project-tag tag-stake">Lending</span></div></div>
+      <p class="project-desc">Protocole de prêt/emprunt sur Cosmos. Staking avec <strong>retrait instantané</strong> — pas de unbonding.</p>
+      <div class="project-links"><a href="https://marsprotocol.io" target="_blank" class="proj-btn primary">🔴 App</a><a href="https://docs.marsprotocol.io" target="_blank" class="proj-btn">📖 Docs</a></div>
     </div>
-
-    <!-- RESTAKE -->
     <div class="project-card fade-in">
-      <div class="project-header">
-        <img src="https://i.postimg.cc/Jn4dgxnn/Restake.png" alt="ReStake" class="project-logo" style="background:rgba(0,0,0,0.5);">
-        <div>
-          <div class="project-name">RESTAKE</div>
-          <span class="project-tag tag-infra">Auto-compound</span>
-        </div>
-      </div>
-      <p class="project-desc">Auto-compound tes rewards de staking sur toutes les chaînes Cosmos automatiquement. Et surtout : <strong>outil parfait pour choisir son validateur</strong>.</p>
-      <div class="teacher-trigger" onclick="openPopup('popup-restake')" style="margin:4px 0;">
-        <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse" style="width:70px;">
-        <div class="teacher-label" style="font-size:0.7em;">Choisir son validateur 👆</div>
-      </div>
-      <div class="project-links">
-        <a href="https://restake.app" target="_blank" class="proj-btn primary">🔄 App</a>
-      </div>
+      <div class="project-header"><img src="https://i.postimg.cc/Jn4dgxnn/Restake.png" alt="ReStake" class="project-logo" style="background:rgba(0,0,0,0.5);"><div><div class="project-name">RESTAKE</div><span class="project-tag tag-infra">Auto-compound</span></div></div>
+      <p class="project-desc">Auto-compound tes rewards de staking sur toutes les chaînes Cosmos automatiquement.</p>
+      <div class="teacher-trigger" onclick="openPopup('popup-restake')" style="margin:4px 0;"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse" style="width:70px;"><div class="teacher-label" style="font-size:0.7em;">Choisir son validateur 👆</div></div>
+      <div class="project-links"><a href="https://restake.app" target="_blank" class="proj-btn primary">🔄 App</a></div>
     </div>
-
-    <!-- BABYLON (lien BTCFi) -->
     <div class="project-card fade-in">
-      <div class="project-header">
-        <img src="https://i.postimg.cc/RFVb8dFM/Babylon.png" alt="Babylon" class="project-logo">
-        <div>
-          <div class="project-name">BABYLON</div>
-          <span class="project-tag tag-stake">BTCFi</span>
-        </div>
-      </div>
-      <p class="project-desc">Staking BTC natif sans bridge. Ton BTC sécurise des chaînes Cosmos et génère des rewards BABY ou BTC. Expliqué en détail sur notre page dédiée.</p>
-      <div class="project-links">
-        <a href="BTCFi.html" class="proj-btn primary">₿ Page BTCFi</a>
-        <a href="https://babylonchain.io" target="_blank" class="proj-btn">🌐 App</a>
-      </div>
+      <div class="project-header"><img src="https://i.postimg.cc/RFVb8dFM/Babylon.png" alt="Babylon" class="project-logo"><div><div class="project-name">BABYLON</div><span class="project-tag tag-stake">BTCFi</span></div></div>
+      <p class="project-desc">Staking BTC natif sans bridge. Ton BTC sécurise des chaînes Cosmos et génère des rewards.</p>
+      <div class="project-links"><a href="BTCFi.html" class="proj-btn primary">₿ Page BTCFi</a><a href="https://babylonchain.io" target="_blank" class="proj-btn">🌐 App</a></div>
     </div>
-
-    <!-- DYDX -->
     <div class="project-card fade-in">
-      <div class="project-header">
-        <img src="https://i.postimg.cc/KzvsVfzF/DYDX.png" alt="dYdX" class="project-logo">
-        <div>
-          <div class="project-name">DYDX</div>
-          <span class="project-tag tag-trade">Trading</span>
-        </div>
-      </div>
-      <p class="project-desc">Plateforme de trading décentralisée — spot ET perpetuals (futures). Idéale pour trader normalement <strong>ou se hedger</strong> sur ses positions crypto.</p>
-      <div class="teacher-trigger" onclick="openPopup('popup-dydx')" style="margin:4px 0;">
-        <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse" style="width:70px;">
-        <div class="teacher-label" style="font-size:0.7em;">Spot vs Hedge 👆</div>
-      </div>
-      <div class="project-links">
-        <a href="https://dydx.exchange" target="_blank" class="proj-btn primary">📈 App</a>
-        <a href="https://docs.dydx.exchange" target="_blank" class="proj-btn">📖 Docs</a>
-      </div>
+      <div class="project-header"><img src="https://i.postimg.cc/KzvsVfzF/DYDX.png" alt="dYdX" class="project-logo"><div><div class="project-name">DYDX</div><span class="project-tag tag-trade">Trading</span></div></div>
+      <p class="project-desc">Plateforme de trading décentralisée — spot ET perpetuals. Idéale pour trader ou se hedger.</p>
+      <div class="teacher-trigger" onclick="openPopup('popup-dydx')" style="margin:4px 0;"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse" style="width:70px;"><div class="teacher-label" style="font-size:0.7em;">Spot vs Hedge 👆</div></div>
+      <div class="project-links"><a href="https://dydx.exchange" target="_blank" class="proj-btn primary">📈 App</a></div>
     </div>
-
-    <!-- POLARIS / SQUID ROUTER -->
     <div class="project-card fade-in">
-      <div class="project-header">
-        <img src="https://i.postimg.cc/1t5YTBtR/Polaris.png" alt="Polaris" class="project-logo">
-        <div>
-          <div class="project-name">POLARIS / SQUID</div>
-          <span class="project-tag tag-infra">Swap inter-chain</span>
-        </div>
-      </div>
-      <p class="project-desc">Swap inter-chain incluant Ethereum. Échange des tokens entre n'importe quelle chaîne en une seule transaction. Comprendre les tokens et réseaux, c'est essentiel ici.</p>
-      <div class="teacher-trigger" onclick="openPopup('popup-polaris')" style="margin:4px 0;">
-        <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse" style="width:70px;">
-        <div class="teacher-label" style="font-size:0.7em;">Tokens & réseaux 👆</div>
-      </div>
-      <div class="project-links">
-        <a href="https://app.squidrouter.com" target="_blank" class="proj-btn primary">🦑 Squid</a>
-        <a href="https://polarisapp.io" target="_blank" class="proj-btn">🌐 Polaris</a>
-      </div>
+      <div class="project-header"><img src="https://i.postimg.cc/1t5YTBtR/Polaris.png" alt="Polaris" class="project-logo"><div><div class="project-name">POLARIS / SQUID</div><span class="project-tag tag-infra">Swap inter-chain</span></div></div>
+      <p class="project-desc">Swap inter-chain incluant Ethereum. Échange des tokens entre n'importe quelle chaîne en une transaction.</p>
+      <div class="teacher-trigger" onclick="openPopup('popup-polaris')" style="margin:4px 0;"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse" style="width:70px;"><div class="teacher-label" style="font-size:0.7em;">Tokens & réseaux 👆</div></div>
+      <div class="project-links"><a href="https://app.squidrouter.com" target="_blank" class="proj-btn primary">🦑 Squid</a><a href="https://polarisapp.io" target="_blank" class="proj-btn">🌐 Polaris</a></div>
     </div>
-
-    <!-- AKASH -->
     <div class="project-card fade-in">
-      <div class="project-header">
-        <img src="https://i.postimg.cc/nzcw52zp/AKASH.png" alt="Akash" class="project-logo">
-        <div>
-          <div class="project-name">AKASH NETWORK</div>
-          <span class="project-tag tag-cloud">Cloud décentralisé</span>
-        </div>
-      </div>
-      <p class="project-desc">Le "AWS décentralisé" de Cosmos. Loue ou fournis de la puissance de calcul (GPU/CPU) sur le marché ouvert. Staking AKT disponible.</p>
-      <div class="project-links">
-        <a href="https://akash.network" target="_blank" class="proj-btn primary">☁️ App</a>
-        <a href="https://docs.akash.network" target="_blank" class="proj-btn">📖 Docs</a>
-      </div>
+      <div class="project-header"><img src="https://i.postimg.cc/nzcw52zp/AKASH.png" alt="Akash" class="project-logo"><div><div class="project-name">AKASH NETWORK</div><span class="project-tag tag-cloud">Cloud décentralisé</span></div></div>
+      <p class="project-desc">Le "AWS décentralisé" de Cosmos. Loue ou fournis de la puissance de calcul (GPU/CPU).</p>
+      <div class="project-links"><a href="https://akash.network" target="_blank" class="proj-btn primary">☁️ App</a><a href="https://docs.akash.network" target="_blank" class="proj-btn">📖 Docs</a></div>
     </div>
-
-    <!-- SECRET NETWORK -->
     <div class="project-card fade-in">
-      <div class="project-header">
-        <img src="https://i.postimg.cc/HxZPCMcm/secret.png" alt="Secret Network" class="project-logo">
-        <div>
-          <div class="project-name">SECRET NETWORK</div>
-          <span class="project-tag tag-privacy">Privacy</span>
-        </div>
-      </div>
-      <p class="project-desc">La blockchain de la confidentialité dans Cosmos. Smart contracts privés — tes transactions et données ne sont pas visibles publiquement. Staking SCRT disponible.</p>
-      <div class="project-links">
-        <a href="https://scrt.network" target="_blank" class="proj-btn primary">🔐 App</a>
-        <a href="https://docs.scrt.network" target="_blank" class="proj-btn">📖 Docs</a>
-      </div>
+      <div class="project-header"><img src="https://i.postimg.cc/HxZPCMcm/secret.png" alt="Secret Network" class="project-logo"><div><div class="project-name">SECRET NETWORK</div><span class="project-tag tag-privacy">Privacy</span></div></div>
+      <p class="project-desc">La blockchain de la confidentialité dans Cosmos. Smart contracts privés — tes transactions ne sont pas visibles.</p>
+      <div class="project-links"><a href="https://scrt.network" target="_blank" class="proj-btn primary">🔐 App</a><a href="https://docs.scrt.network" target="_blank" class="proj-btn">📖 Docs</a></div>
     </div>
-
   </div>
 
   <hr class="divider">
 
-  <!-- CONCLUSION -->
   <h2 class="fade-in">7. 🏁 Explorer l'écosystème</h2>
   <div class="section-block fade-in" style="text-align:center;">
     <p>L'écosystème Cosmos est vaste et en constante évolution. Ces outils te donnent un excellent point de départ.</p>
@@ -572,94 +408,82 @@
       <a href="DEFI.html" class="btn-link">🌊 DeFi ETH</a>
     </div>
   </div>
-      <p>Tu veux faire une chasse au crypto, dans le cosmos...alors prend la fusée.</p>
-      <a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank" class="moz-container">
-      <img src="https://i.postimg.cc/fTJHF8MF/arianne.gif" alt="arianne"width="300" height="500" >
-      <div class="moz-overlay">
-      </a>
+  <p>Tu veux faire une chasse au crypto, dans le cosmos...alors prend la fusée.</p>
+  <a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank" class="moz-container">
+    <img src="https://i.postimg.cc/fTJHF8MF/arianne.gif" alt="arianne" width="300" height="500">
+    <div class="moz-overlay"></div>
+  </a>
 </div>
 
-<!-- ===== MODAUX ===== -->
-
-<!-- Staking ATOM -->
+<!-- MODAUX -->
 <div class="modal-overlay" id="popup-staking" onclick="closePopupOutside(event,'popup-staking')">
   <div class="modal-box">
     <div class="modal-dame"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse"></div>
     <div class="modal-bubble">
       <div class="modal-title">🔒 Comment staker de l'ATOM<span class="modal-close" onclick="closePopup('popup-staking')">✕</span></div>
-      <div class="modal-step"><div class="modal-dot">1</div><span>Installe <strong>Keplr</strong> (extension Chrome ou app mobile) et crée ton wallet. Note ta seed phrase en lieu sûr !</span></div>
-      <div class="modal-step"><div class="modal-dot">2</div><span>Achète de l'ATOM sur une CEX (Binance, Coinbase...) et <strong>retire sur ton adresse Keplr</strong> (cosmos1...).</span></div>
+      <div class="modal-step"><div class="modal-dot">1</div><span>Installe <strong>Keplr</strong> et crée ton wallet. Note ta seed phrase en lieu sûr !</span></div>
+      <div class="modal-step"><div class="modal-dot">2</div><span>Achète de l'ATOM sur une CEX et <strong>retire sur ton adresse Keplr</strong> (cosmos1...).</span></div>
       <div class="modal-step"><div class="modal-dot">3</div><span>Va sur <a href="https://wallet.keplr.app/#/cosmoshub/stake" target="_blank">wallet.keplr.app → Cosmos Hub → Stake</a>.</span></div>
-      <div class="modal-step"><div class="modal-dot">4</div><span>Choisis un <strong>validateur</strong> (évite les top 10 pour décentraliser, préfère ceux avec &lt;5% de commission). Clique "Delegate".</span></div>
-      <div class="modal-step"><div class="modal-dot">5</div><span>Entre le montant d'ATOM → confirme → garde un peu d'ATOM non staké pour payer les frais de gas !</span></div>
-      <div class="modal-step"><div class="modal-dot">6</div><span>Pour auto-compoundter, va sur <a href="https://restake.app" target="_blank">restake.app</a> et active l'auto-compound pour ton validateur.</span></div>
-      <div class="modal-info">⚠️ <strong>Unbonding :</strong> quand tu veux unstaker, il faut attendre <strong>21 jours</strong> avant de récupérer tes ATOM. Planifie à l'avance !</div>
+      <div class="modal-step"><div class="modal-dot">4</div><span>Choisis un <strong>validateur</strong> (évite les top 10, préfère &lt;5% de commission). Clique "Delegate".</span></div>
+      <div class="modal-step"><div class="modal-dot">5</div><span>Entre le montant → confirme → garde un peu d'ATOM non staké pour les frais de gas !</span></div>
+      <div class="modal-step"><div class="modal-dot">6</div><span>Pour auto-compoundter, va sur <a href="https://restake.app" target="_blank">restake.app</a> et active l'auto-compound.</span></div>
+      <div class="modal-info">⚠️ <strong>Unbonding :</strong> 21 jours d'attente pour récupérer tes ATOM après unstaking.</div>
     </div>
   </div>
 </div>
 
-<!-- Osmosis pools -->
 <div class="modal-overlay" id="popup-osmosis" onclick="closePopupOutside(event,'popup-osmosis')">
   <div class="modal-box">
     <div class="modal-dame"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse"></div>
     <div class="modal-bubble">
       <div class="modal-title">🌊 Osmosis — Pools de liquidité<span class="modal-close" onclick="closePopup('popup-osmosis')">✕</span></div>
-      <div class="modal-info"><strong>C'est quoi une pool ?</strong> Tu déposes deux tokens (ex: ATOM + OSMO) dans un ratio 50/50. En échange tu gagnes des frais sur chaque swap qui passe par ta pool.</div>
+      <div class="modal-info"><strong>C'est quoi une pool ?</strong> Tu déposes deux tokens (ex: ATOM + OSMO) dans un ratio 50/50. En échange tu gagnes des frais sur chaque swap.</div>
       <div class="modal-step"><div class="modal-dot">1</div><span>Va sur <a href="https://osmosis.zone" target="_blank">osmosis.zone</a> → connecte Keplr.</span></div>
-      <div class="modal-step"><div class="modal-dot">2</div><span>Rubrique <strong>"Pools"</strong> → cherche une pool avec des tokens que tu possèdes déjà (ex: ATOM/OSMO).</span></div>
-      <div class="modal-step"><div class="modal-dot">3</div><span>Clique <strong>"Add Liquidity"</strong> → entre le montant → confirme. Tu reçois des LP tokens représentant ta part.</span></div>
-      <div class="modal-step"><div class="modal-dot">4</div><span>Tu gagnes des <strong>frais de swap</strong> (0.2–0.3% par transaction) + parfois des <strong>incentives en OSMO</strong>.</span></div>
-      <div class="modal-info">⚠️ <strong>Impermanent Loss (IL) :</strong> si les prix des deux tokens divergent fortement, tu peux finir avec moins de valeur qu'en les gardant simplement. Préfère des pools dont les tokens sont corrélés.</div>
-      <div class="modal-step"><div class="modal-dot">5</div><span>Pour retirer : <strong>"Remove Liquidity"</strong> → choisis le % à retirer → confirme. Pas de période de lock sur la plupart des pools.</span></div>
+      <div class="modal-step"><div class="modal-dot">2</div><span>Rubrique <strong>"Pools"</strong> → cherche une pool avec des tokens que tu possèdes.</span></div>
+      <div class="modal-step"><div class="modal-dot">3</div><span>Clique <strong>"Add Liquidity"</strong> → entre le montant → confirme.</span></div>
+      <div class="modal-step"><div class="modal-dot">4</div><span>Tu gagnes des <strong>frais de swap</strong> (0.2–0.3% par transaction) + incentives en OSMO.</span></div>
+      <div class="modal-info">⚠️ <strong>Impermanent Loss :</strong> si les prix divergent fortement, tu peux finir avec moins de valeur.</div>
     </div>
   </div>
 </div>
 
-<!-- ReStake validateur -->
 <div class="modal-overlay" id="popup-restake" onclick="closePopupOutside(event,'popup-restake')">
   <div class="modal-box">
     <div class="modal-dame"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse"></div>
     <div class="modal-bubble">
       <div class="modal-title">🔄 Comment choisir son validateur<span class="modal-close" onclick="closePopup('popup-restake')">✕</span></div>
-      <div class="modal-info"><strong>Pourquoi c'est important ?</strong> Un mauvais validateur peut subir du <em>slashing</em> (pénalité) et te faire perdre une partie de tes ATOM stakés.</div>
-      <div class="modal-step"><div class="modal-dot">1</div><span>Va sur <a href="https://restake.app/cosmoshub" target="_blank">restake.app/cosmoshub</a> — tu vois tous les validateurs avec leurs stats.</span></div>
-      <div class="modal-step"><div class="modal-dot">2</div><span><strong>Commission :</strong> préfère &lt;5%. Évite 0% (souvent des pièges) et &gt;10% (trop cher).</span></div>
-      <div class="modal-step"><div class="modal-dot">3</div><span><strong>Uptime :</strong> cherche &gt;99%. Un validateur qui tombe souvent risque le slashing.</span></div>
-      <div class="modal-step"><div class="modal-dot">4</div><span><strong>Voting power :</strong> évite les top 5 — staker chez eux centralise le réseau. Préfère un validateur entre la 20e et 80e place.</span></div>
-      <div class="modal-step"><div class="modal-dot">5</div><span><strong>Auto-compound :</strong> sur ReStake, active le bouton "Enable" pour que tes rewards se restakent automatiquement sans frais supplémentaires.</span></div>
-      <div class="modal-info">💡 <strong>Bonne pratique :</strong> diversifie sur 2-3 validateurs différents pour réduire le risque de slashing concentré.</div>
+      <div class="modal-step"><div class="modal-dot">1</div><span>Va sur <a href="https://restake.app/cosmoshub" target="_blank">restake.app/cosmoshub</a>.</span></div>
+      <div class="modal-step"><div class="modal-dot">2</div><span><strong>Commission :</strong> préfère &lt;5%. Évite 0% et &gt;10%.</span></div>
+      <div class="modal-step"><div class="modal-dot">3</div><span><strong>Uptime :</strong> cherche &gt;99%.</span></div>
+      <div class="modal-step"><div class="modal-dot">4</div><span><strong>Voting power :</strong> évite les top 5 — préfère entre la 20e et 80e place.</span></div>
+      <div class="modal-step"><div class="modal-dot">5</div><span>Active le bouton <strong>"Enable"</strong> pour l'auto-compound automatique.</span></div>
     </div>
   </div>
 </div>
 
-<!-- dYdX hedge -->
 <div class="modal-overlay" id="popup-dydx" onclick="closePopupOutside(event,'popup-dydx')">
   <div class="modal-box">
     <div class="modal-dame"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse"></div>
     <div class="modal-bubble">
       <div class="modal-title">📈 dYdX — Spot vs Hedge<span class="modal-close" onclick="closePopup('popup-dydx')">✕</span></div>
-      <div class="modal-info"><strong>Deux usages très différents :</strong> le trading spot classique ET la couverture (hedge) de tes positions long.</div>
-      <div class="modal-step"><div class="modal-dot">1</div><span><strong>Trading Spot :</strong> tu achètes/vends des tokens au prix du marché. Comme sur Binance mais décentralisé — tu gardes tes clés.</span></div>
-      <div class="modal-step"><div class="modal-dot">2</div><span><strong>Perpetuals (perps) :</strong> contrats sans date d'expiration qui te permettent de prendre une position <em>longue</em> (tu gagnes si ça monte) ou <em>courte</em> (tu gagnes si ça baisse).</span></div>
-      <div class="modal-step"><div class="modal-dot">3</div><span><strong>Se hedger :</strong> tu as 10 ETH en spot ? Ouvre un short de 5 ETH sur dYdX. Si ETH baisse de 50%, ton short compense la moitié de ta perte.</span></div>
-      <div class="modal-info">⚠️ <strong>Attention au levier :</strong> dYdX permet du levier x20. Ne jamais utiliser de levier élevé si tu ne comprends pas le concept de liquidation forcée !</div>
-      <div class="modal-step"><div class="modal-dot">4</div><span>Pour commencer : connecte Keplr ou MetaMask sur <a href="https://dydx.exchange" target="_blank">dydx.exchange</a> → dépose du USDC → trade en spot sans levier d'abord.</span></div>
+      <div class="modal-step"><div class="modal-dot">1</div><span><strong>Trading Spot :</strong> achète/vends des tokens au prix du marché. Décentralisé — tu gardes tes clés.</span></div>
+      <div class="modal-step"><div class="modal-dot">2</div><span><strong>Se hedger :</strong> tu as 10 ETH ? Ouvre un short de 5 ETH sur dYdX. Si ETH baisse, ton short compense.</span></div>
+      <div class="modal-info">⚠️ Ne jamais utiliser de levier élevé sans comprendre la liquidation forcée !</div>
+      <div class="modal-step"><div class="modal-dot">3</div><span>Connecte Keplr sur <a href="https://dydx.exchange" target="_blank">dydx.exchange</a> → dépose du USDC → trade en spot d'abord.</span></div>
     </div>
   </div>
 </div>
 
-<!-- Polaris tokens & réseaux -->
 <div class="modal-overlay" id="popup-polaris" onclick="closePopupOutside(event,'popup-polaris')">
   <div class="modal-box">
     <div class="modal-dame"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse"></div>
     <div class="modal-bubble">
-      <div class="modal-title">🦑 Tokens & Réseaux — Bien comprendre<span class="modal-close" onclick="closePopup('popup-polaris')">✕</span></div>
-      <div class="modal-info"><strong>Erreur fréquente :</strong> envoyer un token sur le mauvais réseau = perte définitive des fonds. Toujours vérifier le réseau !</div>
-      <div class="modal-step"><div class="modal-dot">1</div><span><strong>Un token ≠ un réseau.</strong> USDC existe sur Ethereum, Cosmos, Solana, Base... Ce sont des tokens différents même si la valeur est la même.</span></div>
-      <div class="modal-step"><div class="modal-dot">2</div><span><strong>Polaris / Squid Router</strong> gère ça pour toi : tu entres le token que tu as, le réseau source, le token que tu veux et le réseau destination → il fait le swap ET le bridge en une transaction.</span></div>
-      <div class="modal-step"><div class="modal-dot">3</div><span><strong>Exemple :</strong> tu as de l'ETH sur Ethereum et tu veux de l'ATOM sur Cosmos Hub. Squid fait ETH→USDC→IBC→ATOM automatiquement.</span></div>
-      <div class="modal-step"><div class="modal-dot">4</div><span>Va sur <a href="https://app.squidrouter.com" target="_blank">app.squidrouter.com</a> → "From" (ton token + réseau) → "To" (token + réseau voulu) → vérifie les frais → confirme.</span></div>
-      <div class="modal-info">💡 <strong>Toujours tester</strong> avec un petit montant la première fois pour vérifier que les adresses et réseaux sont corrects !</div>
+      <div class="modal-title">🦑 Tokens & Réseaux<span class="modal-close" onclick="closePopup('popup-polaris')">✕</span></div>
+      <div class="modal-info"><strong>Erreur fréquente :</strong> envoyer un token sur le mauvais réseau = perte définitive. Toujours vérifier !</div>
+      <div class="modal-step"><div class="modal-dot">1</div><span><strong>Un token ≠ un réseau.</strong> USDC existe sur Ethereum, Cosmos, Solana... Ce sont des tokens différents.</span></div>
+      <div class="modal-step"><div class="modal-dot">2</div><span><strong>Squid Router</strong> gère ça : swap + bridge en une transaction automatiquement.</span></div>
+      <div class="modal-step"><div class="modal-dot">3</div><span>Va sur <a href="https://app.squidrouter.com" target="_blank">app.squidrouter.com</a> → choisis token source et destination → vérifie les frais → confirme.</span></div>
+      <div class="modal-info">💡 Toujours tester avec un petit montant la première fois !</div>
     </div>
   </div>
 </div>
@@ -667,31 +491,18 @@
 <div class="page-footer">Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier.</div>
 
 <script>
-  // Fade-in
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.06 });
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  // Modaux
-  function openPopup(id) {
-    document.getElementById(id).classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closePopup(id) {
-    document.getElementById(id).classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function closePopupOutside(e, id) {
-    if (e.target === document.getElementById(id)) closePopup(id);
-  }
+  function openPopup(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closePopup(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+  function closePopupOutside(e, id) { if (e.target === document.getElementById(id)) closePopup(id); }
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      ['popup-staking','popup-osmosis','popup-restake','popup-dydx','popup-polaris'].forEach(closePopup);
-    }
+    if (e.key === 'Escape') ['popup-staking','popup-osmosis','popup-restake','popup-dydx','popup-polaris'].forEach(closePopup);
   });
 
-  // ===== PRIX ATOM =====
   let atomPrice = 0;
   async function fetchAtomPrice() {
     try {
@@ -702,7 +513,6 @@
     } catch(e) { document.getElementById('atom-price').textContent = 'Indisponible'; }
   }
 
-  // ===== SIMULATEUR ATOM =====
   function calcATOM() {
     if (!atomPrice) { alert("Prix non disponible, patiente quelques secondes."); return; }
     const amount   = parseFloat(document.getElementById('a-amount').value)  || 0;
@@ -710,37 +520,22 @@
     const months   = parseFloat(document.getElementById('a-months').value)  || 12;
     const compound = document.getElementById('a-compound').value === 'yes';
     const ratio    = months / 12;
-
     let atomGain, atomTotal;
-    if (compound) {
-      atomTotal = amount * Math.pow(1 + apy, ratio);
-      atomGain  = atomTotal - amount;
-    } else {
-      atomGain  = amount * apy * ratio;
-      atomTotal = amount + atomGain;
-    }
-
-    const valIn      = amount * atomPrice;
+    if (compound) { atomTotal = amount * Math.pow(1 + apy, ratio); atomGain = atomTotal - amount; }
+    else { atomGain = amount * apy * ratio; atomTotal = amount + atomGain; }
+    const valIn = amount * atomPrice;
     const valRewards = atomGain * atomPrice;
-    const valTotal   = atomTotal * atomPrice;
-    const monthly    = (atomGain / months) * atomPrice;
-
-    document.getElementById('a-val-in').textContent      = valIn.toFixed(2)      + ' $';
+    const valTotal = atomTotal * atomPrice;
+    const monthly = (atomGain / months) * atomPrice;
+    document.getElementById('a-val-in').textContent      = valIn.toFixed(2) + ' $';
     document.getElementById('a-atom-gain').textContent   = '+' + atomGain.toFixed(4) + ' ATOM';
     document.getElementById('a-val-rewards').textContent = '+' + valRewards.toFixed(2) + ' $';
-    document.getElementById('a-atom-total').textContent  = atomTotal.toFixed(4)   + ' ATOM';
-    document.getElementById('a-monthly').textContent     = monthly.toFixed(2)     + ' $/mois';
-    document.getElementById('a-total').textContent       = valTotal.toFixed(2)    + ' $';
-
+    document.getElementById('a-atom-total').textContent  = atomTotal.toFixed(4) + ' ATOM';
+    document.getElementById('a-monthly').textContent     = monthly.toFixed(2) + ' $/mois';
+    document.getElementById('a-total').textContent       = valTotal.toFixed(2) + ' $';
     const note = document.getElementById('a-compound-note');
-    if (compound) {
-      note.textContent = '🔄 Avec auto-compound (ReStake), tes rewards sont réinvestis à chaque cycle — intérêts composés !';
-      note.style.display = 'block';
-    } else {
-      note.textContent = '📥 Sans compound, tes rewards s\'accumulent sans générer de nouveaux rewards.';
-      note.style.display = 'block';
-    }
-
+    note.textContent = compound ? '🔄 Avec auto-compound, tes rewards sont réinvestis !' : '📥 Sans compound, rewards linéaires.';
+    note.style.display = 'block';
     document.getElementById('atom-results').classList.add('visible');
   }
 

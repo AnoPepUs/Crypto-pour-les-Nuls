@@ -8,146 +8,108 @@
 
   <style>
     :root {
-      --blue: #6FA8DC;
-      --blue-dark: #0B5394;
-      --blue-glow: #6FA8DC55;
-      --gold: #FFD700;
-      --red: rgba(255,80,80,0.15);
-      --red-border: rgba(255,80,80,0.5);
-      --green: rgba(0,200,100,0.1);
-      --green-border: rgba(0,200,100,0.35);
-      --card-bg: rgba(0,0,0,0.5);
-      --card-border: #6FA8DC44;
+      --blue: #6FA8DC; --blue-dark: #0B5394; --blue-glow: #6FA8DC55;
+      --gold: #FFD700; --red: rgba(255,80,80,0.15); --red-border: rgba(255,80,80,0.5);
+      --green: rgba(0,200,100,0.1); --green-border: rgba(0,200,100,0.35);
+      --card-bg: rgba(0,0,0,0.5); --card-border: #6FA8DC44;
     }
-
     * { box-sizing: border-box; }
+    body { margin:0; padding:60px 0 0 0; background:url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed; background-size:cover; font-family:'Exo 2',Arial,sans-serif; color:white; text-align:center; }
 
-    body {
-      margin: 0;
-      padding: 70px 0 0 0;
-      background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Exo 2', Arial, sans-serif;
-      color: white;
-      text-align: center;
-    }
+    /* ===== NAV ===== */
+    nav { background-color:rgba(0,0,0,0.75); padding:5px 0; position:fixed; top:0; width:100%; z-index:1000; backdrop-filter:blur(6px); height:50px; display:flex; align-items:center; }
+    nav ul { list-style:none; margin:0; padding:0; display:flex; justify-content:center; flex-wrap:nowrap; align-items:center; width:100%; gap:4px; }
+    nav li { margin:0 8px; }
+    nav a { color:white; text-decoration:none; font-weight:600; font-size:15px; padding:5px 10px; border-radius:5px; transition:background 0.3s; font-family:'Exo 2',sans-serif; }
+    nav a:hover { background-color:rgba(255,255,255,0.18); }
+    .nav-gif-item { position:relative; }
+    .nav-gif-item .nav-tooltip { display:none; position:absolute; top:45px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.9); border:1px solid #FFD700; border-radius:8px; padding:8px 12px; color:#FFD700; font-size:0.8rem; white-space:nowrap; z-index:999; text-align:center; line-height:1.5; pointer-events:none; }
+    .nav-gif-item:hover .nav-tooltip { display:block; }
+    /* ===== FIN NAV ===== */
 
-    nav {
-      background-color: rgba(0,0,0,0.75);
-      padding: 10px 0;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      backdrop-filter: blur(6px);
-    }
-    nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; }
-    nav li { margin: 0 8px; }
-    nav a { color: white; text-decoration: none; font-weight: 600; font-size: 15px; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; font-family: 'Exo 2', sans-serif; }
-    nav a:hover { background-color: rgba(255,255,255,0.18); }
-
-    .content {
-      padding: 24px 20px 40px;
-      max-width: 880px;
-      margin: 0 auto;
-      background-color: rgba(0,0,0,0.62);
-      border-radius: 12px;
-      text-align: left;
-      line-height: 1.7;
-    }
-
-    h1 { font-family: 'Orbitron', sans-serif; color: var(--blue); text-align: center; font-size: 1.9em; text-shadow: 0 0 22px var(--blue-glow); letter-spacing: 2px; margin-bottom: 8px; }
-    .page-subtitle { text-align: center; color: #aaa; font-style: italic; margin-bottom: 36px; font-size: 0.95em; }
-    h2 { font-family: 'Orbitron', sans-serif; color: var(--blue); font-size: 1.15em; letter-spacing: 1px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-top: 44px; }
-    h3 { color: #9FC5E8; font-size: 1em; margin: 18px 0 6px; }
-    a { color: var(--blue); }
-    a:hover { color: #9FC5E8; }
-
-    img { display: block; margin: 12px auto; max-width: 100%; border-radius: 10px; border: 2px solid var(--blue); }
-
-    .section-block { margin-bottom: 24px; padding: 18px 20px; background-color: var(--card-bg); border-radius: 10px; border: 1px solid var(--card-border); }
-
-    .warning { background-color: var(--red); padding: 12px 16px; border-radius: 10px; border: 1px solid var(--red-border); margin: 14px 0; font-size: 0.95em; }
-    .warning::before { content: "⚠️ "; }
-
-    .tip { background-color: var(--green); padding: 12px 16px; border-radius: 10px; border: 1px solid var(--green-border); margin: 14px 0; font-size: 0.95em; }
-    .tip::before { content: "💡 "; }
-
-    .info-box { background-color: rgba(111,168,220,0.1); padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(111,168,220,0.35); margin: 14px 0; font-size: 0.95em; }
-
-    .gold-rule { font-family: 'Orbitron', sans-serif; font-size: 1em; color: var(--gold); text-shadow: 0 0 12px #FFD70066; text-align: center; margin: 18px 0; padding: 14px; border: 1px solid #FFD70044; border-radius: 8px; background: rgba(255,215,0,0.05); }
-
-    .psych-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 16px; }
-    .psych-card { background: rgba(11,83,148,0.18); border: 1px solid var(--card-border); border-radius: 10px; padding: 14px 16px; transition: border-color 0.3s, transform 0.2s; }
-    .psych-card:hover { border-color: var(--blue); transform: translateY(-2px); }
-    .psych-card .icon { font-size: 1.6em; margin-bottom: 6px; display: block; }
-    .psych-card h3 { margin: 0 0 6px; font-size: 0.95em; }
-    .psych-card p { margin: 0; font-size: 0.88em; color: #ccc; }
-
-    .animals { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin: 20px 0; }
-    .animal-card { flex: 1; min-width: 180px; max-width: 240px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 14px; text-align: center; transition: border-color 0.3s; }
-    .animal-card:hover { border-color: var(--blue); }
-    .animal-card h3 { margin: 0 0 4px; color: var(--blue); }
-    .animal-card p { font-size: 0.85em; color: #ccc; margin: 0; }
-
-    .capi-row { display: flex; align-items: center; gap: 16px; padding: 12px; background: rgba(11,83,148,0.12); border-radius: 8px; border: 1px solid var(--card-border); margin-bottom: 10px; }
-    .capi-icon { font-size: 2em; flex-shrink: 0; }
-    .capi-text { flex: 1; font-size: 0.9em; }
-    .capi-text strong { display: block; color: var(--blue); font-size: 1em; margin-bottom: 2px; }
-
-    .img-grid { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin: 16px 0; }
-    .img-grid-item { flex: 1; min-width: 160px; max-width: 220px; text-align: center; }
-    .img-grid-item img { width: 100%; max-width: 200px; height: 130px; object-fit: cover; cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
-    .img-grid-item img:hover { transform: scale(1.04); border-color: var(--gold); }
-    .img-grid-item p { font-size: 0.82em; color: #aaa; margin: 6px 0 0; }
-
-    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; justify-content: center; align-items: center; cursor: zoom-out; }
-    .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 90vh; border: 3px solid var(--blue); border-radius: 10px; }
-
-    .btn-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--blue-dark); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.88em; border: 1px solid var(--card-border); transition: background 0.3s, transform 0.2s; }
-    .btn-link:hover { background: var(--blue); color: white; transform: translateY(-1px); }
-
-    .indicator-card { background: rgba(11,83,148,0.15); border: 1px solid var(--card-border); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; transition: border-color 0.3s; }
-    .indicator-card:hover { border-color: var(--blue); }
-    .indicator-card h3 { margin: 0 0 6px; }
-    .indicator-card p { margin: 0; font-size: 0.88em; color: #ccc; }
-
-    .conclusion-box { background: linear-gradient(135deg, rgba(11,83,148,0.3), rgba(0,0,0,0.5)); border: 1px solid var(--blue); border-radius: 12px; padding: 24px; text-align: center; margin-top: 30px; }
-
-    hr.divider { border: none; border-top: 1px solid var(--card-border); margin: 36px 0; }
-    ul, ol { padding-left: 20px; }
-    li { margin-bottom: 5px; }
-
-    .page-footer { text-align: center; padding: 28px 10px; color: #6FA8DC66; font-size: 0.82em; }
-
-    .sound-btn { background: none; border: 1px solid var(--blue); color: var(--blue); border-radius: 6px; padding: 6px 14px; cursor: pointer; font-family: 'Exo 2', sans-serif; font-size: 0.85em; transition: background 0.3s; vertical-align: middle; }
-    .sound-btn:hover { background: var(--blue-dark); }
-
-    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .content { padding:24px 20px 40px; max-width:880px; margin:0 auto; background-color:rgba(0,0,0,0.62); border-radius:12px; text-align:left; line-height:1.7; }
+    h1 { font-family:'Orbitron',sans-serif; color:var(--blue); text-align:center; font-size:1.9em; text-shadow:0 0 22px var(--blue-glow); letter-spacing:2px; margin-bottom:8px; }
+    .page-subtitle { text-align:center; color:#aaa; font-style:italic; margin-bottom:36px; font-size:0.95em; }
+    h2 { font-family:'Orbitron',sans-serif; color:var(--blue); font-size:1.15em; letter-spacing:1px; border-bottom:1px solid var(--card-border); padding-bottom:8px; margin-top:44px; }
+    h3 { color:#9FC5E8; font-size:1em; margin:18px 0 6px; }
+    a { color:var(--blue); } a:hover { color:#9FC5E8; }
+    img { display:block; margin:12px auto; max-width:100%; border-radius:10px; border:2px solid var(--blue); }
+    .section-block { margin-bottom:24px; padding:18px 20px; background-color:var(--card-bg); border-radius:10px; border:1px solid var(--card-border); }
+    .warning { background-color:var(--red); padding:12px 16px; border-radius:10px; border:1px solid var(--red-border); margin:14px 0; font-size:0.95em; }
+    .warning::before { content:"⚠️ "; }
+    .tip { background-color:var(--green); padding:12px 16px; border-radius:10px; border:1px solid var(--green-border); margin:14px 0; font-size:0.95em; }
+    .tip::before { content:"💡 "; }
+    .info-box { background-color:rgba(111,168,220,0.1); padding:12px 16px; border-radius:10px; border:1px solid rgba(111,168,220,0.35); margin:14px 0; font-size:0.95em; }
+    .gold-rule { font-family:'Orbitron',sans-serif; font-size:1em; color:var(--gold); text-shadow:0 0 12px #FFD70066; text-align:center; margin:18px 0; padding:14px; border:1px solid #FFD70044; border-radius:8px; background:rgba(255,215,0,0.05); }
+    .psych-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:16px; }
+    .psych-card { background:rgba(11,83,148,0.18); border:1px solid var(--card-border); border-radius:10px; padding:14px 16px; transition:border-color 0.3s,transform 0.2s; }
+    .psych-card:hover { border-color:var(--blue); transform:translateY(-2px); }
+    .psych-card .icon { font-size:1.6em; margin-bottom:6px; display:block; }
+    .psych-card h3 { margin:0 0 6px; font-size:0.95em; }
+    .psych-card p { margin:0; font-size:0.88em; color:#ccc; }
+    .animals { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin:20px 0; }
+    .animal-card { flex:1; min-width:180px; max-width:240px; background:var(--card-bg); border:1px solid var(--card-border); border-radius:10px; padding:14px; text-align:center; transition:border-color 0.3s; }
+    .animal-card:hover { border-color:var(--blue); }
+    .animal-card h3 { margin:0 0 4px; color:var(--blue); }
+    .animal-card p { font-size:0.85em; color:#ccc; margin:0; }
+    .capi-row { display:flex; align-items:center; gap:16px; padding:12px; background:rgba(11,83,148,0.12); border-radius:8px; border:1px solid var(--card-border); margin-bottom:10px; }
+    .capi-icon { font-size:2em; flex-shrink:0; }
+    .capi-text { flex:1; font-size:0.9em; }
+    .capi-text strong { display:block; color:var(--blue); font-size:1em; margin-bottom:2px; }
+    .img-grid { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin:16px 0; }
+    .img-grid-item { flex:1; min-width:160px; max-width:220px; text-align:center; }
+    .img-grid-item img { width:100%; max-width:200px; height:130px; object-fit:cover; cursor:pointer; transition:transform 0.2s,border-color 0.2s; }
+    .img-grid-item img:hover { transform:scale(1.04); border-color:var(--gold); }
+    .img-grid-item p { font-size:0.82em; color:#aaa; margin:6px 0 0; }
+    .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:9999; justify-content:center; align-items:center; cursor:zoom-out; }
+    .lightbox.active { display:flex; }
+    .lightbox img { max-width:90vw; max-height:90vh; border:3px solid var(--blue); border-radius:10px; }
+    .btn-link { display:inline-flex; align-items:center; gap:8px; padding:10px 18px; background:var(--blue-dark); color:white; text-decoration:none; border-radius:6px; font-weight:600; font-size:0.88em; border:1px solid var(--card-border); transition:background 0.3s,transform 0.2s; }
+    .btn-link:hover { background:var(--blue); color:white; transform:translateY(-1px); }
+    .indicator-card { background:rgba(11,83,148,0.15); border:1px solid var(--card-border); border-radius:10px; padding:14px 16px; margin-bottom:12px; transition:border-color 0.3s; }
+    .indicator-card:hover { border-color:var(--blue); }
+    .indicator-card h3 { margin:0 0 6px; }
+    .indicator-card p { margin:0; font-size:0.88em; color:#ccc; }
+    .conclusion-box { background:linear-gradient(135deg,rgba(11,83,148,0.3),rgba(0,0,0,0.5)); border:1px solid var(--blue); border-radius:12px; padding:24px; text-align:center; margin-top:30px; }
+    hr.divider { border:none; border-top:1px solid var(--card-border); margin:36px 0; }
+    ul,ol { padding-left:20px; } li { margin-bottom:5px; }
+    .page-footer { text-align:center; padding:28px 10px; color:#6FA8DC66; font-size:0.82em; }
+    .sound-btn { background:none; border:1px solid var(--blue); color:var(--blue); border-radius:6px; padding:6px 14px; cursor:pointer; font-family:'Exo 2',sans-serif; font-size:0.85em; transition:background 0.3s; vertical-align:middle; }
+    .sound-btn:hover { background:var(--blue-dark); }
+    .fade-in { opacity:0; transform:translateY(18px); transition:opacity 0.5s ease,transform 0.5s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
   <nav>
     <ul>
+      <li class="nav-gif-item">
+        <a href="https://anopepus.github.io/Chasse-au-tresor/" target="_blank">
+          <img src="https://i.postimg.cc/1XLDzBGs/terre_tourne.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+        </a>
+        <div class="nav-tooltip">🗺️ Jouer Gratuitement !<br>Chasse au Trésor Crypto</div>
+      </li>
+      <li class="nav-gif-item">
+        <a href="https://anopepus.github.io/" target="_blank">
+          <img src="https://i.postimg.cc/qMC792VP/papillon.gif" style="width:35px;height:35px;border-radius:50%;border:2px solid #FFD700;vertical-align:middle;" />
+        </a>
+        <div class="nav-tooltip">🦁 Soutenir AnoPepUs<br>Page Récompense BAT</div>
+      </li>
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="Kezako-Crypto.html">Kezako-Crypto</a></li>
+      <li><a href="Kezako-Crypto.html">Kezako</a></li>
       <li><a href="wallet.html">Wallet</a></li>
-      <li><a href="Achat-Vente-Crypto.html">Achat-Vente-Crypto</a></li>
+      <li><a href="Achat-Vente-Crypto.html">Achat-Vente</a></li>
       <li><a href="Investir.html">Investir</a></li>
       <li><a href="CosmosHub.html">CosmosHub</a></li>
       <li><a href="DEFI.html">DeFi</a></li>
       <li><a href="BTCFi.html">BTC-Fi</a></li>
-      <li><a href="gagner-crypto.html">Gagner-Crypto</a></li>
+      <li><a href="gagner-crypto.html">Gagner</a></li>
       <li><a href="Fiscalite.html">Fiscalité</a></li>
     </ul>
   </nav>
 
-  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <img id="lightbox-img" src="" alt="">
   </div>
@@ -157,44 +119,40 @@
     <h1>Investir en Crypto 🚀</h1>
     <p class="page-subtitle">Stratégie, psychologie et bons réflexes pour ne pas se faire dévorer</p>
 
-    <!-- SECTION 1 : PSYCHOLOGIE -->
     <h2 class="fade-in">1. 🧠 Psychologie de l'Investisseur</h2>
-
     <div class="section-block fade-in">
       <p>Tu te demandes pourquoi parler de psychologie quand on débute en crypto ? Parce que je l'ai vécu, et c'est <strong>dur</strong> psychologiquement. Quand ta crypto explose vers la lune tu es le roi du monde. Quand elle prend -80% dans la tronche pour visiter la cave… tu deviens le roi des cons.</p>
       <p>Tu avais transformé ton billet de 100$ en 10 000$ (fictif, tu n'avais pas vendu), et même si tu es encore gagnant à 1 000$, tu vas te ronger les sangs. Pourtant :</p>
       <div class="gold-rule">⚡ Tu ne chopperas JAMAIS le Top ni le Bottom. Ne regrette JAMAIS d'avoir pris des bénéfices trop tôt. ⚡</div>
       <p>Tu veux t'enrichir vite ? Méfie-toi. Il y a bien plus de perdants que de gagnants. Pour que les gros gagnent, il faut beaucoup de petits qui perdent. Le moyen le plus sûr de gagner de l'argent reste le travail dans la vie réelle. Mais si tu veux faire fructifier tes économies… <a href="index.html">vas voir la page d'accueil</a>.</p>
-      <div class="info-box">
-        Mon objectif n'est pas de spéculer mais de <strong>protéger mon épargne de l'inflation</strong> (BTC & ETH pour moi). Pour le reste, je "joue" une révolution technologique. La blockchain, c'est un peu les actions GAFAM au début des années 2000. <a href="Kezako-Crypto.html">→ Voir la page Kezako</a>
-      </div>
-      <p>Si tu choisis le bon cheval, tu finiras comme <strong><a href="https://companiesmarketcap.com/alphabet-google/marketcap/" target="_blank">Google</a></strong> (entré en bourse en 2004, même -60% de correction ne l'a pas empêché de s'envoler). Si tu paries sur un mulet, tu finiras <strong><a href="https://companiesmarketcap.com/yahoo/stock-price-history/" target="_blank">Yahoo</a></strong> — toujours vivant, mais bon…</p>
+      <div class="info-box">Mon objectif n'est pas de spéculer mais de <strong>protéger mon épargne de l'inflation</strong> (BTC & ETH pour moi). Pour le reste, je "joue" une révolution technologique. La blockchain, c'est un peu les actions GAFAM au début des années 2000. <a href="Kezako-Crypto.html">→ Voir la page Kezako</a></div>
+      <p>Si tu choisis le bon cheval, tu finiras comme <strong><a href="https://companiesmarketcap.com/alphabet-google/marketcap/" target="_blank">Google</a></strong>. Si tu paries sur un mulet, tu finiras <strong><a href="https://companiesmarketcap.com/yahoo/stock-price-history/" target="_blank">Yahoo</a></strong> — toujours vivant, mais bon…</p>
       <div class="gold-rule">TU AS LE DROIT DE TE TROMPER. 🎯</div>
     </div>
 
     <div class="psych-grid fade-in">
-      <div class="psych-card"><span class="icon">🎰</span><h3>Ne mise que ce que tu peux perdre</h3><p>Si le token meurt à zéro (même un super projet sans utilisateurs), c'est comme un mauvais pari au PMU. Pas grave.</p></div>
+      <div class="psych-card"><span class="icon">🎰</span><h3>Ne mise que ce que tu peux perdre</h3><p>Si le token meurt à zéro, c'est comme un mauvais pari au PMU. Pas grave.</p></div>
       <div class="psych-card"><span class="icon">⏳</span><h3>Patience</h3><p>Des jours, des mois. L'important : récupérer son capital. Quand la crypto fait +100%, retire la moitié.</p></div>
-      <div class="psych-card"><span class="icon">🩴</span><h3>Mets tes tongues</h3><p>-50% ? C'est pas grave. Attends qu'il remonte, bois une bière avec tes potes. Ton yacht attendra.</p></div>
+      <div class="psych-card"><span class="icon">🩴</span><h3>Mets tes tongues</h3><p>-50% ? C'est pas grave. Attends qu'il remonte, bois une bière avec tes potes.</p></div>
       <div class="psych-card"><span class="icon">❤️</span><h3>Achète ce que tu aimes</h3><p>Si ton token descend à la cave, il t'est encore utile. Un jeu, un outil que tu utilises — ça rassure.</p></div>
       <div class="psych-card"><span class="icon">😱</span><h3>Fear & Greed</h3><p>Le marché fait l'inverse de ce que pense la majorité. Achète la peur quand il y a du sang dans les rues.</p></div>
-      <div class="psych-card"><span class="icon">🐋</span><h3>Suis les baleines</h3><p>Quand les médias crient "BTC à 100k$" à 30k$, prépare-toi à vendre. Les baleines ont besoin d'acheteurs pour se délester.</p></div>
+      <div class="psych-card"><span class="icon">🐋</span><h3>Suis les baleines</h3><p>Quand les médias crient "BTC à 100k$", prépare-toi à vendre. Les baleines ont besoin d'acheteurs pour se délester.</p></div>
     </div>
 
     <h3 class="fade-in" style="text-align:center; margin-top:28px;">Les acteurs du marché 🌊</h3>
     <div class="animals fade-in">
       <div class="animal-card">
-        <img src="https://i.postimg.cc/fT8tMVvP/bull.gif" alt="Bull" style="width:100%; height:140px; object-fit:contain; border-radius:8px; border:none; background:transparent;">
+        <img src="https://i.postimg.cc/fT8tMVvP/bull.gif" alt="Bull" style="width:100%;height:140px;object-fit:contain;border-radius:8px;border:none;background:transparent;">
         <h3>🐂 Les Bulls</h3>
         <p>Les taureaux font monter les prix. Leurs cornes te satellisent sur la lune quand ils attaquent.</p>
       </div>
       <div class="animal-card">
-        <img src="https://i.postimg.cc/vZSVt4g5/bear2.gif" alt="Bear" style="width:100%; height:140px; object-fit:contain; border-radius:8px; border:none; background:transparent;">
+        <img src="https://i.postimg.cc/vZSVt4g5/bear2.gif" alt="Bear" style="width:100%;height:140px;object-fit:contain;border-radius:8px;border:none;background:transparent;">
         <h3>🐻 Les Bears</h3>
         <p>Les ours font chuter les prix. Leurs pattes t'écrasent au sol quand ils attaquent.</p>
       </div>
       <div class="animal-card">
-        <img src="https://i.postimg.cc/8C6jdtgh/baleine.gif" alt="Baleine" style="width:100%; height:140px; object-fit:contain; border-radius:8px; border:none; background:transparent;">
+        <img src="https://i.postimg.cc/8C6jdtgh/baleine.gif" alt="Baleine" style="width:100%;height:140px;object-fit:contain;border-radius:8px;border:none;background:transparent;">
         <h3>🐋 Les Baleines</h3>
         <p>Quand elles se réveillent, ça fait mal dans les deux sens. Toi, petit "retail", tu leur rachètes leurs cryptos accumulées depuis des mois.</p>
       </div>
@@ -202,29 +160,18 @@
 
     <hr class="divider">
 
-    <!-- SECTION 2 : QUEL CRYPTO -->
     <h2 class="fade-in">2. 🔍 Quelle Crypto Choisir ?</h2>
-
     <div class="section-block fade-in">
-      <p>Commence par regarder la <strong>capitalisation boursière</strong> sur <a href="https://coinmarketcap.com" target="_blank">CoinMarketCap</a>. (Valeur)</p>
-      <p>Je regarde aussi le <strong>Total Value Lock (TVL)</strong> sur <a href="https://defillama.com/" target="_blank">DefiLlama</a>. (Confiance Moyen/Long terme)</p>
-      <p>Tu penses qu'un token à 0,10$ peut monter à 10$ comme le BTC à 100 000$ ? <strong>Pas forcément.</strong> Voici pourquoi :</p>
+      <p>Commence par regarder la <strong>capitalisation boursière</strong> sur <a href="https://coinmarketcap.com" target="_blank">CoinMarketCap</a>. Je regarde aussi le <strong>Total Value Lock (TVL)</strong> sur <a href="https://defillama.com/" target="_blank">DefiLlama</a>.</p>
+      <p>Tu penses qu'un token à 0,10$ peut monter à 10$ comme le BTC à 100 000$ ? <strong>Pas forcément.</strong></p>
       <div class="info-box"><strong>Capitalisation = Prix × Nombre de tokens en circulation</strong></div>
       <div class="capi-row">
         <div class="capi-icon">₿</div>
-        <div class="capi-text">
-          <strong>Bitcoin (BTC)</strong>
-          65 000$ × 19M BTC en circulation = <strong>~1 200 Milliards $</strong><br>
-          <span style="color:#aaa; font-size:0.9em;">Maximum : 21M BTC → 93% déjà en circulation, inflation très faible.</span>
-        </div>
+        <div class="capi-text"><strong>Bitcoin (BTC)</strong>65 000$ × 19M BTC = <strong>~1 200 Milliards $</strong><br><span style="color:#aaa;font-size:0.9em;">Maximum : 21M BTC → 93% déjà en circulation, inflation très faible.</span></div>
       </div>
       <div class="capi-row">
         <div class="capi-icon">🐕</div>
-        <div class="capi-text">
-          <strong>Dogecoin (DOGE)</strong>
-          Pour monter à 1$, il faudrait injecter <strong>~143 Milliards $</strong>.<br>
-          <span style="color:#aaa; font-size:0.9em;">Équivalent à BNB + SOL réunis (rangs 4 & 5). Et sans plafond de création...</span>
-        </div>
+        <div class="capi-text"><strong>Dogecoin (DOGE)</strong>Pour monter à 1$, il faudrait injecter <strong>~143 Milliards $</strong>.<br><span style="color:#aaa;font-size:0.9em;">Équivalent à BNB + SOL réunis. Et sans plafond de création...</span></div>
       </div>
       <div class="tip">Le prix seul ne veut rien dire. Regarde toujours la capitalisation pour évaluer le potentiel réel.</div>
     </div>
@@ -232,86 +179,34 @@
     <div class="section-block fade-in">
       <h3>🔒 Attention au Vesting (nouveaux projets)</h3>
       <p>Pour les nouvelles cryptos, vérifie le <strong>vesting</strong> : des investisseurs ont bloqué des tokens à très bas prix jusqu'à une certaine date. Utilise <a href="https://chainbroker.io" target="_blank">ChainBroker</a> pour l'analyser.</p>
-      <div class="warning">
-        Exemple : TIA listé à 2$ fin oct. 2023 → 15$ (+×7). Mais 16% des tokens avaient été achetés à 0,01$ (×1 500 !). Même si le prix redescend à 2$, ces investisseurs sont encore à ×200. Ils <em>vont</em> prendre des profits.
-      </div>
-      <div class="warning">
-        Méfie-toi de tout projet qui te "garantit monts et merveilles". En crypto, tout va vite. Lis ces articles avant d'investir dans un nouveau projet :<br>
-        <a href="https://journalducoin.com/guides/cryptomonnaie/scam-crypto-comment-reperer-et-eviter-les-arnaques/" target="_blank">→ Comment repérer les arnaques crypto</a><br>
-        <a href="https://stakepool.fr/articles/comment-eviter-les-arnaques-crypto" target="_blank">→ Comment éviter les arnaques crypto</a>
-      </div>
-      <div class="tip">
-        💩 Un token dans le top 50 peut revendiquer ouvertement ne servir à rien — et pourtant les réseaux sociaux seront pleins de gens qui te diront que c'est l'avenir.<br><br>
-        À l'inverse, des projets sérieux, méconnus, qui veulent changer le monde existent — mais ça prend du temps, et les devs <em>ont besoin</em> de se payer un salaire.
-      </div>
-
-      <!-- Autres points de vigilance -->
+      <div class="warning">Exemple : TIA listé à 2$ fin oct. 2023 → 15$ (+×7). Mais 16% des tokens avaient été achetés à 0,01$ (×1 500 !). Même si le prix redescend à 2$, ces investisseurs sont encore à ×200. Ils <em>vont</em> prendre des profits.</div>
+      <div class="warning">Méfie-toi de tout projet qui te "garantit monts et merveilles".<br><a href="https://journalducoin.com/guides/cryptomonnaie/scam-crypto-comment-reperer-et-eviter-les-arnaques/" target="_blank">→ Comment repérer les arnaques crypto</a><br><a href="https://stakepool.fr/articles/comment-eviter-les-arnaques-crypto" target="_blank">→ Comment éviter les arnaques crypto</a></div>
+      <div class="tip">💩 Un token dans le top 50 peut revendiquer ouvertement ne servir à rien. À l'inverse, des projets sérieux méconnus qui veulent changer le monde existent — mais ça prend du temps.</div>
       <div class="info-box">
-        <p style="font-family:'Orbitron',sans-serif; font-size:1.1em; color:#FFD700; text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD70088; text-align:center; margin:0 0 12px 0;">
-          ✨ Autres points de vigilance ✨
-        </p>
-        <p>
-          <span onclick="document.getElementById('lightbox-img').src='https://i.postimg.cc/Hxn76FcZ/buy_rumor.jpg'; document.getElementById('lightbox').classList.add('active')"
-                style="cursor:pointer; color:#FFD700; text-decoration:underline;">
-            📰 Buy the Rumor, Sell the News — clique pour voir
-          </span>
-        </p>
-        <p>
-          <span onclick="document.getElementById('lightbox-img').src='https://i.postimg.cc/LX5ZxGYQ/btc_other.png'; document.getElementById('lightbox').classList.add('active')"
-                style="cursor:pointer; color:#6FA8DC; text-decoration:underline;">
-            🤧 Quand le BTC tousse, toutes les cryptos s'enrhument (si le Boss prend 10%, les autres beaucoup plus) — clique pour voir
-          </span>
-        </p>
-        <p>
-          <a href="https://bitbo.io/fr/halving/" target="_blank" style="color:#6FCF97;">
-            ⏳ Prends aussi en compte le halving Bitcoin (tous les 4 ans). Les marchés sont cycliques.
-          </a>
-        </p>
+        <p style="font-family:'Orbitron',sans-serif;font-size:1.1em;color:#FFD700;text-shadow:0 0 10px #FFD700;text-align:center;margin:0 0 12px 0;">✨ Autres points de vigilance ✨</p>
+        <p><span onclick="document.getElementById('lightbox-img').src='https://i.postimg.cc/Hxn76FcZ/buy_rumor.jpg';document.getElementById('lightbox').classList.add('active')" style="cursor:pointer;color:#FFD700;text-decoration:underline;">📰 Buy the Rumor, Sell the News — clique pour voir</span></p>
+        <p><span onclick="document.getElementById('lightbox-img').src='https://i.postimg.cc/LX5ZxGYQ/btc_other.png';document.getElementById('lightbox').classList.add('active')" style="cursor:pointer;color:#6FA8DC;text-decoration:underline;">🤧 Quand le BTC tousse, toutes les cryptos s'enrhument — clique pour voir</span></p>
+        <p><a href="https://bitbo.io/fr/halving/" target="_blank" style="color:#6FCF97;">⏳ Prends aussi en compte le halving Bitcoin (tous les 4 ans). Les marchés sont cycliques.</a></p>
       </div>
     </div>
 
     <hr class="divider">
 
-    <!-- SECTION 3 : ANALYSE -->
     <h2 class="fade-in">3. 📊 Analyser les Marchés</h2>
-
     <div class="section-block fade-in">
-      <div class="tip">
-        <strong>Réfléchis en % et pas en somme.</strong> Réfléchis en valeur, pas en prix.<br>
-        Sur les graphiques, utilise un timeframe d'<strong>1 mois minimum</strong> (je ne descends pas en dessous de 4h). Plus tu dézoomes, moins tu seras stressé.
-      </div>
+      <div class="tip"><strong>Réfléchis en % et pas en somme.</strong> Sur les graphiques, utilise un timeframe d'<strong>1 mois minimum</strong>. Plus tu dézoomes, moins tu seras stressé.</div>
       <p>Utilise <a href="https://www.tradingview.com" target="_blank">TradingView</a> pour visualiser et annoter tes graphiques. 🎨</p>
-
       <h3>📐 Lecture de marché</h3>
       <div class="img-grid">
-        <div class="img-grid-item">
-          <img src="https://i.postimg.cc/L6PSShB1/80_20.png" alt="Range" onclick="openLightbox(this)" onerror="this.style.display='none'">
-          <p>Le marché est <strong>80% en range</strong>. Achète en bas du range, vends une partie en haut.</p>
-        </div>
-        <div class="img-grid-item">
-          <img src="https://i.postimg.cc/ydWqbN8Y/retracement.png" alt="Fibonacci" onclick="openLightbox(this)" onerror="this.style.display='none'">
-          <p>Zones de rechargement Fibonacci : entre <strong>61,8% et 71,8%</strong> de retracement.</p>
-        </div>
-        <div class="img-grid-item">
-          <img src="https://i.postimg.cc/zB3mcfGG/plus_haut_32.png" alt="Tendance" onclick="openLightbox(this)" onerror="this.style.display='none'">
-          <p>Si <strong>38.2% tient</strong> en tendance, grande chance de faire un plus haut.</p>
-        </div>
+        <div class="img-grid-item"><img src="https://i.postimg.cc/L6PSShB1/80_20.png" alt="Range" onclick="openLightbox(this)" onerror="this.style.display='none'"><p>Le marché est <strong>80% en range</strong>. Achète en bas du range, vends une partie en haut.</p></div>
+        <div class="img-grid-item"><img src="https://i.postimg.cc/ydWqbN8Y/retracement.png" alt="Fibonacci" onclick="openLightbox(this)" onerror="this.style.display='none'"><p>Zones de rechargement Fibonacci : entre <strong>61,8% et 71,8%</strong> de retracement.</p></div>
+        <div class="img-grid-item"><img src="https://i.postimg.cc/zB3mcfGG/plus_haut_32.png" alt="Tendance" onclick="openLightbox(this)" onerror="this.style.display='none'"><p>Si <strong>38.2% tient</strong> en tendance, grande chance de faire un plus haut.</p></div>
       </div>
-
       <h3>🕯️ Figures chartistes</h3>
       <div class="img-grid">
-        <div class="img-grid-item">
-          <img src="https://i.postimg.cc/vBS4JD7q/ours_tauraux.png" alt="Bougies japonaises" onclick="openLightbox(this)" onerror="this.style.display='none'">
-          <p><strong>Bougies japonaises</strong> — sentiment du marché sur une période donnée.</p>
-        </div>
-        <div class="img-grid-item">
-          <img src="https://i.postimg.cc/85n72sdn/drapeau.png" alt="Drapeaux & canaux" onclick="openLightbox(this)" onerror="this.style.display='none'">
-          <p><strong>Drapeaux & canaux</strong> — continuation ou retournement de tendance.</p>
-        </div>
-        <div class="img-grid-item">
-          <img src="https://i.postimg.cc/mD6Pvh3p/Elliot_wyckoff_MODIFIE.jpg" alt="Accumulation Wyckoff" onclick="openLightbox(this)" onerror="this.style.display='none'">
-          <p><strong>Accumulation Wyckoff</strong> — phase d'accumulation avant un mouvement haussier.</p>
-        </div>
+        <div class="img-grid-item"><img src="https://i.postimg.cc/vBS4JD7q/ours_tauraux.png" alt="Bougies japonaises" onclick="openLightbox(this)" onerror="this.style.display='none'"><p><strong>Bougies japonaises</strong> — sentiment du marché sur une période donnée.</p></div>
+        <div class="img-grid-item"><img src="https://i.postimg.cc/85n72sdn/drapeau.png" alt="Drapeaux & canaux" onclick="openLightbox(this)" onerror="this.style.display='none'"><p><strong>Drapeaux & canaux</strong> — continuation ou retournement de tendance.</p></div>
+        <div class="img-grid-item"><img src="https://i.postimg.cc/mD6Pvh3p/Elliot_wyckoff_MODIFIE.jpg" alt="Accumulation Wyckoff" onclick="openLightbox(this)" onerror="this.style.display='none'"><p><strong>Accumulation Wyckoff</strong> — phase d'accumulation avant un mouvement haussier.</p></div>
       </div>
     </div>
 
@@ -324,80 +219,48 @@
       </div>
       <div class="indicator-card">
         <h3>⚖️ Options (Deribit)</h3>
-        <p>Regarde où il y a le plus de volume (souvent fin de mois). Le <strong>Max Pain</strong> = là où il y a le plus de perdants. Barres bleues = paris haussiers, barres jaunes = paris baissiers. Choisis ton camp.</p>
+        <p>Regarde où il y a le plus de volume. Le <strong>Max Pain</strong> = là où il y a le plus de perdants. Barres bleues = paris haussiers, barres jaunes = paris baissiers.</p>
         <br><a href="https://www.deribit.com/statistics/ETH/metrics/options" target="_blank" class="btn-link">📈 Options ETH Deribit</a>
       </div>
       <div class="indicator-card">
         <h3>💥 Carte de Liquidations</h3>
-        <p>J'attends que le prix vienne <strong>liquider les positions à levier</strong> avant un retournement. Ce sont des traders avec des leviers ×100 parfois... 😅</p>
+        <p>J'attends que le prix vienne <strong>liquider les positions à levier</strong> avant un retournement.</p>
         <br><a href="https://coinank.com/chart/derivatives/liq-map/binance/btcusdt/1w" target="_blank" class="btn-link">🗺️ Carte de liquidations BTC</a>
       </div>
     </div>
 
     <hr class="divider">
 
-    <!-- SECTION 4 : CONCLUSION -->
     <h2 class="fade-in">4. 🏆 Conclusion</h2>
-
     <div class="conclusion-box fade-in">
       <p>Mélange tout cela, sois patient, suis les baleines, ne risque que ce que tu peux perdre, et au bout du chemin… tu auras peut-être ta récompense. 🎁</p>
-
-      <img src="https://i.postimg.cc/9FgMvvWt/cocktail_shaker.gif" alt="Good luck!" style="max-width:200px; border:none;" onerror="this.style.display='none'">
-
+      <img src="https://i.postimg.cc/9FgMvvWt/cocktail_shaker.gif" alt="Good luck!" style="max-width:200px;border:none;" onerror="this.style.display='none'">
       <p>Tu veux explorer quelques cryptos ? <strong>Pars à la chasse au trésor :</strong></p>
-      <a href="https://anopepus.github.io/Chasse-au-tresor/enigmes.html" target="_blank" class="btn-link" style="margin:10px auto; display:inline-flex;">
-        💎 Chasse au trésor crypto
-      </a>
-
+      <a href="https://anopepus.github.io/Chasse-au-tresor/enigmes.html" target="_blank" class="btn-link" style="margin:10px auto;display:inline-flex;">💎 Chasse au trésor crypto</a>
       <br><br>
-
       <p class="gold-rule" style="margin-top:20px;">Bonne chance, et que la Force soit avec toi ! 🌌</p>
-
-      <!-- Vidéo permanente Star Wars -->
-      <div style="text-align:center; margin:16px 0;">
-        <video id="force-video" loop playsinline autoplay muted
-          style="width:240px; border-radius:12px; border:2px solid #6FA8DC; display:block; margin:0 auto;">
+      <div style="text-align:center;margin:16px 0;">
+        <video id="force-video" loop playsinline autoplay muted style="width:240px;border-radius:12px;border:2px solid #6FA8DC;display:block;margin:0 auto;">
           <source src="https://raw.githubusercontent.com/AnoPepUs/media-crypto/main/Yoda%20la%20force.mp4" type="video/mp4">
         </video>
-        <button class="sound-btn" id="btn-son" onclick="toggleSon()" style="margin-top:10px;">
-          🔇 Activer le son
-        </button>
+        <button class="sound-btn" id="btn-son" onclick="toggleSon()" style="margin-top:10px;">🔇 Activer le son</button>
       </div>
-
       <br>
-
-      <a href="https://www.dailymotion.com/playlist/xbdx20" target="_blank" class="btn-link">
-        🎬 Ma playlist Dailymotion pour voir des indicateurs au quotidien
-      </a>
-
+      <a href="https://www.dailymotion.com/playlist/xbdx20" target="_blank" class="btn-link">🎬 Ma playlist Dailymotion pour voir des indicateurs au quotidien</a>
       <br><br>
     </div>
 
   </div>
 
-  <div class="page-footer">
-    Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier.
-  </div>
+  <div class="page-footer">Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier.</div>
 
   <script>
-    function openLightbox(img) {
-      document.getElementById('lightbox-img').src = img.src;
-      document.getElementById('lightbox').classList.add('active');
-    }
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
-    }
-
-    const fv = document.getElementById('force-video');
-    function toggleSon() {
-      fv.muted = !fv.muted;
-      document.getElementById('btn-son').textContent = fv.muted ? '🔇 Activer le son' : '🔊 Couper le son';
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    function openLightbox(img) { document.getElementById('lightbox-img').src=img.src; document.getElementById('lightbox').classList.add('active'); }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+    const fv=document.getElementById('force-video');
+    function toggleSon() { fv.muted=!fv.muted; document.getElementById('btn-son').textContent=fv.muted?'🔇 Activer le son':'🔊 Couper le son'; }
+    const observer=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); },{threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
   </script>
 
 </body>
