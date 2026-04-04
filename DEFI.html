@@ -5,7 +5,7 @@
   <title>DeFi - Crypto pour les Nuls</title>
   <link rel="icon" type="image/gif" href="https://i.postimg.cc/qMC792VP/papillon.gif">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
-
+ 
   <style>
     :root {
       --blue: #6FA8DC; --blue-dark: #0B5394; --blue-glow: #6FA8DC55;
@@ -13,11 +13,11 @@
       --red: rgba(255,80,80,0.15); --red-border: rgba(255,80,80,0.5);
       --green-bg: rgba(0,200,100,0.1); --green-border: rgba(0,200,100,0.35);
       --card-bg: rgba(0,0,0,0.5); --card-border: #6FA8DC44;
+      --lido: #F6A623;
     }
     * { box-sizing: border-box; }
     body { margin: 0; padding: 60px 0 0 0; background: url("https://i.postimg.cc/ZKnQRqsc/outerspace_31.gif") no-repeat center center fixed; background-size: cover; font-family: 'Exo 2', Arial, sans-serif; color: white; text-align: center; }
-
-    /* ===== NAV ===== */
+ 
     nav { background-color: rgba(0,0,0,0.75); padding: 5px 0; position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(6px); height: 50px; display: flex; align-items: center; }
     nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; flex-wrap: nowrap; align-items: center; width: 100%; gap: 4px; }
     nav li { margin: 0 6px; }
@@ -26,8 +26,7 @@
     .nav-gif-item { position: relative; }
     .nav-gif-item .nav-tooltip { display: none; position: absolute; top: 45px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.9); border: 1px solid #FFD700; border-radius: 8px; padding: 8px 12px; color: #FFD700; font-size: 0.8rem; white-space: nowrap; z-index: 999; text-align: center; line-height: 1.5; pointer-events: none; }
     .nav-gif-item:hover .nav-tooltip { display: block; }
-    /* ===== FIN NAV ===== */
-
+ 
     .content { padding: 24px 20px 40px; max-width: 880px; margin: 0 auto; background-color: rgba(0,0,0,0.65); border-radius: 12px; text-align: left; line-height: 1.7; }
     h1 { font-family: 'Orbitron', sans-serif; color: var(--blue); text-align: center; font-size: 1.9em; text-shadow: 0 0 22px var(--blue-glow); letter-spacing: 2px; margin-bottom: 6px; }
     .page-subtitle { text-align: center; color: #aaa; font-style: italic; margin-bottom: 36px; font-size: 0.95em; }
@@ -142,9 +141,117 @@
     .result-row .tip-wrap, .hedge-metric .tip-wrap { width: 100%; justify-content: space-between; }
     .result-row .tip-wrap .label-txt { color: #aaa; }
     .hedge-metric .tip-wrap .label-txt { color: #aaa; font-size: 0.75em; }
+ 
+    /* ===== LIDO STYLES ===== */
+    .lido-box {
+      background: linear-gradient(135deg, rgba(246,166,35,0.06), rgba(0,0,0,0.5));
+      border: 2px solid rgba(246,166,35,0.4);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 20px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .lido-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--lido), transparent);
+    }
+    .lido-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(246,166,35,0.2);
+    }
+    .lido-logo {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--lido);
+      background: rgba(246,166,35,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4em;
+      flex-shrink: 0;
+    }
+    .lido-title { font-family: 'Orbitron', sans-serif; font-size: 0.95em; color: var(--lido); margin: 0; }
+    .lido-sub { font-size: 0.82em; color: #aaa; margin: 2px 0 0; }
+ 
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      flex-wrap: wrap;
+    }
+    .flow-node {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(246,166,35,0.35);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.85em;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .flow-node .fn-title { color: var(--lido); font-weight: 700; display: block; }
+    .flow-node .fn-sub { color: #aaa; font-size: 0.85em; }
+    .flow-sep { color: var(--lido); font-size: 1.2em; flex-shrink: 0; }
+ 
+    /* Teacher trigger */
+    .teacher-trigger { display: inline-flex; flex-direction: column; align-items: center; cursor: pointer; margin: 10px 0; transition: transform 0.2s; }
+    .teacher-trigger:hover { transform: scale(1.04); }
+    .teacher-trigger img { width: 100px; border: none; border-radius: 10px; margin: 0; filter: drop-shadow(0 0 10px var(--lido)); transition: filter 0.2s; }
+    .teacher-trigger:hover img { filter: drop-shadow(0 0 18px var(--lido)); }
+    .teacher-label { font-size: 0.75em; color: #aaa; margin-top: 6px; text-align: center; }
+ 
+    /* Modal overlay */
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal-box { position: relative; max-width: 500px; width: 92%; animation: popIn 0.25s ease; }
+    @keyframes popIn { from{transform:scale(0.85);opacity:0;} to{transform:scale(1);opacity:1;} }
+    .modal-dame { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: -10px; z-index: 10; }
+    .modal-dame img { width: 110px; border: none; margin: 0; filter: drop-shadow(0 0 14px var(--lido)); }
+    .modal-bubble { background: rgba(5,5,15,0.97); border: 2px solid var(--lido); border-radius: 16px; padding: 20px 20px 18px; box-shadow: 0 0 30px rgba(246,166,35,0.3); position: relative; max-height: 75vh; overflow-y: auto; }
+    .modal-bubble::before { content: ''; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); border: 7px solid transparent; border-bottom-color: var(--lido); }
+    .modal-bubble::after { content: ''; position: absolute; top: -11px; left: 50%; transform: translateX(-50%); border: 7px solid transparent; border-bottom-color: rgba(5,5,15,0.97); }
+    .modal-title { font-family: 'Orbitron', sans-serif; font-size: 0.88em; color: var(--lido); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(246,166,35,0.3); display: flex; justify-content: space-between; align-items: center; }
+    .modal-close { cursor: pointer; color: #aaa; font-size: 1.2em; line-height: 1; background: none; border: none; }
+    .modal-close:hover { color: var(--lido); }
+    .modal-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 11px; font-size: 0.86em; line-height: 1.55; color: #eee; }
+    .modal-dot { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: rgba(246,166,35,0.2); border: 2px solid var(--lido); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-size: 0.72em; font-weight: 700; color: var(--lido); margin-top: 1px; }
+    .modal-step strong { color: var(--lido); }
+    .modal-step a { color: var(--lido); }
+ 
+    /* Simulateur Lido */
+    .lido-sim { background: rgba(0,0,0,0.6); border: 1px solid rgba(246,166,35,0.4); border-radius: 12px; padding: 20px; margin: 16px 0; }
+    .lido-sim h3 { color: var(--lido); font-family: 'Orbitron', sans-serif; text-align: center; margin-top: 0; font-size: 0.9em; }
+    .lido-sim .sim-btn { background: rgba(246,166,35,0.2); border-color: var(--lido); color: var(--lido); }
+    .lido-sim .sim-btn:hover { background: var(--lido); color: #000; }
+    .lido-result-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px; margin-top: 16px; }
+    .lido-result-card { background: rgba(0,0,0,0.4); border-radius: 10px; padding: 14px; text-align: center; border: 1px solid rgba(246,166,35,0.2); }
+    .lido-result-card .lrc-label { font-size: 0.78em; color: #aaa; margin-bottom: 6px; }
+    .lido-result-card .lrc-value { font-family: 'Orbitron', sans-serif; font-size: 1.1em; color: var(--lido); }
+    .lido-result-card .lrc-sub { font-size: 0.75em; color: #777; margin-top: 3px; }
+    .lido-result-card.highlight-card { border-color: var(--green); }
+    .lido-result-card.highlight-card .lrc-value { color: var(--green); }
+    .eth-price-scenarios { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 14px; }
+    @media(max-width:500px) { .eth-price-scenarios { grid-template-columns: 1fr; } }
+    .scenario-card { border-radius: 10px; padding: 12px; text-align: center; }
+    .scenario-card.sc-stable { background: rgba(111,168,220,0.08); border: 1px solid rgba(111,168,220,0.3); }
+    .scenario-card.sc-up { background: rgba(0,200,100,0.08); border: 1px solid rgba(0,200,100,0.3); }
+    .scenario-card.sc-moon { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.3); }
+    .scenario-card .sc-title { font-size: 0.78em; color: #aaa; margin-bottom: 6px; display: block; }
+    .scenario-card .sc-eth { font-size: 0.82em; color: #ddd; margin-bottom: 4px; }
+    .scenario-card .sc-eur { font-family: 'Orbitron', sans-serif; font-size: 1em; }
+    .scenario-card.sc-stable .sc-eur { color: var(--blue); }
+    .scenario-card.sc-up .sc-eur { color: var(--green); }
+    .scenario-card.sc-moon .sc-eur { color: var(--gold); }
+    .scenario-card .sc-pct { font-size: 0.78em; margin-top: 3px; }
   </style>
 </head>
-
+ 
 <body>
   <nav>
     <ul>
@@ -172,15 +279,46 @@
       <li><a href="Fiscalite.html">Fiscalité</a></li>
     </ul>
   </nav>
-
+ 
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <img id="lightbox-img" src="" alt="">
   </div>
-
+ 
+  <!-- MODAL LIDO -->
+  <div class="modal-overlay" id="popup-lido" onclick="closePopupOutside(event,'popup-lido')">
+    <div class="modal-box">
+      <div class="modal-dame"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse"></div>
+      <div class="modal-bubble">
+        <div class="modal-title">🔥 Staker ETH sur Lido — Guide pas à pas<button class="modal-close" onclick="closePopup('popup-lido')">✕</button></div>
+        <div class="modal-step"><div class="modal-dot">1</div><span>Installe <strong>Rabby Wallet</strong> ou <strong>MetaMask</strong> et dépose des ETH dessus. → <a href="wallet.html">Voir page Wallet</a></span></div>
+        <div class="modal-step"><div class="modal-dot">2</div><span>Va sur <a href="https://lido.fi" target="_blank">lido.fi</a> → clique sur <strong>"Stake"</strong> → connecte ton wallet.</span></div>
+        <div class="modal-step"><div class="modal-dot">3</div><span>Entre le montant d'ETH à staker → clique <strong>"Submit"</strong> → confirme dans ton wallet. Tu reçois des <strong>stETH</strong> en échange.</span></div>
+        <div class="modal-step"><div class="modal-dot">4</div><span>Ton solde de <strong>stETH augmente automatiquement</strong> chaque jour — pas besoin de faire quoi que ce soit !</span></div>
+        <div class="modal-step"><div class="modal-dot">5</div><span><strong>Boucle EarnETH :</strong> Va sur <a href="https://earneth.com" target="_blank">earneth.com</a> → dépose tes stETH → génère ~5% APY supplémentaire en plus des ~3% Lido.</span></div>
+        <div class="modal-step"><div class="modal-dot">6</div><span>Pour sortir : retourne sur Lido → <strong>"Unstake"</strong> → attends ~1-4 jours (délai Ethereum) ou échange stETH contre ETH directement sur Uniswap.</span></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- MODAL RENDEMENT RÉEL -->
+  <div class="modal-overlay" id="popup-rendement" onclick="closePopupOutside(event,'popup-rendement')">
+    <div class="modal-box">
+      <div class="modal-dame"><img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Maitresse"></div>
+      <div class="modal-bubble">
+        <div class="modal-title">💡 Le vrai rendement en monnaie fiat<button class="modal-close" onclick="closePopup('popup-rendement')">✕</button></div>
+        <div class="modal-step"><div class="modal-dot">1</div><span>Tu achètes <strong>1 ETH à 2 000€</strong> et tu le stakes sur Lido à <strong>3% APY</strong>.</span></div>
+        <div class="modal-step"><div class="modal-dot">2</div><span>En 1 an tu reçois <strong>0,03 ETH</strong> de récompense — soit <strong>60€</strong> si l'ETH reste à 2 000€ (3% sur ta mise).</span></div>
+        <div class="modal-step"><div class="modal-dot">3</div><span>Mais si l'ETH monte à <strong>5 000€</strong>, tes 0,03 ETH valent <strong>150€</strong> → c'est <strong>7,5% sur ta mise initiale</strong> de 2 000€.</span></div>
+        <div class="modal-step"><div class="modal-dot">4</div><span>Si l'ETH monte à <strong>10 000€</strong>, tes 0,03 ETH valent <strong>300€</strong> → c'est <strong>15% sur ta mise initiale</strong> !</span></div>
+        <div class="modal-step"><div class="modal-dot">5</div><span>La formule est simple : <strong>rendement réel € = APY% × prix sortie / prix entrée</strong>. Le taux en crypto reste constant, mais sa valeur en euros suit le prix de l'ETH.</span></div>
+      </div>
+    </div>
+  </div>
+ 
   <div class="content">
     <h1>La DeFi 🌊</h1>
     <p class="page-subtitle">Finance décentralisée — Le festival sans vigile</p>
-
+ 
     <h2 class="fade-in">1. 🎪 Qu'est-ce que la DeFi ?</h2>
     <div class="section-block fade-in">
       <p>La DeFi, ou <strong>finance décentralisée</strong>, c'est comme un festival où tout le monde peut entrer avec son billet, sans passer par le vigile (les banques, pour ceux qui n'auraient pas suivi). Un monde où ton argent danse librement, loin des institutions financières qui aiment garder la musique pour elles.</p>
@@ -191,9 +329,9 @@
         <div class="cons"><h3>❌ Inconvénients</h3><ul><li><strong>Volatilité</strong> — Le marché est aussi stable qu'une cheville de danseur sur scène glissante.</li><li><strong>Sécurité</strong> — Bugs et hacks sont monnaie courante.</li><li><strong>Complexité</strong> — La courbe d'apprentissage peut être raide.</li></ul></div>
       </div>
     </div>
-
+ 
     <hr class="divider">
-
+ 
     <h2 class="fade-in">2. 🔒 Le Staking</h2>
     <div class="section-block fade-in">
       <p>Le staking consiste à <strong>verrouiller tes cryptos</strong> dans un réseau blockchain pour soutenir ses opérations. En échange, tu reçois des récompenses sous forme de jetons supplémentaires.</p>
@@ -201,11 +339,152 @@
         <div class="pros"><h3>✅ Avantages</h3><ul><li><strong>Rendement passif</strong> — Gagner des intérêts sans vendre.</li><li><strong>Simplicité</strong> — Relativement simple à comprendre.</li><li><strong>Sécurité réseau</strong> — Tu contribues à la sécurité de la blockchain.</li></ul></div>
         <div class="cons"><h3>❌ Inconvénients</h3><ul><li><strong>Verrouillage</strong> — Ton argent est bloqué. Si le marché plonge, tu ne peux pas réagir.</li><li><strong>Volatilité</strong> — Tu peux gagner des intérêts mais perdre en capital.</li></ul></div>
       </div>
-      <div class="tip">Pour le staking, je t'invite à rejoindre la page dédiée → <a href="CosmosHub.html" class="btn-link">🌌 CosmosHub</a></div>
+      <div class="tip">Pour le staking ATOM, je t'invite à rejoindre la page dédiée → <a href="CosmosHub.html" class="btn-link">🌌 CosmosHub</a></div>
     </div>
-
+ 
+    <!-- ===== BLOC LIDO ===== -->
+    <div class="lido-box fade-in">
+      <div class="lido-header">
+        <div class="lido-logo">🔥</div>
+        <div>
+          <div class="lido-title">LIDO — Liquid Staking ETH</div>
+          <div class="lido-sub">La plus grande plateforme de staking ETH au monde · TVL &gt; 20 Mds$</div>
+        </div>
+      </div>
+ 
+      <p>Lido te permet de staker ton ETH <strong>sans minimum de 32 ETH</strong> requis par Ethereum. Tu déposes ce que tu veux, tu reçois des <strong>stETH</strong> (staked ETH) qui s'apprécient automatiquement. Pas de lock — tu peux revendre tes stETH à tout moment.</p>
+ 
+      <div class="info-box">
+        <strong>stETH</strong> = ton ETH staké. Son solde augmente chaque jour automatiquement grâce aux récompenses (~3% APY). Tu n'as rien à faire — c'est Lido qui s'occupe de tout.
+      </div>
+ 
+      <h3 style="color:var(--lido);">🔁 La Boucle Lido + EarnETH</h3>
+      <div class="flow-arrow">
+        <div class="flow-node"><span class="fn-title">💎 ETH</span><span class="fn-sub">ton capital</span></div>
+        <div class="flow-sep">→</div>
+        <div class="flow-node"><span class="fn-title">🔥 Lido</span><span class="fn-sub">~3% APY</span></div>
+        <div class="flow-sep">→</div>
+        <div class="flow-node"><span class="fn-title">📈 stETH</span><span class="fn-sub">liquid & liquide</span></div>
+        <div class="flow-sep">→</div>
+        <div class="flow-node"><span class="fn-title">⚡ EarnETH</span><span class="fn-sub">+5% APY</span></div>
+        <div class="flow-sep">→</div>
+        <div class="flow-node" style="border-color:var(--green);"><span class="fn-title" style="color:var(--green);">~8% APY</span><span class="fn-sub">total en ETH</span></div>
+      </div>
+ 
+      <div class="warning">EarnETH est un protocole plus récent et plus petit que Lido. Vérifie toujours les audits sur leur site avant de déposer des sommes importantes.</div>
+ 
+      <div style="text-align:center; margin:16px 0;">
+        <div class="teacher-trigger" onclick="openPopup('popup-lido')">
+          <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Guide Lido">
+          <div class="teacher-label">👆 Guide pas à pas Lido + EarnETH</div>
+        </div>
+      </div>
+ 
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
+        <a href="https://lido.fi" target="_blank" class="btn-link" style="border-color:rgba(246,166,35,0.4);">🔥 Lido Finance</a>
+        <a href="https://earneth.com" target="_blank" class="btn-link" style="border-color:rgba(246,166,35,0.4);">⚡ EarnETH</a>
+        <a href="https://defillama.com/protocol/lido" target="_blank" class="btn-link" style="border-color:rgba(246,166,35,0.4);">📊 Lido sur DefiLlama</a>
+      </div>
+    </div>
+ 
+    <!-- ===== SIMULATEUR LIDO ===== -->
+    <div class="lido-sim fade-in">
+      <h3>🧮 Simulateur Lido — Vrai rendement en € selon le prix ETH</h3>
+      <p style="text-align:center; color:#aaa; font-size:0.85em; margin-bottom:14px;">3% APY en ETH ne veut pas dire 3% en euros. Découvre ton vrai rendement selon l'évolution du prix !</p>
+ 
+      <div class="sim-grid">
+        <div class="sim-field">
+          <label>Montant investi (€)</label>
+          <input type="number" id="l-invest" value="2000" step="100">
+        </div>
+        <div class="sim-field">
+          <label>Prix ETH à l'achat (€)</label>
+          <input type="number" id="l-price-in" value="2000" step="100">
+        </div>
+        <div class="sim-field">
+          <label>APY staking (%)</label>
+          <input type="number" id="l-apy" value="3" step="0.1">
+        </div>
+        <div class="sim-field">
+          <label>APY EarnETH en plus (%)</label>
+          <input type="number" id="l-apy-earn" value="5" step="0.1">
+        </div>
+      </div>
+ 
+      <p style="font-size:0.82em; color:#aaa; margin:8px 0 4px;">Prix ETH à la sortie (3 scénarios calculés automatiquement) :</p>
+      <div class="sim-grid">
+        <div class="sim-field">
+          <label>📊 Scénario Stable (€)</label>
+          <input type="number" id="l-price-stable" value="2000" step="100">
+        </div>
+        <div class="sim-field">
+          <label>🚀 Scénario Hausse (€)</label>
+          <input type="number" id="l-price-up" value="5000" step="100">
+        </div>
+        <div class="sim-field">
+          <label>🌕 Scénario Moon (€)</label>
+          <input type="number" id="l-price-moon" value="10000" step="100">
+        </div>
+      </div>
+ 
+      <button class="sim-btn" onclick="calcLido()">⚡ Calculer mon vrai rendement</button>
+ 
+      <div class="sim-results" id="lido-results">
+        <div class="lido-result-grid">
+          <div class="lido-result-card">
+            <div class="lrc-label">ETH acheté</div>
+            <div class="lrc-value" id="l-eth-qty">—</div>
+            <div class="lrc-sub">avec ta mise</div>
+          </div>
+          <div class="lido-result-card">
+            <div class="lrc-label">stETH gagné/an (Lido)</div>
+            <div class="lrc-value" id="l-steth-year">—</div>
+            <div class="lrc-sub">en ETH</div>
+          </div>
+          <div class="lido-result-card highlight-card">
+            <div class="lrc-label">ETH total avec EarnETH/an</div>
+            <div class="lrc-value" id="l-total-eth">—</div>
+            <div class="lrc-sub">Lido + EarnETH cumulés</div>
+          </div>
+        </div>
+ 
+        <p style="text-align:center; color:var(--lido); font-family:'Orbitron',sans-serif; font-size:0.82em; margin:20px 0 10px;">💡 Ce que tes récompenses valent vraiment selon le prix de l'ETH :</p>
+ 
+        <div class="eth-price-scenarios">
+          <div class="scenario-card sc-stable">
+            <span class="sc-title">📊 Stable</span>
+            <div class="sc-eth" id="l-sc-eth-stable">ETH à —€</div>
+            <div class="sc-eur" id="l-sc-eur-stable">— €/an</div>
+            <div class="sc-pct" id="l-sc-pct-stable" style="color:var(--blue);">— % sur mise initiale</div>
+          </div>
+          <div class="scenario-card sc-up">
+            <span class="sc-title">🚀 Hausse</span>
+            <div class="sc-eth" id="l-sc-eth-up">ETH à —€</div>
+            <div class="sc-eur" id="l-sc-eur-up">— €/an</div>
+            <div class="sc-pct" id="l-sc-pct-up" style="color:var(--green);">— % sur mise initiale</div>
+          </div>
+          <div class="scenario-card sc-moon">
+            <span class="sc-title">🌕 Moon</span>
+            <div class="sc-eth" id="l-sc-eth-moon">ETH à —€</div>
+            <div class="sc-eur" id="l-sc-eur-moon">— €/an</div>
+            <div class="sc-pct" id="l-sc-pct-moon" style="color:var(--gold);">— % sur mise initiale</div>
+          </div>
+        </div>
+ 
+        <div class="info-box" id="l-summary" style="margin-top:16px; text-align:center;"></div>
+ 
+        <div style="text-align:center; margin-top:16px;">
+          <div class="teacher-trigger" onclick="openPopup('popup-rendement')">
+            <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Explication">
+            <div class="teacher-label">👆 Comprendre la magie du rendement en crypto</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ===== FIN BLOC LIDO ===== -->
+ 
     <hr class="divider">
-
+ 
     <h2 class="fade-in">3. 🔄 Choisir sa Plateforme Décentralisée (DEX)</h2>
     <div class="section-block fade-in">
       <p>Pour savoir avec quelle cavalière tu vas danser, consulte <a href="https://journalducoin.com/defi/defillama-tableau-de-bord-defi/" target="_blank">cet article</a> et <a href="https://defillama.com/" target="_blank">DefiLlama</a> pour comparer les plateformes par TVL.</p>
@@ -215,9 +494,9 @@
         <div class="dex-card"><h3>👻 Aave</h3><p>Plateforme de prêt décentralisé la plus intuitive. Dépôt → intérêts. Emprunt → utilise ton dépôt comme garantie. <strong>Parfaite pour apprendre le lending.</strong></p><br><a href="https://app.aave.com/dashboard/" target="_blank" class="btn-link">→ Aave</a></div>
       </div>
     </div>
-
+ 
     <hr class="divider">
-
+ 
     <h2 class="fade-in">4. 👻 Guide Aave — Prêts & Emprunts</h2>
     <div class="section-block fade-in">
       <h3>🔧 Préparer ton wallet</h3>
@@ -232,9 +511,9 @@
       <h3>🔁 La Boucle (Loop)</h3>
       <div class="step"><div class="step-number">6</div><div class="step-content">Emprunter → racheter → redéposer pour augmenter le rendement.<br><span style="color:#EB5757;">⚠️ Augmente les intérêts ET le risque de liquidation. Toujours surveiller le HF !</span></div></div>
     </div>
-
+ 
     <hr class="divider">
-
+ 
     <h2 class="fade-in">5. 📊 Exemple Concret avec ETH</h2>
     <div style="text-align:center;margin:16px 0;">
       <img src="https://i.postimg.cc/zfNJkhsW/defi-AAVE.png" alt="Exemple Aave" onclick="openLightbox(this)" onerror="this.style.display='none'" style="width:280px;cursor:pointer;transition:transform 0.2s,border-color 0.2s;border:2px solid #6FA8DC;border-radius:10px;" onmouseover="this.style.transform='scale(1.04)';this.style.borderColor='#FFD700'" onmouseout="this.style.transform='scale(1)';this.style.borderColor='#6FA8DC'">
@@ -261,9 +540,9 @@
       <div class="info-box"><strong>🚀 Si ETH fait ×2 (→ 4 000$)</strong><br>3,06 ETH × 4 000$ + 503$ USDe - 2 037$ dette = <strong style="color:var(--green);">10 706$</strong><br>Rendement sur capital net (2 563$) : <strong style="color:var(--green);">+132% sur valeur totale déposée soit +317% sur capital net réel.</strong></div>
       <div class="warning">Une boucle augmente ton exposition à l'ETH et ton rendement, <strong>mais ne protège pas ton capital</strong>.</div>
     </div>
-
+ 
     <hr class="divider">
-
+ 
     <h2 class="fade-in">6. 🧮 Simulateur Aave</h2>
     <div class="fade-in">
       <div class="simulator">
@@ -288,31 +567,31 @@
           <div class="results-compare" style="display:flex;gap:14px;margin-top:16px;">
             <div class="result-col" id="col-sans">
               <h4>&#128230; SANS BOUCLE</h4>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">ETH déposé</span><span class="tip-icon">?<span class="tip-bubble">Ton ETH initial déposé sur Aave, sans emprunt ni réinvestissement.</span></span></span><span id="r0-eth"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Valeur déposée</span><span class="tip-icon">?<span class="tip-bubble">ETH × prix actuel.</span></span></span><span id="r0-val"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Gain intérêts/an</span><span class="tip-icon">?<span class="tip-bubble">Intérêts générés par ton dépôt ETH au taux APY choisi.</span></span></span><span id="r0-gain" class="result-positive"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Valeur à la sortie</span><span class="tip-icon">?<span class="tip-bubble">ETH × prix de sortie + intérêts annuels.</span></span></span><span id="r0-exit"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Rendement net</span><span class="tip-icon">?<span class="tip-bubble">Gain total divisé par ta mise initiale.</span></span></span><span id="r0-rdt"></span></div>
+              <div class="result-row"><span>ETH déposé</span><span id="r0-eth"></span></div>
+              <div class="result-row"><span>Valeur déposée</span><span id="r0-val"></span></div>
+              <div class="result-row"><span>Gain intérêts/an</span><span id="r0-gain" class="result-positive"></span></div>
+              <div class="result-row"><span>Valeur à la sortie</span><span id="r0-exit"></span></div>
+              <div class="result-row"><span>Rendement net</span><span id="r0-rdt"></span></div>
             </div>
             <div class="result-col highlight" id="col-avec">
               <h4>&#9889; AVEC BOUCLE</h4>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">ETH total</span><span class="tip-icon">?<span class="tip-bubble">Ton ETH de départ + l'ETH racheté grâce à l'emprunt USDC.</span></span></span><span id="r1-eth"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Valeur nette</span><span class="tip-icon">?<span class="tip-bubble">Valeur totale déposée moins ta dette USDC.</span></span></span><span id="r1-net"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Gain net/an</span><span class="tip-icon">?<span class="tip-bubble">= Intérêts ETH + Intérêts USDe - Coût emprunt USDC.</span></span></span><span id="r1-gain" class="result-positive"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">HF estimé</span><span class="tip-icon">?<span class="tip-bubble"><strong>Health Factor</strong> : ✅ &gt;2 confortable · ⚠️ 1,2–1,8 surveiller · 🚨 &lt;1 liquidation !</span></span></span><span id="r1-hf"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Prix liquidation</span><span class="tip-icon">?<span class="tip-bubble">Prix ETH en dessous duquel Aave liquide ton collatéral.</span></span></span><span id="r1-liq" class="result-negative"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Valeur à la sortie</span><span class="tip-icon">?<span class="tip-bubble">Valeur totale si tu fermes tout au prix choisi.</span></span></span><span id="r1-exit"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Rendement net</span><span class="tip-icon">?<span class="tip-bubble">Calculé sur ta valeur nette réelle.</span></span></span><span id="r1-rdt"></span></div>
-              <div class="result-row"><span class="tip-wrap"><span class="label-txt">Effet levier</span><span class="tip-icon">?<span class="tip-bubble">Gain de rendement supplémentaire apporté par la boucle.</span></span></span><span id="r1-leverage" class="result-positive"></span></div>
+              <div class="result-row"><span>ETH total</span><span id="r1-eth"></span></div>
+              <div class="result-row"><span>Valeur nette</span><span id="r1-net"></span></div>
+              <div class="result-row"><span>Gain net/an</span><span id="r1-gain" class="result-positive"></span></div>
+              <div class="result-row"><span>HF estimé</span><span id="r1-hf"></span></div>
+              <div class="result-row"><span>Prix liquidation</span><span id="r1-liq" class="result-negative"></span></div>
+              <div class="result-row"><span>Valeur à la sortie</span><span id="r1-exit"></span></div>
+              <div class="result-row"><span>Rendement net</span><span id="r1-rdt"></span></div>
+              <div class="result-row"><span>Effet levier</span><span id="r1-leverage" class="result-positive"></span></div>
             </div>
           </div>
           <div class="hf-alert" id="aave-hf-alert"></div>
         </div>
       </div>
     </div>
-
+ 
     <hr class="divider">
-
+ 
     <h2 class="fade-in">7. 🛡️ Se Hedger — Stratégie Delta-Neutre</h2>
     <div class="section-block fade-in">
       <div style="display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap;">
@@ -326,7 +605,7 @@
         </div>
       </div>
     </div>
-
+ 
     <div class="section-block fade-in">
       <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
         <div style="flex:1;min-width:220px;">
@@ -345,7 +624,7 @@
       </div>
       <div class="info-box" style="margin-top:14px;"><strong>Exemple :</strong> Tu as 3 ETH long et tu empruntes 1 ETH (short). Tu es donc exposé à <strong>2 ETH net</strong> au lieu de 3. L'ETH emprunté est swappé en USDe qui génère ~4,31% APY.</div>
     </div>
-
+ 
     <div class="section-block fade-in">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;">
         <img src="https://i.postimg.cc/4dWkYNVq/cyperpunk.png" alt="Cyberpunk" style="width:70px;border:none;background:transparent;margin:0;border-radius:50%;">
@@ -355,7 +634,7 @@
         </div>
       </div>
       <img src="https://i.postimg.cc/zBxZyXTz/graphique_zone.png" alt="Zones de marché" onclick="openLightbox(this)" onerror="this.style.display='none'" style="width:100%;max-width:580px;display:block;margin:0 auto 20px;cursor:pointer;border:2px solid var(--blue);border-radius:10px;" onmouseover="this.style.borderColor='#FFD700'" onmouseout="this.style.borderColor='var(--blue)'">
-
+ 
       <div style="background:rgba(255,80,80,0.06);border:1px solid rgba(255,80,80,0.3);border-radius:12px;padding:16px;margin-bottom:14px;">
         <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
           <div style="flex-shrink:0;"><img src="https://i.postimg.cc/nz3bXcqp/eth_tombe.png" alt="ETH baisse" onclick="openLightbox(this)" onerror="this.style.display='none'" style="width:130px;cursor:pointer;border:2px solid rgba(255,80,80,0.5);border-radius:8px;margin:0;" onmouseover="this.style.borderColor='#FFD700'" onmouseout="this.style.borderColor='rgba(255,80,80,0.5)'"><p style="color:#aaa;font-size:0.72em;text-align:center;margin:4px 0 0;">🔍 Agrandir</p></div>
@@ -369,7 +648,7 @@
           </div>
         </div>
       </div>
-
+ 
       <div style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.3);border-radius:12px;padding:16px;margin-bottom:14px;">
         <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
           <div style="flex-shrink:0;"><img src="https://i.postimg.cc/ydL4DY0B/ETH_range.png" alt="ETH range" onclick="openLightbox(this)" onerror="this.style.display='none'" style="width:130px;cursor:pointer;border:2px solid rgba(255,215,0,0.4);border-radius:8px;margin:0;" onmouseover="this.style.borderColor='#FFD700'" onmouseout="this.style.borderColor='rgba(255,215,0,0.4)'"><p style="color:#aaa;font-size:0.72em;text-align:center;margin:4px 0 0;">🔍 Agrandir</p></div>
@@ -382,7 +661,7 @@
           </div>
         </div>
       </div>
-
+ 
       <div style="background:rgba(0,200,100,0.05);border:1px solid rgba(0,200,100,0.3);border-radius:12px;padding:16px;">
         <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
           <div style="flex-shrink:0;"><img src="https://i.postimg.cc/9ML5DFyH/eth_grimp.png" alt="ETH monte" onclick="openLightbox(this)" onerror="this.style.display='none'" style="width:130px;cursor:pointer;border:2px solid rgba(0,200,100,0.4);border-radius:8px;margin:0;" onmouseover="this.style.borderColor='#FFD700'" onmouseout="this.style.borderColor='rgba(0,200,100,0.4)'"><p style="color:#aaa;font-size:0.72em;text-align:center;margin:4px 0 0;">🔍 Agrandir</p></div>
@@ -396,7 +675,7 @@
         </div>
       </div>
     </div>
-
+ 
     <div class="section-block fade-in">
       <div style="display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap;">
         <div style="flex:1;min-width:220px;">
@@ -417,9 +696,9 @@
       </div>
       <div class="tip" style="margin-top:16px;">Dans tous les cas, tu ressors avec de l'ETH accumulé grâce aux intérêts USDe. C'est ça la magie du hedge. 🎩</div>
     </div>
-
+ 
     <hr class="divider">
-
+ 
     <h2 class="fade-in">8. 🧮 Simulateur Hedge ETH</h2>
     <div class="fade-in">
       <div class="simulator">
@@ -469,14 +748,16 @@
         </div>
       </div>
     </div>
-
+ 
     <hr class="divider">
-
+ 
     <h2 class="fade-in">9. 🏁 Conclusion</h2>
     <div class="section-block fade-in" style="text-align:center;">
       <p>La DeFi est puissante mais demande de la rigueur. Commence petit, comprends chaque étape avant de mettre plus en jeu.</p>
       <div class="gold-rule">⚡ Garde toujours un œil sur ton Health Factor. Un HF &lt; 1,5 = danger. ⚡</div>
       <div style="margin-top:20px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
+        <a href="https://lido.fi" target="_blank" class="btn-link">🔥 Lido</a>
+        <a href="https://earneth.com" target="_blank" class="btn-link">⚡ EarnETH</a>
         <a href="https://app.aave.com" target="_blank" class="btn-link">👻 Aave</a>
         <a href="https://app.uniswap.org" target="_blank" class="btn-link">🦄 Uniswap</a>
         <a href="https://defillama.com/" target="_blank" class="btn-link">📊 DefiLlama</a>
@@ -485,15 +766,62 @@
       </div>
     </div>
   </div>
-
+ 
   <div class="page-footer">Crypto pour les Nuls · Les informations fournies ne constituent pas un conseil financier.</div>
-
+ 
   <script>
     function openLightbox(img){document.getElementById('lightbox-img').src=img.src;document.getElementById('lightbox').classList.add('active');}
     function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+    function openPopup(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+    function closePopup(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+    function closePopupOutside(e,id){if(e.target===document.getElementById(id))closePopup(id);}
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')['popup-lido','popup-rendement'].forEach(closePopup);});
+ 
     const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
     document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
-
+ 
+    // ===== SIMULATEUR LIDO =====
+    function calcLido(){
+      const invest = parseFloat(document.getElementById('l-invest').value)||0;
+      const priceIn = parseFloat(document.getElementById('l-price-in').value)||0;
+      const apy = parseFloat(document.getElementById('l-apy').value)/100||0;
+      const apyEarn = parseFloat(document.getElementById('l-apy-earn').value)/100||0;
+      const priceStable = parseFloat(document.getElementById('l-price-stable').value)||0;
+      const priceUp = parseFloat(document.getElementById('l-price-up').value)||0;
+      const priceMoon = parseFloat(document.getElementById('l-price-moon').value)||0;
+ 
+      const ethQty = priceIn > 0 ? invest / priceIn : 0;
+      const stethYear = ethQty * apy;
+      const totalEth = ethQty * (apy + apyEarn);
+ 
+      document.getElementById('l-eth-qty').textContent = ethQty.toFixed(4) + ' ETH';
+      document.getElementById('l-steth-year').textContent = '+' + stethYear.toFixed(5) + ' ETH/an';
+      document.getElementById('l-total-eth').textContent = '+' + totalEth.toFixed(5) + ' ETH/an';
+ 
+      function fillScenario(suffix, price) {
+        const eurAn = totalEth * price;
+        const pct = invest > 0 ? (eurAn / invest * 100).toFixed(1) : 0;
+        document.getElementById('l-sc-eth-' + suffix).textContent = 'ETH à ' + price.toLocaleString('fr-FR') + '€';
+        document.getElementById('l-sc-eur-' + suffix).textContent = eurAn.toFixed(0) + ' €/an';
+        document.getElementById('l-sc-pct-' + suffix).textContent = pct + '% sur mise initiale';
+      }
+      fillScenario('stable', priceStable);
+      fillScenario('up', priceUp);
+      fillScenario('moon', priceMoon);
+ 
+      const moonEur = totalEth * priceMoon;
+      const moonPct = invest > 0 ? (moonEur / invest * 100).toFixed(1) : 0;
+      document.getElementById('l-summary').innerHTML =
+        'Tu achètes <strong>' + ethQty.toFixed(4) + ' ETH</strong> à <strong>' + priceIn.toLocaleString('fr-FR') + '€</strong>. ' +
+        'Avec Lido + EarnETH tu accumules <strong style="color:#F6A623">+' + totalEth.toFixed(5) + ' ETH/an</strong>. ' +
+        'Si l\'ETH atteint <strong>' + priceMoon.toLocaleString('fr-FR') + '€</strong>, ' +
+        'ces récompenses vaudront <strong style="color:#6FCF97">' + moonEur.toFixed(0) + '€/an</strong> ' +
+        'soit <strong style="color:#FFD700">' + moonPct + '%</strong> de rendement annuel sur ta mise initiale de ' + invest.toLocaleString('fr-FR') + '€.';
+ 
+      document.getElementById('lido-results').classList.add('visible');
+    }
+ 
+    // ===== SIMULATEUR AAVE =====
     function calcAave(){
       const ethQty=parseFloat(document.getElementById('s-eth').value)||0;
       const price=parseFloat(document.getElementById('s-price').value)||0;
@@ -551,14 +879,14 @@
       else{alert.classList.add('safe');alert.textContent='✅ Position confortable — HF dans la zone verte.';}
       document.getElementById('aave-results').classList.add('visible');
     }
-
+ 
+    // ===== SIMULATEUR HEDGE =====
     let hedgeDurationMonths=12;
     function setDuration(months,btn){
       hedgeDurationMonths=months;
       document.querySelectorAll('.dur-tab').forEach(t=>t.classList.remove('active'));
       btn.classList.add('active');
     }
-
     function calcHedge(){
       const ethDep=parseFloat(document.getElementById('h-eth').value)||0;
       const priceIn=parseFloat(document.getElementById('h-price').value)||0;
